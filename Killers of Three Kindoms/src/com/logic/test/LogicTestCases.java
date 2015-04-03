@@ -28,6 +28,16 @@ public class LogicTestCases {
 		return list;
 	}
 	
+	List<ACard> generateTestDodgeCards(int num){
+		List<ACard> list = new ArrayList<ACard>();
+		for (int i = 0; i < num; i++) {
+			ACard card = new DodgeCard();
+			card.setType(CardConst.CardType_Dodge);
+			list.add(card);
+		}
+		return list;
+	}
+	
 	List<ACard> generateAvailableCards(int num){
 		List<ACard> list = new ArrayList<ACard>();
 		for (int i = 0; i < num; i++) {
@@ -54,11 +64,10 @@ public class LogicTestCases {
 		return list;
 	}
 	
-	List<ACard> generateAvailableCards_castCard_Dodge(int num){
+	List<ACard> generateAvailableCards_castCard_Dodge(int numOfAll,int numOfDodge){
 		List<ACard> list = new ArrayList<ACard>();
-		for (int i = 0; i < num; i++) {
-			ACard card = new DodgeCard();
-			card.setType(CardConst.CardType_Dodge);
+		for (int i = 0; i < numOfAll - numOfDodge; i++) {
+			ACard card = null;
 			list.add(card);
 		}
 		return list;
@@ -116,6 +125,6 @@ public class LogicTestCases {
 	public void testForCastCardStateAndDodgeCard(){
 		Player player = generateTestPlayer();
 		player.gameState = GameState.castCard;
-		Assert.assertEquals(generateAvailableCards_castCard_Dodge(10),player.getAvailableCards(generateTestCards(10)));
+		Assert.assertEquals(generateAvailableCards_castCard_Dodge(10,10),player.getAvailableCards(generateTestDodgeCards(10)));
 	}
 }
