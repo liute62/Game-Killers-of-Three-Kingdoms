@@ -1,19 +1,3 @@
-<<<<<<< HEAD
-package com.logic.test;
-
-import static org.junit.Assert.*;
-
-import org.junit.Test;
-
-public class LogicTestCases {
-
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
-
-}
-=======
 package com.logic.test;
 
 import static org.junit.Assert.*;
@@ -50,4 +34,3 @@ public class LogicTestCases {
 		Assert.assertEquals(generateAvailableCards(),generateTestPlayer().getAvailableCards(generateTestCards()));
 	}
 }
->>>>>>> origin/master
