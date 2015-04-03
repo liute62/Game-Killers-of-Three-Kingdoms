@@ -58,6 +58,7 @@ public class UtilsTestcase {
     @Parameterized.Parameters
     public static Collection inputCardsList() {
         return Arrays.asList(new Object[][] {
+                {list(), list()},
                 {list(1), list(1)}
         });
     }
