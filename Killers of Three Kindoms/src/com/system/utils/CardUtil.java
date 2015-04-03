@@ -23,6 +23,7 @@ public class CardUtil {
 	 * @author Xiangtian
 	 */
 	public List<ACard> initialCards(){ 
+		
 		return null;
 	}
 	

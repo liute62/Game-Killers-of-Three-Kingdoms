@@ -2,6 +2,14 @@ package com.logic.player;
 
 public class Player extends APlayer{
 
+	public int getCurrentHP()
+	{
+		return currentHP;
+	}
+	
+	public void setCurrentHP(int health) {
+		this.currentHP = health;
+	}
 	
 	@Override
 	public boolean strike() {
@@ -22,13 +30,15 @@ public class Player extends APlayer{
 	}
 
 	/**
-	 * @param num the number of HP to be losed
-	 * @param attacker who attack the player
+	 * @param num the number of HP to lose
 	 */
 	@Override
-	public void loseHP(int num,APlayer attacker) {
+	public void loseHP(int num) {
 		// TODO Auto-generated method stub
 		
+		
 	}
+
+	
 
 }

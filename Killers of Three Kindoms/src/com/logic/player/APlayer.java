@@ -21,4 +21,6 @@ public abstract class APlayer implements IPlayer{
 	 protected List<ACard> getAvailableCards(APlayer player,List<ACard> cards) {
 		return null;
 	}
+
+	
 }
