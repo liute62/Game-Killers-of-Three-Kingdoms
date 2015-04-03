@@ -51,8 +51,8 @@ public class CardUtil {
 		randInts = Arrays.asList(1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31);
 
 		for (int n = 1; n < cards.size(); n++) {
-			int pos0 = randInts.get(2 * n - 2) % cards.size();
-			int pos1 = randInts.get(2 * n - 1) % cards.size();
+			int pos0 = randInts.get((2 * n - 2) % randInts.size()) % cards.size();
+			int pos1 = randInts.get((2 * n - 1) % randInts.size()) % cards.size();
 			ACard temp = cards.get(pos0);
 			cards.set(pos0, cards.get(pos1));
 			cards.set(pos1, temp);
