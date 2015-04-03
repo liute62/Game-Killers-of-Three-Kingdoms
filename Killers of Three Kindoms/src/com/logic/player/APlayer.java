@@ -2,6 +2,7 @@ package com.logic.player;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.card.interfaces.ACard;
@@ -18,6 +19,6 @@ public abstract class APlayer implements IPlayer{
 	  * @author liuh4
 	  */
 	 public List<ACard> getAvailableCards(List<ACard> cards) {
-		return null;
+		return new ArrayList<ACard>();
 	}
 }
