@@ -11,4 +11,6 @@ public interface IPlayer {
 	void peach();
 	
 	void loseHP(int n);
+	
+	Object ifDropCards();
 }

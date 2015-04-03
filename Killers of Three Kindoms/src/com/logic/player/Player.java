@@ -1,5 +1,11 @@
 package com.logic.player;
 
+import java.util.List;
+
+import org.easymock.internal.matchers.Null;
+
+import com.card.interfaces.ACard;
+
 public class Player extends APlayer{
 
 	@Override
@@ -19,7 +25,12 @@ public class Player extends APlayer{
 		// TODO Auto-generated method stub
 		
 	}
-
+	@Override
+	public Object ifDropCards() {
+		return null;
+		
+	}
+	
 	/**
 	 * @param num the number of HP to lose
 	 */
@@ -34,9 +45,20 @@ public class Player extends APlayer{
 		this.currentHP = i;
 	}
 
-	public Object getCurrentHP() {
+	public int getCurrentHP() {
 		// TODO Auto-generated method stub
 		return this.currentHP;
+	}
+
+	
+	public List<ACard> getHands() {
+		// TODO Auto-generated method stub
+		return this.hands;
+	}
+
+	public void setHands(List<ACard> list) {
+		// TODO Auto-generated method stub
+		this.hands = list;
 	}
 
 }
