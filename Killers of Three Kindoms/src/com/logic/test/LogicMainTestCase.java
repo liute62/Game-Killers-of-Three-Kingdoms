@@ -43,6 +43,20 @@ public class LogicMainTestCase {
 		{
 			player.getHands().add(aCard);
 		}
+		assertEquals(true, player.ifDropCards());
+	}
+	
+	@Test
+	public void TestIfDropCardsWhenHPMoreThanHands()
+	{
+		ACard aCard = null;
+		List<ACard> list = new ArrayList<ACard>();
+		player.setHands(list);
+		player.setCurrentHP(4);
+		for(int i =0; i < 3; i ++)
+		{
+			player.getHands().add(aCard);
+		}
 		assertEquals(false, player.ifDropCards());
 	}
 }
