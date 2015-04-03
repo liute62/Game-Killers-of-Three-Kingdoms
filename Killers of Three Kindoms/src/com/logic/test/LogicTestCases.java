@@ -41,6 +41,8 @@ public class LogicTestCases {
 			return list;
 		}if(state == GameState.check){
 			return list;
+		}if(state == GameState.drawCard){
+			return list;
 		}
 		for (int i = 0; i < num; i++) {
 			ACard card = null;
@@ -81,5 +83,12 @@ public class LogicTestCases {
 		Player player = generateTestPlayer();
 		player.gameState = GameState.check;
 		Assert.assertEquals(generateAvailableCards(10,GameState.check),player.getAvailableCards(generateTestCards(10)));
+	}
+	
+	@Test
+	public void testForDrawCardState(){
+		Player player = generateTestPlayer();
+		player.gameState = GameState.drawCard;
+		Assert.assertEquals(generateAvailableCards(10,GameState.drawCard),player.getAvailableCards(generateTestCards(10)));
 	}
 }
