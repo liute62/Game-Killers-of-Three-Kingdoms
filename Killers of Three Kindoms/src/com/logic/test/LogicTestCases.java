@@ -16,12 +16,22 @@ public class LogicTestCases {
 
 
 	/**Test for class APlayer getAvailableCards()**/
-	List<ACard> generateTestCards(){
-		return new ArrayList<ACard>();
+	List<ACard> generateTestCards(int num){
+		List<ACard> list = new ArrayList<ACard>();
+		if(num == 1){
+			ACard card = null;
+			list.add(card);
+		}
+		return list;
 	}
 	
-	List<ACard> generateAvailableCards(){
-		return new ArrayList<ACard>();
+	List<ACard> generateAvailableCards(int num){
+		List<ACard> list = new ArrayList<ACard>();
+		if(num == 1){
+			ACard card = null;
+			list.add(card);
+		}
+		return list;
 	}
 	
 	Player generateTestPlayer(){
@@ -31,6 +41,11 @@ public class LogicTestCases {
 	
 	@Test
 	public void testForZero(){
-		Assert.assertEquals(generateAvailableCards(),generateTestPlayer().getAvailableCards(generateTestCards()));
+		Assert.assertEquals(generateAvailableCards(0),generateTestPlayer().getAvailableCards(generateTestCards(0)));
+	}
+	
+	@Test
+	public void testForOne(){
+		Assert.assertEquals(generateAvailableCards(1),generateTestPlayer().getAvailableCards(generateTestCards(1)));
 	}
 }
