@@ -50,24 +50,14 @@ public class CardUtil {
 //        }
         randInts = Arrays.asList(new Integer[]{1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31});
 
-		if (cards.size() == 2) {
-            int pos0 = randInts.get(0) % cards.size();
-            int pos1 = randInts.get(1) % cards.size();
-			ACard temp = cards.get(pos0);
-			cards.set(pos0, cards.get(pos1));
-			cards.set(pos1, temp);
-		} else if (cards.size() > 2) {
-            int pos0 = randInts.get(0) % cards.size();
-            int pos1 = randInts.get(1) % cards.size();
-            int pos2 = randInts.get(2) % cards.size();
-            int pos3 = randInts.get(3) % cards.size();
-			ACard temp = cards.get(pos0);
-			cards.set(pos0, cards.get(pos1));
-			cards.set(pos1, temp);
-            temp = cards.get(pos2);
-            cards.set(pos2, cards.get(pos3));
-            cards.set(pos3, temp);
-		}
+        for (int n = 1; n < cards.size(); n++) {
+            int pos0 = randInts.get(2 * n - 2) % cards.size();
+            int pos1 = randInts.get(2 * n - 1) % cards.size();
+            ACard temp = cards.get(pos0);
+            cards.set(pos0, cards.get(pos1));
+            cards.set(pos1, temp);
+        }
+
 		return cards;
 	}
 }
