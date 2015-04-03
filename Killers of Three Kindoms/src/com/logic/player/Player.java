@@ -27,7 +27,13 @@ public class Player extends APlayer{
 	}
 	@Override
 	public boolean ifDropCards() {
+		int numOfHands = this.hands.size();
+		if(numOfHands < this.currentHP) {
 		return false;
+		}
+		else {
+		return true;	
+		}
 		
 	}
 	
