@@ -21,7 +21,7 @@ public abstract class APlayer implements IPlayer{
 	  * @author liuh4
 	  */
 	 public List<ACard> getAvailableCards(List<ACard> cards) {
-		 if(gameState == GameState.begin || gameState == gameState.check){
+		 if(gameState == GameState.begin || gameState == gameState.check || gameState == GameState.drawCard){
 			 return new ArrayList<ACard>();
 		 }
 		return cards;
