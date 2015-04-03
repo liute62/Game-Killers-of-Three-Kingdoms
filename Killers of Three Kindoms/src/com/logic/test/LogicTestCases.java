@@ -11,6 +11,7 @@ import org.junit.Test;
 import com.card.interfaces.ACard;
 import com.logic.player.APlayer;
 import com.logic.player.Player;
+import com.system.enums.GameState;
 
 public class LogicTestCases {
 
@@ -27,6 +28,18 @@ public class LogicTestCases {
 	
 	List<ACard> generateAvailableCards(int num){
 		List<ACard> list = new ArrayList<ACard>();
+		for (int i = 0; i < num; i++) {
+			ACard card = null;
+			list.add(card);
+		}
+		return list;
+	}
+	
+	List<ACard> generateAvailableCards(int num,GameState state){
+		List<ACard> list = new ArrayList<ACard>();
+		if(state == GameState.begin){
+			return list;
+		}
 		for (int i = 0; i < num; i++) {
 			ACard card = null;
 			list.add(card);
@@ -52,5 +65,10 @@ public class LogicTestCases {
 	@Test
 	public void testForTen(){
 		Assert.assertEquals(generateAvailableCards(10),generateTestPlayer().getAvailableCards(generateTestCards(10)));
+	}
+	
+	@Test
+	public void testForBeginState(){
+		Assert.assertEquals(generateAvailableCards(10,GameState.begin),generateTestPlayer().getAvailableCards(generateTestCards(10)));
 	}
 }
