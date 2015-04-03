@@ -42,13 +42,17 @@ public class CardUtil {
 	 */
 	public List<ACard> shuffleCard(List<ACard> cards) {
         // Generate a list of integers.
-        List<Integer> randInts = new ArrayList<Integer>();
+//        List<Integer> randInts = new ArrayList<Integer>();
 //        Random random = new Random();
 //        for (int i = 0, len = cards.size(); i < len; i++) {
 //            randInts.add(random.nextInt());
 //        }
-        randInts = Arrays.asList(new Integer[]{1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29});
-        
+//        randInts = Arrays.asList(new Integer[]{1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31});
+        if (cards.size() > 1) {
+            ACard temp = cards.get(0);
+            cards.set(0, cards.get(1));
+            cards.set(1, temp);
+        }
         return cards;
 	}
 }
