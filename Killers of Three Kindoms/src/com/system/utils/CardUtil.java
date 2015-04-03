@@ -43,23 +43,30 @@ public class CardUtil {
 	 */
 	public List<ACard> shuffleCard(List<ACard> cards) {
 		// Generate a list of integers.
-//        List<Integer> randInts = new ArrayList<Integer>();
+        List<Integer> randInts = new ArrayList<Integer>();
 //        Random random = new Random();
 //        for (int i = 0, len = cards.size(); i < len; i++) {
 //            randInts.add(random.nextInt());
 //        }
-//        randInts = Arrays.asList(new Integer[]{1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31});
+        randInts = Arrays.asList(new Integer[]{1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31});
+
 		if (cards.size() == 2) {
-			ACard temp = cards.get(0);
-			cards.set(0, cards.get(1));
-			cards.set(1, temp);
+            int pos0 = randInts.get(0) % cards.size();
+            int pos1 = randInts.get(1) % cards.size();
+			ACard temp = cards.get(pos0);
+			cards.set(pos0, cards.get(pos1));
+			cards.set(pos1, temp);
 		} else if (cards.size() > 2) {
-			ACard temp = cards.get(1);
-			cards.set(1, cards.get(2));
-			cards.set(2, temp);
-			temp = cards.get(0);
-			cards.set(0, cards.get(2));
-			cards.set(2, temp);
+            int pos0 = randInts.get(0) % cards.size();
+            int pos1 = randInts.get(1) % cards.size();
+            int pos2 = randInts.get(2) % cards.size();
+            int pos3 = randInts.get(3) % cards.size();
+			ACard temp = cards.get(pos0);
+			cards.set(pos0, cards.get(pos1));
+			cards.set(pos1, temp);
+            temp = cards.get(pos2);
+            cards.set(pos2, cards.get(pos3));
+            cards.set(pos3, temp);
 		}
 		return cards;
 	}
