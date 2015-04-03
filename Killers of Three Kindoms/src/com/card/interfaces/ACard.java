@@ -9,7 +9,13 @@ public abstract class ACard implements ICard{
 	
 	protected String name;
 	
+	protected int type;
+	
 	public void setId(int id){
 		this.id = id;
+	}
+	
+	public void setType(int type){
+		this.type = type;
 	}
 }
