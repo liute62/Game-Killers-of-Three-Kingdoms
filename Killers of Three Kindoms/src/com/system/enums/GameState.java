@@ -1,5 +1,5 @@
 package com.system.enums;
 
 public enum GameState {
-	begin,check
+	begin,check,drawCard,castCard,dropCard,end
 }
