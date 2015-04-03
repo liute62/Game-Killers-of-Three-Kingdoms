@@ -28,7 +28,7 @@ public class CardUtil {
 	
 	/**
 	 * Shuffle the card after game reset.
-	 * @param a list of cards except some card still in the battlefield
+	 * @param cards a list of cards except some card still in the battlefield
 	 * @return a list of cards which items randomly set. (which is definitely different from the input)
 	 * @author jakie
 	 */
