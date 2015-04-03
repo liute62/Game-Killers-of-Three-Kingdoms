@@ -1,5 +1,9 @@
 package com.logic.player;
 
+import java.util.List;
+
+import com.card.interfaces.ACard;
+
 public class Player extends APlayer{
 
 	
@@ -30,5 +34,7 @@ public class Player extends APlayer{
 		// TODO Auto-generated method stub
 		
 	}
+	
+
 
 }
