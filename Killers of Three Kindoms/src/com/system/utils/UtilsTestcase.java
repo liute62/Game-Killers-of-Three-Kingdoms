@@ -61,7 +61,8 @@ public class UtilsTestcase {
                 {list(), list()},
                 {list(1), list(1)},
                 {list(1, 2), list(2, 1)},
-                {list(1, 2, 3), list(2, 3, 1)}
+                {list(1, 2, 3), list(2, 3, 1)},
+                {list(1, 2, 3, 4, 5, 6, 7, 8), list(1, 2, 4, 6, 5, 8, 7, 3)}
         });
     }
 
