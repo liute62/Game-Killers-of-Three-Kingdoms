@@ -19,6 +19,6 @@ public abstract class APlayer implements IPlayer{
 	  * @author liuh4
 	  */
 	 public List<ACard> getAvailableCards(List<ACard> cards) {
-		return new ArrayList<ACard>();
+		return cards;
 	}
 }
