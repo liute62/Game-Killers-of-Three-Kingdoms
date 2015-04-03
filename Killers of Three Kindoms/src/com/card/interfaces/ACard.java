@@ -12,4 +12,8 @@ public abstract class ACard implements ICard{
 	public void setId(int id){
 		this.id = id;
 	}
+
+    public int getId() {
+        return this.id;
+    }
 }

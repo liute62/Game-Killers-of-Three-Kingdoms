@@ -30,9 +30,10 @@ public class CardUtil {
 	 * Shuffle the card after game reset.
 	 * @param cards a list of cards except some card still in the battlefield
 	 * @return a list of cards which items randomly set. (which is definitely different from the input)
-	 * @author jakie
+	 * @author Jackie
 	 */
-	public List<ACard> shuffleCard(List<ACard> cards){
+	public List<ACard> shuffleCard(List<ACard> cards) {
+
 		return null;
 	}
 }
