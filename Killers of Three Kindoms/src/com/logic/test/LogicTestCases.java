@@ -69,6 +69,8 @@ public class LogicTestCases {
 	
 	@Test
 	public void testForBeginState(){
-		Assert.assertEquals(generateAvailableCards(10,GameState.begin),generateTestPlayer().getAvailableCards(generateTestCards(10)));
+		Player player = generateTestPlayer();
+		player.gameState = GameState.begin;
+		Assert.assertEquals(generateAvailableCards(10,GameState.begin),player.getAvailableCards(generateTestCards(10)));
 	}
 }
