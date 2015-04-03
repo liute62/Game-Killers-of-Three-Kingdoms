@@ -10,5 +10,5 @@ public interface IPlayer {
 	
 	void peach();
 	
-	void loseHP(int n,APlayer attacker);
+	void loseHP(int n);
 }
