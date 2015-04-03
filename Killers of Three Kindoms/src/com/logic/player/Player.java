@@ -26,7 +26,7 @@ public class Player extends APlayer{
 	@Override
 	public void loseHP(int num) {
 		// TODO Auto-generated method stub
-		
+		this.currentHP -= num;
 	}
 
 	public void setCurrentHP(int i) {

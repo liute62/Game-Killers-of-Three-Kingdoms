@@ -10,10 +10,6 @@ public class LogicMainTestCase {
 	Player player = new Player();
 	
 	
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
 	@Test public void testLose1HP()
 	{
 		player.setCurrentHP(4);
