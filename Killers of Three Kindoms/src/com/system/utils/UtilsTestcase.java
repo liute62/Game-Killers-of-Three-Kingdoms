@@ -59,7 +59,8 @@ public class UtilsTestcase {
     public static Collection inputCardsList() {
         return Arrays.asList(new Object[][] {
                 {list(), list()},
-                {list(1), list(1)}
+                {list(1), list(1)},
+                {list(1, 2), list(2, 1)}
         });
     }
 
