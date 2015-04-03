@@ -15,6 +15,16 @@ import com.logic.player.Player;
 public class LogicMainTestCase {
 	Player player = new Player();
 	
+	private List<ACard> hands(Integer...integers) {
+		List<ACard> list = new ArrayList<ACard>();
+		for(int i = 0; i < integers.length; i ++)
+		{
+			StrikeCard strike = new StrikeCard();
+			list.add(strike);
+			list.get(i).setId(integers[i]);
+		}
+		return list;
+	}
 	
 	@Test 
 	public void testLose1HP()
@@ -59,4 +69,23 @@ public class LogicMainTestCase {
 		}
 		assertEquals(false, player.ifDropCards());
 	}
+	
+	@Test
+	public void TestDropCards()
+	{
+		List<ACard> list = new ArrayList<ACard>();
+		player.setHands(list);
+		for(int i = 0; i < 5; i ++)
+		{
+			StrikeCard strike = new StrikeCard();
+			player.getHands().add(strike);
+			player.getHands().get(i).setId(i);
+		}
+		ArrayList<Integer> idList = new ArrayList<Integer>();
+		idList.add(1);
+		idList.add(3);
+		player.dropCards(idList);
+		assertEquals(hands(0,2,4), player.getHands());
+	}
+
 }

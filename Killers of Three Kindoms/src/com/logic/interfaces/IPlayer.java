@@ -1,5 +1,7 @@
 package com.logic.interfaces;
 
+import java.util.ArrayList;
+
 import com.logic.player.APlayer;
 
 public interface IPlayer {
@@ -13,4 +15,6 @@ public interface IPlayer {
 	void loseHP(int n);
 	
 	boolean ifDropCards();
+	
+	void dropCards(ArrayList<Integer> idList);
 }

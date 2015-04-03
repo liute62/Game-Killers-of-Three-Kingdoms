@@ -1,5 +1,7 @@
 package com.logic.player;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.easymock.internal.matchers.Null;
@@ -66,5 +68,9 @@ public class Player extends APlayer{
 		// TODO Auto-generated method stub
 		this.hands = list;
 	}
-
+	
+	public void dropCards(ArrayList<Integer> idList) {
+		
+	
+	}
 }
