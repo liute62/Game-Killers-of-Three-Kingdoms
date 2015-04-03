@@ -2,6 +2,7 @@ package com.logic.player;
 
 public class Player extends APlayer{
 
+	
 	@Override
 	public boolean strike() {
 		// TODO Auto-generated method stub
