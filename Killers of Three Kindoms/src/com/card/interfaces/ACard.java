@@ -18,4 +18,8 @@ public abstract class ACard implements ICard{
 	public void setType(int type){
 		this.type = type;
 	}
+	
+	public int getType(){
+		return type;
+	}
 }

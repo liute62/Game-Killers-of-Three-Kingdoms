@@ -8,9 +8,11 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.card.base.DodgeCard;
 import com.card.interfaces.ACard;
 import com.logic.player.APlayer;
 import com.logic.player.Player;
+import com.system.constants.CardConst;
 import com.system.enums.GameState;
 
 public class LogicTestCases {
@@ -47,6 +49,16 @@ public class LogicTestCases {
 		}
 		for (int i = 0; i < num; i++) {
 			ACard card = null;
+			list.add(card);
+		}
+		return list;
+	}
+	
+	List<ACard> generateAvailableCards_castCard_Dodge(int num){
+		List<ACard> list = new ArrayList<ACard>();
+		for (int i = 0; i < num; i++) {
+			ACard card = new DodgeCard();
+			card.setType(CardConst.CardType_Dodge);
 			list.add(card);
 		}
 		return list;
@@ -104,6 +116,6 @@ public class LogicTestCases {
 	public void testForCastCardStateAndDodgeCard(){
 		Player player = generateTestPlayer();
 		player.gameState = GameState.castCard;
-		Assert.assertEquals(generateAvailableCards(10,GameState.castCard),player.getAvailableCards(generateTestCards(10)));
+		Assert.assertEquals(generateAvailableCards_castCard_Dodge(10),player.getAvailableCards(generateTestCards(10)));
 	}
 }
