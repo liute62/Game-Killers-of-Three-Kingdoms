@@ -134,4 +134,11 @@ public class LogicTestCases {
 		player.gameState = GameState.dropCard;
 		Assert.assertEquals(generateAvailableCards(10,GameState.dropCard),player.getAvailableCards(generateTestCards(10)));
 	}
+	
+	@Test
+	public void testForEndState(){
+		Player player = generateTestPlayer();
+		player.gameState = GameState.end;
+		Assert.assertEquals(generateAvailableCards(10,GameState.end),player.getAvailableCards(generateTestCards(10)));
+	}
 }
