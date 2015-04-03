@@ -127,4 +127,11 @@ public class LogicTestCases {
 		player.gameState = GameState.castCard;
 		Assert.assertEquals(generateAvailableCards_castCard_Dodge(10,10),player.getAvailableCards(generateTestDodgeCards(10)));
 	}
+	
+	@Test
+	public void testForDropCardState(){
+		Player player = generateTestPlayer();
+		player.gameState = GameState.dropCard;
+		Assert.assertEquals(generateAvailableCards(10,GameState.dropCard),player.getAvailableCards(generateTestCards(10)));
+	}
 }
