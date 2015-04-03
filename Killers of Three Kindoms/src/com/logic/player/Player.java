@@ -26,8 +26,8 @@ public class Player extends APlayer{
 		
 	}
 	@Override
-	public Object ifDropCards() {
-		return null;
+	public boolean ifDropCards() {
+		return false;
 		
 	}
 	
