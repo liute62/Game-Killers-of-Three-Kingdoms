@@ -1,6 +1,9 @@
 package com.system.utils;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import com.card.interfaces.ACard;
 
@@ -38,6 +41,12 @@ public class CardUtil {
 	 * @author Jackie
 	 */
 	public List<ACard> shuffleCard(List<ACard> cards) {
-		return cards;
+        // Generate a list of integers
+        Random random = new Random();
+        List<Integer> randInts = new ArrayList<Integer>();
+        for (int i = 0, len = cards.size(); i < len; i++) {
+            randInts.add(random.nextInt());
+        }
+        return cards;
 	}
 }
