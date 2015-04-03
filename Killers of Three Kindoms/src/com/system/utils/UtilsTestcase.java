@@ -60,7 +60,8 @@ public class UtilsTestcase {
         return Arrays.asList(new Object[][] {
                 {list(), list()},
                 {list(1), list(1)},
-                {list(1, 2), list(2, 1)}
+                {list(1, 2), list(2, 1)},
+                {list(1, 2, 3), list(3, 2, 1)}
         });
     }
 
