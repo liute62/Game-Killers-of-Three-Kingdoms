@@ -50,6 +50,7 @@ public class CardUtil {
 //        }
 		randInts = Arrays.asList(1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31);
 
+        // Shuffle cards.
 		for (int n = 1; n < cards.size(); n++) {
 			int pos0 = randInts.get((2 * n - 2) % randInts.size()) % cards.size();
 			int pos1 = randInts.get((2 * n - 1) % randInts.size()) % cards.size();
