@@ -1,7 +1,7 @@
 package com.card.interfaces;
 
 
-public abstract class CardAbstract implements CardInterface{
+public abstract class ACard implements ICard{
 
 	protected int id;
 	

@@ -1,6 +1,6 @@
 package com.card.interfaces;
 
-public interface WeaponCardInterface {
+public interface IWeaponCard {
 
 	//something is related to weapon's features
 	

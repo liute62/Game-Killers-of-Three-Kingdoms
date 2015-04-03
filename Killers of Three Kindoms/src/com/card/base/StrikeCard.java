@@ -1,8 +1,8 @@
 package com.card.base;
 
-import com.card.interfaces.CardAbstract;
+import com.card.interfaces.ACard;
 
-public class StrikeCard extends CardAbstract{
+public class StrikeCard extends ACard{
 
 	public StrikeCard(){
 		

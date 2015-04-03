@@ -1,6 +1,6 @@
 package com.card.interfaces;
 
-public interface CardInterface {
+public interface ICard {
 
 	//some same functionality
 	//for example

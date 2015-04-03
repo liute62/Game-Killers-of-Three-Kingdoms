@@ -1,7 +1,7 @@
 package com.card.equipment;
 
-import com.card.interfaces.ArmorCardAbstract;
-import com.card.interfaces.EquipmentCardInterface;
+import com.card.interfaces.IArmorCard;
+import com.card.interfaces.AEquipmentCard;
 import com.system.enums.CardColors;
 
 
@@ -13,7 +13,7 @@ import com.system.enums.CardColors;
  * @author liuh4
  *
  */
-public class EightDiagramFormationCard extends ArmorCardAbstract implements EquipmentCardInterface{
+public class EightDiagramFormationCard extends AEquipmentCard implements IArmorCard{
 
 
 	@Override
