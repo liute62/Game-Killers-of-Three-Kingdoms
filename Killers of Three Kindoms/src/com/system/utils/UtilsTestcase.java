@@ -61,7 +61,7 @@ public class UtilsTestcase {
                 {list(), list()},
                 {list(1), list(1)},
                 {list(1, 2), list(2, 1)},
-                {list(1, 2, 3), list(3, 2, 1)}
+                {list(1, 2, 3), list(2, 3, 1)}
         });
     }
 
@@ -69,12 +69,11 @@ public class UtilsTestcase {
     public void testShuffleCard() {
         System.out.println("Testing cards: " + inputInts);
         List<ACard> inputCards = makeCards(inputInts);
-        List<ACard> expectedCards = makeCards(expectedInts);
         List<ACard> resultCards = this.cardUtil.shuffleCard(inputCards);
 
-        assertEquals(resultCards.size(), expectedCards.size());
-        for (int i = 0, len = expectedCards.size(); i < len; i++) {
-            assertEquals(expectedCards.get(i).getId(), resultCards.get(i).getId());
+        assertEquals(resultCards.size(), expectedInts.size());
+        for (int i = 0, len = expectedInts.size(); i < len; i++) {
+            assertEquals((int) expectedInts.get(i), resultCards.get(i).getId());
         }
     }
 }

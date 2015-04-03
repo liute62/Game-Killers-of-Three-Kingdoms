@@ -49,10 +49,17 @@ public class CardUtil {
 //            randInts.add(random.nextInt());
 //        }
 //        randInts = Arrays.asList(new Integer[]{1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31});
-		if (cards.size() > 1) {
+		if (cards.size() == 2) {
 			ACard temp = cards.get(0);
 			cards.set(0, cards.get(1));
 			cards.set(1, temp);
+		} else if (cards.size() > 2) {
+			ACard temp = cards.get(1);
+			cards.set(1, cards.get(2));
+			cards.set(2, temp);
+			temp = cards.get(0);
+			cards.set(0, cards.get(2));
+			cards.set(2, temp);
 		}
 		return cards;
 	}
