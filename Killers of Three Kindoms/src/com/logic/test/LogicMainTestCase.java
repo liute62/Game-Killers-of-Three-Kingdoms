@@ -17,6 +17,7 @@ public class LogicMainTestCase {
 	@Test public void testLose1HP()
 	{
 		player.setCurrentHP(4);
+		player.loseHP(1);
 		assertEquals(3, player.getCurrentHP());
 	}
 }
