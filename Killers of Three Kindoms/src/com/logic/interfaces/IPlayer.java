@@ -12,5 +12,5 @@ public interface IPlayer {
 	
 	void loseHP(int n);
 	
-	Object ifDropCards();
+	boolean ifDropCards();
 }
