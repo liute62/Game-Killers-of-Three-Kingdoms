@@ -16,6 +16,9 @@ public class PlayerUtil {
      * @throws java.lang.RuntimeException if distance is not valid.
      */
     public int getDistance(APlayer player1, APlayer player2) {
+        if (player1.getPosition() <= 0 || player2.getPosition() <= 0) {
+            throw new RuntimeException("Invalid distance.");
+        }
         int distance = Math.abs(player2.getPosition() - player1.getPosition());
         if (distance > 2) {
             distance = 5 - distance;
