@@ -29,6 +29,7 @@ public class CardMainTestCase {
 	}
 	
 	@Test
+	public void testUsingPeachCardForOnePlayer() {
 		PeachCard peach = new PeachCard();
 		Player p1 = new Player();
 		Player p2 = new Player();
