@@ -7,6 +7,9 @@ import com.logic.player.APlayer;
 public abstract class WeaponCard extends AEquipmentCard{
 	public void use(APlayer player, List<APlayer> target)
 	{
-		
+		for(APlayer targetPlayer: target)
+		{
+			targetPlayer.setWeapon(this);
+		}
 	}
 }
