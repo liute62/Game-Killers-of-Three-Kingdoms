@@ -95,4 +95,13 @@ public class PlayerUtilTestcase {
         player2.setPosition(2);
         playerUtil.getDistance(player1, player2);
     }
+
+    @Test(expected = RuntimeException.class)
+    public void testGetDistanceWorksDoesThrowExceptionUpperBound() {
+        Player player1 = new Player();
+        Player player2 = new Player();
+        player1.setPosition(2);
+        player2.setPosition(6);
+        playerUtil.getDistance(player1, player2);
+    }
 }
