@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.card.interfaces.ACard;
 import com.card.interfaces.AmorCard;
+import com.card.interfaces.MountCard;
 import com.logic.interfaces.IPlayer;
 import com.system.constants.CardConst;
 import com.system.enums.GameState;
@@ -15,8 +16,10 @@ public abstract class APlayer implements IPlayer{
 	 protected List<ACard> hands;
 	 public GameState gameState;
 	 protected  AmorCard amor;
+	 protected MountCard mount;
 	 
-	 protected int drawCardNum = 2;
+
+	protected int drawCardNum = 2;
 	 
 	 public List<ACard> getAvailableCards(List<ACard> cards){ 
 		 if(gameState == GameState.begin || gameState == gameState.check || gameState == GameState.drawCard){
@@ -53,6 +56,13 @@ public abstract class APlayer implements IPlayer{
 		 this.amor = amor;
 	 }
 		 
+	 public MountCard getMount() {
+		 return mount;
+	 }
+	 
+	 public void setMount(MountCard mount) {
+		 this.mount = mount;
+	 }
 	 public List<ACard> getHands() {
 			// TODO Auto-generated method stub
 			return this.hands;
