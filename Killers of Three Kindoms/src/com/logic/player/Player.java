@@ -47,7 +47,7 @@ public class Player extends APlayer{
 	}
 	
 	public void gainHP(int num) {
-		
+		this.currentHP += num;
 	}
 
 	public void setCurrentHP(int i) {
