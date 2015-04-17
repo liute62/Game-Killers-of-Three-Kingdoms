@@ -45,7 +45,12 @@ public class AIAction {
 	 * Drop card stage for AI
 	 */
 	public void dropCard(){
-		player.getHands().remove(0);
+		int num = player.getDiscardNum();
+		List<ACard> tmp = new ArrayList<>();
+		for (int i = 0; i < num; i++) {
+			tmp.add(player.getHands().get(i));
+		}
+		player.getHands().removeAll(tmp);
 	}
 
 	public APlayer getPlayer() {

@@ -20,6 +20,7 @@ public abstract class APlayer implements IPlayer{
 	 
 
 	protected int drawCardNum = 2;
+	protected int discardNum = 0;
 	 
 	 public List<ACard> getAvailableCards(List<ACard> cards){ 
 		 if(gameState == GameState.begin || gameState == gameState.check || gameState == GameState.drawCard){
@@ -79,5 +80,13 @@ public abstract class APlayer implements IPlayer{
 	 
 	 public int getDrawCardNum(){
 		 return this.drawCardNum;
+	 }
+	 
+	 public void setDiscardNum(int num){
+		 this.discardNum = num;
+	 }
+	 
+	 public int getDiscardNum(){
+		 return this.discardNum;
 	 }
 }
