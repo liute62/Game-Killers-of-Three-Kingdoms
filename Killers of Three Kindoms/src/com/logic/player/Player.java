@@ -1,7 +1,8 @@
 package com.logic.player;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
 import com.card.interfaces.ACard;
 
 public class Player extends APlayer{
@@ -24,15 +25,50 @@ public class Player extends APlayer{
 		// TODO Auto-generated method stub
 		
 	}
-
-	/**
-	 * @param num the number of HP to be losed
-	 * @param attacker who attack the player
-	 */
 	@Override
-	public void loseHP(int num,APlayer attacker) {
-		// TODO Auto-generated method stub
+	public boolean ifDropCards() {
+		int numOfHands = this.hands.size();
+		if(numOfHands < this.currentHP) {
+		return false;
+		}
+		else {
+		return true;	
+		}
 		
 	}
+	
+	/**
+	 * @param num the number of HP to lose
+	 */
+	@Override
+	public void loseHP(int num) {
+		// TODO Auto-generated method stub
+		this.currentHP -= num;
+	}
 
+	public void setCurrentHP(int i) {
+		// TODO Auto-generated method stub
+		this.currentHP = i;
+	}
+
+	public int getCurrentHP() {
+		// TODO Auto-generated method stub
+		return this.currentHP;
+	}
+
+	
+	public List<ACard> getHands() {
+		// TODO Auto-generated method stub
+		return this.hands;
+	}
+
+	public void setHands(List<ACard> list) {
+		// TODO Auto-generated method stub
+		this.hands = list;
+	}
+
+	public void dropCards(ArrayList<Integer> idList) {
+		
+	
+	}
 }
