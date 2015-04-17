@@ -59,4 +59,13 @@ public class EquipmentCardTestCase {
 		Assert.assertEquals(target, p1.getWeapon());
 		Assert.assertEquals(target, p1.getWeapon());
 	}
+	
+	@Test 
+	// test this weapon can correctly set player's attack range
+	public void testSetAttackRangeOfBlackPommel()
+	{
+		BlackPommelCard target = new BlackPommelCard();
+		target.use(p1, targetPlayers);
+		Assert.assertEquals(2, p1.getAttackRange());
+	}
 }

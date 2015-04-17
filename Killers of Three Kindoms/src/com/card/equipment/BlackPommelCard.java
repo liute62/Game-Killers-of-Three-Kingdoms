@@ -9,11 +9,18 @@ import com.logic.player.APlayer;
 
 public class BlackPommelCard extends WeaponCard implements IWeaponCard{
 
+	public BlackPommelCard() {
+		// TODO Auto-generated constructor stub
+		this.attackRange = 2;
+	}
+	
 	@Override
 	public void checkArmor() {
 		// TODO Auto-generated method stub
 		
 	}
+
+	
 
 	
 }

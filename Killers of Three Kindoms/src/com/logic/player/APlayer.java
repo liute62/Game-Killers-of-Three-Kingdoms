@@ -19,7 +19,8 @@ public abstract class APlayer implements IPlayer{
 	 protected  AmorCard amor;
 	 protected MountCard mount;
 	 protected WeaponCard weapon;
-	 
+	 protected int attackRange;
+
 
 
 	protected int drawCardNum = 2;
@@ -74,6 +75,14 @@ public abstract class APlayer implements IPlayer{
 	 
 	 public void setWeapon(WeaponCard weapon) {
 		 this.weapon = weapon;
+	 }
+	 
+	 public int getAttackRange() {
+		 return attackRange;
+	 }
+	 
+	 public void setAttackRange(int attackRange) {
+		 this.attackRange = attackRange;
 	 }
 	 
 	 public List<ACard> getHands() {

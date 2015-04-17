@@ -6,7 +6,10 @@ import java.util.List;
 import com.card.interfaces.ACard;
 
 public class Player extends APlayer{
-
+	 public Player() {
+		// TODO Auto-generated constructor stub
+		 this.attackRange = 1;
+	}
 	
 	@Override
 	public boolean strike() {
