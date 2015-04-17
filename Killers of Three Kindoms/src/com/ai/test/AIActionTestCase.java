@@ -36,17 +36,21 @@ public class AIActionTestCase {
 		return result;
 	}
 	
-	private List<ACard> getHandsList(){
+	private List<ACard> getHandsList(int num){
 		List<ACard> cards = new ArrayList<>();
-		ACard card = null;
-		cards.add(card);
+		for (int i = 0; i < num; i++) {
+			ACard card = null;
+			cards.add(card);	
+		}
 		return cards;
 	}
 	
-	private APlayer result_4(){
+	private APlayer result_test_4_5(int num){
 		APlayer result = new Player();
-		List<ACard> cards = getHandsList();
-		cards.remove(0);
+		List<ACard> cards = getHandsList(num);
+		for (int i = 0; i < num; i++) {
+				cards.remove(i);
+		}
 		result.setHands(cards);
 		return result;
 	}
@@ -77,9 +81,17 @@ public class AIActionTestCase {
 	@Test
 	public void test4_OneCardForDiscardStage(){
 		initial();
-		aiAction.getPlayer().setHands(getHandsList());
+		aiAction.getPlayer().setHands(getHandsList(1));
 		aiAction.dropCard();
-		Assert.assertEquals(result_4().getHands().size(),aiAction.getPlayer().getHands().size());
+		Assert.assertEquals(result_test_4_5(1).getHands().size(),aiAction.getPlayer().getHands().size());
+	}
+	
+	@Test
+	public void test5_TwoCardForDiscardStage(){
+		initial();
+		aiAction.getPlayer().setHands(getHandsList(2));
+		aiAction.dropCard();
+		Assert.assertEquals(result_test_4_5(2).getHands().size(),aiAction.getPlayer().getHands().size());
 	}
 }
 
