@@ -98,4 +98,3 @@ public class AIActionTestCase {
 		Assert.assertEquals(result_test_4_5(2).getHands().size(),aiAction.getPlayer().getHands().size());
 	}
 }
-

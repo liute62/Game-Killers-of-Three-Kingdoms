@@ -1,20 +1,20 @@
 package com.card.equipment;
 
 import java.util.List;
-
 import com.card.interfaces.AEquipmentCard;
+import com.card.interfaces.IWeaponCard;
+import com.card.interfaces.WeaponCard;
 import com.logic.player.APlayer;
 
 
-public class BlackPommelCard extends AEquipmentCard{
+public class BlackPommelCard extends WeaponCard implements IWeaponCard{
 
-	/**
-	 * When player equip this weapon card, he can ignore targets' armor.
-	 */
 	@Override
-	public void use(APlayer player, List<APlayer> target) {
+	public void checkArmor() {
 		// TODO Auto-generated method stub
 		
 	}
+
+	
 }
 

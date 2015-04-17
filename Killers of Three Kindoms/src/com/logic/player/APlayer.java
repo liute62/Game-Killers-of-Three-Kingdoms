@@ -6,6 +6,7 @@ import java.util.List;
 import com.card.interfaces.ACard;
 import com.card.interfaces.AmorCard;
 import com.card.interfaces.MountCard;
+import com.card.interfaces.WeaponCard;
 import com.logic.interfaces.IPlayer;
 import com.system.constants.CardConst;
 import com.system.enums.GameState;
@@ -17,7 +18,9 @@ public abstract class APlayer implements IPlayer{
 	 public GameState gameState;
 	 protected  AmorCard amor;
 	 protected MountCard mount;
+	 protected WeaponCard weapon;
 	 
+
 
 	protected int drawCardNum = 2;
 	protected int discardNum = 0;
@@ -64,6 +67,15 @@ public abstract class APlayer implements IPlayer{
 	 public void setMount(MountCard mount) {
 		 this.mount = mount;
 	 }
+	 
+	 public WeaponCard getWeapon() {
+		 return weapon;
+	 }
+	 
+	 public void setWeapon(WeaponCard weapon) {
+		 this.weapon = weapon;
+	 }
+	 
 	 public List<ACard> getHands() {
 			// TODO Auto-generated method stub
 			return this.hands;
