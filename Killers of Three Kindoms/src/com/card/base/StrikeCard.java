@@ -41,7 +41,7 @@ public class StrikeCard extends ACard {
                     && playerUtil.getDistance(player, target) > 1) {
                 return false;
             }
-            if (target.getCurrentHP() == 0) {
+            if (target.getCurrentHP() <= 0) {
                 return false;
             }
         }
