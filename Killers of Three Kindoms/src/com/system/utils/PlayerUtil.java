@@ -18,7 +18,7 @@ public class PlayerUtil {
     public int getDistance(APlayer player1, APlayer player2) {
         int distance = Math.abs(player2.getPosition() - player1.getPosition());
         if (distance > 2) {
-            distance = 1;
+            distance = 5 - distance;
         }
         return distance;
     }
