@@ -16,10 +16,18 @@ public class PeachCard extends ACard{
 		
 	}
 
+	/**
+	 * The process of Peach
+	 * Recover 1 health for target
+	 * @author Xiangtian Li
+	 */
 	@Override
 	public void use(APlayer player, List<APlayer> target) {
 		// TODO Auto-generated method stub
-		
+		for(APlayer targert: target)
+		{
+			targert.gainHP(1);
+		}
 	}
 
 }

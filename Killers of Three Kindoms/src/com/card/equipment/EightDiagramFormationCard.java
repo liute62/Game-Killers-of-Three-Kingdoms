@@ -39,3 +39,4 @@ public class EightDiagramFormationCard extends AEquipmentCard implements IArmorC
 		
 	}
 }
+

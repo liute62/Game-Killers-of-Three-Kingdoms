@@ -14,6 +14,8 @@ public interface IPlayer {
 	
 	void loseHP(int n);
 	
+	void gainHP(int n);
+	
 	boolean ifDropCards();
 	
 	void dropCards(ArrayList<Integer> idList);

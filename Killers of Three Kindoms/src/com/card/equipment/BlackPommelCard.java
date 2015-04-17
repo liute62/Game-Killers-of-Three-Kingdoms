@@ -17,3 +17,4 @@ public class BlackPommelCard extends AEquipmentCard{
 		
 	}
 }
+

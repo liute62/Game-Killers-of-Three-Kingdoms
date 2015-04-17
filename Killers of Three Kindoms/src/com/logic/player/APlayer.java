@@ -13,6 +13,7 @@ public abstract class APlayer implements IPlayer{
 	 protected List<ACard> hands;
 	 public GameState gameState;
 	 
+	 
 	 public List<ACard> getAvailableCards(List<ACard> cards){ 
 		 if(gameState == GameState.begin || gameState == gameState.check || gameState == GameState.drawCard){
 			 return new ArrayList<ACard>();
@@ -27,4 +28,14 @@ public abstract class APlayer implements IPlayer{
 		 }
 		return cards;
 	}
+	 
+	 public void setCurrentHP(int i) {
+			// TODO Auto-generated method stub
+			this.currentHP = i;
+		}
+
+	 public int getCurrentHP() {
+			// TODO Auto-generated method stub
+			return this.currentHP;
+		}
 }
