@@ -45,7 +45,7 @@ public class AIAction {
 	 * Drop card stage for AI
 	 */
 	public void dropCard(){
-		
+		player.getHands().remove(0);
 	}
 
 	public APlayer getPlayer() {
