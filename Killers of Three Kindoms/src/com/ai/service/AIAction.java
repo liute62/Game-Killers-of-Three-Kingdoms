@@ -1,6 +1,14 @@
 package com.ai.service;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+
+import com.card.interfaces.ACard;
 import com.logic.player.APlayer;
+import com.system.utils.DebugUtil;
 
 public class AIAction {
 
@@ -17,6 +25,10 @@ public class AIAction {
 		int num = player.getDrawCardNum();
 		for (int i = 0; i < num; i++) {
 			player.drawACard();	
+		}
+		if(player.getHands() == null){
+			List<ACard> cards = new ArrayList<ACard>();
+			player.setHands(cards);
 		}
 	}
 	
