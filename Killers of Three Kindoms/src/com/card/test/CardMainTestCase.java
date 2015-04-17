@@ -170,4 +170,23 @@ public class CardMainTestCase {
         assertEquals(strike.checkTarget(player, playerList), false);
     }
 
+    @Test
+    public void testStrikeTwoPlayersDead() {
+        StrikeCard strike = new StrikeCard();
+        APlayer player = new Player();
+        APlayer player1 = new Player();
+        APlayer player2 = new Player();
+        player.setCurrentHP(5);
+        player.setAttackRange(2);
+        player.setPosition(1);
+        player1.setCurrentHP(0);
+        player1.setPosition(2);
+        player2.setCurrentHP(0);
+        player2.setPosition(4);
+        List<APlayer> playerList = new ArrayList<>();
+        playerList.add(player1);
+        playerList.add(player2);
+        assertEquals(strike.checkTarget(player, playerList), false);
+    }
+
 }
