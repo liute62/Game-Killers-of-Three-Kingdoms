@@ -10,11 +10,6 @@ import com.system.enums.GameState;
 public abstract class APlayer implements IPlayer{
 
 	 protected int currentHP;
-	 public List<ACard> getAvailableCards(List<ACard> cards) 
-	 {
-		return new ArrayList<ACard>();
-	 }
-
 	 protected List<ACard> hands;
 	 public GameState gameState;
 	 

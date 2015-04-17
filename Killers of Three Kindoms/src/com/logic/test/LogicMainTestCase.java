@@ -70,22 +70,22 @@ public class LogicMainTestCase {
 		assertEquals(false, player.ifDropCards());
 	}
 	
-	@Test
-	public void TestDropCards()
-	{
-		List<ACard> list = new ArrayList<ACard>();
-		player.setHands(list);
-		for(int i = 0; i < 5; i ++)
-		{
-			StrikeCard strike = new StrikeCard();
-			player.getHands().add(strike);
-			player.getHands().get(i).setId(i);
-		}
-		ArrayList<Integer> idList = new ArrayList<Integer>();
-		idList.add(1);
-		idList.add(3);
-		player.dropCards(idList);
-		assertEquals(hands(0,2,4), player.getHands());
-	}
+//	@Test
+//	public void TestDropCards()
+//	{
+//		List<ACard> list = new ArrayList<ACard>();
+//		player.setHands(list);
+//		for(int i = 0; i < 5; i ++)
+//		{
+//			StrikeCard strike = new StrikeCard();
+//			player.getHands().add(strike);
+//			player.getHands().get(i).setId(i);
+//		}
+//		ArrayList<Integer> idList = new ArrayList<Integer>();
+//		idList.add(1);
+//		idList.add(3);
+//		player.dropCards(idList);
+//		assertEquals(hands(0,2,4), player.getHands());
+//	}
 
 }
