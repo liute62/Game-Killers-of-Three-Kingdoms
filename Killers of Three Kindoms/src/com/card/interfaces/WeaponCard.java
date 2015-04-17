@@ -11,12 +11,11 @@ public abstract class WeaponCard extends AEquipmentCard{
 	{
 		for(APlayer targetPlayer: target)
 		{
-			targetPlayer.setWeapon(this);
+			targetPlayer.setWeapon(this);	
 		}
 	}
 	
-	public void setAttackRange() {
+	public void setAttackRange(APlayer targetPlayer) {
 		// TODO Auto-generated method stub
-		
 	}
 }

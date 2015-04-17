@@ -47,7 +47,7 @@ public class EquipmentCardTestCase {
 		MountCard target = new ShadowRunner();
 		target.use(p1, targetPlayers);
 		Assert.assertEquals(target, p1.getMount());
-		Assert.assertEquals(target, p1.getMount());
+		Assert.assertSame(target, p1.getMount());
 	}
 	
 	@Test
@@ -57,13 +57,14 @@ public class EquipmentCardTestCase {
 		WeaponCard target = new BlackPommelCard();
 		target.use(p1, targetPlayers);
 		Assert.assertEquals(target, p1.getWeapon());
-		Assert.assertEquals(target, p1.getWeapon());
+		Assert.assertSame(target, p1.getWeapon());
 	}
 	
 	@Test 
 	// test this weapon can correctly set player's attack range
 	public void testSetAttackRangeOfBlackPommel()
 	{
+		targetPlayers.add(p1);
 		BlackPommelCard target = new BlackPommelCard();
 		target.use(p1, targetPlayers);
 		Assert.assertEquals(2, p1.getAttackRange());

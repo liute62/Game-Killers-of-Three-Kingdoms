@@ -1,5 +1,7 @@
 package com.card.interfaces;
 
+import com.logic.player.APlayer;
+
 public interface IWeaponCard {
 
 	//something is related to weapon's features
@@ -9,5 +11,5 @@ public interface IWeaponCard {
 	
 	
 	//All weapon can extend player's attack range
-	public void setAttackRange();
+	public void setAttackRange(APlayer player);
 }
