@@ -73,7 +73,6 @@ public class CardMainTestCase {
         StrikeCard strike = new StrikeCard();
         APlayer player = new Player();
         APlayer player1 = new Player();
-        APlayer player2 = new Player();
         player.setCurrentHP(5);
         player.setAttackRange(2);
         player.setPosition(1);
@@ -84,6 +83,19 @@ public class CardMainTestCase {
         assertEquals(strike.checkTarget(playerList), true);
     }
 
-    
+    @Test
+    public void testStrikeOnePlayerOutOfRange() {
+        StrikeCard strike = new StrikeCard();
+        APlayer player = new Player();
+        APlayer player1 = new Player();
+        player.setCurrentHP(5);
+        player.setAttackRange(1);
+        player.setPosition(1);
+        player1.setCurrentHP(5);
+        player1.setPosition(3);
+        List<APlayer> playerList = new ArrayList<>();
+        playerList.add(player1);
+        assertEquals(strike.checkTarget(playerList), false);
+    }
 
 }
