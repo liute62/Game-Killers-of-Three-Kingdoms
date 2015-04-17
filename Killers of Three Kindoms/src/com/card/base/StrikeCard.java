@@ -29,8 +29,8 @@ public class StrikeCard extends ACard {
      * 2.check for distance
      *
      * @param players a list of player
-     * @return true  yes,target can be striked.
-     * false no,target can not be striked.
+     * @return true  yes,target can be struck.
+     * false no,target can not be struck.
      */
     public boolean checkTarget(List<APlayer> players) {
         return true;

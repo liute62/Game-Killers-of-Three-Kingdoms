@@ -13,6 +13,7 @@ public class PlayerUtil {
      * @param player1
      * @param player2
      * @return distance between two player.
+     * @throws java.lang.RuntimeException if distance is not valid.
      */
     public int getDistance(APlayer player1, APlayer player2) {
         return 0;
