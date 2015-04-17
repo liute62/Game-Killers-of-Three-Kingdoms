@@ -35,8 +35,10 @@ public class StrikeCard extends ACard {
      * false no,target can not be struck.
      */
     public boolean checkTarget(APlayer player, List<APlayer> targets) {
+        PlayerUtil playerUtil = new PlayerUtil();
         for (APlayer target : targets) {
-            if (player.getAttackRange() == 1) {
+            if (player.getAttackRange() == 1
+                    && playerUtil.getDistance(player, target) > 1) {
                 return false;
             }
         }
