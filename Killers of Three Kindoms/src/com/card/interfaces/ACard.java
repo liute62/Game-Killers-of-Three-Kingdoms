@@ -14,7 +14,7 @@ public abstract class ACard implements ICard{
 	public void setId(int id){
 		this.id = id;
 	}
-	
+
 	public void setType(int type){
 		this.type = type;
 	}
@@ -22,4 +22,9 @@ public abstract class ACard implements ICard{
 	public int getType(){
 		return type;
 	}
+
+	public int getId() {
+		return id;
+	}
+
 }
