@@ -2,6 +2,7 @@ package com.card.equipment;
 
 import java.util.List;
 
+import com.card.interfaces.AmorCard;
 import com.card.interfaces.IArmorCard;
 import com.card.interfaces.AEquipmentCard;
 import com.logic.player.APlayer;
@@ -16,10 +17,10 @@ import com.system.enums.CardColors;
  * @author liuh4
  *
  */
-public class EightDiagramFormationCard extends AEquipmentCard implements IArmorCard{
+public class EightDiagramFormationCard extends AmorCard implements IArmorCard{
 
 	
-	//check for a card and to see wheater is 
+	//check for a card and to see whether is 
 	public boolean check(String colors){
 	
 		if(colors.equals("Heart") || colors.equals("Diamond")){
@@ -29,14 +30,5 @@ public class EightDiagramFormationCard extends AEquipmentCard implements IArmorC
 		}
 	}
 
-	/**
-	 * Check a random card, if its color is heart or diamond
-	 * 
-	 */
-	@Override
-	public void use(APlayer player, List<APlayer> target) {
-		// TODO Auto-generated method stub
-		
-	}
 }
 

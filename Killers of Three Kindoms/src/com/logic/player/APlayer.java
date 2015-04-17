@@ -2,7 +2,9 @@ package com.logic.player;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import com.card.interfaces.ACard;
+import com.card.interfaces.AmorCard;
 import com.logic.interfaces.IPlayer;
 import com.system.constants.CardConst;
 import com.system.enums.GameState;
@@ -12,6 +14,7 @@ public abstract class APlayer implements IPlayer{
 	 protected int currentHP;
 	 protected List<ACard> hands;
 	 public GameState gameState;
+	 protected  AmorCard amor;
 	 
 	 
 	 public List<ACard> getAvailableCards(List<ACard> cards){ 
@@ -38,4 +41,14 @@ public abstract class APlayer implements IPlayer{
 			// TODO Auto-generated method stub
 			return this.currentHP;
 		}
+	 
+	 public AmorCard getAmor()
+	 {
+		 return this.amor;
+	 }
+	 
+	 public void setAmor(AmorCard amor)
+	 {
+		 this.amor = amor;
+	 }
 }
