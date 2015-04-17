@@ -14,7 +14,7 @@ public class AIAction {
 	 * Draw card stage for AI. 
 	 */
 	public void drawCard(){
-		
+		player.drawACard();
 	}
 	
 	/**

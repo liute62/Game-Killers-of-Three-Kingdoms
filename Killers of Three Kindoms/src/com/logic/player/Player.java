@@ -58,6 +58,12 @@ public class Player extends APlayer{
 	@Override
 	public void drawACard() {
 		// TODO Auto-generated method stub
-		
+		List<ACard> handCards = getHands();
+		if(handCards == null){
+			handCards = new ArrayList<>();
+		}
+		ACard card = null;
+		handCards.add(card);
+		setHands(handCards);
 	}
 }
