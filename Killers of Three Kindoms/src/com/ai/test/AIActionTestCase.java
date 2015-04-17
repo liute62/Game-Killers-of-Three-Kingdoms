@@ -45,11 +45,11 @@ public class AIActionTestCase {
 		return cards;
 	}
 	
-	private APlayer result_test_4_5(int num){
+	private APlayer result_test_4_5_6(int handNum, int dropNum){
 		APlayer result = new Player();
-		List<ACard> cards = getHandsList(num);
+		List<ACard> cards = getHandsList(handNum);
 		List<ACard> tmp = new ArrayList<>();
-		for (int i = 0; i < num; i++) {
+		for (int i = 0; i < dropNum; i++) {
 				tmp.add(cards.get(i));
 		}
 		cards.removeAll(tmp);
@@ -86,7 +86,7 @@ public class AIActionTestCase {
 		aiAction.getPlayer().setDiscardNum(1);
 		aiAction.getPlayer().setHands(getHandsList(1));
 		aiAction.dropCard();
-		Assert.assertEquals(result_test_4_5(1).getHands().size(),aiAction.getPlayer().getHands().size());
+		Assert.assertEquals(result_test_4_5_6(1,1).getHands().size(),aiAction.getPlayer().getHands().size());
 	}
 	
 	@Test
@@ -95,7 +95,7 @@ public class AIActionTestCase {
 		aiAction.getPlayer().setDiscardNum(2);
 		aiAction.getPlayer().setHands(getHandsList(2));
 		aiAction.dropCard();
-		Assert.assertEquals(result_test_4_5(2).getHands().size(),aiAction.getPlayer().getHands().size());
+		Assert.assertEquals(result_test_4_5_6(2,2).getHands().size(),aiAction.getPlayer().getHands().size());
 	}
 	
 	@Test
@@ -104,6 +104,6 @@ public class AIActionTestCase {
 		aiAction.getPlayer().setDiscardNum(-1);
 		aiAction.getPlayer().setHands(getHandsList(2));
 		aiAction.dropCard();
-		Assert.assertEquals(result_test_4_5(-1).getHands().size(),aiAction.getPlayer().getHands().size());
+		Assert.assertEquals(result_test_4_5_6(2,-1).getHands().size(),aiAction.getPlayer().getHands().size());
 	}
 }
