@@ -45,6 +45,10 @@ public class Player extends APlayer{
 		// TODO Auto-generated method stub
 		this.currentHP -= num;
 	}
+	
+	public void gainHP(int num) {
+		
+	}
 
 	public void setCurrentHP(int i) {
 		// TODO Auto-generated method stub

@@ -2,9 +2,14 @@ package com.card.test;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 
+import com.card.base.PeachCard;
 import com.card.equipment.EightDiagramFormationCard;
+import com.logic.player.Player;
 
 public class CardMainTestCase {
 
