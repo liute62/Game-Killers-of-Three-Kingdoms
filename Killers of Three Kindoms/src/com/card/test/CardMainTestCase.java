@@ -80,7 +80,7 @@ public class CardMainTestCase {
         player1.setPosition(2);
         List<APlayer> playerList = new ArrayList<>();
         playerList.add(player1);
-        assertEquals(strike.checkTarget(playerList), true);
+        assertEquals(strike.checkTarget(player, playerList), true);
     }
 
     @Test
@@ -95,7 +95,7 @@ public class CardMainTestCase {
         player1.setPosition(3);
         List<APlayer> playerList = new ArrayList<>();
         playerList.add(player1);
-        assertEquals(strike.checkTarget(playerList), false);
+        assertEquals(strike.checkTarget(player, playerList), false);
     }
 
 }

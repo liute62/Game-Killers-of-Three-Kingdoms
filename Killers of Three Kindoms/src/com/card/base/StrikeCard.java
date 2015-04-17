@@ -2,6 +2,7 @@ package com.card.base;
 
 import com.card.interfaces.ACard;
 import com.logic.player.APlayer;
+import com.system.utils.PlayerUtil;
 
 import java.util.List;
 
@@ -25,14 +26,20 @@ public class StrikeCard extends ACard {
 
     /**
      * To check whether player can strike the target.
-     * 1.check for death;
-     * 2.check for distance
+     * 1.check for distance;
+     * 2.check for death
      *
-     * @param players a list of player
+     * @param player attacker
+     * @param targets list of players
      * @return true  yes,target can be struck.
      * false no,target can not be struck.
      */
-    public boolean checkTarget(List<APlayer> players) {
+    public boolean checkTarget(APlayer player, List<APlayer> targets) {
+        for (APlayer target : targets) {
+            if (player.getAttackRange() == 1) {
+                return false;
+            }
+        }
         return true;
     }
 
