@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import com.gui.gaming.BattleFieldPanel;
+import com.gui.gaming.MessagePanel;
 import com.system.constants.GUIConst;
 import com.system.constants.MainConst;
 import com.gui.gaming.*;
@@ -21,6 +22,8 @@ public class MainPanel extends JPanel{
 	BattleFieldPanel battleFieldPanel;
 	List<OtherPlayerPanel> otherPlayerPanels;
 	JButton exitBtn;
+	private MessagePanel messagePanel;
+	
 	
 	public MainPanel() {
 		initial();
@@ -36,14 +39,21 @@ public class MainPanel extends JPanel{
 		}
 		setPanelPosition();
 		this.add(battleFieldPanel);
+		setMessagePanel();
 		validate();
 	}
 	
 	private void initial(){
 		exitBtn = new JButton("Exit");
-		battleFieldPanel = BattleFieldPanel.getInstance();
+		battleFieldPanel = BattleFieldPanel.Instance();
 		otherPlayerPanels = new ArrayList<OtherPlayerPanel>();
 		deckPanel = new DeckPanel();
+	}
+	
+	private void setMessagePanel(){
+		messagePanel = new MessagePanel();
+		this.add(messagePanel);
+		messagePanel.setLocation(800,0);
 	}
 	
 	private void setExitBtn(){

@@ -7,6 +7,10 @@ public class DebugUtil {
 		System.out.println(param);
 	}
 	
+	public static void print(int param){
+		System.out.println(param);
+	}
+	
 	public static void print(String name,String param) {
 		System.out.println(name+" : "+param);
 	}
