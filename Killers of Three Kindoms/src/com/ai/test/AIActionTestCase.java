@@ -104,6 +104,6 @@ public class AIActionTestCase {
 		aiAction.getPlayer().setDiscardNum(-1);
 		aiAction.getPlayer().setHands(getHandsList(2));
 		aiAction.dropCard();
-		Assert.assertEquals(result_test_4_5(2).getHands().size(),aiAction.getPlayer().getHands().size());
+		Assert.assertEquals(result_test_4_5(-1).getHands().size(),aiAction.getPlayer().getHands().size());
 	}
 }
