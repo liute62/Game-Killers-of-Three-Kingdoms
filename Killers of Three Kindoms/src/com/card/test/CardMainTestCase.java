@@ -46,5 +46,25 @@ public class CardMainTestCase {
 		assertEquals(list(2), healthList);
 	}
 
+	@Test
+	public void testUsingPeachCardForTwoPlayers() {
+		PeachCard peach = new PeachCard();
+		APlayer p1 = new Player();
+		APlayer p2 = new Player();
+		p1.setCurrentHP(2);
+		p2.setCurrentHP(1);
+		List<APlayer> targetPlayers = new ArrayList<APlayer>();
+		
+		targetPlayers.add(p1);
+		targetPlayers.add(p2);
+		
+		List<Integer> healthList = new ArrayList<Integer>();
+		peach.use(p1, targetPlayers);
+		for(APlayer targetPlayer: targetPlayers)
+		{
+			healthList.add(targetPlayer.getCurrentHP());
+		}
+		assertEquals(list(3,2), healthList);
+	}
 
 }
