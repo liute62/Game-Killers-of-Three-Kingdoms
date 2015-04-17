@@ -19,7 +19,10 @@ public class PeachCard extends ACard{
 	@Override
 	public void use(APlayer player, List<APlayer> target) {
 		// TODO Auto-generated method stub
-		
+		for(APlayer targert: target)
+		{
+			targert.gainHP(1);
+		}
 	}
 
 }

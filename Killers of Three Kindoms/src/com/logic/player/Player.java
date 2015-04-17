@@ -49,17 +49,6 @@ public class Player extends APlayer{
 	public void gainHP(int num) {
 		this.currentHP += num;
 	}
-
-	public void setCurrentHP(int i) {
-		// TODO Auto-generated method stub
-		this.currentHP = i;
-	}
-
-	public int getCurrentHP() {
-		// TODO Auto-generated method stub
-		return this.currentHP;
-	}
-
 	
 	public List<ACard> getHands() {
 		// TODO Auto-generated method stub

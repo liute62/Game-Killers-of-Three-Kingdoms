@@ -20,7 +20,4 @@ public interface IPlayer {
 	
 	void dropCards(ArrayList<Integer> idList);
 	
-	int getCurrentHP();
-	
-	void setCurrentHP(int i);
 }
