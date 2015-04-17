@@ -59,4 +59,13 @@ public class PlayerUtilTestcase {
         player2.setPosition(2);
         assertEquals(playerUtil.getDistance(player2, player1), 1);
     }
+
+    @Test
+    public void testGetDistanceWorksForDistanceTwoReverse() {
+        Player player1 = new Player();
+        Player player2 = new Player();
+        player1.setPosition(1);
+        player2.setPosition(3);
+        assertEquals(playerUtil.getDistance(player2, player1), 2);
+    }
 }
