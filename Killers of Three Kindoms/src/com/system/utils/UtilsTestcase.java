@@ -1,6 +1,7 @@
 package com.system.utils;
 
 import com.card.interfaces.*;
+import com.logic.player.APlayer;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +20,7 @@ public class UtilsTestcase {
 
     private class TestCard extends ACard {
         @Override
-        public void use() {
+        public void use(APlayer p, List<APlayer> ps) {
             throw new UnsupportedOperationException();
         }
     }
