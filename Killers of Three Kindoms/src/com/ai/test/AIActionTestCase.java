@@ -23,7 +23,7 @@ public class AIActionTestCase {
 		aiAction = new AIAction(player);
 	}
 	
-	private APlayer result_test_1_2(int num){
+	private APlayer result_test_1_2_3(int num){
 		APlayer result = new Player();
 		List<ACard> cards = new ArrayList<ACard>();
 		for (int i = 0; i < num; i++) {
@@ -39,14 +39,22 @@ public class AIActionTestCase {
 		initial();
 		aiAction.getPlayer().setDrawCardNum(1);
 		aiAction.drawCard();
-		Assert.assertEquals(result_test_1_2(1).getHands(),aiAction.getPlayer().getHands());
+		Assert.assertEquals(result_test_1_2_3(1).getHands(),aiAction.getPlayer().getHands());
 	}
 	
 	@Test 
 	public void test2_TwoCardForDrawCardStage(){
 		initial();
 		aiAction.drawCard();
-		Assert.assertEquals(result_test_1_2(2).getHands(),aiAction.getPlayer().getHands());
+		Assert.assertEquals(result_test_1_2_3(2).getHands(),aiAction.getPlayer().getHands());
+	}
+	
+	@Test
+	public void test3_ErrorNumCardForDrawCardStage(){
+		initial();
+		aiAction.getPlayer().setDrawCardNum(-1);
+		aiAction.drawCard();
+		Assert.assertEquals(result_test_1_2_3(-1),aiAction.getPlayer().getHands());
 	}
 	
 }
