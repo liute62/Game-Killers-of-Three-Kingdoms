@@ -56,5 +56,4 @@ public class AIActionTestCase {
 		aiAction.drawCard();
 		Assert.assertEquals(result_test_1_2_3(-1).getHands(),aiAction.getPlayer().getHands());
 	}
-	
 }
