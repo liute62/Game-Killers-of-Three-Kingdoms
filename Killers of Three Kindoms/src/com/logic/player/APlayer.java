@@ -11,6 +11,7 @@ import java.util.List;
 public abstract class APlayer implements IPlayer {
 
     protected int position;
+    protected int attackRange;
     protected int currentHP;
     protected List<ACard> hands;
     public GameState gameState;
@@ -45,5 +46,13 @@ public abstract class APlayer implements IPlayer {
 
     public void setPosition(int position) {
         this.position = position;
+    }
+
+    public int getAttackRange() {
+        return attackRange;
+    }
+
+    public void setAttackRange(int attackRange) {
+        this.attackRange = attackRange;
     }
 }
