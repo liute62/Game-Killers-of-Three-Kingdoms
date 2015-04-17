@@ -4,10 +4,17 @@ import com.logic.player.APlayer;
 
 public class AIAction {
 
-	APlayer player;
+	private APlayer player;
 	
 	public AIAction(APlayer player){
-		this.player = player;
+		this.setPlayer(player);
+	}
+	
+	/**
+	 * Draw card stage for AI. 
+	 */
+	public void drawCard(){
+		
 	}
 	
 	/**
@@ -24,5 +31,13 @@ public class AIAction {
 	 */
 	public void dropCard(){
 		
+	}
+
+	public APlayer getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(APlayer player) {
+		this.player = player;
 	}
 }

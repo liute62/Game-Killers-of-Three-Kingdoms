@@ -17,4 +17,6 @@ public interface IPlayer {
 	boolean ifDropCards();
 	
 	void dropCards(ArrayList<Integer> idList);
+	
+	void drawACard();
 }

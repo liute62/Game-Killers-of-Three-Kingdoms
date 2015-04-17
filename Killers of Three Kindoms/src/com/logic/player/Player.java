@@ -71,4 +71,10 @@ public class Player extends APlayer{
 		
 	
 	}
+
+	@Override
+	public void drawACard() {
+		// TODO Auto-generated method stub
+		
+	}
 }
