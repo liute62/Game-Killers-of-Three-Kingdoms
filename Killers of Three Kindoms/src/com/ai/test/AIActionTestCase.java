@@ -4,6 +4,8 @@ package com.ai.test;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.spi.DirStateFactory.Result;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -34,6 +36,21 @@ public class AIActionTestCase {
 		return result;
 	}
 	
+	private List<ACard> getHandsList(){
+		List<ACard> cards = new ArrayList<>();
+		ACard card = null;
+		cards.add(card);
+		return cards;
+	}
+	
+	private APlayer result_4(){
+		APlayer result = new Player();
+		List<ACard> cards = getHandsList();
+		cards.remove(0);
+		result.setHands(cards);
+		return result;
+	}
+	
 	@Test
 	public void test1_OneCardForDrawCardStage(){
 		initial();
@@ -55,5 +72,13 @@ public class AIActionTestCase {
 		aiAction.getPlayer().setDrawCardNum(-1);
 		aiAction.drawCard();
 		Assert.assertEquals(result_test_1_2_3(-1).getHands(),aiAction.getPlayer().getHands());
+	}
+	
+	@Test
+	public void test4_OneCardForDiscardStage(){
+		initial();
+		aiAction.getPlayer().setHands(getHandsList());
+		aiAction.dropCard();
+		Assert.assertEquals(result_4().getHands().size(),aiAction.getPlayer().getHands().size());
 	}
 }
