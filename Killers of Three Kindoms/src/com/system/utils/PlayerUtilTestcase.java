@@ -77,4 +77,13 @@ public class PlayerUtilTestcase {
         player2.setPosition(5);
         assertEquals(playerUtil.getDistance(player2, player1), 1);
     }
+
+    @Test
+    public void testGetDistanceWorksForWrappedDistanceTwo() {
+        Player player1 = new Player();
+        Player player2 = new Player();
+        player1.setPosition(2);
+        player2.setPosition(5);
+        assertEquals(playerUtil.getDistance(player2, player1), 2);
+    }
 }
