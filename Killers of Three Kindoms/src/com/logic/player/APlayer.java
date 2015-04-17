@@ -38,4 +38,14 @@ public abstract class APlayer implements IPlayer{
 			// TODO Auto-generated method stub
 			return this.currentHP;
 		}
+	 
+	 public List<ACard> getHands() {
+			// TODO Auto-generated method stub
+			return this.hands;
+	}
+
+	 public void setHands(List<ACard> list) {
+			// TODO Auto-generated method stub
+			this.hands = list;
+	}
 }
