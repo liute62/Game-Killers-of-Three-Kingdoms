@@ -3,15 +3,21 @@ package com.card.test;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
 
 import com.card.base.PeachCard;
 import com.card.equipment.EightDiagramFormationCard;
+import com.logic.player.APlayer;
 import com.logic.player.Player;
 
 public class CardMainTestCase {
+	
+	private List<Integer> list(Integer...integers) {
+		return Arrays.asList(integers);
+	}
 
 	@Test
 	public void testForEightDiagramFormationCard() {
@@ -21,5 +27,23 @@ public class CardMainTestCase {
 		assertEquals(false,card.check("Club"));
 		assertEquals(false,card.check("Spade"));
 	}
+	
+	@Test
+		PeachCard peach = new PeachCard();
+		Player p1 = new Player();
+		Player p2 = new Player();
+		p2.setCurrentHP(1);
+		List<APlayer> targetPlayers = new ArrayList<APlayer>();
+		targetPlayers.add(p2);
+		
+		List<Integer> healthList = new ArrayList<Integer>();
+		peach.use(p1, targetPlayers);
+		for(APlayer targetPlayer: targetPlayers)
+		{
+			healthList.add(targetPlayer.getCurrentHP());
+		}
+		assertEquals(list(2), healthList);
+	}
+
 
 }

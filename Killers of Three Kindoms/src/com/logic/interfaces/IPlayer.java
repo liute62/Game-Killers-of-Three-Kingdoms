@@ -19,4 +19,8 @@ public interface IPlayer {
 	boolean ifDropCards();
 	
 	void dropCards(ArrayList<Integer> idList);
+	
+	int getCurrentHP();
+	
+	void setCurrentHP(int i);
 }
