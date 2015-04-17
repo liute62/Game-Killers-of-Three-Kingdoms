@@ -49,16 +49,6 @@ public class Player extends APlayer{
 	public void gainHP(int num) {
 		this.currentHP += num;
 	}
-	
-	public List<ACard> getHands() {
-		// TODO Auto-generated method stub
-		return this.hands;
-	}
-
-	public void setHands(List<ACard> list) {
-		// TODO Auto-generated method stub
-		this.hands = list;
-	}
 
 	public void dropCards(ArrayList<Integer> idList) {
 		
@@ -68,6 +58,12 @@ public class Player extends APlayer{
 	@Override
 	public void drawACard() {
 		// TODO Auto-generated method stub
-		
+		List<ACard> handCards = getHands();
+		if(handCards == null){
+			handCards = new ArrayList<>();
+		}
+		ACard card = null;
+		handCards.add(card);
+		setHands(handCards);
 	}
 }

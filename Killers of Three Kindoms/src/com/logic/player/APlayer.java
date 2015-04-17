@@ -16,6 +16,7 @@ public abstract class APlayer implements IPlayer{
 	 public GameState gameState;
 	 protected  AmorCard amor;
 	 
+	 protected int drawCardNum = 2;
 	 
 	 public List<ACard> getAvailableCards(List<ACard> cards){ 
 		 if(gameState == GameState.begin || gameState == gameState.check || gameState == GameState.drawCard){
@@ -50,5 +51,23 @@ public abstract class APlayer implements IPlayer{
 	 public void setAmor(AmorCard amor)
 	 {
 		 this.amor = amor;
+	 }
+		 
+	 public List<ACard> getHands() {
+			// TODO Auto-generated method stub
+			return this.hands;
+	}
+
+	 public void setHands(List<ACard> list) {
+			// TODO Auto-generated method stub
+			this.hands = list;
+	}
+	 
+	 public void setDrawCardNum(int num){
+		 this.drawCardNum = num;
+	 }
+	 
+	 public int getDrawCardNum(){
+		 return this.drawCardNum;
 	 }
 }
