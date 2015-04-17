@@ -14,7 +14,10 @@ public class AIAction {
 	 * Draw card stage for AI. 
 	 */
 	public void drawCard(){
-		player.drawACard();
+		int num = player.getDrawCardNum();
+		for (int i = 0; i < num; i++) {
+			player.drawACard();	
+		}
 	}
 	
 	/**

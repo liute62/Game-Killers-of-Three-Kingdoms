@@ -12,7 +12,7 @@ public abstract class APlayer implements IPlayer{
 	 protected int currentHP;
 	 protected List<ACard> hands;
 	 public GameState gameState;
-	 
+	 protected int drawCardNum = 2;
 	 
 	 public List<ACard> getAvailableCards(List<ACard> cards){ 
 		 if(gameState == GameState.begin || gameState == gameState.check || gameState == GameState.drawCard){
@@ -48,4 +48,12 @@ public abstract class APlayer implements IPlayer{
 			// TODO Auto-generated method stub
 			this.hands = list;
 	}
+	 
+	 public void setDrawCardNum(int num){
+		 this.drawCardNum = num;
+	 }
+	 
+	 public int getDrawCardNum(){
+		 return this.drawCardNum;
+	 }
 }

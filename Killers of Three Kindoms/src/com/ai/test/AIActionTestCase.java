@@ -37,6 +37,7 @@ public class AIActionTestCase {
 	@Test
 	public void test1_OneCardForDrawCardStage(){
 		initial();
+		aiAction.getPlayer().setDrawCardNum(1);
 		aiAction.drawCard();
 		Assert.assertEquals(result_test_1_2(1).getHands(),aiAction.getPlayer().getHands());
 	}
