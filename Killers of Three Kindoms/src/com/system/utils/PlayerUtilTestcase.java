@@ -50,4 +50,13 @@ public class PlayerUtilTestcase {
         player2.setPosition(3);
         assertEquals(playerUtil.getDistance(player1, player2), 1);
     }
+
+    @Test
+    public void testGetDistanceWorksForAnotherDistanceTwo() {
+        Player player1 = new Player();
+        Player player2 = new Player();
+        player1.setPosition(2);
+        player2.setPosition(4);
+        assertEquals(playerUtil.getDistance(player1, player2), 2);
+    }
 }
