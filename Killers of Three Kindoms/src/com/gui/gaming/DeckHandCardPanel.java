@@ -32,20 +32,24 @@ import com.system.utils.DebugUtil;
 public class DeckHandCardPanel extends JPanel{
 
 	private static final long serialVersionUID = -5337278012812148749L;
-
 	List<CardPanel> cardPanels;
-	
 	List<ACard> cards;
-	
 	BtnPanel sureBtnPanel;
 	BtnPanel cancelBtnPanel;
 	BtnPanel skipBtnPanel;
-	
 	MouseListener listener;
-	
 	boolean isCardAvailablePanel;
+	private static DeckHandCardPanel instance = null;
+	
+	public static DeckHandCardPanel Instance(){
+		if(instance == null){
+			instance = new DeckHandCardPanel();
+		}
+		return instance;
+	}
 	
 	public DeckHandCardPanel(){
+		instance = this;
 		this.setLayout(null);
 		initial();
 		this.add(sureBtnPanel);
@@ -65,6 +69,7 @@ public class DeckHandCardPanel extends JPanel{
 		sureBtnPanel = new BtnPanel("Sure");
 		cancelBtnPanel = new BtnPanel("Cancel");
 		skipBtnPanel = new BtnPanel("Skip");
+		addDataForTest();
 		cardInitial();
 	}
 	
@@ -80,7 +85,6 @@ public class DeckHandCardPanel extends JPanel{
 	}
 	
 	private void cardInitial(){
-		addDataForTest();
 		for (int i = 0; i < cardPanels.size(); i++) {
 			this.add(cardPanels.get(i));
 		}
@@ -198,18 +202,26 @@ public class DeckHandCardPanel extends JPanel{
 		
 		class SureListener extends MyClick{
 			
+			List<CardPanel> removedList = new ArrayList<>();
+			
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
 				super.mouseReleased(e);
+				List<CardPanel> removedList = new ArrayList<>();
 				for (int i = 0; i < cardPanels.size(); i++) {
 					if(cardPanels.get(i).isSelected){
 						CardPanel tmp = cardPanels.get(i);
+						removedList.add(tmp);
 						BattleFieldPanel.Instance().addACard(tmp.getCard());
 						tmp.unselect();
+						DeckHandCardPanel.this.remove(tmp);
 					}
 				}
+				cardPanels.removeAll(removedList);
+				cardInitial();
 			}
+			
 		}
 	}
 }

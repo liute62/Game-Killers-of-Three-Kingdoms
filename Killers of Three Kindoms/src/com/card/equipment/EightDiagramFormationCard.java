@@ -6,6 +6,7 @@ import com.card.interfaces.AmorCard;
 import com.card.interfaces.IArmorCard;
 import com.card.interfaces.AEquipmentCard;
 import com.logic.player.APlayer;
+import com.system.constants.CardConst;
 import com.system.enums.CardColors;
 
 
@@ -19,6 +20,10 @@ import com.system.enums.CardColors;
  */
 public class EightDiagramFormationCard extends AmorCard implements IArmorCard{
 
+	public EightDiagramFormationCard(){
+		this.name = "EightDiagramFormation";
+		this.type = CardConst.CardType_Armor;
+	}
 	
 	//check for a card and to see whether is 
 	public boolean check(String colors){

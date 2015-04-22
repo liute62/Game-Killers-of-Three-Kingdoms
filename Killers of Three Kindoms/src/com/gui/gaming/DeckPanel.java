@@ -35,8 +35,8 @@ public class DeckPanel extends JPanel{
 	}
 	
 	private void initial(){
-		deckEquipmentPanel = new DeckEquipmentPanel();
-		deckHandCardPanel = new DeckHandCardPanel();
+		deckEquipmentPanel = DeckEquipmentPanel.Instance();
+		deckHandCardPanel = DeckHandCardPanel.Instance();
 		deckProfilePanel = new DeckProfilePanel(5);
 	}
 	
