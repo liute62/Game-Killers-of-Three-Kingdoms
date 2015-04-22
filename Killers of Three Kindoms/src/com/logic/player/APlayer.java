@@ -2,7 +2,6 @@ package com.logic.player;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.card.interfaces.ACard;
 import com.card.interfaces.AmorCard;
 import com.card.interfaces.MountCard;
@@ -15,12 +14,12 @@ public abstract class APlayer implements IPlayer{
 
 	 protected int currentHP;
 	 protected List<ACard> hands;
-	 public GameState gameState;
 	 protected  AmorCard amor;
 	 protected MountCard mount;
 	 protected WeaponCard weapon;
 	 protected int attackRange;
-
+	 protected int position;
+	 public GameState gameState;
 
 
 	protected int drawCardNum = 2;
@@ -110,4 +109,13 @@ public abstract class APlayer implements IPlayer{
 	 public int getDiscardNum(){
 		 return this.discardNum;
 	 }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+ 
 }

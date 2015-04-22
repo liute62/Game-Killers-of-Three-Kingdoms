@@ -1,6 +1,7 @@
 package com.system.utils;
 
 import com.card.interfaces.*;
+import com.logic.player.APlayer;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,15 +12,14 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
-public class UtilsTestcase {
+public class CardUtilTestcase {
 
     private class TestCard extends ACard {
         @Override
-        public void use() {
+        public void use(APlayer p, List<APlayer> ps) {
             throw new UnsupportedOperationException();
         }
     }
@@ -45,7 +45,7 @@ public class UtilsTestcase {
         return cards;
     }
 
-    public UtilsTestcase(List<Integer> inputInts, List<Integer> expectedInts) {
+    public CardUtilTestcase(List<Integer> inputInts, List<Integer> expectedInts) {
         this.inputInts = inputInts;
         this.expectedInts = expectedInts;
     }
