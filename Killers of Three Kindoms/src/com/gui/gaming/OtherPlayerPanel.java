@@ -6,7 +6,9 @@ import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.naming.InitialContext;
 import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.system.constants.GUIConst;
@@ -23,19 +25,29 @@ public class OtherPlayerPanel extends JPanel implements MouseListener{
 	 * 
 	 */
 	private static final long serialVersionUID = 3399450628324751951L;
-
 	private boolean isSelected;
+	JLabel name;
+	JLabel HP;
+	
 	public OtherPlayerPanel(){
 		isSelected = false;
 		this.setSize(GUIConst.otherPlayerPanelWidth, GUIConst.otherPlayerPanelHeight);
 		this.setLayout(null);
 		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		this.setBackground(Color.BLUE);
-		Button button;
 		addMouseListener(this);
-		//this.setOpaque(false);
+		initial();
+		this.add(name);
+		this.add(HP);
 	}
 
+	private void initial(){
+		name = new JLabel("playerName");
+		name.setForeground(Color.white);
+		HP = new JLabel("HP: ");
+		HP.setForeground(Color.white);
+	}
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub\

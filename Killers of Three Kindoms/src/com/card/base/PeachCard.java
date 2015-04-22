@@ -4,16 +4,13 @@ import java.util.List;
 
 import com.card.interfaces.ACard;
 import com.logic.player.APlayer;
+import com.system.constants.CardConst;
 
 public class PeachCard extends ACard{
 
 	public  PeachCard() {
 		this.name = "Peach";
-		drawCard();
-	}
-	
-	private void drawCard(){
-		
+		this.type = CardConst.CardType_Peach;
 	}
 
 	/**
