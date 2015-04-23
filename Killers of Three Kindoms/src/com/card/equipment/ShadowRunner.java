@@ -1,9 +1,9 @@
 package com.card.equipment;
 
 import com.card.interfaces.IMountCard;
-import com.card.interfaces.MountCard;
+import com.card.interfaces.PlusMountCard;
 
-public class ShadowRunner extends MountCard implements IMountCard{
+public class ShadowRunner extends PlusMountCard implements IMountCard {
 	public ShadowRunner() {
 	
 }

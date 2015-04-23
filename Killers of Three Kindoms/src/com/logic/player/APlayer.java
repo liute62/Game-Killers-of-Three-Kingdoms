@@ -2,10 +2,8 @@ package com.logic.player;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.card.interfaces.ACard;
-import com.card.interfaces.AmorCard;
-import com.card.interfaces.MountCard;
-import com.card.interfaces.WeaponCard;
+
+import com.card.interfaces.*;
 import com.logic.interfaces.IPlayer;
 import com.system.constants.CardConst;
 import com.system.enums.GameState;
@@ -15,7 +13,7 @@ public abstract class APlayer implements IPlayer{
 	 protected int currentHP;
 	 protected List<ACard> hands;
 	 protected  AmorCard amor;
-	 protected MountCard mount;
+	 protected IMountCard mount;
 	 protected WeaponCard weapon;
 	 protected int attackRange;
 	 protected int position;
@@ -60,11 +58,11 @@ public abstract class APlayer implements IPlayer{
 		 this.amor = amor;
 	 }
 		 
-	 public MountCard getMount() {
+	 public IMountCard getMount() {
 		 return mount;
 	 }
 	 
-	 public void setMount(MountCard mount) {
+	 public void setMount(IMountCard mount) {
 		 this.mount = mount;
 	 }
 	 

@@ -35,7 +35,7 @@ public class Player extends APlayer{
 		return false;
 		}
 		else {
-		return true;	
+		return true;
 		}
 		
 	}
