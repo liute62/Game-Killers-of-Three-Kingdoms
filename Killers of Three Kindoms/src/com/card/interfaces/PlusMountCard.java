@@ -11,4 +11,5 @@ public abstract class PlusMountCard extends AEquipmentCard implements IMountCard
 			targetPlayer.setMount(this);
 		}
 	}
+    public abstract int getAffectedRange();
 }

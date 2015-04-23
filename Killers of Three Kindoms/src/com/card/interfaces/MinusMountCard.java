@@ -4,7 +4,7 @@ import com.logic.player.APlayer;
 
 import java.util.List;
 
-public class MinusMountCard extends AEquipmentCard implements IMountCard {
+public abstract class MinusMountCard extends AEquipmentCard implements IMountCard {
     public void use(APlayer player, List<APlayer> target)
     {
         for(APlayer targetPlayer: target)
@@ -12,4 +12,5 @@ public class MinusMountCard extends AEquipmentCard implements IMountCard {
             targetPlayer.setMount(this);
         }
     }
+    public abstract int getAffectedRange();
 }
