@@ -104,4 +104,6 @@ public class PlayerUtilTestcase {
         player2.setPosition(6);
         playerUtil.getDistance(player1, player2);
     }
+
+
 }
