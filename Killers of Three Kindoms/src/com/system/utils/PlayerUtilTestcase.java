@@ -3,6 +3,7 @@ package com.system.utils;
 import com.card.equipment.RedHare;
 import com.card.equipment.ShadowRunner;
 import com.card.interfaces.IMountCard;
+import com.card.interfaces.MinusMountCard;
 import com.logic.player.Player;
 import org.junit.Before;
 import org.junit.Test;
@@ -156,5 +157,24 @@ public class PlayerUtilTestcase {
         player2.setMinusMount(redHare);
         assertEquals(playerUtil.getDistance(player1, player2), 2);
         assertEquals(playerUtil.getDistance(player2, player1), 2);
+    }
+
+    @Test
+    public void TestPlayerHasMinusWhileTargetHasMinus() {
+        IMountCard blueHare = new MinusMountCard() {
+            @Override
+            public int getAffectedRange() {
+                return 2;
+            }
+        };
+        IMountCard redHare = new RedHare();
+        Player player1 = new Player();
+        Player player2 = new Player();
+        player1.setPosition(1);
+        player2.setPosition(3);
+        player1.setMinusMount(blueHare);
+        player2.setMinusMount(redHare);
+        assertEquals(playerUtil.getDistance(player1, player2), 0);
+        assertEquals(playerUtil.getDistance(player2, player1), 1);
     }
 }
