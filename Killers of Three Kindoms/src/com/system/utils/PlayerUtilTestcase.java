@@ -4,6 +4,7 @@ import com.card.equipment.RedHare;
 import com.card.equipment.ShadowRunner;
 import com.card.interfaces.IMountCard;
 import com.card.interfaces.MinusMountCard;
+import com.card.interfaces.PlusMountCard;
 import com.logic.player.Player;
 import org.junit.Before;
 import org.junit.Test;
@@ -111,7 +112,7 @@ public class PlayerUtilTestcase {
 
     @Test
     public void TestPlayerHasNoneWhileTargetHasMinus() {
-        IMountCard redHare = new RedHare();
+        MinusMountCard redHare = new RedHare();
         Player player1 = new Player();
         Player player2 = new Player();
         player1.setPosition(1);
@@ -123,7 +124,7 @@ public class PlayerUtilTestcase {
 
     @Test
     public void TestPlayerHasNoneWhileTargetHasPlus() {
-        IMountCard shadowRunner = new ShadowRunner();
+        PlusMountCard shadowRunner = new ShadowRunner();
         Player player1 = new Player();
         Player player2 = new Player();
         player1.setPosition(1);
@@ -135,7 +136,7 @@ public class PlayerUtilTestcase {
 
     @Test
     public void TestPlayerHasPlusWhileTargetHasNone() {
-        IMountCard shadowRunner = new ShadowRunner();
+        PlusMountCard shadowRunner = new ShadowRunner();
         Player player1 = new Player();
         Player player2 = new Player();
         player1.setPosition(1);
@@ -147,8 +148,8 @@ public class PlayerUtilTestcase {
 
     @Test
     public void TestPlayerHasPlusWhileTargetHasMinus() {
-        IMountCard shadowRunner = new ShadowRunner();
-        IMountCard redHare = new RedHare();
+        PlusMountCard shadowRunner = new ShadowRunner();
+        MinusMountCard redHare = new RedHare();
         Player player1 = new Player();
         Player player2 = new Player();
         player1.setPosition(1);
