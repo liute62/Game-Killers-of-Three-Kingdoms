@@ -1,6 +1,7 @@
 package com.system.utils;
 
 import com.card.equipment.RedHare;
+import com.card.equipment.ShadowRunner;
 import com.card.interfaces.IMountCard;
 import com.logic.player.Player;
 import org.junit.Before;
@@ -119,4 +120,15 @@ public class PlayerUtilTestcase {
         assertEquals(playerUtil.getDistance(player2, player1), 1);
     }
 
+    @Test
+    public void TestPlayerHasNoneWhileTargetHasPlus() {
+        IMountCard shadowRunner = new ShadowRunner();
+        Player player1 = new Player();
+        Player player2 = new Player();
+        player1.setPosition(1);
+        player2.setPosition(3);
+        player2.setPlusMount(shadowRunner);
+        assertEquals(playerUtil.getDistance(player1, player2), 3);
+        assertEquals(playerUtil.getDistance(player2, player1), 2);
+    }
 }
