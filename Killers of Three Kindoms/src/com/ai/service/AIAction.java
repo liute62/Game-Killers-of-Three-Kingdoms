@@ -14,7 +14,8 @@ import com.system.utils.DebugUtil;
 public class AIAction {
 
 	private APlayer player;
-	
+	private int castCardIndex;
+	private List<ACard> availableCards;
 	public AIAction(APlayer player){
 		this.setPlayer(player);
 	}
@@ -46,7 +47,8 @@ public class AIAction {
 	public void castCard(){
 		player.gameState = GameState.castCard;
 		List<ACard> cards = player.getAvailableCards(player.getHands());
-		player.setBeingUsedCard(cards.get(0));
+		setAvailableCards(cards);
+		player.setBeingUsedCard(cards.get(castCardIndex));
 	}
 	
 	/**
@@ -67,5 +69,21 @@ public class AIAction {
 
 	public void setPlayer(APlayer player) {
 		this.player = player;
+	}
+
+	public int getCastCardIndex() {
+		return castCardIndex;
+	}
+
+	public void setCastCardIndex(int castCardIndex) {
+		this.castCardIndex = castCardIndex;
+	}
+
+	public List<ACard> getAvailableCards() {
+		return availableCards;
+	}
+
+	public void setAvailableCards(List<ACard> availableCards) {
+		this.availableCards = availableCards;
 	}
 }

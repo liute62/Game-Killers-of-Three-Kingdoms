@@ -17,6 +17,7 @@ import com.card.interfaces.ACard;
 import com.logic.player.APlayer;
 import com.logic.player.Player;
 import com.system.enums.GameState;
+import com.system.utils.DebugUtil;
 
 public class AIActionTestCase {
 
@@ -83,7 +84,8 @@ public class AIActionTestCase {
 		result.setHands(tmp);
 		List<ACard> cards = result.getAvailableCards(tmp);
 		if (index == 1) {
-			return cards.get(cards.size()-1);
+			lastIndex = cards.size() - 1;
+			return cards.get(lastIndex);
 		}
 		return cards.get(0);
 	}
@@ -142,18 +144,22 @@ public class AIActionTestCase {
 	public void test7_ChooseIndex0CardForCastcardStage(){
 		initial();
 		int num = 2;
+		aiAction.setCastCardIndex(0);
 		aiAction.getPlayer().setHands(getHandsList(num, num, num));
 		aiAction.castCard();
 		Assert.assertEquals(result_test_7_8(num,num,num,0).getName(),aiAction.getPlayer().getBeingUsedCard().getName());
 	}
 	
+	int lastIndex;
 	@Test
 	public void test8_ChooseIndexLastCardForCastcardStage(){
 		initial();
 		int num = 3;
-		aiAction.getPlayer().setHands(getHandsList(num, num, num));
+	    aiAction.getPlayer().setHands(getHandsList(num, num, num));
+	    String name = result_test_7_8(num,num,num,1).getName();
+		aiAction.setCastCardIndex(lastIndex);
 		aiAction.castCard();
-		Assert.assertEquals(result_test_7_8(num,num,num,1).getName(),aiAction.getPlayer().getBeingUsedCard().getName());
+		Assert.assertEquals(name,aiAction.getPlayer().getBeingUsedCard().getName());
 		
 	}
 }
