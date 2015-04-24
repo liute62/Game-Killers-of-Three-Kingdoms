@@ -28,6 +28,7 @@ public class StrikeCard extends ACard {
         for (APlayer target: targets) {
             if (player.getWeapon() != null) {
                 target.setPlusMount(null);
+                target.setMinusMount(null);
             }
         }
     }
