@@ -217,6 +217,7 @@ public class CardMainTestCase {
         WeaponCard qilinBow = new QilinBowCard();
         StrikeCard strike = new StrikeCard();
         PlusMountCard shadowRunner = new ShadowRunnerCard();
+
         APlayer player = new Player();
         APlayer player1 = new Player();
         player.setCurrentHP(3);
@@ -228,6 +229,7 @@ public class CardMainTestCase {
         player1.setPlusMount(shadowRunner);
         List<APlayer> playerList = new ArrayList<>();
         playerList.add(player1);
+        
         strike.use(player, playerList);
         assertNull(player1.getPlusMount());
     }
