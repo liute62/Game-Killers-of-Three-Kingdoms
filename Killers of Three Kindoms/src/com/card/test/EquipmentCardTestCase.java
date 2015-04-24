@@ -46,8 +46,8 @@ public class EquipmentCardTestCase {
 		targetPlayers.add(p1);
 		PlusMountCard target = new ShadowRunner();
 		target.use(p1, targetPlayers);
-		Assert.assertEquals(target, p1.getMount());
-		Assert.assertSame(target, p1.getMount());
+		Assert.assertEquals(target, p1.getPlusMount());
+		Assert.assertSame(target, p1.getPlusMount());
 	}
 	
 	@Test

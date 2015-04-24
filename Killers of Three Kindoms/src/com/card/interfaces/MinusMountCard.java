@@ -9,7 +9,7 @@ public abstract class MinusMountCard extends AEquipmentCard implements IMountCar
     {
         for(APlayer targetPlayer: target)
         {
-            targetPlayer.setMount(this);
+            targetPlayer.setMinusMount(this);
         }
     }
     public abstract int getAffectedRange();

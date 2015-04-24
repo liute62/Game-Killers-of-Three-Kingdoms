@@ -13,7 +13,8 @@ public abstract class APlayer implements IPlayer{
 	 protected int currentHP;
 	 protected List<ACard> hands;
 	 protected  AmorCard amor;
-	 protected IMountCard mount;
+	 protected IMountCard plusMount;
+     protected IMountCard minusMount;
 	 protected WeaponCard weapon;
 	 protected int attackRange;
 	 protected int position;
@@ -58,13 +59,21 @@ public abstract class APlayer implements IPlayer{
 		 this.amor = amor;
 	 }
 		 
-	 public IMountCard getMount() {
-		 return mount;
+	 public IMountCard getPlusMount() {
+		 return plusMount;
 	 }
 	 
-	 public void setMount(IMountCard mount) {
-		 this.mount = mount;
+	 public void setPlusMount(IMountCard mount) {
+		 this.plusMount = mount;
 	 }
+
+     public IMountCard getMinusMount() {
+        return minusMount;
+    }
+
+     public void setMinusMount(IMountCard mount) {
+        this.minusMount = mount;
+    }
 	 
 	 public WeaponCard getWeapon() {
 		 return weapon;
