@@ -34,8 +34,13 @@ public class AIAction {
 	
 	/**
 	 * Cast card stage for AI.
-	 * 1.check target
-	 * 2.cast a card (algorithm for casting what card)
+	 * 1.get available card and randomly choose a card to use.
+	 * 2.check the range of being used card, and get the available target.
+	 * 3.there are 3 rule for choosing the target.
+	 * 4.if AI's role is Monarch
+	 * 5.if AI's role is
+	 * 6.if AI's role is
+	 * 7.then finish.
 	 */
 	public void castCard(){
 		

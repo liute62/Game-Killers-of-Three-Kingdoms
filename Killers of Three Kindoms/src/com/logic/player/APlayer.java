@@ -24,6 +24,7 @@ public abstract class APlayer implements IPlayer{
 
 	protected int drawCardNum = 2;
 	protected int discardNum = 0;
+	protected ACard beingUsedCard;
 	 
 	 public List<ACard> getAvailableCards(List<ACard> cards){ 
 		 if(gameState == GameState.begin || gameState == gameState.check || gameState == GameState.drawCard){
@@ -117,5 +118,12 @@ public abstract class APlayer implements IPlayer{
     public void setPosition(int position) {
         this.position = position;
     }
- 
+    
+    public void setBeingUsedCard(ACard card){
+    	this.beingUsedCard = card;
+    }
+    
+    public ACard getBeingUsedCard(){
+    	return beingUsedCard;
+    }
 }

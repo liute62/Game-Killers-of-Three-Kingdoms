@@ -10,6 +10,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.ai.service.AIAction;
+import com.card.base.DodgeCard;
+import com.card.base.PeachCard;
+import com.card.base.StrikeCard;
 import com.card.interfaces.ACard;
 import com.logic.player.APlayer;
 import com.logic.player.Player;
@@ -25,6 +28,30 @@ public class AIActionTestCase {
 		aiAction = new AIAction(player);
 	}
 	
+	private List<ACard> getHandsList(int num){
+		List<ACard> cards = new ArrayList<>();
+		for (int i = 0; i < num; i++) {
+			ACard card = null;
+			cards.add(card);	
+		}
+		return cards;
+	}
+	
+	private List<ACard> getHandsList(int strikeNum,int dodgeNum,int peachNum){
+		List<ACard> cards = new ArrayList<>();
+		for (int i = 0; i < strikeNum; i++) {
+			ACard card = new StrikeCard();
+			cards.add(card);
+		}for (int i = 0; i < dodgeNum; i++) {
+			ACard card = new DodgeCard();
+			cards.add(card);
+		}for (int i = 0; i < peachNum; i++) {
+			ACard card = new PeachCard();
+			cards.add(card);
+		}
+		return cards;
+	}
+	
 	private APlayer result_test_1_2_3(int num){
 		APlayer result = new Player();
 		List<ACard> cards = new ArrayList<ACard>();
@@ -34,15 +61,6 @@ public class AIActionTestCase {
 		}
 		result.setHands(cards);
 		return result;
-	}
-	
-	private List<ACard> getHandsList(int num){
-		List<ACard> cards = new ArrayList<>();
-		for (int i = 0; i < num; i++) {
-			ACard card = null;
-			cards.add(card);	
-		}
-		return cards;
 	}
 	
 	private APlayer result_test_4_5_6(int handNum, int dropNum){
@@ -55,6 +73,14 @@ public class AIActionTestCase {
 		cards.removeAll(tmp);
 		result.setHands(cards);
 		return result;
+	}
+	
+	private ACard result_test_7(int strikeNum,int dodgeNum,int peachNum){
+		APlayer result = new Player();
+		List<ACard> tmp = getHandsList(strikeNum,dodgeNum,peachNum);
+		result.setHands(tmp);
+		List<ACard> cards = result.getAvailableCards(tmp);
+		return cards.get(0);
 	}
 	
 	@Test
@@ -107,7 +133,13 @@ public class AIActionTestCase {
 		Assert.assertEquals(result_test_4_5_6(2,-1).getHands().size(),aiAction.getPlayer().getHands().size());
 	}
 	
-	public void test7_ChooseACardForCastcardStage(){
-		
+	@Test
+	public void test7_ChooseIndex0CardForCastcardStage(){
+		initial();
+		int num = 2;
+		aiAction.getPlayer().setHands(getHandsList(num, num, num));
+		List<ACard> aiList = aiAction.getPlayer().getAvailableCards(aiAction.getPlayer().getHands());
+		aiAction.castCard();
+		Assert.assertEquals(result_test_7(num,num,num),aiList.get(0));
 	}
 }
