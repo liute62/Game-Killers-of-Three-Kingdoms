@@ -76,12 +76,15 @@ public class AIActionTestCase {
 		return result;
 	}
 	
-	private ACard result_test_7(int strikeNum,int dodgeNum,int peachNum){
+	private ACard result_test_7_8(int strikeNum,int dodgeNum,int peachNum,int index){
 		APlayer result = new Player();
 		result.gameState = GameState.castCard;
 		List<ACard> tmp = getHandsList(strikeNum,dodgeNum,peachNum);
 		result.setHands(tmp);
 		List<ACard> cards = result.getAvailableCards(tmp);
+		if (index == 1) {
+			return cards.get(cards.size()-1);
+		}
 		return cards.get(0);
 	}
 	
@@ -141,6 +144,16 @@ public class AIActionTestCase {
 		int num = 2;
 		aiAction.getPlayer().setHands(getHandsList(num, num, num));
 		aiAction.castCard();
-		Assert.assertEquals(result_test_7(num,num,num).getName(),aiAction.getPlayer().getBeingUsedCard().getName());
+		Assert.assertEquals(result_test_7_8(num,num,num,0).getName(),aiAction.getPlayer().getBeingUsedCard().getName());
+	}
+	
+	@Test
+	public void test8_ChooseIndexLastCardForCastcardStage(){
+		initial();
+		int num = 3;
+		aiAction.getPlayer().setHands(getHandsList(num, num, num));
+		aiAction.castCard();
+		Assert.assertEquals(result_test_7_8(num,num,num,1).getName(),aiAction.getPlayer().getBeingUsedCard().getName());
+		
 	}
 }
