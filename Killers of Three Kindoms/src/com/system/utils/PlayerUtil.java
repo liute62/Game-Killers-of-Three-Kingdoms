@@ -25,10 +25,10 @@ public class PlayerUtil {
             distance = 5 - distance;
         }
         if (player1.getMinusMount() != null) {
-            distance--;
+            distance -= player1.getMinusMount().getAffectedRange();
         }
         if (player2.getPlusMount() != null) {
-            distance++;
+            distance += player2.getPlusMount().getAffectedRange();
         }
         return distance;
     }

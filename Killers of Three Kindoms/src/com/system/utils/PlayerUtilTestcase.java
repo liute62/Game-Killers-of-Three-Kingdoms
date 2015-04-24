@@ -161,13 +161,13 @@ public class PlayerUtilTestcase {
 
     @Test
     public void TestPlayerHasMinusWhileTargetHasMinus() {
-        IMountCard blueHare = new MinusMountCard() {
+        MinusMountCard blueHare = new MinusMountCard() {
             @Override
             public int getAffectedRange() {
                 return 2;
             }
         };
-        IMountCard redHare = new RedHare();
+        MinusMountCard redHare = new RedHare();
         Player player1 = new Player();
         Player player2 = new Player();
         player1.setPosition(1);
