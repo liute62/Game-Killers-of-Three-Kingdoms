@@ -131,4 +131,16 @@ public class PlayerUtilTestcase {
         assertEquals(playerUtil.getDistance(player1, player2), 3);
         assertEquals(playerUtil.getDistance(player2, player1), 2);
     }
+
+    @Test
+    public void TestPlayerHasPlusWhileTargetHasNone() {
+        IMountCard shadowRunner = new ShadowRunner();
+        Player player1 = new Player();
+        Player player2 = new Player();
+        player1.setPosition(1);
+        player2.setPosition(3);
+        player1.setPlusMount(shadowRunner);
+        assertEquals(playerUtil.getDistance(player1, player2), 2);
+        assertEquals(playerUtil.getDistance(player2, player1), 3);
+    }
 }
