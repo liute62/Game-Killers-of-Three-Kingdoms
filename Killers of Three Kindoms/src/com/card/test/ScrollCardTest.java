@@ -49,6 +49,27 @@ public class ScrollCardTest {
 		Assert.assertEquals(5, targetPlayers.get(2).getCurrentHP());
 	}
 	
+	@Test
+	public void testPeachGardenWorksCorrectlyWhenPlayerHPIsFull()
+	{
+		p1.setCurrentHP(3);
+		p1.setMaxHP(3);
+		p2.setCurrentHP(3);
+		p2.setMaxHP(3);
+		p3.setCurrentHP(4);
+		p3.setMaxHP(4);
+		
+		targetPlayers.add(p1);
+		targetPlayers.add(p2);
+		targetPlayers.add(p3);
+		
+		PeachGarden target = new PeachGarden();
+		
+		target.use(p1, targetPlayers);
+		Assert.assertEquals(3,targetPlayers.get(0).getCurrentHP());
+		Assert.assertEquals(3, targetPlayers.get(1).getCurrentHP());
+		Assert.assertEquals(4, targetPlayers.get(2).getCurrentHP());
+	}
 //	@Test
 //	public void testPeachGardenRecoverHPInCorrectOrder()
 //	{
