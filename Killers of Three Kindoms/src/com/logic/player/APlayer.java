@@ -10,7 +10,9 @@ import com.system.enums.GameState;
 
 public abstract class APlayer implements IPlayer{
 
-	 protected int currentHP;
+	 protected int maxHP;
+
+	protected int currentHP;
 	 protected List<ACard> hands;
 	 protected  AmorCard amor;
 	 protected PlusMountCard plusMount;
@@ -19,6 +21,7 @@ public abstract class APlayer implements IPlayer{
 	 protected int attackRange;
 	 protected int position;
 	 public GameState gameState;
+	
 
 
 	protected int drawCardNum = 2;
@@ -38,6 +41,14 @@ public abstract class APlayer implements IPlayer{
 		 }
 		return cards;
 	}
+	 
+	 public int getMaxHP() {
+		 return maxHP;
+	 }
+	 
+	 public void setMaxHP(int maxHP) {
+		 this.maxHP = maxHP;
+	 }
 	 
 	 public void setCurrentHP(int i) {
 			// TODO Auto-generated method stub

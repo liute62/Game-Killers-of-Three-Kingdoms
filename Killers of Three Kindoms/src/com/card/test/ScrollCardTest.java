@@ -48,4 +48,13 @@ public class ScrollCardTest {
 		Assert.assertEquals(4, targetPlayers.get(1).getCurrentHP());
 		Assert.assertEquals(5, targetPlayers.get(2).getCurrentHP());
 	}
+	
+//	@Test
+//	public void testPeachGardenRecoverHPInCorrectOrder()
+//	{
+//		p1.setCurrentHP(2);
+//		p2.setCurrentHP(3);
+//		p3.setCurrentHP(4);
+//		
+//	}
 }
