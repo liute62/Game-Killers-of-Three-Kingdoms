@@ -27,6 +27,9 @@ public class PlayerUtil {
         if (player1.getMinusMount() != null) {
             distance--;
         }
+        if (player2.getPlusMount() != null) {
+            distance++;
+        }
         return distance;
     }
 }
