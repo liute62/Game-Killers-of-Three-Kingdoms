@@ -15,8 +15,7 @@ public class PeachGarden extends ScrollCardAbstract {
 	{
 		for(APlayer targetPlayer: target)
 		{
-			int currentHP = targetPlayer.getCurrentHP(); 
-			targetPlayer.setCurrentHP(currentHP+1);
+			targetPlayer.gainHP(1);
 		}
 	}
 }
