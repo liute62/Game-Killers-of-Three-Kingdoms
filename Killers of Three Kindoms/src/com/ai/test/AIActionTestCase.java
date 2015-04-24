@@ -90,6 +90,16 @@ public class AIActionTestCase {
 		return cards.get(0);
 	}
 	
+	private APlayer result_9(){
+		List<APlayer> players = new ArrayList<>();
+		for (int i = 1; i < 5; i++) {
+			APlayer player = new Player();
+			player.setPosition(i);
+			players.add(player);
+		}
+		return players.get(0);
+	}
+	
 	@Test
 	public void test1_OneCardForDrawCardStage(){
 		initial();
@@ -160,6 +170,14 @@ public class AIActionTestCase {
 		aiAction.setCastCardIndex(lastIndex);
 		aiAction.castCard();
 		Assert.assertEquals(name,aiAction.getPlayer().getBeingUsedCard().getName());
-		
+	}
+	
+	@Test
+	public void test9_GetAAvailableTargetForPos0Range1(){
+		initial();
+		aiAction.getPlayer().setAttackRange(1);
+		aiAction.getPlayer().setPosition(0);
+		aiAction.castCard();
+		Assert.assertEquals(result_9().getPosition(),aiAction.getTarget().getPosition());
 	}
 }

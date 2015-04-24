@@ -16,6 +16,7 @@ public class AIAction {
 	private APlayer player;
 	private int castCardIndex;
 	private List<ACard> availableCards;
+	private APlayer target;
 	public AIAction(APlayer player){
 		this.setPlayer(player);
 	}
@@ -85,5 +86,13 @@ public class AIAction {
 
 	public void setAvailableCards(List<ACard> availableCards) {
 		this.availableCards = availableCards;
+	}
+
+	public APlayer getTarget() {
+		return target;
+	}
+
+	public void setTarget(APlayer target) {
+		this.target = target;
 	}
 }
