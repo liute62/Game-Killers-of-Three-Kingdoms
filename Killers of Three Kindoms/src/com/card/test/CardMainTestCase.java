@@ -7,6 +7,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.card.base.StrikeCard;
+import com.card.equipment.QilinBowCard;
+import com.card.equipment.ShadowRunnerCard;
+import com.card.interfaces.PlusMountCard;
+import com.card.interfaces.WeaponCard;
 import org.junit.Test;
 
 import com.card.base.PeachCard;
@@ -208,4 +212,23 @@ public class CardMainTestCase {
         assertEquals(strike.checkTarget(player, playerList), false);
     }
 
+    @Test
+    public void TestPlayerWithQilinAttackTargetWithPlusMount() {
+        WeaponCard qilinBow = new QilinBowCard();
+        StrikeCard strike = new StrikeCard();
+        PlusMountCard shadowRunner = new ShadowRunnerCard();
+        APlayer player = new Player();
+        APlayer player1 = new Player();
+        player.setCurrentHP(3);
+        player.setAttackRange(2);
+        player.setPosition(1);
+        player.setWeapon(qilinBow);
+        player1.setCurrentHP(2);
+        player1.setPosition(2);
+        player1.setPlusMount(shadowRunner);
+        List<APlayer> playerList = new ArrayList<>();
+        playerList.add(player1);
+        strike.use(player, playerList);
+        assertNull(player1.getPlusMount());
+    }
 }

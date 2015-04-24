@@ -1,8 +1,7 @@
 package com.system.utils;
 
-import com.card.equipment.RedHare;
-import com.card.equipment.ShadowRunner;
-import com.card.interfaces.IMountCard;
+import com.card.equipment.RedHareCard;
+import com.card.equipment.ShadowRunnerCard;
 import com.card.interfaces.MinusMountCard;
 import com.card.interfaces.PlusMountCard;
 import com.logic.player.Player;
@@ -112,7 +111,7 @@ public class PlayerUtilTestcase {
 
     @Test
     public void TestPlayerHasNoneWhileTargetHasMinus() {
-        MinusMountCard redHare = new RedHare();
+        MinusMountCard redHare = new RedHareCard();
         Player player1 = new Player();
         Player player2 = new Player();
         player1.setPosition(1);
@@ -124,7 +123,7 @@ public class PlayerUtilTestcase {
 
     @Test
     public void TestPlayerHasNoneWhileTargetHasPlus() {
-        PlusMountCard shadowRunner = new ShadowRunner();
+        PlusMountCard shadowRunner = new ShadowRunnerCard();
         Player player1 = new Player();
         Player player2 = new Player();
         player1.setPosition(1);
@@ -136,7 +135,7 @@ public class PlayerUtilTestcase {
 
     @Test
     public void TestPlayerHasPlusWhileTargetHasNone() {
-        PlusMountCard shadowRunner = new ShadowRunner();
+        PlusMountCard shadowRunner = new ShadowRunnerCard();
         Player player1 = new Player();
         Player player2 = new Player();
         player1.setPosition(1);
@@ -148,8 +147,8 @@ public class PlayerUtilTestcase {
 
     @Test
     public void TestPlayerHasPlusWhileTargetHasMinus() {
-        PlusMountCard shadowRunner = new ShadowRunner();
-        MinusMountCard redHare = new RedHare();
+        PlusMountCard shadowRunner = new ShadowRunnerCard();
+        MinusMountCard redHare = new RedHareCard();
         Player player1 = new Player();
         Player player2 = new Player();
         player1.setPosition(1);
@@ -168,7 +167,7 @@ public class PlayerUtilTestcase {
                 return 2;
             }
         };
-        MinusMountCard redHare = new RedHare();
+        MinusMountCard redHare = new RedHareCard();
         Player player1 = new Player();
         Player player2 = new Player();
         player1.setPosition(1);
@@ -181,8 +180,8 @@ public class PlayerUtilTestcase {
 
     @Test
     public void TestPlayerHasMinusWhileTargetHasPlus() {
-        PlusMountCard shadowRunner = new ShadowRunner();
-        MinusMountCard redHare = new RedHare();
+        PlusMountCard shadowRunner = new ShadowRunnerCard();
+        MinusMountCard redHare = new RedHareCard();
         Player player1 = new Player();
         Player player2 = new Player();
         player1.setPosition(2);

@@ -58,9 +58,9 @@ public class DeckEquipmentPanel extends JPanel{
 			weapon.setCard(card);
 		}else if(card.getType() == CardConst.CardType_Armor){
 			armor.setCard(card);
-		}else if(card.getType() == CardConst.CardType_Mount_A){
+		}else if(card.getType() == CardConst.CardType_Mount_Minus){
 			horseAttact.setCard(card);
-		}else if(card.getType() == CardConst.CardType_Mount_B){
+		}else if(card.getType() == CardConst.CardType_Mount_Plus){
 			horseDefend.setCard(card);
 		}
 	}

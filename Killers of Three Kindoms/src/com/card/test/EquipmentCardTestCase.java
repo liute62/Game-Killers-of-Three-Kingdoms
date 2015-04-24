@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import com.card.equipment.BlackPommelCard;
 import com.card.equipment.EightDiagramFormationCard;
-import com.card.equipment.ShadowRunner;
+import com.card.equipment.ShadowRunnerCard;
 import com.card.interfaces.AmorCard;
 import com.card.interfaces.WeaponCard;
 import com.logic.player.APlayer;
@@ -44,7 +44,7 @@ public class EquipmentCardTestCase {
 	public void testMountCardCanCorrectlyUse()
 	{
 		targetPlayers.add(p1);
-		PlusMountCard target = new ShadowRunner();
+		PlusMountCard target = new ShadowRunnerCard();
 		target.use(p1, targetPlayers);
 		Assert.assertEquals(target, p1.getPlusMount());
 		Assert.assertSame(target, p1.getPlusMount());

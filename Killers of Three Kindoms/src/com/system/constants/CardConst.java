@@ -13,8 +13,8 @@ public class CardConst {
 	
 	public static final int CardType_Armor = 5;
 	
-	public static final int CardType_Mount_A = 6; //Horse for attacking
+	public static final int CardType_Mount_Minus = 6; //Horse for attacking
 	  
-	public static final int CardType_Mount_B = 7; //Horse for defending
+	public static final int CardType_Mount_Plus = 7; //Horse for defending
 }
 
