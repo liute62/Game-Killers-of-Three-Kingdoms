@@ -106,4 +106,8 @@ public class AIActionTestCase {
 		aiAction.dropCard();
 		Assert.assertEquals(result_test_4_5_6(2,-1).getHands().size(),aiAction.getPlayer().getHands().size());
 	}
+	
+	public void test7_ChooseACardForCastcardStage(){
+		
+	}
 }
