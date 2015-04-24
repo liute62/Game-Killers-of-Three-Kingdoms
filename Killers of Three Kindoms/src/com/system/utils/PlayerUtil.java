@@ -24,6 +24,9 @@ public class PlayerUtil {
         if (distance > 2) {
             distance = 5 - distance;
         }
+        if (player1.getMinusMount() != null) {
+            distance--;
+        }
         return distance;
     }
 }
