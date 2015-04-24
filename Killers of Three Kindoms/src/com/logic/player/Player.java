@@ -16,8 +16,6 @@ public class Player extends APlayer{
     public boolean strike(IPlayer target) {
         // TODO Auto-generated method stub
 
-        // TODO Check weapon: if Qilin Bow then remove the target's mount
-
         return false;
     }
 

@@ -24,6 +24,8 @@ public class StrikeCard extends ACard {
     public void use(APlayer player, List<APlayer> target) {
         // TODO Auto-generated method stub
 
+        // TODO Check weapon: if Qilin Bow then remove the target's mount
+
     }
 
     /**
