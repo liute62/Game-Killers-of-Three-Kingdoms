@@ -8,6 +8,7 @@ import java.util.ListIterator;
 
 import com.card.interfaces.ACard;
 import com.logic.player.APlayer;
+import com.logic.player.Player;
 import com.system.enums.GameState;
 import com.system.utils.DebugUtil;
 
@@ -50,6 +51,10 @@ public class AIAction {
 		List<ACard> cards = player.getAvailableCards(player.getHands());
 		setAvailableCards(cards);
 		player.setBeingUsedCard(cards.get(castCardIndex));
+		//choose the available target
+		APlayer target = new Player();
+		target.setPosition(1);
+		setTarget(target);
 	}
 	
 	/**

@@ -175,6 +175,8 @@ public class AIActionTestCase {
 	@Test
 	public void test9_GetAAvailableTargetForPos0Range1(){
 		initial();
+		int num = 3;
+		aiAction.getPlayer().setHands(getHandsList(num,num,num));
 		aiAction.getPlayer().setAttackRange(1);
 		aiAction.getPlayer().setPosition(0);
 		aiAction.castCard();
