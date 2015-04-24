@@ -16,6 +16,7 @@ import com.card.base.StrikeCard;
 import com.card.interfaces.ACard;
 import com.logic.player.APlayer;
 import com.logic.player.Player;
+import com.system.enums.GameState;
 
 public class AIActionTestCase {
 
@@ -77,6 +78,7 @@ public class AIActionTestCase {
 	
 	private ACard result_test_7(int strikeNum,int dodgeNum,int peachNum){
 		APlayer result = new Player();
+		result.gameState = GameState.castCard;
 		List<ACard> tmp = getHandsList(strikeNum,dodgeNum,peachNum);
 		result.setHands(tmp);
 		List<ACard> cards = result.getAvailableCards(tmp);
@@ -139,6 +141,6 @@ public class AIActionTestCase {
 		int num = 2;
 		aiAction.getPlayer().setHands(getHandsList(num, num, num));
 		aiAction.castCard();
-		Assert.assertEquals(result_test_7(num,num,num),aiAction.getPlayer().getBeingUsedCard());
+		Assert.assertEquals(result_test_7(num,num,num).getName(),aiAction.getPlayer().getBeingUsedCard().getName());
 	}
 }

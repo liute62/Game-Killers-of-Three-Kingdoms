@@ -8,6 +8,7 @@ import java.util.ListIterator;
 
 import com.card.interfaces.ACard;
 import com.logic.player.APlayer;
+import com.system.enums.GameState;
 import com.system.utils.DebugUtil;
 
 public class AIAction {
@@ -43,7 +44,9 @@ public class AIAction {
 	 * 7.then finish.
 	 */
 	public void castCard(){
-		
+		player.gameState = GameState.castCard;
+		List<ACard> cards = player.getAvailableCards(player.getHands());
+		player.setBeingUsedCard(cards.get(0));
 	}
 	
 	/**
