@@ -2,24 +2,26 @@ package com.logic.player;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.card.interfaces.ACard;
-import com.card.interfaces.AmorCard;
-import com.card.interfaces.MountCard;
-import com.card.interfaces.WeaponCard;
+
+import com.card.interfaces.*;
 import com.logic.interfaces.IPlayer;
 import com.system.constants.CardConst;
 import com.system.enums.GameState;
 
 public abstract class APlayer implements IPlayer{
 
-	 protected int currentHP;
+	 protected int maxHP;
+
+	protected int currentHP;
 	 protected List<ACard> hands;
 	 protected  AmorCard amor;
-	 protected MountCard mount;
+	 protected PlusMountCard plusMount;
+     protected MinusMountCard minusMount;
 	 protected WeaponCard weapon;
 	 protected int attackRange;
 	 protected int position; //0 1 2 3 4 
 	 public GameState gameState;
+	
 
 
 	protected int drawCardNum = 2;
@@ -41,6 +43,14 @@ public abstract class APlayer implements IPlayer{
 		return cards;
 	}
 	 
+	 public int getMaxHP() {
+		 return maxHP;
+	 }
+	 
+	 public void setMaxHP(int maxHP) {
+		 this.maxHP = maxHP;
+	 }
+	 
 	 public void setCurrentHP(int i) {
 			// TODO Auto-generated method stub
 			this.currentHP = i;
@@ -61,13 +71,21 @@ public abstract class APlayer implements IPlayer{
 		 this.amor = amor;
 	 }
 		 
-	 public MountCard getMount() {
-		 return mount;
+	 public PlusMountCard getPlusMount() {
+		 return plusMount;
 	 }
 	 
-	 public void setMount(MountCard mount) {
-		 this.mount = mount;
+	 public void setPlusMount(PlusMountCard mount) {
+		 this.plusMount = mount;
 	 }
+
+     public MinusMountCard getMinusMount() {
+        return minusMount;
+    }
+
+     public void setMinusMount(MinusMountCard mount) {
+        this.minusMount = mount;
+    }
 	 
 	 public WeaponCard getWeapon() {
 		 return weapon;

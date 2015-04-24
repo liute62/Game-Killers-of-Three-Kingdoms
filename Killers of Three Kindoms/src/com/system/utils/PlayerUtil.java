@@ -6,9 +6,11 @@ public class PlayerUtil {
 
     /**
      * Calculate the distance between two player.
-     * 1.clockwise direction;
-     * 2.anticlockwise direction;
-     * return the minimum distance between the two direction.
+     * 1. clockwise direction;
+     * 2. anticlockwise direction;
+     * get the minimum distance between the two direction.
+     * If player1 has a MinusMountCard, the distance will be reduced;
+     * If player2 has a PlusMountCard, the distance will be increased.
      *
      * @param player1
      * @param player2
@@ -23,6 +25,12 @@ public class PlayerUtil {
         int distance = Math.abs(player2.getPosition() - player1.getPosition());
         if (distance > 2) {
             distance = 5 - distance;
+        }
+        if (player1.getMinusMount() != null) {
+            distance -= player1.getMinusMount().getAffectedRange();
+        }
+        if (player2.getPlusMount() != null) {
+            distance += player2.getPlusMount().getAffectedRange();
         }
         return distance;
     }

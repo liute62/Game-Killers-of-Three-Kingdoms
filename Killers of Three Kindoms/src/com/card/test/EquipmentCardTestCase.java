@@ -3,15 +3,15 @@ package com.card.test;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.card.interfaces.PlusMountCard;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.card.equipment.BlackPommelCard;
 import com.card.equipment.EightDiagramFormationCard;
-import com.card.equipment.ShadowRunner;
+import com.card.equipment.ShadowRunnerCard;
 import com.card.interfaces.AmorCard;
-import com.card.interfaces.MountCard;
 import com.card.interfaces.WeaponCard;
 import com.logic.player.APlayer;
 import com.logic.player.Player;
@@ -44,10 +44,10 @@ public class EquipmentCardTestCase {
 	public void testMountCardCanCorrectlyUse()
 	{
 		targetPlayers.add(p1);
-		MountCard target = new ShadowRunner();
+		PlusMountCard target = new ShadowRunnerCard();
 		target.use(p1, targetPlayers);
-		Assert.assertEquals(target, p1.getMount());
-		Assert.assertSame(target, p1.getMount());
+		Assert.assertEquals(target, p1.getPlusMount());
+		Assert.assertSame(target, p1.getPlusMount());
 	}
 	
 	@Test

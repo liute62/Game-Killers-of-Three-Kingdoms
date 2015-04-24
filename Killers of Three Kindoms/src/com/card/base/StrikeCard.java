@@ -21,9 +21,17 @@ public class StrikeCard extends ACard {
      * 3.calculate the number of damage.
      */
     @Override
-    public void use(APlayer player, List<APlayer> target) {
+    public void use(APlayer player, List<APlayer> targets) {
         // TODO Auto-generated method stub
 
+        // TODO Check weapon: if Qilin Bow then remove the target's mount
+        for (APlayer target: targets) {
+            if (player.getWeapon() != null
+                    && player.getWeapon().getName().equals("QilinBow")) {
+                target.setPlusMount(null);
+                target.setMinusMount(null);
+            }
+        }
     }
 
     /**

@@ -6,7 +6,7 @@ import com.logic.player.APlayer;
 
 public interface IPlayer {
 
-	boolean strike();
+	boolean strike(IPlayer target);
 	
 	boolean dodge();
 	

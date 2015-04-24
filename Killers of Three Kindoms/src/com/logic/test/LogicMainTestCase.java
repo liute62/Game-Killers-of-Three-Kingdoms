@@ -59,6 +59,15 @@ public class LogicMainTestCase {
 	}
 	
 	@Test
+	public void testGainHPWhenPlayerHPIsFull() 
+	{
+		player.setMaxHP(4);
+		player.setCurrentHP(4);
+		player.gainHP(1);
+		assertEquals(4, player.getCurrentHP());
+	}
+	
+	@Test
 	public void TestIfDropCardsWhenHPLessThanHands()
 	{
 		ACard aCard = null;
