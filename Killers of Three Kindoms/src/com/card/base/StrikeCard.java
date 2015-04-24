@@ -26,7 +26,9 @@ public class StrikeCard extends ACard {
 
         // TODO Check weapon: if Qilin Bow then remove the target's mount
         for (APlayer target: targets) {
-            target.setPlusMount(null);
+            if (player.getWeapon() != null) {
+                target.setPlusMount(null);
+            }
         }
     }
 
