@@ -70,12 +70,30 @@ public class ScrollCardTest {
 		Assert.assertEquals(3, targetPlayers.get(1).getCurrentHP());
 		Assert.assertEquals(4, targetPlayers.get(2).getCurrentHP());
 	}
-//	@Test
-//	public void testPeachGardenRecoverHPInCorrectOrder()
-//	{
-//		p1.setCurrentHP(2);
-//		p2.setCurrentHP(3);
-//		p3.setCurrentHP(4);
-//		
-//	}
+	@Test
+	public void testPeachGardenRecoverHPInCorrectOrder()
+	{
+		p1.setCurrentHP(2);
+		p2.setCurrentHP(3);
+		p3.setCurrentHP(4);
+		
+		p1.setPosition(3);
+		p2.setPosition(1);
+		p3.setPosition(5);
+		
+		//create a array to represent correct order of recovering health.
+		List<APlayer> order = new ArrayList<APlayer>();
+		order.add(p1);
+		order.add(p3);
+		order.add(p2);
+		
+		targetPlayers.add(p1);
+		targetPlayers.add(p2);
+		targetPlayers.add(p3);
+		
+		PeachGarden target = new PeachGarden();
+		target.use(p1, targetPlayers);
+		
+		Assert.assertEquals(order, target.getOrderOfRecovering());
+	}
 }

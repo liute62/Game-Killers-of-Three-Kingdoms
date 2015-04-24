@@ -1,5 +1,6 @@
 package com.card.scroll;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.logic.player.APlayer;
@@ -10,9 +11,19 @@ import com.logic.player.APlayer;
 
 public class PeachGarden extends ScrollCardAbstract {
 	
+	private List<APlayer> orderOfRecovering;
 	
+	public List<APlayer> getOrderOfRecovering() {
+		return orderOfRecovering;
+	}
+
+	public void setOrderOfRecovering(List<APlayer> orderOfRecovering) {
+		this.orderOfRecovering = orderOfRecovering;
+	}
+
 	public void use(APlayer player,List<APlayer> target)
 	{
+		this.orderOfRecovering = new ArrayList<APlayer>();
 		for(APlayer targetPlayer: target)
 		{
 			targetPlayer.gainHP(1);
