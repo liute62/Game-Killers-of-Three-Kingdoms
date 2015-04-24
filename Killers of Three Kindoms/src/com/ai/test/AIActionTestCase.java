@@ -138,8 +138,7 @@ public class AIActionTestCase {
 		initial();
 		int num = 2;
 		aiAction.getPlayer().setHands(getHandsList(num, num, num));
-		List<ACard> aiList = aiAction.getPlayer().getAvailableCards(aiAction.getPlayer().getHands());
 		aiAction.castCard();
-		Assert.assertEquals(result_test_7(num,num,num),aiList.get(0));
+		Assert.assertEquals(result_test_7(num,num,num),aiAction.getPlayer().getBeingUsedCard());
 	}
 }
