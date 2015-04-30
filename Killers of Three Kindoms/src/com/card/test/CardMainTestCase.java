@@ -38,6 +38,7 @@ public class CardMainTestCase {
         APlayer p1 = new Player();
         APlayer p2 = new Player();
         p2.setCurrentHP(1);
+        p2.setMaxHP(5);
         List<APlayer> targetPlayers = new ArrayList<APlayer>();
         targetPlayers.add(p2);
 
@@ -55,6 +56,8 @@ public class CardMainTestCase {
         PeachCard peach = new PeachCard();
         APlayer p1 = new Player();
         APlayer p2 = new Player();
+        p1.setMaxHP(5);
+        p2.setMaxHP(5);
         p1.setCurrentHP(2);
         p2.setCurrentHP(1);
         List<APlayer> targetPlayers = new ArrayList<APlayer>();

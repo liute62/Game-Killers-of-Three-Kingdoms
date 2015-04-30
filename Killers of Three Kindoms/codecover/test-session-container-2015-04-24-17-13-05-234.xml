@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><TestSessionContainer xmlns="http://www.codecover.org/xml/testsession-container" Date="1429909985228" TestSessionContainerId="9ca6f8ac-f6fa-44e0-be95-c9988856ce99" version="1.0">
+<SrcFileList>
+<SrcFile Content="package com.card.equipment;&#13;&#10;&#13;&#10;import com.card.interfaces.IWeaponCard;&#13;&#10;import com.card.interfaces.WeaponCard;&#13;&#10;import com.system.constants.CardConst;&#13;&#10;&#13;&#10;public class QilinBowCard extends WeaponCard implements IWeaponCard {&#13;&#10;    public QilinBowCard() {&#13;&#10;        this.name = &quot;QilinBow&quot;;&#13;&#10;        this.type = CardConst.CardType_Weapon;&#13;&#10;        this.attackRange = 5;&#13;&#10;    }&#13;&#10;&#13;&#10;    @Override&#13;&#10;    public void checkArmor() {&#13;&#10;&#13;&#10;    }&#13;&#10;}&#13;&#10;" Filename="QilinBowCard.java" Intrnl_Id="1"/>
+</SrcFileList>
+<CritList>
+<CritListEntry Name="org.codecover.model.utils.criteria.LoopCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.QMOCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.ConditionCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.BranchCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.SynchronizedStatementCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.StatementCoverage" PluginName="org.codecover"/>
+</CritList>
+<BoolOpList/>
+<HierarchyLvlTypeList>
+<HierarchyLvlType EnglishName="package" IntrnlName="package" Intrnl_Id="2"/>
+<HierarchyLvlType EnglishName="method" IntrnlName="method" Intrnl_Id="3"/>
+<HierarchyLvlType EnglishName="class" IntrnlName="class" Intrnl_Id="4"/>
+<HierarchyLvlType EnglishName="default package" IntrnlName="default package" Intrnl_Id="5"/>
+</HierarchyLvlTypeList>
+<MASTRoot>
+<HierarchyLvl HierarchyLvlId="27" HierarchyLvlTypeId="5" Intrnl_Id="6" Name="default package">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="26" HierarchyLvlTypeId="2" Intrnl_Id="7" Name="com">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="25" HierarchyLvlTypeId="2" Intrnl_Id="8" Name="card">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="24" HierarchyLvlTypeId="2" Intrnl_Id="9" Name="equipment">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="23" HierarchyLvlTypeId="4" Intrnl_Id="10" Name="QilinBowCard">
+<Header>
+<Loc EndOffset="221" SrcFileId="1" StartOffset="154"/>
+</Header>
+<LocList>
+<Loc EndOffset="432" SrcFileId="1" StartOffset="154"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="21" HierarchyLvlTypeId="3" Intrnl_Id="11" Name="QilinBowCard">
+<Header>
+<Loc EndOffset="250" SrcFileId="1" StartOffset="229"/>
+</Header>
+<LocList>
+<Loc EndOffset="371" SrcFileId="1" StartOffset="229"/>
+</LocList>
+<StmntSeq Intrnl_Id="12">
+<LocList>
+<Loc EndOffset="285" SrcFileId="1" StartOffset="262"/>
+<Loc EndOffset="333" SrcFileId="1" StartOffset="295"/>
+<Loc EndOffset="364" SrcFileId="1" StartOffset="343"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="com.card.equipment.QilinBowCard.java" Intrnl_Id="13">
+<LocList>
+<Loc EndOffset="285" SrcFileId="1" StartOffset="262"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S2" CovItemPrefix="com.card.equipment.QilinBowCard.java" Intrnl_Id="14">
+<LocList>
+<Loc EndOffset="333" SrcFileId="1" StartOffset="295"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S3" CovItemPrefix="com.card.equipment.QilinBowCard.java" Intrnl_Id="15">
+<LocList>
+<Loc EndOffset="364" SrcFileId="1" StartOffset="343"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="22" HierarchyLvlTypeId="3" Intrnl_Id="16" Name="checkArmor">
+<Header>
+<Loc EndOffset="418" SrcFileId="1" StartOffset="379"/>
+</Header>
+<LocList>
+<Loc EndOffset="429" SrcFileId="1" StartOffset="379"/>
+</LocList>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</MASTRoot>
+</TestSessionContainer>

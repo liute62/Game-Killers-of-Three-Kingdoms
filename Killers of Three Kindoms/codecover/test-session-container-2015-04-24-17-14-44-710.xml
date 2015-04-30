@@ -1,0 +1,1400 @@
+<?xml version="1.0" encoding="UTF-8"?><TestSessionContainer xmlns="http://www.codecover.org/xml/testsession-container" Date="1429910084700" TestSessionContainerId="c80c5067-b237-49ea-a1e4-09e0657a609c" version="1.0">
+<SrcFileList>
+<SrcFile Content="package com.system.utils;&#13;&#10;&#13;&#10;import java.util.Comparator;&#13;&#10;&#13;&#10;import com.logic.player.APlayer;&#13;&#10;&#13;&#10;public class PositionCompare implements Comparator&lt;APlayer&gt;&#13;&#10;&#9;{&#13;&#10;&#13;&#10;&#9;&#9;@Override&#13;&#10;&#9;&#9;public int compare(APlayer p1, APlayer p2) {&#13;&#10;&#9;&#9;&#9;// TODO Auto-generated method stub&#13;&#10;&#9;&#9;&#9;if(p1.getPosition() &lt; p1.getPosition())&#13;&#10;&#9;&#9;&#9;{&#13;&#10;&#9;&#9;&#9;&#9;return 0;&#13;&#10;&#9;&#9;&#9;}&#13;&#10;&#9;&#9;&#9;return 1;&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;&#13;&#10;&#9;}&#13;&#10;" Filename="PositionCompare.java" Intrnl_Id="1"/>
+<SrcFile Content="package com.system.utils;&#13;&#10;&#13;&#10;import com.logic.player.APlayer;&#13;&#10;&#13;&#10;public class PlayerUtil {&#13;&#10;&#13;&#10;    /**&#13;&#10;     * Calculate the distance between two player.&#13;&#10;     * 1. clockwise direction;&#13;&#10;     * 2. anticlockwise direction;&#13;&#10;     * get the minimum distance between the two direction.&#13;&#10;     * If player1 has a MinusMountCard, the distance will be reduced;&#13;&#10;     * If player2 has a PlusMountCard, the distance will be increased.&#13;&#10;     *&#13;&#10;     * @param player1&#13;&#10;     * @param player2&#13;&#10;     * @return distance between two player.&#13;&#10;     * @throws java.lang.RuntimeException if distance is not valid.&#13;&#10;     */&#13;&#10;    public int getDistance(APlayer player1, APlayer player2) {&#13;&#10;        if (player1.getPosition() &lt; 1 || player2.getPosition() &lt; 1 ||&#13;&#10;            player1.getPosition() &gt; 5 || player2.getPosition() &gt; 5) {&#13;&#10;            throw new RuntimeException(&quot;Invalid distance.&quot;);&#13;&#10;        }&#13;&#10;        int distance = Math.abs(player2.getPosition() - player1.getPosition());&#13;&#10;        if (distance &gt; 2) {&#13;&#10;            distance = 5 - distance;&#13;&#10;        }&#13;&#10;        if (player1.getMinusMount() != null) {&#13;&#10;            distance -= player1.getMinusMount().getAffectedRange();&#13;&#10;        }&#13;&#10;        if (player2.getPlusMount() != null) {&#13;&#10;            distance += player2.getPlusMount().getAffectedRange();&#13;&#10;        }&#13;&#10;        return distance;&#13;&#10;    }&#13;&#10;}&#13;&#10;" Filename="PlayerUtil.java" Intrnl_Id="2"/>
+<SrcFile Content="package com.system.utils;&#13;&#10;&#13;&#10;public class DebugUtil {&#13;&#10;&#13;&#10;&#9;public static void print(String param) {&#13;&#10;&#9;&#13;&#10;&#9;&#9;System.out.println(param);&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;public static void print(int param){&#13;&#10;&#9;&#9;System.out.println(param);&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;public static void print(String name,String param) {&#13;&#10;&#9;&#9;System.out.println(name+&quot; : &quot;+param);&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;public static void print(){&#13;&#10;&#9;&#9;System.out.println(&quot;success print!&quot;);&#13;&#10;&#9;}&#13;&#10;}&#13;&#10;" Filename="DebugUtil.java" Intrnl_Id="3"/>
+<SrcFile Content="package com.system.utils;&#13;&#10;&#13;&#10;import java.util.ArrayList;&#13;&#10;import java.util.Arrays;&#13;&#10;import java.util.List;&#13;&#10;import java.util.Random;&#13;&#10;&#13;&#10;import com.card.interfaces.ACard;&#13;&#10;&#13;&#10;&#13;&#10;public class CardUtil {&#13;&#10;&#13;&#10;&#9;private static CardUtil instance;&#13;&#10;&#9;&#13;&#10;&#9;&#13;&#10;&#9;public static CardUtil getInstance(){&#13;&#10;&#9;&#9;if(instance == null){&#13;&#10;&#9;&#9;&#9;instance = new CardUtil();&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;return instance;&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;/**&#13;&#10;&#9; * &#13;&#10;&#9; * @return a list of cards which attribute read from file.&#13;&#10;&#9; * @author Xiangtian&#13;&#10;&#9; */&#13;&#10;&#9;public List&lt;ACard&gt; initialCards(){ &#13;&#10;&#9;&#9;return null;&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;/**&#13;&#10;&#9; * Shuffle the card after game reset.&#13;&#10;&#9; * Shuffle uses the following algorithm:&#13;&#10;&#9; *  1. Generate a list of integers&#13;&#10;&#9; *  2. For each 0 &lt; n &lt; cards.size()&#13;&#10;&#9; *      switch the (2n-2)th and (2n-1)th position (wrap around if out of index)&#13;&#10;&#9; *  3. return the list&#13;&#10;&#9; *&#13;&#10;&#9; * @param cards a list of cards except some card still in the battlefield&#13;&#10;&#9; * @return a list of cards which items randomly set.&#13;&#10;&#9; * @author Jackie&#13;&#10;&#9; */&#13;&#10;&#9;public List&lt;ACard&gt; shuffleCard(List&lt;ACard&gt; cards) {&#13;&#10;&#9;&#9;// Generate a list of integers.&#13;&#10;&#9;&#9;List&lt;Integer&gt; randInts = new ArrayList&lt;Integer&gt;();&#13;&#10;//        Random random = new Random();&#13;&#10;//        for (int i = 0, len = cards.size(); i &lt; len; i++) {&#13;&#10;//            randInts.add(random.nextInt());&#13;&#10;//        }&#13;&#10;&#9;&#9;randInts = Arrays.asList(1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31);&#13;&#10;&#13;&#10;        // Shuffle cards.&#13;&#10;&#9;&#9;for (int n = 1; n &lt; cards.size(); n++) {&#13;&#10;&#9;&#9;&#9;int pos0 = randInts.get((2 * n - 2) % randInts.size()) % cards.size();&#13;&#10;&#9;&#9;&#9;int pos1 = randInts.get((2 * n - 1) % randInts.size()) % cards.size();&#13;&#10;&#9;&#9;&#9;ACard temp = cards.get(pos0);&#13;&#10;&#9;&#9;&#9;cards.set(pos0, cards.get(pos1));&#13;&#10;&#9;&#9;&#9;cards.set(pos1, temp);&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;return cards;&#13;&#10;&#9;}&#13;&#10;}&#13;&#10;" Filename="CardUtil.java" Intrnl_Id="4"/>
+<SrcFile Content="package com.system.enums;&#13;&#10;&#13;&#10;public enum SkillType {&#13;&#10;&#13;&#10;&#9;&#13;&#10;}&#13;&#10;" Filename="SkillType.java" Intrnl_Id="5"/>
+<SrcFile Content="package com.system.enums;&#13;&#10;&#13;&#10;public enum Kingdoms {&#13;&#10;&#9;WEI,SHU,WU,QUN&#13;&#10;}&#13;&#10;" Filename="Kingdoms.java" Intrnl_Id="6"/>
+<SrcFile Content="package com.system.enums;&#13;&#10;&#13;&#10;public enum GameState {&#13;&#10;&#9;begin,check,drawCard,castCard,dropCard,end&#13;&#10;}&#13;&#10;" Filename="GameState.java" Intrnl_Id="7"/>
+<SrcFile Content="package com.system.enums;&#13;&#10;&#13;&#10;public enum CardColors {&#13;&#10;&#9;Heart,Diamond,Clubs,Spades;&#9;&#13;&#10;&#13;&#10;}&#13;&#10;" Filename="CardColors.java" Intrnl_Id="8"/>
+<SrcFile Content="package com.system.constants;&#13;&#10;&#13;&#10;public class MainConst {&#13;&#10;&#13;&#10;&#9;public static int gamePlayerNum = 5;&#13;&#10;&#9;&#13;&#10;}&#13;&#10;" Filename="MainConst.java" Intrnl_Id="9"/>
+<SrcFile Content="package com.system.constants;&#13;&#10;&#13;&#10;public class HeroConst {&#13;&#10;&#13;&#10;&#9;//Some data structure which is designed to store the hero information&#13;&#10;&#13;&#10;}&#13;&#10;" Filename="HeroConst.java" Intrnl_Id="10"/>
+<SrcFile Content="package com.system.constants;&#13;&#10;&#13;&#10;public class GUIConst {&#13;&#10;&#13;&#10;&#9;public static String mainFrameTitle = &quot;Killers of Three Kindoms&quot;;&#13;&#10;&#9;&#13;&#10;&#9;public static String selectHeroTitle = &quot;Choose Your Hero&quot;;&#13;&#10;&#9;&#13;&#10;&#9;public static final int mainFrameWidth = 1000;&#13;&#10;&#9;&#13;&#10;&#9;public static final int mainFrameHeight = 700;&#13;&#10;&#9;&#13;&#10;&#9;public static final int selectHeroPanelWidth = 1000;&#13;&#10;&#9;&#13;&#10;&#9;public static final int selectHeroPanelHeight = 700;&#13;&#10;&#9;&#13;&#10;&#9;public static final int proxyWidth = 160;&#13;&#10;&#9;&#13;&#10;&#9;public static final int proxyHeight = 200;&#13;&#10;&#9;&#13;&#10;&#9;public static final int mainPanelWidth = 1000;&#13;&#10;&#9;&#13;&#10;&#9;public static final int mainPanelHeight = 700;&#13;&#10;&#9;&#13;&#10;&#9;public static final int playerPanelWidth = 170;&#13;&#10;&#9;&#13;&#10;&#9;public static final int playerPanelHeight = 200;&#13;&#10;&#9;&#13;&#10;&#9;public static final int otherPlayerPanelWidth = 170;&#13;&#10;&#9;&#13;&#10;&#9;public static final int otherPlayerPanelHeight = 200;&#13;&#10;&#9;&#13;&#10;&#9;public static final int cardWidth = 100;&#13;&#10;&#9;&#13;&#10;&#9;public static final int cardHeight = 200;&#13;&#10;&#9;&#13;&#10;&#9;public static final int cardUp = 50;&#13;&#10;&#9;&#13;&#10;&#9;public static final int btnSureOffset = 30;&#13;&#10;&#9;&#13;&#10;&#9;public static final int btnSkipOffset = 50;&#13;&#10;&#9;&#13;&#10;&#9;public static final int HPPanelWidth = 20;&#13;&#10;&#9;&#13;&#10;&#9;public static final int HPPanelHeight = 120;&#13;&#10;&#9;&#13;&#10;&#9;public static final int messagePanelWidth = 180;&#13;&#10;&#9;&#13;&#10;&#9;public static final int messagePanelHeight = 400;&#13;&#10;}&#13;&#10;" Filename="GUIConst.java" Intrnl_Id="11"/>
+<SrcFile Content="package com.system.constants;&#13;&#10;&#13;&#10;public class CardConst {&#13;&#10;&#13;&#10;&#9;//Some data structure which is designed to store the card information&#13;&#10;&#9;public static final int CardType_Strike = 1;&#13;&#10;&#9;&#13;&#10;&#9;public static final int CardType_Dodge = 2;&#13;&#10;&#9;&#13;&#10;&#9;public static final int CardType_Peach = 3;&#13;&#10;&#9;&#13;&#10;&#9;public static final int CardType_Weapon = 4;&#13;&#10;&#9;&#13;&#10;&#9;public static final int CardType_Armor = 5;&#13;&#10;&#9;&#13;&#10;&#9;public static final int CardType_Mount_Minus = 6; //Horse for attacking&#13;&#10;&#9;  &#13;&#10;&#9;public static final int CardType_Mount_Plus = 7; //Horse for defending&#13;&#10;}&#13;&#10;&#13;&#10;" Filename="CardConst.java" Intrnl_Id="12"/>
+<SrcFile Content="package com.card.interfaces;&#13;&#10;&#13;&#10;import java.util.List;&#13;&#10;&#13;&#10;import com.logic.player.APlayer;&#13;&#10;&#13;&#10;public abstract class WeaponCard extends AEquipmentCard{&#13;&#10;&#9;protected int attackRange;&#13;&#10;&#9;&#13;&#10;&#9;public void use(APlayer player, List&lt;APlayer&gt; target)&#13;&#10;&#9;{&#13;&#10;&#9;&#9;for(APlayer targetPlayer: target)&#13;&#10;&#9;&#9;{&#13;&#10;&#9;&#9;&#9;targetPlayer.setWeapon(this);&#13;&#10;&#9;&#9;&#9;setAttackRange(targetPlayer);&#13;&#10;&#9;&#9;}&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;public void setAttackRange(APlayer targetPlayer) {&#13;&#10;&#9;&#9;// TODO Auto-generated method stub&#13;&#10;&#9;&#9;targetPlayer.setAttackRange(this.attackRange);&#13;&#10;&#9;}&#13;&#10;}" Filename="WeaponCard.java" Intrnl_Id="13"/>
+<SrcFile Content="package com.card.interfaces;&#13;&#10;&#13;&#10;import java.util.List;&#13;&#10;import com.logic.player.APlayer;&#13;&#10;&#13;&#10;public abstract class PlusMountCard extends AEquipmentCard implements IMountCard {&#13;&#10;&#9;public void use(APlayer player, List&lt;APlayer&gt; target)&#13;&#10;&#9;{&#13;&#10;&#9;&#9;for(APlayer targetPlayer: target)&#13;&#10;&#9;&#9;{&#13;&#10;&#9;&#9;&#9;targetPlayer.setPlusMount(this);&#13;&#10;&#9;&#9;}&#13;&#10;&#9;}&#13;&#10;    public abstract int getAffectedRange();&#13;&#10;}&#13;&#10;" Filename="PlusMountCard.java" Intrnl_Id="14"/>
+<SrcFile Content="package com.card.interfaces;&#13;&#10;&#13;&#10;import com.logic.player.APlayer;&#13;&#10;&#13;&#10;import java.util.List;&#13;&#10;&#13;&#10;public abstract class MinusMountCard extends AEquipmentCard implements IMountCard {&#13;&#10;    public void use(APlayer player, List&lt;APlayer&gt; target)&#13;&#10;    {&#13;&#10;        for(APlayer targetPlayer: target)&#13;&#10;        {&#13;&#10;            targetPlayer.setMinusMount(this);&#13;&#10;        }&#13;&#10;    }&#13;&#10;    public abstract int getAffectedRange();&#13;&#10;}&#13;&#10;" Filename="MinusMountCard.java" Intrnl_Id="15"/>
+<SrcFile Content="package com.card.interfaces;&#13;&#10;&#13;&#10;import com.logic.player.APlayer;&#13;&#10;&#13;&#10;public interface IWeaponCard {&#13;&#10;&#13;&#10;&#9;//something is related to weapon's features&#13;&#10;&#9;&#13;&#10;&#9;//Black Pommel&#13;&#10;&#9;public void checkArmor();&#13;&#10;&#9;&#13;&#10;&#9;&#13;&#10;&#9;//All weapon can extend player's attack range&#13;&#10;&#9;public void setAttackRange(APlayer player);&#13;&#10;}&#13;&#10;" Filename="IWeaponCard.java" Intrnl_Id="16"/>
+<SrcFile Content="package com.card.interfaces;&#13;&#10;&#13;&#10;public interface IMountCard {&#13;&#10;&#13;&#10;}&#13;&#10;" Filename="IMountCard.java" Intrnl_Id="17"/>
+<SrcFile Content="package com.card.interfaces;&#13;&#10;&#13;&#10;import java.util.List;&#13;&#10;&#13;&#10;import com.logic.player.APlayer;&#13;&#10;&#13;&#10;public interface ICard {&#13;&#10;&#13;&#10;&#9;//some same functionality&#13;&#10;&#9;//for example&#13;&#10;&#9;/**&#13;&#10;&#9; * &#13;&#10;&#9; * @param player someone use this card.&#13;&#10;&#9; * @param target someone be targeted.&#13;&#10;&#9; */&#13;&#10;&#9;void use(APlayer player,List&lt;APlayer&gt; target);&#13;&#10;}&#13;&#10;" Filename="ICard.java" Intrnl_Id="18"/>
+<SrcFile Content="package com.card.interfaces;&#13;&#10;&#13;&#10;public interface IArmorCard {&#13;&#10;&#13;&#10;}&#13;&#10;" Filename="IArmorCard.java" Intrnl_Id="19"/>
+<SrcFile Content="package com.card.interfaces;&#13;&#10;&#13;&#10;import java.util.List;&#13;&#10;&#13;&#10;import com.logic.player.APlayer;&#13;&#10;&#13;&#10;public abstract class AmorCard extends AEquipmentCard{&#13;&#10;&#9;public void use(APlayer player,List&lt;APlayer&gt; target) {&#13;&#10;&#9;&#9;for(APlayer targetPlayer: target)&#13;&#10;&#9;&#9;{&#13;&#10;&#9;&#9;&#9;targetPlayer.setAmor(this);&#13;&#10;&#9;&#9;}&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;&#13;&#10;}&#13;&#10;" Filename="AmorCard.java" Intrnl_Id="20"/>
+<SrcFile Content="package com.card.interfaces;&#13;&#10;&#13;&#10;public abstract class AEquipmentCard extends ACard {&#13;&#10;&#9;&#13;&#10;&#13;&#10;}&#13;&#10;" Filename="AEquipmentCard.java" Intrnl_Id="21"/>
+<SrcFile Content="package com.card.interfaces;&#13;&#10;&#13;&#10;&#13;&#10;public abstract class ACard implements ICard {&#13;&#10;&#13;&#10;    protected int id;&#13;&#10;&#13;&#10;    protected int number;&#13;&#10;&#13;&#10;    protected String name;&#13;&#10;&#13;&#10;    protected int type;&#13;&#10;&#13;&#10;    public void setId(int id) {&#13;&#10;        this.id = id;&#13;&#10;    }&#13;&#10;&#13;&#10;    public void setType(int type) {&#13;&#10;        this.type = type;&#13;&#10;    }&#13;&#10;&#13;&#10;    public int getType() {&#13;&#10;        return type;&#13;&#10;    }&#13;&#10;&#13;&#10;    public int getId() {&#13;&#10;        return id;&#13;&#10;    }&#13;&#10;&#13;&#10;    public void setName(String name) {&#13;&#10;        this.name = name;&#13;&#10;    }&#13;&#10;&#13;&#10;    public String getName() {&#13;&#10;        return name;&#13;&#10;    }&#13;&#10;}&#13;&#10;" Filename="ACard.java" Intrnl_Id="22"/>
+<SrcFile Content="package com.card.equipment;&#13;&#10;&#13;&#10;import com.card.interfaces.IMountCard;&#13;&#10;import com.card.interfaces.PlusMountCard;&#13;&#10;import com.system.constants.CardConst;&#13;&#10;&#13;&#10;public class ShadowRunnerCard extends PlusMountCard implements IMountCard {&#13;&#10;&#9;public ShadowRunnerCard() {&#13;&#10;        this.name = &quot;ShadowRunner&quot;;&#13;&#10;        this.type = CardConst.CardType_Mount_Plus;&#13;&#10;    }&#13;&#10;    private int affectedRange = 1;&#13;&#10;&#13;&#10;    @Override&#13;&#10;    public int getAffectedRange() {&#13;&#10;        return affectedRange;&#13;&#10;    }&#13;&#10;}&#13;&#10;" Filename="ShadowRunnerCard.java" Intrnl_Id="23"/>
+<SrcFile Content="package com.card.equipment;&#13;&#10;&#13;&#10;import com.card.interfaces.IMountCard;&#13;&#10;import com.card.interfaces.MinusMountCard;&#13;&#10;import com.system.constants.CardConst;&#13;&#10;&#13;&#10;public class RedHareCard extends MinusMountCard implements IMountCard {&#13;&#10;    public RedHareCard() {&#13;&#10;        this.name = &quot;RedHare&quot;;&#13;&#10;        this.type = CardConst.CardType_Mount_Minus;&#13;&#10;    }&#13;&#10;    private int affectedRange = 1;&#13;&#10;&#13;&#10;    @Override&#13;&#10;    public int getAffectedRange() {&#13;&#10;        return affectedRange;&#13;&#10;    }&#13;&#10;}&#13;&#10;" Filename="RedHareCard.java" Intrnl_Id="24"/>
+<SrcFile Content="package com.card.equipment;&#13;&#10;&#13;&#10;import com.card.interfaces.IWeaponCard;&#13;&#10;import com.card.interfaces.WeaponCard;&#13;&#10;import com.system.constants.CardConst;&#13;&#10;&#13;&#10;public class QilinBowCard extends WeaponCard implements IWeaponCard {&#13;&#10;    public QilinBowCard() {&#13;&#10;        this.name = &quot;QilinBow&quot;;&#13;&#10;        this.type = CardConst.CardType_Weapon;&#13;&#10;        this.attackRange = 5;&#13;&#10;    }&#13;&#10;&#13;&#10;    @Override&#13;&#10;    public void checkArmor() {&#13;&#10;&#13;&#10;    }&#13;&#10;}&#13;&#10;" Filename="QilinBowCard.java" Intrnl_Id="25"/>
+</SrcFileList>
+<CritList>
+<CritListEntry Name="org.codecover.model.utils.criteria.LoopCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.QMOCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.ConditionCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.BranchCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.SynchronizedStatementCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.StatementCoverage" PluginName="org.codecover"/>
+</CritList>
+<BoolOpList>
+<BoolOp Arity="2" Intrnl_Id="26" Name="conditional or (||)">
+<BoolAssgnmntBoolMapList>
+<MapEntry BoolAssgnmnt="00" Value="false"/>
+<MapEntry BoolAssgnmnt="01" Value="true"/>
+<MapEntry BoolAssgnmnt="12" Value="true"/>
+</BoolAssgnmntBoolMapList>
+</BoolOp>
+</BoolOpList>
+<HierarchyLvlTypeList>
+<HierarchyLvlType EnglishName="enumeration" IntrnlName="enum" Intrnl_Id="27"/>
+<HierarchyLvlType EnglishName="package" IntrnlName="package" Intrnl_Id="28"/>
+<HierarchyLvlType EnglishName="interface" IntrnlName="interface" Intrnl_Id="29"/>
+<HierarchyLvlType EnglishName="method" IntrnlName="method" Intrnl_Id="30"/>
+<HierarchyLvlType EnglishName="class" IntrnlName="class" Intrnl_Id="31"/>
+<HierarchyLvlType EnglishName="default package" IntrnlName="default package" Intrnl_Id="32"/>
+</HierarchyLvlTypeList>
+<MASTRoot>
+<HierarchyLvl HierarchyLvlId="395" HierarchyLvlTypeId="32" Intrnl_Id="33" Name="default package">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="394" HierarchyLvlTypeId="28" Intrnl_Id="34" Name="com">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="390" HierarchyLvlTypeId="28" Intrnl_Id="35" Name="system">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="387" HierarchyLvlTypeId="28" Intrnl_Id="36" Name="utils">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="332" HierarchyLvlTypeId="31" Intrnl_Id="37" Name="PositionCompare">
+<Header>
+<Loc EndOffset="156" SrcFileId="1" StartOffset="97"/>
+</Header>
+<LocList>
+<Loc EndOffset="360" SrcFileId="1" StartOffset="97"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="331" HierarchyLvlTypeId="30" Intrnl_Id="38" Name="compare">
+<Header>
+<Loc EndOffset="221" SrcFileId="1" StartOffset="166"/>
+</Header>
+<LocList>
+<Loc EndOffset="352" SrcFileId="1" StartOffset="166"/>
+</LocList>
+<StmntSeq Intrnl_Id="39">
+<LocList>
+<Loc EndOffset="333" SrcFileId="1" StartOffset="267"/>
+<Loc EndOffset="347" SrcFileId="1" StartOffset="338"/>
+</LocList>
+<CondStmnt CovItemId="S1" CovItemPrefix="com.system.utils.PositionCompare.java" Intrnl_Id="40">
+<Branch CovItemId="B1" CovItemPrefix="com.system.utils.PositionCompare.java" Implct="false" Intrnl_Id="41">
+<Cond/>
+<LocList>
+<Loc EndOffset="333" SrcFileId="1" StartOffset="311"/>
+</LocList>
+<StmntSeq Intrnl_Id="42">
+<LocList>
+<Loc EndOffset="327" SrcFileId="1" StartOffset="318"/>
+</LocList>
+<BasicStmnt CovItemId="S2" CovItemPrefix="com.system.utils.PositionCompare.java" Intrnl_Id="43">
+<LocList>
+<Loc EndOffset="327" SrcFileId="1" StartOffset="318"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B2" CovItemPrefix="com.system.utils.PositionCompare.java" Implct="true" Intrnl_Id="44">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="45">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="269" SrcFileId="1" StartOffset="267"/>
+<LocList>
+<Loc EndOffset="333" SrcFileId="1" StartOffset="267"/>
+</LocList>
+<RootTerm CovItemId="C1" CovItemPrefix="com.system.utils.PositionCompare.java" Intrnl_Id="46">
+<BasicBoolTerm Intrnl_Id="47">
+<LocList>
+<Loc EndOffset="305" SrcFileId="1" StartOffset="270"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S3" CovItemPrefix="com.system.utils.PositionCompare.java" Intrnl_Id="48">
+<LocList>
+<Loc EndOffset="347" SrcFileId="1" StartOffset="338"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="334" HierarchyLvlTypeId="31" Intrnl_Id="49" Name="PlayerUtil">
+<Header>
+<Loc EndOffset="88" SrcFileId="2" StartOffset="65"/>
+</Header>
+<LocList>
+<Loc EndOffset="1328" SrcFileId="2" StartOffset="65"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="333" HierarchyLvlTypeId="30" Intrnl_Id="50" Name="getDistance">
+<Header>
+<Loc EndOffset="662" SrcFileId="2" StartOffset="606"/>
+</Header>
+<LocList>
+<Loc EndOffset="1325" SrcFileId="2" StartOffset="606"/>
+</LocList>
+<StmntSeq Intrnl_Id="51">
+<LocList>
+<Loc EndOffset="879" SrcFileId="2" StartOffset="674"/>
+<Loc EndOffset="960" SrcFileId="2" StartOffset="889"/>
+<Loc EndOffset="1038" SrcFileId="2" StartOffset="970"/>
+<Loc EndOffset="1166" SrcFileId="2" StartOffset="1048"/>
+<Loc EndOffset="1292" SrcFileId="2" StartOffset="1176"/>
+<Loc EndOffset="1318" SrcFileId="2" StartOffset="1302"/>
+</LocList>
+<CondStmnt CovItemId="S1" CovItemPrefix="com.system.utils.PlayerUtil.java" Intrnl_Id="52">
+<Branch CovItemId="B1" CovItemPrefix="com.system.utils.PlayerUtil.java" Implct="false" Intrnl_Id="53">
+<Cond/>
+<LocList>
+<Loc EndOffset="879" SrcFileId="2" StartOffset="805"/>
+</LocList>
+<StmntSeq Intrnl_Id="54">
+<LocList>
+<Loc EndOffset="868" SrcFileId="2" StartOffset="820"/>
+</LocList>
+<BasicStmnt CovItemId="S2" CovItemPrefix="com.system.utils.PlayerUtil.java" Intrnl_Id="55">
+<LocList>
+<Loc EndOffset="868" SrcFileId="2" StartOffset="820"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B2" CovItemPrefix="com.system.utils.PlayerUtil.java" Implct="true" Intrnl_Id="56">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="57">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="676" SrcFileId="2" StartOffset="674"/>
+<LocList>
+<Loc EndOffset="879" SrcFileId="2" StartOffset="674"/>
+</LocList>
+<RootTerm CovItemId="C1" CovItemPrefix="com.system.utils.PlayerUtil.java" Intrnl_Id="58">
+<OpTerm BooleanOpId="26" Intrnl_Id="59">
+<OpTerm BooleanOpId="26" Intrnl_Id="60">
+<OpTerm BooleanOpId="26" Intrnl_Id="61">
+<BasicBoolTerm Intrnl_Id="62">
+<LocList>
+<Loc EndOffset="703" SrcFileId="2" StartOffset="678"/>
+</LocList>
+</BasicBoolTerm>
+<BasicBoolTerm Intrnl_Id="63">
+<LocList>
+<Loc EndOffset="732" SrcFileId="2" StartOffset="707"/>
+</LocList>
+</BasicBoolTerm>
+<LocList>
+<Loc EndOffset="706" SrcFileId="2" StartOffset="704"/>
+</LocList>
+</OpTerm>
+<BasicBoolTerm Intrnl_Id="64">
+<LocList>
+<Loc EndOffset="774" SrcFileId="2" StartOffset="749"/>
+</LocList>
+</BasicBoolTerm>
+<LocList>
+<Loc EndOffset="735" SrcFileId="2" StartOffset="733"/>
+</LocList>
+</OpTerm>
+<BasicBoolTerm Intrnl_Id="65">
+<LocList>
+<Loc EndOffset="803" SrcFileId="2" StartOffset="778"/>
+</LocList>
+</BasicBoolTerm>
+<LocList>
+<Loc EndOffset="777" SrcFileId="2" StartOffset="775"/>
+</LocList>
+</OpTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S3" CovItemPrefix="com.system.utils.PlayerUtil.java" Intrnl_Id="66">
+<LocList>
+<Loc EndOffset="960" SrcFileId="2" StartOffset="889"/>
+</LocList>
+</BasicStmnt>
+<CondStmnt CovItemId="S4" CovItemPrefix="com.system.utils.PlayerUtil.java" Intrnl_Id="67">
+<Branch CovItemId="B3" CovItemPrefix="com.system.utils.PlayerUtil.java" Implct="false" Intrnl_Id="68">
+<Cond/>
+<LocList>
+<Loc EndOffset="1038" SrcFileId="2" StartOffset="988"/>
+</LocList>
+<StmntSeq Intrnl_Id="69">
+<LocList>
+<Loc EndOffset="1027" SrcFileId="2" StartOffset="1003"/>
+</LocList>
+<BasicStmnt CovItemId="S5" CovItemPrefix="com.system.utils.PlayerUtil.java" Intrnl_Id="70">
+<LocList>
+<Loc EndOffset="1027" SrcFileId="2" StartOffset="1003"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B4" CovItemPrefix="com.system.utils.PlayerUtil.java" Implct="true" Intrnl_Id="71">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="72">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="972" SrcFileId="2" StartOffset="970"/>
+<LocList>
+<Loc EndOffset="1038" SrcFileId="2" StartOffset="970"/>
+</LocList>
+<RootTerm CovItemId="C2" CovItemPrefix="com.system.utils.PlayerUtil.java" Intrnl_Id="73">
+<BasicBoolTerm Intrnl_Id="74">
+<LocList>
+<Loc EndOffset="986" SrcFileId="2" StartOffset="974"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<CondStmnt CovItemId="S6" CovItemPrefix="com.system.utils.PlayerUtil.java" Intrnl_Id="75">
+<Branch CovItemId="B5" CovItemPrefix="com.system.utils.PlayerUtil.java" Implct="false" Intrnl_Id="76">
+<Cond/>
+<LocList>
+<Loc EndOffset="1166" SrcFileId="2" StartOffset="1085"/>
+</LocList>
+<StmntSeq Intrnl_Id="77">
+<LocList>
+<Loc EndOffset="1155" SrcFileId="2" StartOffset="1100"/>
+</LocList>
+<BasicStmnt CovItemId="S7" CovItemPrefix="com.system.utils.PlayerUtil.java" Intrnl_Id="78">
+<LocList>
+<Loc EndOffset="1155" SrcFileId="2" StartOffset="1100"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B6" CovItemPrefix="com.system.utils.PlayerUtil.java" Implct="true" Intrnl_Id="79">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="80">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="1050" SrcFileId="2" StartOffset="1048"/>
+<LocList>
+<Loc EndOffset="1166" SrcFileId="2" StartOffset="1048"/>
+</LocList>
+<RootTerm CovItemId="C3" CovItemPrefix="com.system.utils.PlayerUtil.java" Intrnl_Id="81">
+<BasicBoolTerm Intrnl_Id="82">
+<LocList>
+<Loc EndOffset="1083" SrcFileId="2" StartOffset="1052"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<CondStmnt CovItemId="S8" CovItemPrefix="com.system.utils.PlayerUtil.java" Intrnl_Id="83">
+<Branch CovItemId="B7" CovItemPrefix="com.system.utils.PlayerUtil.java" Implct="false" Intrnl_Id="84">
+<Cond/>
+<LocList>
+<Loc EndOffset="1292" SrcFileId="2" StartOffset="1212"/>
+</LocList>
+<StmntSeq Intrnl_Id="85">
+<LocList>
+<Loc EndOffset="1281" SrcFileId="2" StartOffset="1227"/>
+</LocList>
+<BasicStmnt CovItemId="S9" CovItemPrefix="com.system.utils.PlayerUtil.java" Intrnl_Id="86">
+<LocList>
+<Loc EndOffset="1281" SrcFileId="2" StartOffset="1227"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B8" CovItemPrefix="com.system.utils.PlayerUtil.java" Implct="true" Intrnl_Id="87">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="88">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="1178" SrcFileId="2" StartOffset="1176"/>
+<LocList>
+<Loc EndOffset="1292" SrcFileId="2" StartOffset="1176"/>
+</LocList>
+<RootTerm CovItemId="C4" CovItemPrefix="com.system.utils.PlayerUtil.java" Intrnl_Id="89">
+<BasicBoolTerm Intrnl_Id="90">
+<LocList>
+<Loc EndOffset="1210" SrcFileId="2" StartOffset="1180"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S10" CovItemPrefix="com.system.utils.PlayerUtil.java" Intrnl_Id="91">
+<LocList>
+<Loc EndOffset="1318" SrcFileId="2" StartOffset="1302"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="339" HierarchyLvlTypeId="31" Intrnl_Id="92" Name="DebugUtil">
+<Header>
+<Loc EndOffset="51" SrcFileId="3" StartOffset="29"/>
+</Header>
+<LocList>
+<Loc EndOffset="395" SrcFileId="3" StartOffset="29"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="335" HierarchyLvlTypeId="30" Intrnl_Id="93" Name="print">
+<Header>
+<Loc EndOffset="96" SrcFileId="3" StartOffset="58"/>
+</Header>
+<LocList>
+<Loc EndOffset="135" SrcFileId="3" StartOffset="58"/>
+</LocList>
+<StmntSeq Intrnl_Id="94">
+<LocList>
+<Loc EndOffset="131" SrcFileId="3" StartOffset="105"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="com.system.utils.DebugUtil.java" Intrnl_Id="95">
+<LocList>
+<Loc EndOffset="131" SrcFileId="3" StartOffset="105"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="336" HierarchyLvlTypeId="30" Intrnl_Id="96" Name="print">
+<Header>
+<Loc EndOffset="176" SrcFileId="3" StartOffset="141"/>
+</Header>
+<LocList>
+<Loc EndOffset="211" SrcFileId="3" StartOffset="141"/>
+</LocList>
+<StmntSeq Intrnl_Id="97">
+<LocList>
+<Loc EndOffset="207" SrcFileId="3" StartOffset="181"/>
+</LocList>
+<BasicStmnt CovItemId="S2" CovItemPrefix="com.system.utils.DebugUtil.java" Intrnl_Id="98">
+<LocList>
+<Loc EndOffset="207" SrcFileId="3" StartOffset="181"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="337" HierarchyLvlTypeId="30" Intrnl_Id="99" Name="print">
+<Header>
+<Loc EndOffset="267" SrcFileId="3" StartOffset="217"/>
+</Header>
+<LocList>
+<Loc EndOffset="314" SrcFileId="3" StartOffset="217"/>
+</LocList>
+<StmntSeq Intrnl_Id="100">
+<LocList>
+<Loc EndOffset="310" SrcFileId="3" StartOffset="273"/>
+</LocList>
+<BasicStmnt CovItemId="S3" CovItemPrefix="com.system.utils.DebugUtil.java" Intrnl_Id="101">
+<LocList>
+<Loc EndOffset="310" SrcFileId="3" StartOffset="273"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="338" HierarchyLvlTypeId="30" Intrnl_Id="102" Name="print">
+<Header>
+<Loc EndOffset="346" SrcFileId="3" StartOffset="320"/>
+</Header>
+<LocList>
+<Loc EndOffset="392" SrcFileId="3" StartOffset="320"/>
+</LocList>
+<StmntSeq Intrnl_Id="103">
+<LocList>
+<Loc EndOffset="388" SrcFileId="3" StartOffset="351"/>
+</LocList>
+<BasicStmnt CovItemId="S4" CovItemPrefix="com.system.utils.DebugUtil.java" Intrnl_Id="104">
+<LocList>
+<Loc EndOffset="388" SrcFileId="3" StartOffset="351"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="343" HierarchyLvlTypeId="31" Intrnl_Id="105" Name="CardUtil">
+<Header>
+<Loc EndOffset="196" SrcFileId="4" StartOffset="175"/>
+</Header>
+<LocList>
+<Loc EndOffset="1697" SrcFileId="4" StartOffset="175"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="340" HierarchyLvlTypeId="30" Intrnl_Id="106" Name="getInstance">
+<Header>
+<Loc EndOffset="281" SrcFileId="4" StartOffset="245"/>
+</Header>
+<LocList>
+<Loc EndOffset="367" SrcFileId="4" StartOffset="245"/>
+</LocList>
+<StmntSeq Intrnl_Id="107">
+<LocList>
+<Loc EndOffset="343" SrcFileId="4" StartOffset="286"/>
+<Loc EndOffset="363" SrcFileId="4" StartOffset="347"/>
+</LocList>
+<CondStmnt CovItemId="S1" CovItemPrefix="com.system.utils.CardUtil.java" Intrnl_Id="108">
+<Branch CovItemId="B1" CovItemPrefix="com.system.utils.CardUtil.java" Implct="false" Intrnl_Id="109">
+<Cond/>
+<LocList>
+<Loc EndOffset="343" SrcFileId="4" StartOffset="306"/>
+</LocList>
+<StmntSeq Intrnl_Id="110">
+<LocList>
+<Loc EndOffset="338" SrcFileId="4" StartOffset="312"/>
+</LocList>
+<BasicStmnt CovItemId="S2" CovItemPrefix="com.system.utils.CardUtil.java" Intrnl_Id="111">
+<LocList>
+<Loc EndOffset="338" SrcFileId="4" StartOffset="312"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B2" CovItemPrefix="com.system.utils.CardUtil.java" Implct="true" Intrnl_Id="112">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="113">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="288" SrcFileId="4" StartOffset="286"/>
+<LocList>
+<Loc EndOffset="343" SrcFileId="4" StartOffset="286"/>
+</LocList>
+<RootTerm CovItemId="C1" CovItemPrefix="com.system.utils.CardUtil.java" Intrnl_Id="114">
+<BasicBoolTerm Intrnl_Id="115">
+<LocList>
+<Loc EndOffset="305" SrcFileId="4" StartOffset="289"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S3" CovItemPrefix="com.system.utils.CardUtil.java" Intrnl_Id="116">
+<LocList>
+<Loc EndOffset="363" SrcFileId="4" StartOffset="347"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="341" HierarchyLvlTypeId="30" Intrnl_Id="117" Name="initialCards">
+<Header>
+<Loc EndOffset="508" SrcFileId="4" StartOffset="475"/>
+</Header>
+<LocList>
+<Loc EndOffset="530" SrcFileId="4" StartOffset="475"/>
+</LocList>
+<StmntSeq Intrnl_Id="118">
+<LocList>
+<Loc EndOffset="526" SrcFileId="4" StartOffset="514"/>
+</LocList>
+<BasicStmnt CovItemId="S4" CovItemPrefix="com.system.utils.CardUtil.java" Intrnl_Id="119">
+<LocList>
+<Loc EndOffset="526" SrcFileId="4" StartOffset="514"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="342" HierarchyLvlTypeId="30" Intrnl_Id="120" Name="shuffleCard">
+<Header>
+<Loc EndOffset="1019" SrcFileId="4" StartOffset="970"/>
+</Header>
+<LocList>
+<Loc EndOffset="1694" SrcFileId="4" StartOffset="970"/>
+</LocList>
+<StmntSeq Intrnl_Id="121">
+<LocList>
+<Loc EndOffset="1110" SrcFileId="4" StartOffset="1060"/>
+<Loc EndOffset="1346" SrcFileId="4" StartOffset="1278"/>
+<Loc EndOffset="1673" SrcFileId="4" StartOffset="1379"/>
+<Loc EndOffset="1690" SrcFileId="4" StartOffset="1677"/>
+</LocList>
+<BasicStmnt CovItemId="S5" CovItemPrefix="com.system.utils.CardUtil.java" Intrnl_Id="122">
+<LocList>
+<Loc EndOffset="1110" SrcFileId="4" StartOffset="1060"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S6" CovItemPrefix="com.system.utils.CardUtil.java" Intrnl_Id="123">
+<LocList>
+<Loc EndOffset="1346" SrcFileId="4" StartOffset="1278"/>
+</LocList>
+</BasicStmnt>
+<LoopStmnt CovItemId="S7" CovItemPrefix="com.system.utils.CardUtil.java" Intrnl_Id="124" MltplExecId="L1-2" MltplExecPrefix="com.system.utils.CardUtil.java" NvrExecId="L1-0" NvrExecPrefix="com.system.utils.CardUtil.java" OnceExecutedId="L1-1" OnceExecutedPrefix="com.system.utils.CardUtil.java" OptBodyExec="true">
+<StmntSeq Intrnl_Id="125">
+<LocList>
+<Loc EndOffset="1494" SrcFileId="4" StartOffset="1424"/>
+<Loc EndOffset="1569" SrcFileId="4" StartOffset="1499"/>
+<Loc EndOffset="1603" SrcFileId="4" StartOffset="1574"/>
+<Loc EndOffset="1641" SrcFileId="4" StartOffset="1608"/>
+<Loc EndOffset="1668" SrcFileId="4" StartOffset="1646"/>
+</LocList>
+<BasicStmnt CovItemId="S8" CovItemPrefix="com.system.utils.CardUtil.java" Intrnl_Id="126">
+<LocList>
+<Loc EndOffset="1494" SrcFileId="4" StartOffset="1424"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S9" CovItemPrefix="com.system.utils.CardUtil.java" Intrnl_Id="127">
+<LocList>
+<Loc EndOffset="1569" SrcFileId="4" StartOffset="1499"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S10" CovItemPrefix="com.system.utils.CardUtil.java" Intrnl_Id="128">
+<LocList>
+<Loc EndOffset="1603" SrcFileId="4" StartOffset="1574"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S11" CovItemPrefix="com.system.utils.CardUtil.java" Intrnl_Id="129">
+<LocList>
+<Loc EndOffset="1641" SrcFileId="4" StartOffset="1608"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S12" CovItemPrefix="com.system.utils.CardUtil.java" Intrnl_Id="130">
+<LocList>
+<Loc EndOffset="1668" SrcFileId="4" StartOffset="1646"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<Keyword EndOffset="1382" SrcFileId="4" StartOffset="1379"/>
+<LocList>
+<Loc EndOffset="1673" SrcFileId="4" StartOffset="1379"/>
+</LocList>
+<RootTerm CovItemId="C2" CovItemPrefix="com.system.utils.CardUtil.java" Intrnl_Id="131">
+<BasicBoolTerm Intrnl_Id="132">
+<LocList>
+<Loc EndOffset="1411" SrcFileId="4" StartOffset="1395"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</LoopStmnt>
+<BasicStmnt CovItemId="S13" CovItemPrefix="com.system.utils.CardUtil.java" Intrnl_Id="133">
+<LocList>
+<Loc EndOffset="1690" SrcFileId="4" StartOffset="1677"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="388" HierarchyLvlTypeId="28" Intrnl_Id="134" Name="enums">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="344" HierarchyLvlTypeId="27" Intrnl_Id="135" Name="SkillType">
+<Header>
+<Loc EndOffset="50" SrcFileId="5" StartOffset="29"/>
+</Header>
+<LocList>
+<Loc EndOffset="60" SrcFileId="5" StartOffset="29"/>
+</LocList>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="345" HierarchyLvlTypeId="27" Intrnl_Id="136" Name="Kingdoms">
+<Header>
+<Loc EndOffset="49" SrcFileId="6" StartOffset="29"/>
+</Header>
+<LocList>
+<Loc EndOffset="71" SrcFileId="6" StartOffset="29"/>
+</LocList>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="346" HierarchyLvlTypeId="27" Intrnl_Id="137" Name="GameState">
+<Header>
+<Loc EndOffset="50" SrcFileId="7" StartOffset="29"/>
+</Header>
+<LocList>
+<Loc EndOffset="100" SrcFileId="7" StartOffset="29"/>
+</LocList>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="347" HierarchyLvlTypeId="27" Intrnl_Id="138" Name="CardColors">
+<Header>
+<Loc EndOffset="51" SrcFileId="8" StartOffset="29"/>
+</Header>
+<LocList>
+<Loc EndOffset="89" SrcFileId="8" StartOffset="29"/>
+</LocList>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="389" HierarchyLvlTypeId="28" Intrnl_Id="139" Name="constants">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="348" HierarchyLvlTypeId="31" Intrnl_Id="140" Name="MainConst">
+<Header>
+<Loc EndOffset="55" SrcFileId="9" StartOffset="33"/>
+</Header>
+<LocList>
+<Loc EndOffset="104" SrcFileId="9" StartOffset="33"/>
+</LocList>
+<StmntSeq Intrnl_Id="141">
+<LocList>
+<Loc EndOffset="98" SrcFileId="9" StartOffset="62"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="com.system.constants.MainConst.java" Intrnl_Id="142">
+<LocList>
+<Loc EndOffset="98" SrcFileId="9" StartOffset="62"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="349" HierarchyLvlTypeId="31" Intrnl_Id="143" Name="HeroConst">
+<Header>
+<Loc EndOffset="55" SrcFileId="10" StartOffset="33"/>
+</Header>
+<LocList>
+<Loc EndOffset="136" SrcFileId="10" StartOffset="33"/>
+</LocList>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="350" HierarchyLvlTypeId="31" Intrnl_Id="144" Name="GUIConst">
+<Header>
+<Loc EndOffset="54" SrcFileId="11" StartOffset="33"/>
+</Header>
+<LocList>
+<Loc EndOffset="1276" SrcFileId="11" StartOffset="33"/>
+</LocList>
+<StmntSeq Intrnl_Id="145">
+<LocList>
+<Loc EndOffset="126" SrcFileId="11" StartOffset="61"/>
+<Loc EndOffset="190" SrcFileId="11" StartOffset="132"/>
+<Loc EndOffset="242" SrcFileId="11" StartOffset="196"/>
+<Loc EndOffset="294" SrcFileId="11" StartOffset="248"/>
+<Loc EndOffset="352" SrcFileId="11" StartOffset="300"/>
+<Loc EndOffset="410" SrcFileId="11" StartOffset="358"/>
+<Loc EndOffset="457" SrcFileId="11" StartOffset="416"/>
+<Loc EndOffset="505" SrcFileId="11" StartOffset="463"/>
+<Loc EndOffset="557" SrcFileId="11" StartOffset="511"/>
+<Loc EndOffset="609" SrcFileId="11" StartOffset="563"/>
+<Loc EndOffset="662" SrcFileId="11" StartOffset="615"/>
+<Loc EndOffset="716" SrcFileId="11" StartOffset="668"/>
+<Loc EndOffset="774" SrcFileId="11" StartOffset="722"/>
+<Loc EndOffset="833" SrcFileId="11" StartOffset="780"/>
+<Loc EndOffset="879" SrcFileId="11" StartOffset="839"/>
+<Loc EndOffset="926" SrcFileId="11" StartOffset="885"/>
+<Loc EndOffset="968" SrcFileId="11" StartOffset="932"/>
+<Loc EndOffset="1017" SrcFileId="11" StartOffset="974"/>
+<Loc EndOffset="1066" SrcFileId="11" StartOffset="1023"/>
+<Loc EndOffset="1114" SrcFileId="11" StartOffset="1072"/>
+<Loc EndOffset="1164" SrcFileId="11" StartOffset="1120"/>
+<Loc EndOffset="1218" SrcFileId="11" StartOffset="1170"/>
+<Loc EndOffset="1273" SrcFileId="11" StartOffset="1224"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="com.system.constants.GUIConst.java" Intrnl_Id="146">
+<LocList>
+<Loc EndOffset="126" SrcFileId="11" StartOffset="61"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S2" CovItemPrefix="com.system.constants.GUIConst.java" Intrnl_Id="147">
+<LocList>
+<Loc EndOffset="190" SrcFileId="11" StartOffset="132"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S3" CovItemPrefix="com.system.constants.GUIConst.java" Intrnl_Id="148">
+<LocList>
+<Loc EndOffset="242" SrcFileId="11" StartOffset="196"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S4" CovItemPrefix="com.system.constants.GUIConst.java" Intrnl_Id="149">
+<LocList>
+<Loc EndOffset="294" SrcFileId="11" StartOffset="248"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S5" CovItemPrefix="com.system.constants.GUIConst.java" Intrnl_Id="150">
+<LocList>
+<Loc EndOffset="352" SrcFileId="11" StartOffset="300"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S6" CovItemPrefix="com.system.constants.GUIConst.java" Intrnl_Id="151">
+<LocList>
+<Loc EndOffset="410" SrcFileId="11" StartOffset="358"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S7" CovItemPrefix="com.system.constants.GUIConst.java" Intrnl_Id="152">
+<LocList>
+<Loc EndOffset="457" SrcFileId="11" StartOffset="416"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S8" CovItemPrefix="com.system.constants.GUIConst.java" Intrnl_Id="153">
+<LocList>
+<Loc EndOffset="505" SrcFileId="11" StartOffset="463"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S9" CovItemPrefix="com.system.constants.GUIConst.java" Intrnl_Id="154">
+<LocList>
+<Loc EndOffset="557" SrcFileId="11" StartOffset="511"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S10" CovItemPrefix="com.system.constants.GUIConst.java" Intrnl_Id="155">
+<LocList>
+<Loc EndOffset="609" SrcFileId="11" StartOffset="563"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S11" CovItemPrefix="com.system.constants.GUIConst.java" Intrnl_Id="156">
+<LocList>
+<Loc EndOffset="662" SrcFileId="11" StartOffset="615"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S12" CovItemPrefix="com.system.constants.GUIConst.java" Intrnl_Id="157">
+<LocList>
+<Loc EndOffset="716" SrcFileId="11" StartOffset="668"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S13" CovItemPrefix="com.system.constants.GUIConst.java" Intrnl_Id="158">
+<LocList>
+<Loc EndOffset="774" SrcFileId="11" StartOffset="722"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S14" CovItemPrefix="com.system.constants.GUIConst.java" Intrnl_Id="159">
+<LocList>
+<Loc EndOffset="833" SrcFileId="11" StartOffset="780"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S15" CovItemPrefix="com.system.constants.GUIConst.java" Intrnl_Id="160">
+<LocList>
+<Loc EndOffset="879" SrcFileId="11" StartOffset="839"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S16" CovItemPrefix="com.system.constants.GUIConst.java" Intrnl_Id="161">
+<LocList>
+<Loc EndOffset="926" SrcFileId="11" StartOffset="885"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S17" CovItemPrefix="com.system.constants.GUIConst.java" Intrnl_Id="162">
+<LocList>
+<Loc EndOffset="968" SrcFileId="11" StartOffset="932"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S18" CovItemPrefix="com.system.constants.GUIConst.java" Intrnl_Id="163">
+<LocList>
+<Loc EndOffset="1017" SrcFileId="11" StartOffset="974"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S19" CovItemPrefix="com.system.constants.GUIConst.java" Intrnl_Id="164">
+<LocList>
+<Loc EndOffset="1066" SrcFileId="11" StartOffset="1023"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S20" CovItemPrefix="com.system.constants.GUIConst.java" Intrnl_Id="165">
+<LocList>
+<Loc EndOffset="1114" SrcFileId="11" StartOffset="1072"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S21" CovItemPrefix="com.system.constants.GUIConst.java" Intrnl_Id="166">
+<LocList>
+<Loc EndOffset="1164" SrcFileId="11" StartOffset="1120"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S22" CovItemPrefix="com.system.constants.GUIConst.java" Intrnl_Id="167">
+<LocList>
+<Loc EndOffset="1218" SrcFileId="11" StartOffset="1170"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S23" CovItemPrefix="com.system.constants.GUIConst.java" Intrnl_Id="168">
+<LocList>
+<Loc EndOffset="1273" SrcFileId="11" StartOffset="1224"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="351" HierarchyLvlTypeId="31" Intrnl_Id="169" Name="CardConst">
+<Header>
+<Loc EndOffset="55" SrcFileId="12" StartOffset="33"/>
+</Header>
+<LocList>
+<Loc EndOffset="533" SrcFileId="12" StartOffset="33"/>
+</LocList>
+<StmntSeq Intrnl_Id="170">
+<LocList>
+<Loc EndOffset="178" SrcFileId="12" StartOffset="134"/>
+<Loc EndOffset="227" SrcFileId="12" StartOffset="184"/>
+<Loc EndOffset="276" SrcFileId="12" StartOffset="233"/>
+<Loc EndOffset="326" SrcFileId="12" StartOffset="282"/>
+<Loc EndOffset="375" SrcFileId="12" StartOffset="332"/>
+<Loc EndOffset="430" SrcFileId="12" StartOffset="381"/>
+<Loc EndOffset="508" SrcFileId="12" StartOffset="460"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="com.system.constants.CardConst.java" Intrnl_Id="171">
+<LocList>
+<Loc EndOffset="178" SrcFileId="12" StartOffset="134"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S2" CovItemPrefix="com.system.constants.CardConst.java" Intrnl_Id="172">
+<LocList>
+<Loc EndOffset="227" SrcFileId="12" StartOffset="184"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S3" CovItemPrefix="com.system.constants.CardConst.java" Intrnl_Id="173">
+<LocList>
+<Loc EndOffset="276" SrcFileId="12" StartOffset="233"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S4" CovItemPrefix="com.system.constants.CardConst.java" Intrnl_Id="174">
+<LocList>
+<Loc EndOffset="326" SrcFileId="12" StartOffset="282"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S5" CovItemPrefix="com.system.constants.CardConst.java" Intrnl_Id="175">
+<LocList>
+<Loc EndOffset="375" SrcFileId="12" StartOffset="332"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S6" CovItemPrefix="com.system.constants.CardConst.java" Intrnl_Id="176">
+<LocList>
+<Loc EndOffset="430" SrcFileId="12" StartOffset="381"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S7" CovItemPrefix="com.system.constants.CardConst.java" Intrnl_Id="177">
+<LocList>
+<Loc EndOffset="508" SrcFileId="12" StartOffset="460"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="393" HierarchyLvlTypeId="28" Intrnl_Id="178" Name="card">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="391" HierarchyLvlTypeId="28" Intrnl_Id="179" Name="interfaces">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="354" HierarchyLvlTypeId="31" Intrnl_Id="180" Name="WeaponCard">
+<Header>
+<Loc EndOffset="149" SrcFileId="13" StartOffset="94"/>
+</Header>
+<LocList>
+<Loc EndOffset="512" SrcFileId="13" StartOffset="94"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="352" HierarchyLvlTypeId="30" Intrnl_Id="181" Name="use">
+<Header>
+<Loc EndOffset="238" SrcFileId="13" StartOffset="185"/>
+</Header>
+<LocList>
+<Loc EndOffset="361" SrcFileId="13" StartOffset="185"/>
+</LocList>
+<StmntSeq Intrnl_Id="182">
+<LocList>
+<Loc EndOffset="357" SrcFileId="13" StartOffset="246"/>
+</LocList>
+<LoopStmnt CovItemId="S1" CovItemPrefix="com.card.interfaces.WeaponCard.java" Intrnl_Id="183" MltplExecId="L1-2" MltplExecPrefix="com.card.interfaces.WeaponCard.java" NvrExecId="L1-0" NvrExecPrefix="com.card.interfaces.WeaponCard.java" OnceExecutedId="L1-1" OnceExecutedPrefix="com.card.interfaces.WeaponCard.java" OptBodyExec="true">
+<StmntSeq Intrnl_Id="184">
+<LocList>
+<Loc EndOffset="318" SrcFileId="13" StartOffset="289"/>
+<Loc EndOffset="352" SrcFileId="13" StartOffset="323"/>
+</LocList>
+<BasicStmnt CovItemId="S2" CovItemPrefix="com.card.interfaces.WeaponCard.java" Intrnl_Id="185">
+<LocList>
+<Loc EndOffset="318" SrcFileId="13" StartOffset="289"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S3" CovItemPrefix="com.card.interfaces.WeaponCard.java" Intrnl_Id="186">
+<LocList>
+<Loc EndOffset="352" SrcFileId="13" StartOffset="323"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<Keyword EndOffset="249" SrcFileId="13" StartOffset="246"/>
+<LocList>
+<Loc EndOffset="357" SrcFileId="13" StartOffset="246"/>
+</LocList>
+</LoopStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="353" HierarchyLvlTypeId="30" Intrnl_Id="187" Name="setAttackRange">
+<Header>
+<Loc EndOffset="415" SrcFileId="13" StartOffset="367"/>
+</Header>
+<LocList>
+<Loc EndOffset="509" SrcFileId="13" StartOffset="367"/>
+</LocList>
+<StmntSeq Intrnl_Id="188">
+<LocList>
+<Loc EndOffset="505" SrcFileId="13" StartOffset="459"/>
+</LocList>
+<BasicStmnt CovItemId="S4" CovItemPrefix="com.card.interfaces.WeaponCard.java" Intrnl_Id="189">
+<LocList>
+<Loc EndOffset="505" SrcFileId="13" StartOffset="459"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="357" HierarchyLvlTypeId="31" Intrnl_Id="190" Name="PlusMountCard">
+<Header>
+<Loc EndOffset="172" SrcFileId="14" StartOffset="92"/>
+</Header>
+<LocList>
+<Loc EndOffset="370" SrcFileId="14" StartOffset="92"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="355" HierarchyLvlTypeId="30" Intrnl_Id="191" Name="use">
+<Header>
+<Loc EndOffset="230" SrcFileId="14" StartOffset="177"/>
+</Header>
+<LocList>
+<Loc EndOffset="322" SrcFileId="14" StartOffset="177"/>
+</LocList>
+<StmntSeq Intrnl_Id="192">
+<LocList>
+<Loc EndOffset="318" SrcFileId="14" StartOffset="238"/>
+</LocList>
+<LoopStmnt CovItemId="S1" CovItemPrefix="com.card.interfaces.PlusMountCard.java" Intrnl_Id="193" MltplExecId="L1-2" MltplExecPrefix="com.card.interfaces.PlusMountCard.java" NvrExecId="L1-0" NvrExecPrefix="com.card.interfaces.PlusMountCard.java" OnceExecutedId="L1-1" OnceExecutedPrefix="com.card.interfaces.PlusMountCard.java" OptBodyExec="true">
+<StmntSeq Intrnl_Id="194">
+<LocList>
+<Loc EndOffset="313" SrcFileId="14" StartOffset="281"/>
+</LocList>
+<BasicStmnt CovItemId="S2" CovItemPrefix="com.card.interfaces.PlusMountCard.java" Intrnl_Id="195">
+<LocList>
+<Loc EndOffset="313" SrcFileId="14" StartOffset="281"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<Keyword EndOffset="241" SrcFileId="14" StartOffset="238"/>
+<LocList>
+<Loc EndOffset="318" SrcFileId="14" StartOffset="238"/>
+</LocList>
+</LoopStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="356" HierarchyLvlTypeId="30" Intrnl_Id="196" Name="getAffectedRange">
+<Header>
+<Loc EndOffset="366" SrcFileId="14" StartOffset="328"/>
+</Header>
+<LocList>
+<Loc EndOffset="367" SrcFileId="14" StartOffset="328"/>
+</LocList>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="360" HierarchyLvlTypeId="31" Intrnl_Id="197" Name="MinusMountCard">
+<Header>
+<Loc EndOffset="175" SrcFileId="15" StartOffset="94"/>
+</Header>
+<LocList>
+<Loc EndOffset="410" SrcFileId="15" StartOffset="94"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="358" HierarchyLvlTypeId="30" Intrnl_Id="198" Name="use">
+<Header>
+<Loc EndOffset="236" SrcFileId="15" StartOffset="183"/>
+</Header>
+<LocList>
+<Loc EndOffset="362" SrcFileId="15" StartOffset="183"/>
+</LocList>
+<StmntSeq Intrnl_Id="199">
+<LocList>
+<Loc EndOffset="355" SrcFileId="15" StartOffset="253"/>
+</LocList>
+<LoopStmnt CovItemId="S1" CovItemPrefix="com.card.interfaces.MinusMountCard.java" Intrnl_Id="200" MltplExecId="L1-2" MltplExecPrefix="com.card.interfaces.MinusMountCard.java" NvrExecId="L1-0" NvrExecPrefix="com.card.interfaces.MinusMountCard.java" OnceExecutedId="L1-1" OnceExecutedPrefix="com.card.interfaces.MinusMountCard.java" OptBodyExec="true">
+<StmntSeq Intrnl_Id="201">
+<LocList>
+<Loc EndOffset="344" SrcFileId="15" StartOffset="311"/>
+</LocList>
+<BasicStmnt CovItemId="S2" CovItemPrefix="com.card.interfaces.MinusMountCard.java" Intrnl_Id="202">
+<LocList>
+<Loc EndOffset="344" SrcFileId="15" StartOffset="311"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<Keyword EndOffset="256" SrcFileId="15" StartOffset="253"/>
+<LocList>
+<Loc EndOffset="355" SrcFileId="15" StartOffset="253"/>
+</LocList>
+</LoopStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="359" HierarchyLvlTypeId="30" Intrnl_Id="203" Name="getAffectedRange">
+<Header>
+<Loc EndOffset="406" SrcFileId="15" StartOffset="368"/>
+</Header>
+<LocList>
+<Loc EndOffset="407" SrcFileId="15" StartOffset="368"/>
+</LocList>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="363" HierarchyLvlTypeId="29" Intrnl_Id="204" Name="IWeaponCard">
+<Header>
+<Loc EndOffset="96" SrcFileId="16" StartOffset="68"/>
+</Header>
+<LocList>
+<Loc EndOffset="297" SrcFileId="16" StartOffset="68"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="361" HierarchyLvlTypeId="30" Intrnl_Id="205" Name="checkArmor">
+<Header>
+<Loc EndOffset="193" SrcFileId="16" StartOffset="169"/>
+</Header>
+<LocList>
+<Loc EndOffset="194" SrcFileId="16" StartOffset="169"/>
+</LocList>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="362" HierarchyLvlTypeId="30" Intrnl_Id="206" Name="setAttackRange">
+<Header>
+<Loc EndOffset="293" SrcFileId="16" StartOffset="251"/>
+</Header>
+<LocList>
+<Loc EndOffset="294" SrcFileId="16" StartOffset="251"/>
+</LocList>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="364" HierarchyLvlTypeId="29" Intrnl_Id="207" Name="IMountCard">
+<Header>
+<Loc EndOffset="59" SrcFileId="17" StartOffset="32"/>
+</Header>
+<LocList>
+<Loc EndOffset="66" SrcFileId="17" StartOffset="32"/>
+</LocList>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="366" HierarchyLvlTypeId="29" Intrnl_Id="208" Name="ICard">
+<Header>
+<Loc EndOffset="116" SrcFileId="18" StartOffset="94"/>
+</Header>
+<LocList>
+<Loc EndOffset="316" SrcFileId="18" StartOffset="94"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="365" HierarchyLvlTypeId="30" Intrnl_Id="209" Name="use">
+<Header>
+<Loc EndOffset="312" SrcFileId="18" StartOffset="267"/>
+</Header>
+<LocList>
+<Loc EndOffset="313" SrcFileId="18" StartOffset="267"/>
+</LocList>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="367" HierarchyLvlTypeId="29" Intrnl_Id="210" Name="IArmorCard">
+<Header>
+<Loc EndOffset="59" SrcFileId="19" StartOffset="32"/>
+</Header>
+<LocList>
+<Loc EndOffset="66" SrcFileId="19" StartOffset="32"/>
+</LocList>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="369" HierarchyLvlTypeId="31" Intrnl_Id="211" Name="AmorCard">
+<Header>
+<Loc EndOffset="147" SrcFileId="20" StartOffset="94"/>
+</Header>
+<LocList>
+<Loc EndOffset="297" SrcFileId="20" StartOffset="94"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="368" HierarchyLvlTypeId="30" Intrnl_Id="212" Name="use">
+<Header>
+<Loc EndOffset="203" SrcFileId="20" StartOffset="151"/>
+</Header>
+<LocList>
+<Loc EndOffset="288" SrcFileId="20" StartOffset="151"/>
+</LocList>
+<StmntSeq Intrnl_Id="213">
+<LocList>
+<Loc EndOffset="284" SrcFileId="20" StartOffset="209"/>
+</LocList>
+<LoopStmnt CovItemId="S1" CovItemPrefix="com.card.interfaces.AmorCard.java" Intrnl_Id="214" MltplExecId="L1-2" MltplExecPrefix="com.card.interfaces.AmorCard.java" NvrExecId="L1-0" NvrExecPrefix="com.card.interfaces.AmorCard.java" OnceExecutedId="L1-1" OnceExecutedPrefix="com.card.interfaces.AmorCard.java" OptBodyExec="true">
+<StmntSeq Intrnl_Id="215">
+<LocList>
+<Loc EndOffset="279" SrcFileId="20" StartOffset="252"/>
+</LocList>
+<BasicStmnt CovItemId="S2" CovItemPrefix="com.card.interfaces.AmorCard.java" Intrnl_Id="216">
+<LocList>
+<Loc EndOffset="279" SrcFileId="20" StartOffset="252"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<Keyword EndOffset="212" SrcFileId="20" StartOffset="209"/>
+<LocList>
+<Loc EndOffset="284" SrcFileId="20" StartOffset="209"/>
+</LocList>
+</LoopStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="370" HierarchyLvlTypeId="31" Intrnl_Id="217" Name="AEquipmentCard">
+<Header>
+<Loc EndOffset="82" SrcFileId="21" StartOffset="32"/>
+</Header>
+<LocList>
+<Loc EndOffset="92" SrcFileId="21" StartOffset="32"/>
+</LocList>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="377" HierarchyLvlTypeId="31" Intrnl_Id="218" Name="ACard">
+<Header>
+<Loc EndOffset="78" SrcFileId="22" StartOffset="34"/>
+</Header>
+<LocList>
+<Loc EndOffset="584" SrcFileId="22" StartOffset="34"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="371" HierarchyLvlTypeId="30" Intrnl_Id="219" Name="setId">
+<Header>
+<Loc EndOffset="224" SrcFileId="22" StartOffset="199"/>
+</Header>
+<LocList>
+<Loc EndOffset="256" SrcFileId="22" StartOffset="199"/>
+</LocList>
+<StmntSeq Intrnl_Id="220">
+<LocList>
+<Loc EndOffset="249" SrcFileId="22" StartOffset="236"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="com.card.interfaces.ACard.java" Intrnl_Id="221">
+<LocList>
+<Loc EndOffset="249" SrcFileId="22" StartOffset="236"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="372" HierarchyLvlTypeId="30" Intrnl_Id="222" Name="setType">
+<Header>
+<Loc EndOffset="293" SrcFileId="22" StartOffset="264"/>
+</Header>
+<LocList>
+<Loc EndOffset="329" SrcFileId="22" StartOffset="264"/>
+</LocList>
+<StmntSeq Intrnl_Id="223">
+<LocList>
+<Loc EndOffset="322" SrcFileId="22" StartOffset="305"/>
+</LocList>
+<BasicStmnt CovItemId="S2" CovItemPrefix="com.card.interfaces.ACard.java" Intrnl_Id="224">
+<LocList>
+<Loc EndOffset="322" SrcFileId="22" StartOffset="305"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="373" HierarchyLvlTypeId="30" Intrnl_Id="225" Name="getType">
+<Header>
+<Loc EndOffset="357" SrcFileId="22" StartOffset="337"/>
+</Header>
+<LocList>
+<Loc EndOffset="388" SrcFileId="22" StartOffset="337"/>
+</LocList>
+<StmntSeq Intrnl_Id="226">
+<LocList>
+<Loc EndOffset="381" SrcFileId="22" StartOffset="369"/>
+</LocList>
+<BasicStmnt CovItemId="S3" CovItemPrefix="com.card.interfaces.ACard.java" Intrnl_Id="227">
+<LocList>
+<Loc EndOffset="381" SrcFileId="22" StartOffset="369"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="374" HierarchyLvlTypeId="30" Intrnl_Id="228" Name="getId">
+<Header>
+<Loc EndOffset="414" SrcFileId="22" StartOffset="396"/>
+</Header>
+<LocList>
+<Loc EndOffset="443" SrcFileId="22" StartOffset="396"/>
+</LocList>
+<StmntSeq Intrnl_Id="229">
+<LocList>
+<Loc EndOffset="436" SrcFileId="22" StartOffset="426"/>
+</LocList>
+<BasicStmnt CovItemId="S4" CovItemPrefix="com.card.interfaces.ACard.java" Intrnl_Id="230">
+<LocList>
+<Loc EndOffset="436" SrcFileId="22" StartOffset="426"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="375" HierarchyLvlTypeId="30" Intrnl_Id="231" Name="setName">
+<Header>
+<Loc EndOffset="483" SrcFileId="22" StartOffset="451"/>
+</Header>
+<LocList>
+<Loc EndOffset="519" SrcFileId="22" StartOffset="451"/>
+</LocList>
+<StmntSeq Intrnl_Id="232">
+<LocList>
+<Loc EndOffset="512" SrcFileId="22" StartOffset="495"/>
+</LocList>
+<BasicStmnt CovItemId="S5" CovItemPrefix="com.card.interfaces.ACard.java" Intrnl_Id="233">
+<LocList>
+<Loc EndOffset="512" SrcFileId="22" StartOffset="495"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="376" HierarchyLvlTypeId="30" Intrnl_Id="234" Name="getName">
+<Header>
+<Loc EndOffset="550" SrcFileId="22" StartOffset="527"/>
+</Header>
+<LocList>
+<Loc EndOffset="581" SrcFileId="22" StartOffset="527"/>
+</LocList>
+<StmntSeq Intrnl_Id="235">
+<LocList>
+<Loc EndOffset="574" SrcFileId="22" StartOffset="562"/>
+</LocList>
+<BasicStmnt CovItemId="S6" CovItemPrefix="com.card.interfaces.ACard.java" Intrnl_Id="236">
+<LocList>
+<Loc EndOffset="574" SrcFileId="22" StartOffset="562"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="392" HierarchyLvlTypeId="28" Intrnl_Id="237" Name="equipment">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="380" HierarchyLvlTypeId="31" Intrnl_Id="238" Name="ShadowRunnerCard">
+<Header>
+<Loc EndOffset="229" SrcFileId="23" StartOffset="156"/>
+</Header>
+<LocList>
+<Loc EndOffset="488" SrcFileId="23" StartOffset="156"/>
+</LocList>
+<StmntSeq Intrnl_Id="239">
+<LocList>
+<Loc EndOffset="393" SrcFileId="23" StartOffset="363"/>
+</LocList>
+<BasicStmnt CovItemId="S3" CovItemPrefix="com.card.equipment.ShadowRunnerCard.java" Intrnl_Id="240">
+<LocList>
+<Loc EndOffset="393" SrcFileId="23" StartOffset="363"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<HierarchyLvl HierarchyLvlId="378" HierarchyLvlTypeId="30" Intrnl_Id="241" Name="ShadowRunnerCard">
+<Header>
+<Loc EndOffset="259" SrcFileId="23" StartOffset="234"/>
+</Header>
+<LocList>
+<Loc EndOffset="357" SrcFileId="23" StartOffset="234"/>
+</LocList>
+<StmntSeq Intrnl_Id="242">
+<LocList>
+<Loc EndOffset="298" SrcFileId="23" StartOffset="271"/>
+<Loc EndOffset="350" SrcFileId="23" StartOffset="308"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="com.card.equipment.ShadowRunnerCard.java" Intrnl_Id="243">
+<LocList>
+<Loc EndOffset="298" SrcFileId="23" StartOffset="271"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S2" CovItemPrefix="com.card.equipment.ShadowRunnerCard.java" Intrnl_Id="244">
+<LocList>
+<Loc EndOffset="350" SrcFileId="23" StartOffset="308"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="379" HierarchyLvlTypeId="30" Intrnl_Id="245" Name="getAffectedRange">
+<Header>
+<Loc EndOffset="445" SrcFileId="23" StartOffset="401"/>
+</Header>
+<LocList>
+<Loc EndOffset="485" SrcFileId="23" StartOffset="401"/>
+</LocList>
+<StmntSeq Intrnl_Id="246">
+<LocList>
+<Loc EndOffset="478" SrcFileId="23" StartOffset="457"/>
+</LocList>
+<BasicStmnt CovItemId="S4" CovItemPrefix="com.card.equipment.ShadowRunnerCard.java" Intrnl_Id="247">
+<LocList>
+<Loc EndOffset="478" SrcFileId="23" StartOffset="457"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="383" HierarchyLvlTypeId="31" Intrnl_Id="248" Name="RedHareCard">
+<Header>
+<Loc EndOffset="226" SrcFileId="24" StartOffset="157"/>
+</Header>
+<LocList>
+<Loc EndOffset="479" SrcFileId="24" StartOffset="157"/>
+</LocList>
+<StmntSeq Intrnl_Id="249">
+<LocList>
+<Loc EndOffset="384" SrcFileId="24" StartOffset="354"/>
+</LocList>
+<BasicStmnt CovItemId="S3" CovItemPrefix="com.card.equipment.RedHareCard.java" Intrnl_Id="250">
+<LocList>
+<Loc EndOffset="384" SrcFileId="24" StartOffset="354"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<HierarchyLvl HierarchyLvlId="381" HierarchyLvlTypeId="30" Intrnl_Id="251" Name="RedHareCard">
+<Header>
+<Loc EndOffset="254" SrcFileId="24" StartOffset="234"/>
+</Header>
+<LocList>
+<Loc EndOffset="348" SrcFileId="24" StartOffset="234"/>
+</LocList>
+<StmntSeq Intrnl_Id="252">
+<LocList>
+<Loc EndOffset="288" SrcFileId="24" StartOffset="266"/>
+<Loc EndOffset="341" SrcFileId="24" StartOffset="298"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="com.card.equipment.RedHareCard.java" Intrnl_Id="253">
+<LocList>
+<Loc EndOffset="288" SrcFileId="24" StartOffset="266"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S2" CovItemPrefix="com.card.equipment.RedHareCard.java" Intrnl_Id="254">
+<LocList>
+<Loc EndOffset="341" SrcFileId="24" StartOffset="298"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="382" HierarchyLvlTypeId="30" Intrnl_Id="255" Name="getAffectedRange">
+<Header>
+<Loc EndOffset="436" SrcFileId="24" StartOffset="392"/>
+</Header>
+<LocList>
+<Loc EndOffset="476" SrcFileId="24" StartOffset="392"/>
+</LocList>
+<StmntSeq Intrnl_Id="256">
+<LocList>
+<Loc EndOffset="469" SrcFileId="24" StartOffset="448"/>
+</LocList>
+<BasicStmnt CovItemId="S4" CovItemPrefix="com.card.equipment.RedHareCard.java" Intrnl_Id="257">
+<LocList>
+<Loc EndOffset="469" SrcFileId="24" StartOffset="448"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="386" HierarchyLvlTypeId="31" Intrnl_Id="258" Name="QilinBowCard">
+<Header>
+<Loc EndOffset="221" SrcFileId="25" StartOffset="154"/>
+</Header>
+<LocList>
+<Loc EndOffset="432" SrcFileId="25" StartOffset="154"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="384" HierarchyLvlTypeId="30" Intrnl_Id="259" Name="QilinBowCard">
+<Header>
+<Loc EndOffset="250" SrcFileId="25" StartOffset="229"/>
+</Header>
+<LocList>
+<Loc EndOffset="371" SrcFileId="25" StartOffset="229"/>
+</LocList>
+<StmntSeq Intrnl_Id="260">
+<LocList>
+<Loc EndOffset="285" SrcFileId="25" StartOffset="262"/>
+<Loc EndOffset="333" SrcFileId="25" StartOffset="295"/>
+<Loc EndOffset="364" SrcFileId="25" StartOffset="343"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="com.card.equipment.QilinBowCard.java" Intrnl_Id="261">
+<LocList>
+<Loc EndOffset="285" SrcFileId="25" StartOffset="262"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S2" CovItemPrefix="com.card.equipment.QilinBowCard.java" Intrnl_Id="262">
+<LocList>
+<Loc EndOffset="333" SrcFileId="25" StartOffset="295"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S3" CovItemPrefix="com.card.equipment.QilinBowCard.java" Intrnl_Id="263">
+<LocList>
+<Loc EndOffset="364" SrcFileId="25" StartOffset="343"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="385" HierarchyLvlTypeId="30" Intrnl_Id="264" Name="checkArmor">
+<Header>
+<Loc EndOffset="418" SrcFileId="25" StartOffset="379"/>
+</Header>
+<LocList>
+<Loc EndOffset="429" SrcFileId="25" StartOffset="379"/>
+</LocList>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</MASTRoot>
+</TestSessionContainer>

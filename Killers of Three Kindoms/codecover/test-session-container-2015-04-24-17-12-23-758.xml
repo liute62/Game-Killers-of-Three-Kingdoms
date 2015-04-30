@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><TestSessionContainer xmlns="http://www.codecover.org/xml/testsession-container" Date="1429909943706" TestSessionContainerId="5c36727e-5c79-46fb-883e-3c3ec26fd807" version="1.0">
+<SrcFileList>
+<SrcFile Content="import org.junit.runner.RunWith;&#13;&#10;import org.junit.runners.Suite;&#13;&#10;&#13;&#10;import com.ai.test.AIActionTestCase;&#13;&#10;import com.card.test.CardMainTestCase;&#13;&#10;import com.card.test.EquipmentCardTestCase;&#13;&#10;import com.card.test.ScrollCardTest;&#13;&#10;import com.hero.test.HeroMainTestCase;&#13;&#10;import com.logic.test.LogicMainTestCase;&#13;&#10;import com.logic.test.LogicTestCases;&#13;&#10;import com.system.test.SystemMainTestCase;&#13;&#10;import com.system.utils.CardUtilTestcase;&#13;&#10;import com.system.utils.PlayerUtilTestcase;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;@RunWith(Suite.class)&#13;&#10;@Suite.SuiteClasses({AIActionTestCase.class, &#13;&#10;&#9;EquipmentCardTestCase.class,  HeroMainTestCase.class, &#13;&#10;&#9;LogicMainTestCase.class,LogicTestCases.class,&#13;&#10;&#9;SystemMainTestCase.class,CardUtilTestcase.class,PlayerUtilTestcase.class})&#13;&#10;public class AllTests {&#13;&#10;&#9;public static void main (String args[]) {&#13;&#10;        org.junit.runner.JUnitCore.main(&quot;AllTests&quot;);&#13;&#10;    }&#13;&#10;}&#13;&#10;" Filename="AllTests.java" Intrnl_Id="1"/>
+</SrcFileList>
+<CritList>
+<CritListEntry Name="org.codecover.model.utils.criteria.LoopCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.QMOCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.ConditionCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.BranchCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.SynchronizedStatementCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.StatementCoverage" PluginName="org.codecover"/>
+</CritList>
+<BoolOpList/>
+<HierarchyLvlTypeList>
+<HierarchyLvlType EnglishName="method" IntrnlName="method" Intrnl_Id="2"/>
+<HierarchyLvlType EnglishName="class" IntrnlName="class" Intrnl_Id="3"/>
+<HierarchyLvlType EnglishName="default package" IntrnlName="default package" Intrnl_Id="4"/>
+</HierarchyLvlTypeList>
+<MASTRoot>
+<HierarchyLvl HierarchyLvlId="19" HierarchyLvlTypeId="4" Intrnl_Id="5" Name="default package">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="18" HierarchyLvlTypeId="3" Intrnl_Id="6" Name="AllTests">
+<Header>
+<Loc EndOffset="762" SrcFileId="1" StartOffset="489"/>
+</Header>
+<LocList>
+<Loc EndOffset="872" SrcFileId="1" StartOffset="489"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="17" HierarchyLvlTypeId="2" Intrnl_Id="7" Name="main">
+<Header>
+<Loc EndOffset="806" SrcFileId="1" StartOffset="767"/>
+</Header>
+<LocList>
+<Loc EndOffset="869" SrcFileId="1" StartOffset="767"/>
+</LocList>
+<StmntSeq Intrnl_Id="8">
+<LocList>
+<Loc EndOffset="862" SrcFileId="1" StartOffset="818"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="AllTests.java" Intrnl_Id="9">
+<LocList>
+<Loc EndOffset="862" SrcFileId="1" StartOffset="818"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</MASTRoot>
+</TestSessionContainer>

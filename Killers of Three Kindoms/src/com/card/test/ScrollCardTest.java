@@ -34,8 +34,11 @@ public class ScrollCardTest {
 	public void testPeachGardenRecover1HealthForEachPlayer()
 	{	
 		p1.setCurrentHP(2);
+		p1.setMaxHP(5);
 		p2.setCurrentHP(3);
+		p2.setMaxHP(5);
 		p3.setCurrentHP(4);
+		p3.setMaxHP(5);
 		
 		targetPlayers.add(p1);
 		targetPlayers.add(p2);
@@ -62,6 +65,8 @@ public class ScrollCardTest {
 		targetPlayers.add(p1);
 		targetPlayers.add(p2);
 		targetPlayers.add(p3);
+		
+		
 		
 		PeachGarden target = new PeachGarden();
 		
