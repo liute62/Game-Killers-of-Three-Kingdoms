@@ -13,22 +13,6 @@ public class CardUtil {
 	private static CardUtil instance;
 	
 	
-	public static CardUtil getInstance(){
-		if(instance == null){
-			instance = new CardUtil();
-		}
-		return instance;
-	}
-	
-	/**
-	 * 
-	 * @return a list of cards which attribute read from file.
-	 * @author Xiangtian
-	 */
-	public List<ACard> initialCards(){ 
-		return null;
-	}
-	
 	/**
 	 * Shuffle the card after game reset.
 	 * Shuffle uses the following algorithm:

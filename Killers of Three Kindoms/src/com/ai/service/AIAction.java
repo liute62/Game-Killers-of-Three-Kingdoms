@@ -62,7 +62,7 @@ public class AIAction {
 	 */
 	public void dropCard(){
 		int num = player.getDiscardNum();
-		List<ACard> tmp = new ArrayList<>();
+		List<ACard> tmp = new ArrayList<ACard>();
 		for (int i = 0; i < num; i++) {
 			tmp.add(player.getHands().get(i));
 		}
@@ -77,17 +77,11 @@ public class AIAction {
 		this.player = player;
 	}
 
-	public int getCastCardIndex() {
-		return castCardIndex;
-	}
 
 	public void setCastCardIndex(int castCardIndex) {
 		this.castCardIndex = castCardIndex;
 	}
 
-	public List<ACard> getAvailableCards() {
-		return availableCards;
-	}
 
 	public void setAvailableCards(List<ACard> availableCards) {
 		this.availableCards = availableCards;

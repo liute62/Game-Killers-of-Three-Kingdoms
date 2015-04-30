@@ -1,10 +1,12 @@
-package com.system.utils;
+package com.system.test;
 
 import com.card.equipment.RedHareCard;
 import com.card.equipment.ShadowRunnerCard;
 import com.card.interfaces.MinusMountCard;
 import com.card.interfaces.PlusMountCard;
 import com.logic.player.Player;
+import com.system.utils.PlayerUtil;
+
 import org.junit.Before;
 import org.junit.Test;
 

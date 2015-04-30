@@ -22,10 +22,6 @@ public class PeachGarden extends ScrollCardAbstract {
 		return orderOfRecovering;
 	}
 
-	public void setOrderOfRecovering(List<APlayer> orderOfRecovering) {
-		this.orderOfRecovering = orderOfRecovering;
-	}
-
 	public void use(APlayer player,List<APlayer> target)
 	{
 		int startPosition = player.getPosition();

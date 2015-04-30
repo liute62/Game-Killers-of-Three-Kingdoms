@@ -1,7 +1,9 @@
-package com.system.utils;
+package com.system.test;
 
 import com.card.interfaces.*;
 import com.logic.player.APlayer;
+import com.system.utils.CardUtil;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -65,7 +65,7 @@ public class Player extends APlayer{
         // TODO Auto-generated method stub
         List<ACard> handCards = getHands();
         if(handCards == null){
-            handCards = new ArrayList<>();
+            handCards = new ArrayList<ACard>();
         }
         ACard card = null;
         handCards.add(card);
