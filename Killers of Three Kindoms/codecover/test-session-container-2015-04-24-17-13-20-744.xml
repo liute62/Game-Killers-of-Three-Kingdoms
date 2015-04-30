@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?><TestSessionContainer xmlns="http://www.codecover.org/xml/testsession-container" Date="1429910000737" TestSessionContainerId="1f8e256f-35f1-4e29-b2ce-36dba147a0b1" version="1.0">
+<SrcFileList>
+<SrcFile Content="package com.card.interfaces;&#13;&#10;&#13;&#10;import com.logic.player.APlayer;&#13;&#10;&#13;&#10;import java.util.List;&#13;&#10;&#13;&#10;public abstract class MinusMountCard extends AEquipmentCard implements IMountCard {&#13;&#10;    public void use(APlayer player, List&lt;APlayer&gt; target)&#13;&#10;    {&#13;&#10;        for(APlayer targetPlayer: target)&#13;&#10;        {&#13;&#10;            targetPlayer.setMinusMount(this);&#13;&#10;        }&#13;&#10;    }&#13;&#10;    public abstract int getAffectedRange();&#13;&#10;}&#13;&#10;" Filename="MinusMountCard.java" Intrnl_Id="1"/>
+<SrcFile Content="package com.card.equipment;&#13;&#10;&#13;&#10;import com.card.interfaces.IMountCard;&#13;&#10;import com.card.interfaces.PlusMountCard;&#13;&#10;import com.system.constants.CardConst;&#13;&#10;&#13;&#10;public class ShadowRunnerCard extends PlusMountCard implements IMountCard {&#13;&#10;&#9;public ShadowRunnerCard() {&#13;&#10;        this.name = &quot;ShadowRunner&quot;;&#13;&#10;        this.type = CardConst.CardType_Mount_Plus;&#13;&#10;    }&#13;&#10;    private int affectedRange = 1;&#13;&#10;&#13;&#10;    @Override&#13;&#10;    public int getAffectedRange() {&#13;&#10;        return affectedRange;&#13;&#10;    }&#13;&#10;}&#13;&#10;" Filename="ShadowRunnerCard.java" Intrnl_Id="2"/>
+<SrcFile Content="package com.card.equipment;&#13;&#10;&#13;&#10;import com.card.interfaces.IMountCard;&#13;&#10;import com.card.interfaces.MinusMountCard;&#13;&#10;import com.system.constants.CardConst;&#13;&#10;&#13;&#10;public class RedHareCard extends MinusMountCard implements IMountCard {&#13;&#10;    public RedHareCard() {&#13;&#10;        this.name = &quot;RedHare&quot;;&#13;&#10;        this.type = CardConst.CardType_Mount_Minus;&#13;&#10;    }&#13;&#10;    private int affectedRange = 1;&#13;&#10;&#13;&#10;    @Override&#13;&#10;    public int getAffectedRange() {&#13;&#10;        return affectedRange;&#13;&#10;    }&#13;&#10;}&#13;&#10;" Filename="RedHareCard.java" Intrnl_Id="3"/>
+<SrcFile Content="package com.card.equipment;&#13;&#10;&#13;&#10;import com.card.interfaces.IWeaponCard;&#13;&#10;import com.card.interfaces.WeaponCard;&#13;&#10;import com.system.constants.CardConst;&#13;&#10;&#13;&#10;public class QilinBowCard extends WeaponCard implements IWeaponCard {&#13;&#10;    public QilinBowCard() {&#13;&#10;        this.name = &quot;QilinBow&quot;;&#13;&#10;        this.type = CardConst.CardType_Weapon;&#13;&#10;        this.attackRange = 5;&#13;&#10;    }&#13;&#10;&#13;&#10;    @Override&#13;&#10;    public void checkArmor() {&#13;&#10;&#13;&#10;    }&#13;&#10;}&#13;&#10;" Filename="QilinBowCard.java" Intrnl_Id="4"/>
+</SrcFileList>
+<CritList>
+<CritListEntry Name="org.codecover.model.utils.criteria.LoopCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.QMOCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.ConditionCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.BranchCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.SynchronizedStatementCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.StatementCoverage" PluginName="org.codecover"/>
+</CritList>
+<BoolOpList/>
+<HierarchyLvlTypeList>
+<HierarchyLvlType EnglishName="package" IntrnlName="package" Intrnl_Id="5"/>
+<HierarchyLvlType EnglishName="method" IntrnlName="method" Intrnl_Id="6"/>
+<HierarchyLvlType EnglishName="class" IntrnlName="class" Intrnl_Id="7"/>
+<HierarchyLvlType EnglishName="default package" IntrnlName="default package" Intrnl_Id="8"/>
+</HierarchyLvlTypeList>
+<MASTRoot>
+<HierarchyLvl HierarchyLvlId="67" HierarchyLvlTypeId="8" Intrnl_Id="9" Name="default package">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="66" HierarchyLvlTypeId="5" Intrnl_Id="10" Name="com">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="65" HierarchyLvlTypeId="5" Intrnl_Id="11" Name="card">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="63" HierarchyLvlTypeId="5" Intrnl_Id="12" Name="interfaces">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="53" HierarchyLvlTypeId="7" Intrnl_Id="13" Name="MinusMountCard">
+<Header>
+<Loc EndOffset="175" SrcFileId="1" StartOffset="94"/>
+</Header>
+<LocList>
+<Loc EndOffset="410" SrcFileId="1" StartOffset="94"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="51" HierarchyLvlTypeId="6" Intrnl_Id="14" Name="use">
+<Header>
+<Loc EndOffset="236" SrcFileId="1" StartOffset="183"/>
+</Header>
+<LocList>
+<Loc EndOffset="362" SrcFileId="1" StartOffset="183"/>
+</LocList>
+<StmntSeq Intrnl_Id="15">
+<LocList>
+<Loc EndOffset="355" SrcFileId="1" StartOffset="253"/>
+</LocList>
+<LoopStmnt CovItemId="S1" CovItemPrefix="com.card.interfaces.MinusMountCard.java" Intrnl_Id="16" MltplExecId="L1-2" MltplExecPrefix="com.card.interfaces.MinusMountCard.java" NvrExecId="L1-0" NvrExecPrefix="com.card.interfaces.MinusMountCard.java" OnceExecutedId="L1-1" OnceExecutedPrefix="com.card.interfaces.MinusMountCard.java" OptBodyExec="true">
+<StmntSeq Intrnl_Id="17">
+<LocList>
+<Loc EndOffset="344" SrcFileId="1" StartOffset="311"/>
+</LocList>
+<BasicStmnt CovItemId="S2" CovItemPrefix="com.card.interfaces.MinusMountCard.java" Intrnl_Id="18">
+<LocList>
+<Loc EndOffset="344" SrcFileId="1" StartOffset="311"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<Keyword EndOffset="256" SrcFileId="1" StartOffset="253"/>
+<LocList>
+<Loc EndOffset="355" SrcFileId="1" StartOffset="253"/>
+</LocList>
+</LoopStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="52" HierarchyLvlTypeId="6" Intrnl_Id="19" Name="getAffectedRange">
+<Header>
+<Loc EndOffset="406" SrcFileId="1" StartOffset="368"/>
+</Header>
+<LocList>
+<Loc EndOffset="407" SrcFileId="1" StartOffset="368"/>
+</LocList>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="64" HierarchyLvlTypeId="5" Intrnl_Id="20" Name="equipment">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="56" HierarchyLvlTypeId="7" Intrnl_Id="21" Name="ShadowRunnerCard">
+<Header>
+<Loc EndOffset="229" SrcFileId="2" StartOffset="156"/>
+</Header>
+<LocList>
+<Loc EndOffset="488" SrcFileId="2" StartOffset="156"/>
+</LocList>
+<StmntSeq Intrnl_Id="22">
+<LocList>
+<Loc EndOffset="393" SrcFileId="2" StartOffset="363"/>
+</LocList>
+<BasicStmnt CovItemId="S3" CovItemPrefix="com.card.equipment.ShadowRunnerCard.java" Intrnl_Id="23">
+<LocList>
+<Loc EndOffset="393" SrcFileId="2" StartOffset="363"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<HierarchyLvl HierarchyLvlId="54" HierarchyLvlTypeId="6" Intrnl_Id="24" Name="ShadowRunnerCard">
+<Header>
+<Loc EndOffset="259" SrcFileId="2" StartOffset="234"/>
+</Header>
+<LocList>
+<Loc EndOffset="357" SrcFileId="2" StartOffset="234"/>
+</LocList>
+<StmntSeq Intrnl_Id="25">
+<LocList>
+<Loc EndOffset="298" SrcFileId="2" StartOffset="271"/>
+<Loc EndOffset="350" SrcFileId="2" StartOffset="308"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="com.card.equipment.ShadowRunnerCard.java" Intrnl_Id="26">
+<LocList>
+<Loc EndOffset="298" SrcFileId="2" StartOffset="271"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S2" CovItemPrefix="com.card.equipment.ShadowRunnerCard.java" Intrnl_Id="27">
+<LocList>
+<Loc EndOffset="350" SrcFileId="2" StartOffset="308"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="55" HierarchyLvlTypeId="6" Intrnl_Id="28" Name="getAffectedRange">
+<Header>
+<Loc EndOffset="445" SrcFileId="2" StartOffset="401"/>
+</Header>
+<LocList>
+<Loc EndOffset="485" SrcFileId="2" StartOffset="401"/>
+</LocList>
+<StmntSeq Intrnl_Id="29">
+<LocList>
+<Loc EndOffset="478" SrcFileId="2" StartOffset="457"/>
+</LocList>
+<BasicStmnt CovItemId="S4" CovItemPrefix="com.card.equipment.ShadowRunnerCard.java" Intrnl_Id="30">
+<LocList>
+<Loc EndOffset="478" SrcFileId="2" StartOffset="457"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="59" HierarchyLvlTypeId="7" Intrnl_Id="31" Name="RedHareCard">
+<Header>
+<Loc EndOffset="226" SrcFileId="3" StartOffset="157"/>
+</Header>
+<LocList>
+<Loc EndOffset="479" SrcFileId="3" StartOffset="157"/>
+</LocList>
+<StmntSeq Intrnl_Id="32">
+<LocList>
+<Loc EndOffset="384" SrcFileId="3" StartOffset="354"/>
+</LocList>
+<BasicStmnt CovItemId="S3" CovItemPrefix="com.card.equipment.RedHareCard.java" Intrnl_Id="33">
+<LocList>
+<Loc EndOffset="384" SrcFileId="3" StartOffset="354"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<HierarchyLvl HierarchyLvlId="57" HierarchyLvlTypeId="6" Intrnl_Id="34" Name="RedHareCard">
+<Header>
+<Loc EndOffset="254" SrcFileId="3" StartOffset="234"/>
+</Header>
+<LocList>
+<Loc EndOffset="348" SrcFileId="3" StartOffset="234"/>
+</LocList>
+<StmntSeq Intrnl_Id="35">
+<LocList>
+<Loc EndOffset="288" SrcFileId="3" StartOffset="266"/>
+<Loc EndOffset="341" SrcFileId="3" StartOffset="298"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="com.card.equipment.RedHareCard.java" Intrnl_Id="36">
+<LocList>
+<Loc EndOffset="288" SrcFileId="3" StartOffset="266"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S2" CovItemPrefix="com.card.equipment.RedHareCard.java" Intrnl_Id="37">
+<LocList>
+<Loc EndOffset="341" SrcFileId="3" StartOffset="298"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="58" HierarchyLvlTypeId="6" Intrnl_Id="38" Name="getAffectedRange">
+<Header>
+<Loc EndOffset="436" SrcFileId="3" StartOffset="392"/>
+</Header>
+<LocList>
+<Loc EndOffset="476" SrcFileId="3" StartOffset="392"/>
+</LocList>
+<StmntSeq Intrnl_Id="39">
+<LocList>
+<Loc EndOffset="469" SrcFileId="3" StartOffset="448"/>
+</LocList>
+<BasicStmnt CovItemId="S4" CovItemPrefix="com.card.equipment.RedHareCard.java" Intrnl_Id="40">
+<LocList>
+<Loc EndOffset="469" SrcFileId="3" StartOffset="448"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="62" HierarchyLvlTypeId="7" Intrnl_Id="41" Name="QilinBowCard">
+<Header>
+<Loc EndOffset="221" SrcFileId="4" StartOffset="154"/>
+</Header>
+<LocList>
+<Loc EndOffset="432" SrcFileId="4" StartOffset="154"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="60" HierarchyLvlTypeId="6" Intrnl_Id="42" Name="QilinBowCard">
+<Header>
+<Loc EndOffset="250" SrcFileId="4" StartOffset="229"/>
+</Header>
+<LocList>
+<Loc EndOffset="371" SrcFileId="4" StartOffset="229"/>
+</LocList>
+<StmntSeq Intrnl_Id="43">
+<LocList>
+<Loc EndOffset="285" SrcFileId="4" StartOffset="262"/>
+<Loc EndOffset="333" SrcFileId="4" StartOffset="295"/>
+<Loc EndOffset="364" SrcFileId="4" StartOffset="343"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="com.card.equipment.QilinBowCard.java" Intrnl_Id="44">
+<LocList>
+<Loc EndOffset="285" SrcFileId="4" StartOffset="262"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S2" CovItemPrefix="com.card.equipment.QilinBowCard.java" Intrnl_Id="45">
+<LocList>
+<Loc EndOffset="333" SrcFileId="4" StartOffset="295"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S3" CovItemPrefix="com.card.equipment.QilinBowCard.java" Intrnl_Id="46">
+<LocList>
+<Loc EndOffset="364" SrcFileId="4" StartOffset="343"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="61" HierarchyLvlTypeId="6" Intrnl_Id="47" Name="checkArmor">
+<Header>
+<Loc EndOffset="418" SrcFileId="4" StartOffset="379"/>
+</Header>
+<LocList>
+<Loc EndOffset="429" SrcFileId="4" StartOffset="379"/>
+</LocList>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</MASTRoot>
+</TestSessionContainer>

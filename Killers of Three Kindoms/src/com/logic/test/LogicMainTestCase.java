@@ -46,6 +46,7 @@ public class LogicMainTestCase {
 	public void testGain1HP() 
 	{
 		player.setCurrentHP(2);
+		player.setMaxHP(5);
 		player.gainHP(1);
 		assertEquals(3, player.getCurrentHP());
 	}
@@ -54,6 +55,7 @@ public class LogicMainTestCase {
 	public void testGain2HP() 
 	{
 		player.setCurrentHP(2);
+		player.setMaxHP(5);
 		player.gainHP(2);
 		assertEquals(4, player.getCurrentHP());
 	}
