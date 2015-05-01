@@ -6,6 +6,8 @@ import org.easymock.EasyMock;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.hero.skills.active.ZhaoYun_Courage;
+import com.hero.skills.interfaces.ISkill;
 import com.logic.player.APlayer;
 import com.logic.player.Player;
 import com.system.enums.HeroName;
@@ -108,5 +110,7 @@ public class PlayerInitializationTest {
 		assertEquals(actualMaxHP, p1.getMaxHP());
 		EasyMock.verify(mockDB);
 	}
+	
+	
 	
 }

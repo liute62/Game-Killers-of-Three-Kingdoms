@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.card.interfaces.ACard;
+import com.hero.skills.interfaces.ISkill;
 import com.logic.interfaces.IPlayer;
 import com.logic.test.PlayerInitializationTest;
 import com.system.enums.HeroName;
@@ -118,4 +119,7 @@ public class Player extends APlayer{
     		this.maxHP = Database.getMaxHP(this.name);
 		}
 	}
+	
+	
+
 }
