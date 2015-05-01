@@ -6,7 +6,7 @@ import com.logic.player.APlayer;
 
 import java.util.List;
 
-public class GuanYu_MasterOfWarfare implements ISkill {
+public class ZhaoYun_Courage implements ISkill {
 
     @Override
     public void use(List<ACard> cards, List<APlayer> players) {

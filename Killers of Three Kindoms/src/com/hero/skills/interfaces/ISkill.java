@@ -1,0 +1,11 @@
+package com.hero.skills.interfaces;
+
+import com.card.interfaces.ACard;
+import com.logic.player.APlayer;
+
+import java.util.List;
+
+public interface ISkill {
+    public void use(List<ACard> cards, List<APlayer> players);
+    public boolean check(List<ACard> cards, List<APlayer> players);
+}
