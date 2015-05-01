@@ -76,4 +76,19 @@ public class PlayerInitializationTest {
 		assertEquals(1, p1.getAttackRange());
 	}
 	
+	@Test
+	public void testInitializeMaxHP() {
+		HeroName name = HeroName.ZhangLiao;
+		RoleType roleType = RoleType.Minister;
+		EasyMock.expect(mockDB.getMaxHP(name)).andReturn(4);
+		EasyMock.replay(mockDB);
+		
+		APlayer p1 = new Player(name, roleType);
+		p1.Database = mockDB;
+		
+		p1.initializePlayerInfo();
+		assertEquals(4, p1.getMaxHP());
+		EasyMock.verify(mockDB);
+	}
+	
 }
