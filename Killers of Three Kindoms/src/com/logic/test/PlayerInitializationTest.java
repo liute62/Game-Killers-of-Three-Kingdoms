@@ -68,5 +68,12 @@ public class PlayerInitializationTest {
 		assertEquals(type, p1.getRoleType());
 	}
 	
+	@Test
+	public void testDefaultAttackRangeSet() {
+		HeroName name = HeroName.ZhangLiao;
+		RoleType type = RoleType.Minister;
+		APlayer p1 = new Player(name, type);
+		assertEquals(1, p1.getAttackRange());
+	}
 	
 }
