@@ -190,4 +190,20 @@ public class HeroMainTestCase {
         assertEquals(false, player.checkSkill(Arrays.asList(strikeCard), Arrays.asList(player1)));
     }
 
+    @Test
+    public void testZhaoYunCanUseHisSkill() {
+        APlayer player = new Player();
+        APlayer player1 = new Player();
+        player.setCurrentHP(5);
+        player.setAttackRange(1);
+        player.setPosition(1);
+        player1.setCurrentHP(5);
+        player1.setPosition(2);
+        ISkill skill = new GuanYu_MasterOfWarfare();
+        ACard dodgeCard = new DodgeCard();
+        dodgeCard.setSuit(SuitConst.SuitType_Hearts);
+        player.setName(HeroName.ZhaoYun);
+        player.setSkill(skill);
+        assertEquals(true, player.checkSkill(Arrays.asList(dodgeCard), Arrays.asList(player1)));
+    }
 }
