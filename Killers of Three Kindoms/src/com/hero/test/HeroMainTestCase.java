@@ -76,4 +76,15 @@ public class HeroMainTestCase {
         assertEquals(false, player.checkSkill(new ArrayList<ACard>(), Arrays.asList(player1)));
     }
 
+    @Test
+    public void testGuanYuCanNotTargetNoOneToActivateSkill() {
+        APlayer player = new Player();
+        ISkill skill = new GuanYu_MasterOfWarfare();
+        ACard dodgeCard = new DodgeCard();
+        dodgeCard.setSuit(SuitConst.SuitType_Hearts);
+        player.setName(HeroName.GuanYu);
+        player.setSkill(skill);
+        assertEquals(false, player.checkSkill(Arrays.asList(dodgeCard), new ArrayList<APlayer>()));
+    }
+
 }
