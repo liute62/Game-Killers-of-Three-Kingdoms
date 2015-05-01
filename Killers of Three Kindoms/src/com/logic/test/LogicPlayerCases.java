@@ -124,4 +124,12 @@ public class LogicPlayerCases {
 		player.setMinusMount(card);
 		Assert.assertEquals(2, player.getAttackRange());
 	}
+	
+	@Test
+	public void test12_CheckDistance_3(){
+		initial();
+		BlackPommelCard card = new BlackPommelCard();
+		player.setWeapon(card);
+		Assert.assertEquals(2,player.getAttackRange());
+	}
 }
