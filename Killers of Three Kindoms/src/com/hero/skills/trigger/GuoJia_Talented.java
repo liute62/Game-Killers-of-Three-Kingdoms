@@ -7,6 +7,6 @@ public class GuoJia_Talented {
 	
 	public void talented(APlayer player, ACard card)
 	{
-		
+		player.getHands().add(card);
 	}
 }
