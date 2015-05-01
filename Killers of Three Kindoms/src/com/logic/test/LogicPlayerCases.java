@@ -4,6 +4,8 @@ import java.io.ObjectInputStream.GetField;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.plaf.PanelUI;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -110,8 +112,16 @@ public class LogicPlayerCases {
 	}
 	
 	@Test
-	public void test10_CheckDistance(){
+	public void test10_CheckDistance_1(){
 		initial();
 		Assert.assertEquals(1, player.getAttackRange());
+	}
+	
+	@Test
+	public void test11_CheckDistance_2(){
+		initial();
+		RedHareCard card = new RedHareCard();
+		player.setMinusMount(card);
+		Assert.assertEquals(2, player.getAttackRange());
 	}
 }
