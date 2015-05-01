@@ -142,4 +142,10 @@ public class LogicPlayerCases {
 		player.setWeapon(card2);
 		Assert.assertEquals(card2.getAttackRange()+1,player.getAttackRange());
 	}
+	
+	@Test
+	public void test14_CheckAttackAbility() {
+		initial();
+		Assert.assertEquals(1,player.getAttackAbility());
+	}
 }

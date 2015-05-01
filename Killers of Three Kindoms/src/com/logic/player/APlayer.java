@@ -12,22 +12,19 @@ import com.system.enums.GameState;
 public abstract class APlayer implements IPlayer{
 
 	 protected int maxHP;
-
-	protected int currentHP;
+	 protected int currentHP;
 	 protected List<ACard> hands;
 	 protected  AmorCard amor;
 	 protected PlusMountCard plusMount;
      protected MinusMountCard minusMount;
 	 protected WeaponCard weapon;
 	 protected int attackRange;
+	 protected int attackAbility;
 	 protected int position; //0 1 2 3 4 
 	 public GameState gameState;
-	
-
-
-	protected int drawCardNum = 2;
-	protected int discardNum = 0;
-	protected ACard beingUsedCard;
+	 protected int drawCardNum = 2;
+	 protected int discardNum = 0;
+	 protected ACard beingUsedCard;
 	 
 	 public List<ACard> getAvailableCards(List<ACard> cards){ 
 		 if(gameState == GameState.begin || gameState == gameState.check || gameState == GameState.drawCard){
@@ -110,6 +107,10 @@ public abstract class APlayer implements IPlayer{
 	 
 	 public void setAttackRange(int attackRange) {
 		 this.attackRange = attackRange;
+	 }
+	 
+	 public int getAttackAbility(){
+		 return this.attackAbility;
 	 }
 	 
 	 public List<ACard> getHands() {
