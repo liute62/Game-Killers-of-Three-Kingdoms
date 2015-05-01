@@ -100,6 +100,9 @@ public abstract class APlayer implements IPlayer{
 	 }
 	 
 	 public int getAttackRange() {
+		 if (minusMount != null) {
+			attackRange++;
+		}
 		 return attackRange;
 	 }
 	 
