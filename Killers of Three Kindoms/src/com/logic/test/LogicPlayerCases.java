@@ -10,6 +10,7 @@ import org.junit.Test;
 import com.card.base.PeachCard;
 import com.card.base.StrikeCard;
 import com.card.equipment.BlackPommelCard;
+import com.card.equipment.EightDiagramFormationCard;
 import com.card.interfaces.ACard;
 import com.logic.player.APlayer;
 import com.logic.player.Player;
@@ -74,10 +75,17 @@ public class LogicPlayerCases {
 		Assert.assertEquals(2, player.getCurrentHP());
 	}
 	
-	public void test6_CheckEquipment(){
+	public void test6_CheckEquipment_1(){
 		initial();
 		BlackPommelCard card = new BlackPommelCard();
 		player.setWeapon(card);
 		Assert.assertEquals(card,player.getWeapon());
+	}
+	
+	public void test7_CheckEquipment_2() {
+		initial();
+		EightDiagramFormationCard card = new EightDiagramFormationCard();
+		player.setAmor(card);
+		Assert.assertEquals(card, player.getAmor());
 	}
 }
