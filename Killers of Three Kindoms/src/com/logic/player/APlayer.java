@@ -32,7 +32,8 @@ public abstract class APlayer implements IPlayer{
 	 //protected int roleType;
 	 protected HeroName name;
 	 protected RoleType roleType;
-	 public GameState gameState;
+	 
+	public GameState gameState;
 	 protected ISkill skill;
 	 
 	protected int drawCardNum = 2;
@@ -54,6 +55,15 @@ public abstract class APlayer implements IPlayer{
 		 }
 		return cards;
 	}
+	 
+	 public RoleType getRoleType() {
+			return roleType;
+		}
+
+	public void setRoleType(RoleType roleType) {
+			this.roleType = roleType;
+		}
+
 	 
 	 public int getMaxHP() {
 		 return maxHP;

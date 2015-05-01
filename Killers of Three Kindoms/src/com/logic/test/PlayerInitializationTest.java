@@ -60,6 +60,13 @@ public class PlayerInitializationTest {
 		assertEquals(name,p1.getName());
 	}
 	
+	@Test
+	public void testRoleTypeSet() {
+		HeroName name = HeroName.ZhangLiao;
+		RoleType type = RoleType.Minister;
+		APlayer p1 = new Player(name, type);
+		assertEquals(type, p1.getRoleType());
+	}
 	
 	
 }
