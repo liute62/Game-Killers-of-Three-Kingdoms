@@ -109,6 +109,13 @@ public class Player extends APlayer{
 	@Override
 	public void initializePlayerInfo() {
 		// TODO Auto-generated method stub
-		this.maxHP = Database.getMaxHP(name);
+		if(this.roleType == RoleType.Monarch)
+	    {
+			this.maxHP = Database.getMaxHP(this.name) + 1;
+	    }
+		else 
+		{
+    		this.maxHP = Database.getMaxHP(this.name);
+		}
 	}
 }
