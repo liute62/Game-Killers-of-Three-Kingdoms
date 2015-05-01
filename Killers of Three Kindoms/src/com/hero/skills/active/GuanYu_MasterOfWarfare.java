@@ -14,6 +14,7 @@ public class GuanYu_MasterOfWarfare implements ISkill {
     @Override
     public void use(APlayer operator, List<ACard> cards, List<APlayer> players) {
         (new StrikeCard()).use(operator, players);
+        operator.getHands().removeAll(cards);
     }
 
     @Override
