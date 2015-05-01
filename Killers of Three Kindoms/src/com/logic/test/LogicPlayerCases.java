@@ -132,4 +132,14 @@ public class LogicPlayerCases {
 		player.setWeapon(card);
 		Assert.assertEquals(card.getAttackRange(),player.getAttackRange());
 	}
+	
+	@Test
+	public void test13_CheckDistance_4(){
+		initial();
+		RedHareCard card1 = new RedHareCard();
+		player.setMinusMount(card1);
+		BlackPommelCard card2 = new BlackPommelCard();
+		player.setWeapon(card2);
+		Assert.assertEquals(card2.getAttackRange()+1,player.getAttackRange());
+	}
 }
