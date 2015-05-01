@@ -22,7 +22,7 @@ public abstract class APlayer implements IPlayer{
 	 protected int attackRange;
 	 protected int position; //0 1 2 3 4 
 	 public GameState gameState;
-	
+	 
 
 
 	protected int drawCardNum = 2;
