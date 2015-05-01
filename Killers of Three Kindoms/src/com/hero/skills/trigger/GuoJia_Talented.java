@@ -5,6 +5,7 @@ import java.util.List;
 import com.card.interfaces.ACard;
 import com.hero.skills.interfaces.ISkill;
 import com.logic.player.APlayer;
+import com.system.enums.GameState;
 
 public class GuoJia_Talented implements ISkill{
 	
@@ -22,7 +23,10 @@ public class GuoJia_Talented implements ISkill{
 	@Override
 	public boolean check(APlayer operator, List<ACard> cards,
 			List<APlayer> players) {
-		// TODO Auto-generated method stub
+		if(operator.gameState == GameState.check && cards.size() > 0)
+		{
+			return true;
+		}
 		return false;
 	}
 }

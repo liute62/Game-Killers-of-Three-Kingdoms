@@ -48,4 +48,6 @@ public class HeroSkillTest {
 		Assert.assertEquals(true, p1.checkSkill(Arrays.asList(dodgeCard), Arrays.asList(p2)));
 		
 	}
+	
+	
 }
