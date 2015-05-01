@@ -19,7 +19,7 @@ public class GuanYu_MasterOfWarfare implements ISkill {
     public boolean check(APlayer operator, List<ACard> cards, List<APlayer> players) {
         int numOfCards = cards.size();
         int numOfPlayers = players.size();
-        if (numOfCards == 0 || numOfPlayers == 0) {
+        if (numOfCards == 0 || numOfPlayers == 0 || numOfCards > 1) {
             return false;
         }
         return operator.getName().equals(HeroName.GuanYu)
