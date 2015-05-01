@@ -54,6 +54,9 @@ public abstract class APlayer implements IPlayer{
 	 
 	 public void setCurrentHP(int i) {
 			// TODO Auto-generated method stub
+		  if (i > maxHP) {
+			i = maxHP;
+		 }
 		  this.currentHP = i;
 		}
 
