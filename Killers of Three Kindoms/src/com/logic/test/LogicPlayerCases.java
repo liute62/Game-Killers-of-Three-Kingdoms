@@ -58,6 +58,7 @@ public class LogicPlayerCases {
 	@Test
 	public void test4_CheckHP_3(){
 		initial();
+		player.setMaxHP(4);
 		player.setCurrentHP(3);
 		player.loseHP(-1);
 		Assert.assertEquals(3,player.getCurrentHP());
