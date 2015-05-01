@@ -16,8 +16,10 @@ public class GuoJia_Talented implements ISkill{
 
 	@Override
 	public void use(APlayer operator, List<ACard> cards, List<APlayer> players) {
-		// TODO Auto-generated method stub
-		
+		for(ACard card: cards)
+		{
+			talented(operator, card);
+		}
 	}
 
 	@Override
