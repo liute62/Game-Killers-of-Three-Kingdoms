@@ -27,7 +27,7 @@ public abstract class APlayer implements IPlayer{
 	 protected WeaponCard weapon;
 	 protected int attackRange;
 	 protected int position; //0 1 2 3 4 
-	 protected String heroName;
+	 //protected String heroName;
 	 //protected String roleName;
 	 //protected int roleType;
 	 protected HeroName name;

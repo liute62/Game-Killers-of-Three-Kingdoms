@@ -39,6 +39,7 @@ public class Player extends APlayer{
 
 	public Player(HeroName name, RoleType roleType) {
 		// TODO Auto-generated constructor stub
+		this.name = name;
 	}
 
 
