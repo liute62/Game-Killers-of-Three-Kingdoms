@@ -130,6 +130,6 @@ public class LogicPlayerCases {
 		initial();
 		BlackPommelCard card = new BlackPommelCard();
 		player.setWeapon(card);
-		Assert.assertEquals(2,player.getAttackRange());
+		Assert.assertEquals(card.getAttackRange(),player.getAttackRange());
 	}
 }
