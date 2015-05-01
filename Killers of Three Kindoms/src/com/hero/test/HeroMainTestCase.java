@@ -22,6 +22,11 @@ public class HeroMainTestCase {
 	public void testOtherCanNotUseGuanYuSSkill() {
         APlayer player = new Player();
         APlayer player1 = new Player();
+        player.setCurrentHP(5);
+        player.setAttackRange(1);
+        player.setPosition(1);
+        player1.setCurrentHP(5);
+        player1.setPosition(3);
         ISkill skill = new GuanYu_MasterOfWarfare();
         ACard strikeCard = new StrikeCard();
         strikeCard.setSuit(SuitConst.SuitType_Hearts);
@@ -34,6 +39,11 @@ public class HeroMainTestCase {
     public void testGuanYuCanUseHisSkill() {
         APlayer player = new Player();
         APlayer player1 = new Player();
+        player.setCurrentHP(5);
+        player.setAttackRange(1);
+        player.setPosition(1);
+        player1.setCurrentHP(5);
+        player1.setPosition(2);
         ISkill skill = new GuanYu_MasterOfWarfare();
         ACard dodgeCard = new DodgeCard();
         dodgeCard.setSuit(SuitConst.SuitType_Hearts);
@@ -46,6 +56,11 @@ public class HeroMainTestCase {
     public void testGuanYuCanNotUseBlackCardToActivateSkill() {
         APlayer player = new Player();
         APlayer player1 = new Player();
+        player.setCurrentHP(5);
+        player.setAttackRange(1);
+        player.setPosition(1);
+        player1.setCurrentHP(5);
+        player1.setPosition(3);
         ISkill skill = new GuanYu_MasterOfWarfare();
         ACard dodgeCard = new DodgeCard();
         dodgeCard.setSuit(SuitConst.SuitType_Spades);
@@ -58,6 +73,11 @@ public class HeroMainTestCase {
     public void testGuanYuCanNotUseBlackCardToActivateSkillTwo() {
         APlayer player = new Player();
         APlayer player1 = new Player();
+        player.setCurrentHP(5);
+        player.setAttackRange(1);
+        player.setPosition(1);
+        player1.setCurrentHP(5);
+        player1.setPosition(3);
         ISkill skill = new GuanYu_MasterOfWarfare();
         ACard dodgeCard = new DodgeCard();
         dodgeCard.setSuit(SuitConst.SuitType_Clubs);
@@ -70,6 +90,11 @@ public class HeroMainTestCase {
     public void testGuanYuCanNotUseNoCardsToActivateSkill() {
         APlayer player = new Player();
         APlayer player1 = new Player();
+        player.setCurrentHP(5);
+        player.setAttackRange(1);
+        player.setPosition(1);
+        player1.setCurrentHP(5);
+        player1.setPosition(3);
         ISkill skill = new GuanYu_MasterOfWarfare();
         player.setName(HeroName.GuanYu);
         player.setSkill(skill);
@@ -80,6 +105,9 @@ public class HeroMainTestCase {
     public void testGuanYuCanNotTargetNoOneToActivateSkill() {
         APlayer player = new Player();
         ISkill skill = new GuanYu_MasterOfWarfare();
+        player.setCurrentHP(5);
+        player.setAttackRange(1);
+        player.setPosition(1);
         ACard dodgeCard = new DodgeCard();
         dodgeCard.setSuit(SuitConst.SuitType_Hearts);
         player.setName(HeroName.GuanYu);
@@ -91,6 +119,11 @@ public class HeroMainTestCase {
     public void testGuanYuCanNotUseMoreThanOneCardsToActivateSkill() {
         APlayer player = new Player();
         APlayer player1 = new Player();
+        player.setCurrentHP(5);
+        player.setAttackRange(1);
+        player.setPosition(1);
+        player1.setCurrentHP(5);
+        player1.setPosition(3);
         ISkill skill = new GuanYu_MasterOfWarfare();
         ACard dodgeCard = new DodgeCard();
         dodgeCard.setSuit(SuitConst.SuitType_Hearts);
