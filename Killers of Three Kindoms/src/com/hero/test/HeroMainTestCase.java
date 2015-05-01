@@ -87,4 +87,18 @@ public class HeroMainTestCase {
         assertEquals(false, player.checkSkill(Arrays.asList(dodgeCard), new ArrayList<APlayer>()));
     }
 
+    @Test
+    public void testGuanYuCanNotUseMoreThanOneCardsToActivateSkill() {
+        APlayer player = new Player();
+        APlayer player1 = new Player();
+        ISkill skill = new GuanYu_MasterOfWarfare();
+        ACard dodgeCard = new DodgeCard();
+        dodgeCard.setSuit(SuitConst.SuitType_Hearts);
+        ACard strikeCard = new StrikeCard();
+        dodgeCard.setSuit(SuitConst.SuitType_Hearts);
+        player.setName(HeroName.GuanYu);
+        player.setSkill(skill);
+        assertEquals(false, player.checkSkill(Arrays.asList(dodgeCard, strikeCard), Arrays.asList(player1)));
+    }
+
 }
