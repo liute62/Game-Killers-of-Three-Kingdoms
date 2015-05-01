@@ -13,7 +13,10 @@ public class ZhaoYun_Courage implements ISkill {
 
     @Override
     public void use(APlayer operator, List<ACard> cards, List<APlayer> players) {
-
+        if (cards.get(0).getType() == CardConst.CardType_Dodge) {
+            (new StrikeCard()).use(operator, players);
+            operator.getHands().removeAll(cards);
+        }
     }
 
     @Override
