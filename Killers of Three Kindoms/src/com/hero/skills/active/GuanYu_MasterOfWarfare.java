@@ -15,6 +15,6 @@ public class GuanYu_MasterOfWarfare implements ISkill {
 
     @Override
     public boolean check(List<ACard> cards, List<APlayer> players) {
-        return true;
+        return false;
     }
 }
