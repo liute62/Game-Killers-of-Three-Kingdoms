@@ -1,5 +1,6 @@
 package com.hero.skills.active;
 
+import com.card.base.StrikeCard;
 import com.card.interfaces.ACard;
 import com.hero.skills.interfaces.ISkill;
 import com.logic.player.APlayer;
