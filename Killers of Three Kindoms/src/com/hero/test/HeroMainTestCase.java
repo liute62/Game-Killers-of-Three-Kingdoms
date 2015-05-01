@@ -199,7 +199,7 @@ public class HeroMainTestCase {
         player.setPosition(1);
         player1.setCurrentHP(5);
         player1.setPosition(2);
-        ISkill skill = new GuanYu_MasterOfWarfare();
+        ISkill skill = new ZhaoYun_Courage();
         ACard dodgeCard = new DodgeCard();
         dodgeCard.setSuit(SuitConst.SuitType_Hearts);
         player.setName(HeroName.ZhaoYun);
