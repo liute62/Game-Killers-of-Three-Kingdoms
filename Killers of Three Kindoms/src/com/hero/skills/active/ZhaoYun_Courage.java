@@ -15,6 +15,6 @@ public class ZhaoYun_Courage implements ISkill {
 
     @Override
     public boolean check(APlayer operator, List<ACard> cards, List<APlayer> players) {
-        return true;
+        return false;
     }
 }
