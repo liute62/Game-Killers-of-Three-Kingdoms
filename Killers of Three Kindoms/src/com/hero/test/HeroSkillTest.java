@@ -49,5 +49,20 @@ public class HeroSkillTest {
 		
 	}
 	
+	@Test
+	//Test Talented can not be triggered since the gameState is not check
+	public void testGuoJiaCannotUseTalented1()
+	{
+		APlayer p1 = new Player();
+		APlayer p2 = new Player();
+		ACard dodgeCard = new DodgeCard();
+		p1.gameState = GameState.begin;
+		p1.setMaxHP(3);
+		p1.setCurrentHP(3);
+		p1.setName(HeroName.GuoJia);
+		ISkill t = new GuoJia_Talented();
+		p1.setSkill(t);
+		Assert.assertEquals(false, p1.checkSkill(Arrays.asList(dodgeCard), Arrays.asList(p2)));
+	}
 	
 }
