@@ -1,5 +1,5 @@
 package com.system.enums;
 
 public enum HeroName {
-    GuanYu, ZhaoYun, GuoJia, 
+    GuanYu, ZhaoYun, GuoJia, ZhangLiao,
 }
