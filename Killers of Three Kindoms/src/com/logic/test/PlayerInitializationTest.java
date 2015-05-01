@@ -91,4 +91,22 @@ public class PlayerInitializationTest {
 		EasyMock.verify(mockDB);
 	}
 	
+	@Test
+	// If the role of a player is monarch, He can get 1 more max HP
+	public void testInitializeMaxHPIfRoleIsMonarch() {
+		HeroName heroName = HeroName.CaoCao;
+		RoleType roleType = RoleType.Monarch;
+		int originalMaxHP = 4;
+		EasyMock.expect(mockDB.getMaxHP(heroName)).andReturn(originalMaxHP);
+		EasyMock.replay(mockDB);
+		
+		APlayer p1 = new Player(heroName, roleType);
+		p1.Database = mockDB;
+		
+		p1.initializePlayerInfo();
+		int actualMaxHP = originalMaxHP + 1;
+		assertEquals(actualMaxHP, p1.getMaxHP());
+		EasyMock.verify(mockDB);
+	}
+	
 }
