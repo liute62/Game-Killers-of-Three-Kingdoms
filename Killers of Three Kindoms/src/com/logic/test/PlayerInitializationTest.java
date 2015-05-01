@@ -52,7 +52,13 @@ public class PlayerInitializationTest {
 //		assertEquals(actualMaxHP, p1.getMaxHP());
 //		EasyMock.verify(mockDB);
 //	}
-	
+	@Test
+	public void testHeroNameSet() {
+		HeroName name = HeroName.ZhangLiao;
+		RoleType type = RoleType.Minister;
+		APlayer p1 = new Player(name, type);
+		assertEquals(name,p1.getName());
+	}
 	
 	
 	
