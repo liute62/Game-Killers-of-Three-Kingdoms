@@ -155,4 +155,11 @@ public class LogicPlayerCases {
 		player.setAttackAbility(2);
 		Assert.assertEquals(2,player.getAttackAbility());
 	}
+	
+	@Test
+	public void test16_CheckAttackAbility(){
+		initial();
+		player.setAttackAbility(-1);
+		Assert.assertEquals(1, player.getAttackAbility());
+	}
 }
