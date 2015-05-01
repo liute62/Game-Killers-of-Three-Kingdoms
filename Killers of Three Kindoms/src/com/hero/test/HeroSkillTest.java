@@ -65,4 +65,20 @@ public class HeroSkillTest {
 		Assert.assertEquals(false, p1.checkSkill(Arrays.asList(dodgeCard), Arrays.asList(p2)));
 	}
 	
+	@Test
+	//Test Talented can not be triggered since the player do not need to check at check stage
+	public void testGuoJiaCannotUseTalented2()
+	{
+		APlayer p1 = new Player();
+		APlayer p2 = new Player();
+		ACard checkCard = null;
+		p1.gameState = GameState.check;
+		p1.setMaxHP(3);
+		p1.setCurrentHP(3);
+		p1.setName(HeroName.GuoJia);
+		ISkill t = new GuoJia_Talented();
+		p1.setSkill(t);
+		Assert.assertEquals(false, p1.checkSkill(Arrays.asList(checkCard), Arrays.asList(p2)));
+	}
+	
 }
