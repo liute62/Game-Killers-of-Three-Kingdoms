@@ -95,10 +95,27 @@ public class HeroMainTestCase {
         ACard dodgeCard = new DodgeCard();
         dodgeCard.setSuit(SuitConst.SuitType_Hearts);
         ACard strikeCard = new StrikeCard();
-        dodgeCard.setSuit(SuitConst.SuitType_Hearts);
+        strikeCard.setSuit(SuitConst.SuitType_Hearts);
         player.setName(HeroName.GuanYu);
         player.setSkill(skill);
         assertEquals(false, player.checkSkill(Arrays.asList(dodgeCard, strikeCard), Arrays.asList(player1)));
+    }
+
+    @Test
+    public void testGuanYuCanNotTargetOutOfRangePlayerToActivateSkill() {
+        APlayer player = new Player();
+        APlayer player1 = new Player();
+        player.setCurrentHP(5);
+        player.setAttackRange(1);
+        player.setPosition(1);
+        player1.setCurrentHP(5);
+        player1.setPosition(3);
+        ISkill skill = new GuanYu_MasterOfWarfare();
+        ACard dodgeCard = new DodgeCard();
+        dodgeCard.setSuit(SuitConst.SuitType_Hearts);
+        player.setName(HeroName.GuanYu);
+        player.setSkill(skill);
+        assertEquals(false, player.checkSkill(Arrays.asList(dodgeCard), Arrays.asList(player1)));
     }
 
 }
