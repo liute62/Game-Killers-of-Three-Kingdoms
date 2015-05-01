@@ -23,7 +23,7 @@ public class GuoJia_Talented implements ISkill{
 	@Override
 	public boolean check(APlayer operator, List<ACard> cards,
 			List<APlayer> players) {
-		if(operator.gameState == GameState.check)
+		if(operator.gameState == GameState.check && cards.get(0) != null)
 		{
 			return true;
 		}
