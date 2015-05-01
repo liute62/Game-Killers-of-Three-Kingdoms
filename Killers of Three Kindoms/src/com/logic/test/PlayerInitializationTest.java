@@ -35,6 +35,7 @@ public class PlayerInitializationTest {
 	}
 	
 	@Test
+	// If the role of a player is monarch, He can get 1 more max HP
 	public void testInitializeMaxHPIfRoleIsMonarch() {
 		String heroName = "Caocao";
 		int roleType = 1; //RoleType 1 means Monarch
@@ -50,5 +51,7 @@ public class PlayerInitializationTest {
 		assertEquals(actualMaxHP, p1.getMaxHP());
 		EasyMock.verify(mockDB);
 	}
+	
+	
 	
 }
