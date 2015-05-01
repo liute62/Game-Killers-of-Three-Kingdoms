@@ -109,5 +109,6 @@ public class Player extends APlayer{
 	@Override
 	public void initializePlayerInfo() {
 		// TODO Auto-generated method stub
+		this.maxHP = Database.getMaxHP(name);
 	}
 }
