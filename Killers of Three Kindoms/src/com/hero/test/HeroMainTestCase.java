@@ -41,4 +41,16 @@ public class HeroMainTestCase {
         assertEquals(true, player.checkSkill(Arrays.asList(dodgeCard), Arrays.asList(player1)));
     }
 
+    @Test
+    public void testGuanYuCanNotUseBlackCardToActivateSkill() {
+        APlayer player = new Player();
+        APlayer player1 = new Player();
+        ISkill skill = new GuanYu_MasterOfWarfare();
+        ACard dodgeCard = new DodgeCard();
+        dodgeCard.setSuit(SuitConst.SuitType_Spades);
+        player.setName(HeroName.GuanYu);
+        player.setSkill(skill);
+        assertEquals(false, player.checkSkill(Arrays.asList(dodgeCard), Arrays.asList(player1)));
+    }
+
 }
