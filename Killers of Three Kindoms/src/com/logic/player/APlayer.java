@@ -1,14 +1,15 @@
 package com.logic.player;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 
 import com.card.interfaces.*;
+import com.hero.skills.interfaces.ISkill;
 import com.logic.interfaces.IPlayer;
 import com.system.constants.CardConst;
 import com.system.enums.GameState;
+import com.system.enums.HeroName;
 import com.system.utils.IDatabase;
 
 public abstract class APlayer implements IPlayer{
@@ -16,6 +17,7 @@ public abstract class APlayer implements IPlayer{
 	public IDatabase Database;
 	
 	 protected int maxHP;
+	 protected HeroName name;
 	 protected int currentHP;
 	 protected List<ACard> hands;
 	 protected  AmorCard amor;
@@ -28,10 +30,10 @@ public abstract class APlayer implements IPlayer{
 	 protected String roleName;
 	 protected int roleType;
 	 public GameState gameState;
+	 protected ISkill skill;
 	 
-
-
 	protected int drawCardNum = 2;
+
 	protected int discardNum = 0;
 	protected ACard beingUsedCard;
 	 
@@ -119,8 +121,32 @@ public abstract class APlayer implements IPlayer{
 			// TODO Auto-generated method stub
 			this.hands = list;
 	}
-	 
-	 public void setDrawCardNum(int num){
+
+    public ISkill getSkill() {
+        return skill;
+    }
+
+    public void setSkill(ISkill skill) {
+        this.skill = skill;
+    }
+
+    public void activateSkill(List<ACard> cards, List<APlayer> players) {
+        this.skill.use(this, cards, players);
+    }
+
+    public boolean checkSkill(List<ACard> cards, List<APlayer> players) {
+        return this.skill.check(this, cards, players);
+    }
+
+    public HeroName getName() {
+        return name;
+    }
+
+    public void setName(HeroName name) {
+        this.name = name;
+    }
+
+    public void setDrawCardNum(int num){
 		 this.drawCardNum = num;
 	 }
 	 

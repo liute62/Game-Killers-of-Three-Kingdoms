@@ -11,6 +11,16 @@ public abstract class ACard implements ICard {
 
     protected int type;
 
+    protected int suit;
+
+    public int getSuit() {
+        return suit;
+    }
+
+    public void setSuit(int suit) {
+        this.suit = suit;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
