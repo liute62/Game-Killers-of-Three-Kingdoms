@@ -29,6 +29,7 @@ public class LogicMainTestCase {
 	@Test 
 	public void testLose1HP()
 	{
+		player.setMaxHP(5);
 		player.setCurrentHP(4);
 		player.loseHP(1);
 		assertEquals(3, player.getCurrentHP());
@@ -37,6 +38,7 @@ public class LogicMainTestCase {
 	@Test 
 	public void testLose2HP()
 	{
+		player.setMaxHP(5);
 		player.setCurrentHP(4);
 		player.loseHP(2);
 		assertEquals(2, player.getCurrentHP());
@@ -45,8 +47,8 @@ public class LogicMainTestCase {
 	@Test
 	public void testGain1HP() 
 	{
-		player.setCurrentHP(2);
 		player.setMaxHP(5);
+		player.setCurrentHP(2);
 		player.gainHP(1);
 		assertEquals(3, player.getCurrentHP());
 	}
@@ -54,8 +56,8 @@ public class LogicMainTestCase {
 	@Test
 	public void testGain2HP() 
 	{
-		player.setCurrentHP(2);
 		player.setMaxHP(5);
+		player.setCurrentHP(2);
 		player.gainHP(2);
 		assertEquals(4, player.getCurrentHP());
 	}
