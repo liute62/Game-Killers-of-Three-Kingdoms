@@ -124,11 +124,11 @@ public abstract class APlayer implements IPlayer{
     }
 
     public void activateSkill(List<ACard> cards, List<APlayer> players) {
-        this.skill.use(cards, players);
+        this.skill.use(this, cards, players);
     }
 
     public boolean checkSkill(List<ACard> cards, List<APlayer> players) {
-        return this.skill.check(cards, players);
+        return this.skill.check(this, cards, players);
     }
 
     public HeroName getName() {

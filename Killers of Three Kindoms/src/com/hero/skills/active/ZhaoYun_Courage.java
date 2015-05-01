@@ -9,12 +9,12 @@ import java.util.List;
 public class ZhaoYun_Courage implements ISkill {
 
     @Override
-    public void use(List<ACard> cards, List<APlayer> players) {
+    public void use(APlayer operator, List<ACard> cards, List<APlayer> players) {
 
     }
 
     @Override
-    public boolean check(List<ACard> cards, List<APlayer> players) {
+    public boolean check(APlayer operator, List<ACard> cards, List<APlayer> players) {
         return true;
     }
 }
