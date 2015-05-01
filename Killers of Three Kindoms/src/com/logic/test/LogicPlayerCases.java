@@ -39,11 +39,4 @@ public class LogicPlayerCases {
 		player.setHands(tmp);
 		Assert.assertEquals(player.getHands(),setList(card,card2));
 	}
-	
-	@Test
-	public void test2_CheckHP_Minus1(){
-		initial();
-		player.setCurrentHP(-1);
-		Assert.assertEquals(0,player.getCurrentHP());
-	}
 }
