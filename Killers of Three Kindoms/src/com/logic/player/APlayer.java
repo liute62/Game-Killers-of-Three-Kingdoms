@@ -109,6 +109,10 @@ public abstract class APlayer implements IPlayer{
 		 this.attackRange = attackRange;
 	 }
 	 
+	 public void setAttackAbility(int num){
+		 
+	 }
+	 
 	 public int getAttackAbility(){
 		 return this.attackAbility;
 	 }
