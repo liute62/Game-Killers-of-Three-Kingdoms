@@ -41,6 +41,7 @@ public class Player extends APlayer{
 		// TODO Auto-generated constructor stub
 		this.name = name;
 		this.roleType = roleType;
+		this.attackRange = 1;
 	}
 
 
