@@ -108,4 +108,10 @@ public class LogicPlayerCases {
 		player.setPlusMount(card);
 		Assert.assertEquals(card, player.getPlusMount());
 	}
+	
+	@Test
+	public void test10_CheckDistance(){
+		initial();
+		Assert.assertEquals(1, player.getAttackRange());
+	}
 }
