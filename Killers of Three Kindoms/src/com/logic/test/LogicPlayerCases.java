@@ -54,4 +54,13 @@ public class LogicPlayerCases {
 		player.setCurrentHP(6);
 		Assert.assertEquals(5,player.getCurrentHP());
 	}
+	
+	@Test
+	public void test4_CheckHP_3(){
+		initial();
+		player.setCurrentHP(3);
+		player.loseHP(-1);
+		Assert.assertEquals(3,player.getCurrentHP());
+	}
+	
 }
