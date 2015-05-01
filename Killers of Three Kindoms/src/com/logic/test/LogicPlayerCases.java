@@ -12,6 +12,7 @@ import com.card.base.StrikeCard;
 import com.card.equipment.BlackPommelCard;
 import com.card.equipment.EightDiagramFormationCard;
 import com.card.equipment.RedHareCard;
+import com.card.equipment.ShadowRunnerCard;
 import com.card.interfaces.ACard;
 import com.logic.player.APlayer;
 import com.logic.player.Player;
@@ -98,5 +99,13 @@ public class LogicPlayerCases {
 		RedHareCard card = new RedHareCard();
 		player.setMinusMount(card);
 		Assert.assertEquals(card, player.getMinusMount());
+	}
+	
+	@Test
+	public void test9_CheckEquipment_4(){
+		initial();
+		ShadowRunnerCard card = new ShadowRunnerCard();
+		player.setPlusMount(card);
+		Assert.assertEquals(card, player.getPlusMount());
 	}
 }
