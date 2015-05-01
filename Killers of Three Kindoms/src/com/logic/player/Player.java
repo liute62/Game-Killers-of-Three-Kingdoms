@@ -9,9 +9,14 @@ import com.logic.interfaces.IPlayer;
 public class Player extends APlayer{
      public Player() {
         // TODO Auto-generated constructor stub
+<<<<<<< HEAD
          this.maxHP = 5;
     	 this.attackRange = 1;
          this.attackAbility = 1;
+=======
+         this.attackRange = 1;
+         this.hands = new ArrayList<ACard>();
+>>>>>>> origin/master
     }
 
     @Override

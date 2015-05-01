@@ -22,9 +22,18 @@ public abstract class APlayer implements IPlayer{
 	 protected int attackAbility;
 	 protected int position; //0 1 2 3 4 
 	 public GameState gameState;
+<<<<<<< HEAD
 	 protected int drawCardNum = 2;
 	 protected int discardNum = 0;
 	 protected ACard beingUsedCard;
+=======
+	 
+
+
+	protected int drawCardNum = 2;
+	protected int discardNum = 0;
+	protected ACard beingUsedCard;
+>>>>>>> origin/master
 	 
 	 public List<ACard> getAvailableCards(List<ACard> cards){ 
 		 if(gameState == GameState.begin || gameState == gameState.check || gameState == GameState.drawCard){
