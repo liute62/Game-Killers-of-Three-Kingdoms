@@ -10,6 +10,7 @@ public class Player extends APlayer{
      public Player() {
         // TODO Auto-generated constructor stub
          this.attackRange = 1;
+         this.hands = new ArrayList<ACard>();
     }
 
     @Override
