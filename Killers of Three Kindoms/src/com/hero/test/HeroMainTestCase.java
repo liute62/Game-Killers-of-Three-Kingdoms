@@ -165,8 +165,9 @@ public class HeroMainTestCase {
         dodgeCard.setSuit(SuitConst.SuitType_Hearts);
         player.setName(HeroName.GuanYu);
         player.setSkill(skill);
+        player.setHands(Arrays.asList(dodgeCard));
         player.activateSkill(Arrays.asList(dodgeCard), Arrays.asList(player1));
-        assertEquals(4, player1.getCurrentHP());
+        assertEquals(0, player.getHands().size());
     }
 
 }
