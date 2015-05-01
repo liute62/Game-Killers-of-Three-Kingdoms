@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import com.card.base.PeachCard;
 import com.card.base.StrikeCard;
+import com.card.equipment.BlackPommelCard;
 import com.card.interfaces.ACard;
 import com.logic.player.APlayer;
 import com.logic.player.Player;
@@ -73,4 +74,10 @@ public class LogicPlayerCases {
 		Assert.assertEquals(2, player.getCurrentHP());
 	}
 	
+	public void test6_CheckEquipment(){
+		initial();
+		BlackPommelCard card = new BlackPommelCard();
+		player.setWeapon(card);
+		Assert.assertEquals(card,player.getWeapon());
+	}
 }
