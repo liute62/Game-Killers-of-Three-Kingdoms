@@ -224,4 +224,19 @@ public class HeroMainTestCase {
         player.setSkill(skill);
         assertEquals(false, player.checkSkill(Arrays.asList(peachCard), Arrays.asList(player1)));
     }
+
+    @Test
+    public void testZhaoYunCanNotUseNoCardToActivateSkill() {
+        APlayer player = new Player();
+        APlayer player1 = new Player();
+        player.setCurrentHP(5);
+        player.setAttackRange(1);
+        player.setPosition(1);
+        player1.setCurrentHP(5);
+        player1.setPosition(2);
+        ISkill skill = new ZhaoYun_Courage();
+        player.setName(HeroName.ZhaoYun);
+        player.setSkill(skill);
+        assertEquals(false, player.checkSkill(new ArrayList<ACard>(), Arrays.asList(player1)));
+    }
 }
