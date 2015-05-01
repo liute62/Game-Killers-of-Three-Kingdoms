@@ -17,6 +17,8 @@ public class GuanYu_MasterOfWarfare implements ISkill {
 
     @Override
     public boolean check(APlayer operator, List<ACard> cards, List<APlayer> players) {
-        return operator.getName().equals(HeroName.GuanYu) && cards.get(0).getSuit() != SuitConst.SuitType_Spades;
+        return operator.getName().equals(HeroName.GuanYu)
+                && cards.get(0).getSuit() != SuitConst.SuitType_Spades
+                && cards.get(0).getSuit() != SuitConst.SuitType_Clubs;
     }
 }
