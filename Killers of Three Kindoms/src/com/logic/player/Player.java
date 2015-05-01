@@ -55,6 +55,9 @@ public class Player extends APlayer{
     }
 
     public void gainHP(int num) {
+    	if (num <= 0) {
+			num = 0;
+		}
     	if(this.currentHP < this.maxHP)
         this.currentHP += num;
     }
