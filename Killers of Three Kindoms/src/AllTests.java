@@ -7,6 +7,7 @@ import com.card.test.EquipmentCardTestCase;
 import com.card.test.ScrollCardTest;
 import com.hero.test.HeroMainTestCase;
 import com.logic.test.LogicMainTestCase;
+import com.logic.test.LogicPlayerCases;
 import com.logic.test.LogicTestCases;
 import com.system.test.CardUtilTestcase;
 import com.system.test.PlayerUtilTestcase;
@@ -22,6 +23,7 @@ import com.system.test.SystemMainTestCase;
 	ScrollCardTest.class,
 	HeroMainTestCase.class, 
 	LogicMainTestCase.class,
+	LogicPlayerCases.class,
 	LogicTestCases.class,
 	CardUtilTestcase.class,
 	PlayerUtilTestcase.class,

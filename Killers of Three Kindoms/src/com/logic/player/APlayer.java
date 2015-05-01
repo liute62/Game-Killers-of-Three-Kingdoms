@@ -26,6 +26,7 @@ public abstract class APlayer implements IPlayer{
      protected MinusMountCard minusMount;
 	 protected WeaponCard weapon;
 	 protected int attackRange;
+	 protected int attackAbility;
 	 protected int position; //0 1 2 3 4 
 	 //protected String heroName;
 	 //protected String roleName;
@@ -35,11 +36,10 @@ public abstract class APlayer implements IPlayer{
 	 
 	public GameState gameState;
 	 protected ISkill skill;
-	 
-	protected int drawCardNum = 2;
+	 protected int drawCardNum = 2;
+	 protected int discardNum = 0;
+	 protected ACard beingUsedCard;
 
-	protected int discardNum = 0;
-	protected ACard beingUsedCard;
 	 
 	 public List<ACard> getAvailableCards(List<ACard> cards){ 
 		 if(gameState == GameState.begin || gameState == gameState.check || gameState == GameState.drawCard){
@@ -75,7 +75,10 @@ public abstract class APlayer implements IPlayer{
 	 
 	 public void setCurrentHP(int i) {
 			// TODO Auto-generated method stub
-			this.currentHP = i;
+		  if (i > maxHP) {
+			i = maxHP;
+		 }
+		  this.currentHP = i;
 		}
 
 	 public int getCurrentHP() {
@@ -118,11 +121,27 @@ public abstract class APlayer implements IPlayer{
 	 }
 	 
 	 public int getAttackRange() {
+		if (weapon != null) {
+			attackRange = weapon.getAttackRange();
+		} if (minusMount != null) {
+			attackRange++;
+		 }
 		 return attackRange;
 	 }
 	 
 	 public void setAttackRange(int attackRange) {
 		 this.attackRange = attackRange;
+	 }
+	 
+	 public void setAttackAbility(int num){
+		 if(num <= 0){
+			 num = 1;
+		 }
+		 this.attackAbility = num;
+	 }
+	 
+	 public int getAttackAbility(){
+		 return this.attackAbility;
 	 }
 	 
 	 public List<ACard> getHands() {

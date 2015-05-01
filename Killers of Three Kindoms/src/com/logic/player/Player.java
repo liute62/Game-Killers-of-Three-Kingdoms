@@ -14,6 +14,9 @@ import com.system.enums.RoleType;
 public class Player extends APlayer{
      public Player() {
         // TODO Auto-generated constructor stub
+
+         this.maxHP = 5;
+         this.attackAbility = 1;
          this.attackRange = 1;
          this.hands = new ArrayList<ACard>();
     }
@@ -82,10 +85,16 @@ public class Player extends APlayer{
     @Override
     public void loseHP(int num) {
         // TODO Auto-generated method stub
+    	if (num <= 0) {
+			num = 0;
+		}
         this.currentHP -= num;
     }
 
     public void gainHP(int num) {
+    	if (num <= 0) {
+			num = 0;
+		}
     	if(this.currentHP < this.maxHP)
         this.currentHP += num;
     }

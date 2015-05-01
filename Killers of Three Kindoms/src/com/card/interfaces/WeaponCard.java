@@ -20,4 +20,8 @@ public abstract class WeaponCard extends AEquipmentCard{
 		// TODO Auto-generated method stub
 		targetPlayer.setAttackRange(this.attackRange);
 	}
+	
+	public int getAttackRange() {
+		return attackRange;
+	}
 }
