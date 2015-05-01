@@ -13,6 +13,7 @@ import com.system.constants.SuitConst;
 import com.system.enums.HeroName;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class HeroMainTestCase {
@@ -63,6 +64,16 @@ public class HeroMainTestCase {
         player.setName(HeroName.GuanYu);
         player.setSkill(skill);
         assertEquals(false, player.checkSkill(Arrays.asList(dodgeCard), Arrays.asList(player1)));
+    }
+
+    @Test
+    public void testGuanYuCanNotUseNoCardsToActivateSkill() {
+        APlayer player = new Player();
+        APlayer player1 = new Player();
+        ISkill skill = new GuanYu_MasterOfWarfare();
+        player.setName(HeroName.GuanYu);
+        player.setSkill(skill);
+        assertEquals(false, player.checkSkill(new ArrayList<ACard>(), Arrays.asList(player1)));
     }
 
 }
