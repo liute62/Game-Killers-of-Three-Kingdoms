@@ -3,6 +3,7 @@ package com.hero.test;
 import static org.junit.Assert.*;
 
 import com.card.base.DodgeCard;
+import com.card.base.PeachCard;
 import com.card.base.StrikeCard;
 import com.card.interfaces.ACard;
 import com.hero.skills.active.GuanYu_MasterOfWarfare;
@@ -205,5 +206,22 @@ public class HeroMainTestCase {
         player.setName(HeroName.ZhaoYun);
         player.setSkill(skill);
         assertEquals(true, player.checkSkill(Arrays.asList(dodgeCard), Arrays.asList(player1)));
+    }
+
+    @Test
+    public void testZhaoYunCanNotUseOtherCardTypeToActivateSkill() {
+        APlayer player = new Player();
+        APlayer player1 = new Player();
+        player.setCurrentHP(5);
+        player.setAttackRange(1);
+        player.setPosition(1);
+        player1.setCurrentHP(5);
+        player1.setPosition(2);
+        ISkill skill = new ZhaoYun_Courage();
+        ACard peachCard = new PeachCard();
+        peachCard.setSuit(SuitConst.SuitType_Hearts);
+        player.setName(HeroName.ZhaoYun);
+        player.setSkill(skill);
+        assertEquals(false, player.checkSkill(Arrays.asList(peachCard), Arrays.asList(player1)));
     }
 }
