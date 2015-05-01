@@ -110,6 +110,9 @@ public abstract class APlayer implements IPlayer{
 	 }
 	 
 	 public void setAttackAbility(int num){
+		 if(num <= 0){
+			 num = 1;
+		 }
 		 this.attackAbility = num;
 	 }
 	 
