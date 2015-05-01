@@ -25,7 +25,14 @@ public class Player extends APlayer{
 	}
     
     public void initializePlayerInfo() {
-    	this.maxHP = Database.getMaxHP(this.heroName);
+    	if(this.roleType == 1)
+    	{
+    		this.maxHP = Database.getMaxHP(this.heroName) + 1;
+    	}
+    	else 
+    	{
+    		this.maxHP = Database.getMaxHP(this.heroName);
+		}
     }
 
 	@Override
