@@ -4,16 +4,19 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+
 import com.card.interfaces.*;
 import com.logic.interfaces.IPlayer;
 import com.system.constants.CardConst;
 import com.system.enums.GameState;
+import com.system.utils.IDatabase;
 
 public abstract class APlayer implements IPlayer{
 
+	public IDatabase Database;
+	
 	 protected int maxHP;
-
-	protected int currentHP;
+	 protected int currentHP;
 	 protected List<ACard> hands;
 	 protected  AmorCard amor;
 	 protected PlusMountCard plusMount;
@@ -21,6 +24,9 @@ public abstract class APlayer implements IPlayer{
 	 protected WeaponCard weapon;
 	 protected int attackRange;
 	 protected int position; //0 1 2 3 4 
+	 protected String heroName;
+	 protected String roleName;
+	 protected int roleType;
 	 public GameState gameState;
 	 
 

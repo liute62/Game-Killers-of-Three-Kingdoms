@@ -3,6 +3,7 @@ package com.logic.player;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import com.card.interfaces.ACard;
 import com.logic.interfaces.IPlayer;
 
@@ -12,8 +13,13 @@ public class Player extends APlayer{
          this.attackRange = 1;
          this.hands = new ArrayList<ACard>();
     }
+     
+    
+    public Player(String heroName, int roleType) {
+		// TODO Auto-generated constructor stub
+	}
 
-    @Override
+	@Override
     public boolean strike(IPlayer target) {
         // TODO Auto-generated method stub
 
