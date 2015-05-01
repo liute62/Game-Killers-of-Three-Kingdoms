@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.card.interfaces.ACard;
 import com.logic.interfaces.IPlayer;
+import com.logic.test.PlayerInitializationTest;
 
 public class Player extends APlayer{
      public Player() {
@@ -17,7 +18,15 @@ public class Player extends APlayer{
     
     public Player(String heroName, int roleType) {
 		// TODO Auto-generated constructor stub
+    	this.heroName = heroName;
+    	this.roleType = roleType;
+    	this.attackRange = 1;
+        this.hands = new ArrayList<ACard>();
 	}
+    
+    public void initializePlayerInfo() {
+    	this.maxHP = Database.getMaxHP(this.heroName);
+    }
 
 	@Override
     public boolean strike(IPlayer target) {

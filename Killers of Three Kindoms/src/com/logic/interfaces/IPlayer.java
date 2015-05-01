@@ -21,4 +21,6 @@ public interface IPlayer {
 	void dropCards(ArrayList<Integer> idList);
 	
 	void drawACard();
+	
+	void initializePlayerInfo();
 }

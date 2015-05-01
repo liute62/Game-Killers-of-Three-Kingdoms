@@ -29,6 +29,7 @@ public class PlayerInitializationTest {
 		APlayer p1 = new Player(heroName, roleType);
 		p1.Database = mockDB;
 		
+		p1.initializePlayerInfo();
 		assertEquals(4, p1.getMaxHP());
 		EasyMock.verify(mockDB);
 		
