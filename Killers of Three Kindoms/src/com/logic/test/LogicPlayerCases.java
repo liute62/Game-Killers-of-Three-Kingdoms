@@ -11,6 +11,7 @@ import com.card.base.PeachCard;
 import com.card.base.StrikeCard;
 import com.card.equipment.BlackPommelCard;
 import com.card.equipment.EightDiagramFormationCard;
+import com.card.equipment.RedHareCard;
 import com.card.interfaces.ACard;
 import com.logic.player.APlayer;
 import com.logic.player.Player;
@@ -75,6 +76,7 @@ public class LogicPlayerCases {
 		Assert.assertEquals(2, player.getCurrentHP());
 	}
 	
+	@Test
 	public void test6_CheckEquipment_1(){
 		initial();
 		BlackPommelCard card = new BlackPommelCard();
@@ -82,10 +84,19 @@ public class LogicPlayerCases {
 		Assert.assertEquals(card,player.getWeapon());
 	}
 	
+	@Test
 	public void test7_CheckEquipment_2() {
 		initial();
 		EightDiagramFormationCard card = new EightDiagramFormationCard();
 		player.setAmor(card);
 		Assert.assertEquals(card, player.getAmor());
+	}
+	
+	@Test
+	public void test8_CheckEquipment_3(){
+		initial();
+		RedHareCard card = new RedHareCard();
+		player.setMinusMount(card);
+		Assert.assertEquals(card, player.getMinusMount());
 	}
 }
