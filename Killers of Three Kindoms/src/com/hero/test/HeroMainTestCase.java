@@ -6,6 +6,7 @@ import com.card.base.DodgeCard;
 import com.card.base.StrikeCard;
 import com.card.interfaces.ACard;
 import com.hero.skills.active.GuanYu_MasterOfWarfare;
+import com.hero.skills.active.ZhaoYun_Courage;
 import com.hero.skills.interfaces.ISkill;
 import com.logic.player.APlayer;
 import com.logic.player.Player;
@@ -170,6 +171,23 @@ public class HeroMainTestCase {
         player.setHands(cards);
         player.activateSkill(cards, Arrays.asList(player1));
         assertEquals(0, player.getHands().size());
+    }
+
+    @Test
+    public void testOtherCanNotUseZhaoYunSSkill() {
+        APlayer player = new Player();
+        APlayer player1 = new Player();
+        player.setCurrentHP(5);
+        player.setAttackRange(1);
+        player.setPosition(1);
+        player1.setCurrentHP(5);
+        player1.setPosition(3);
+        ISkill skill = new ZhaoYun_Courage();
+        ACard strikeCard = new StrikeCard();
+        strikeCard.setSuit(SuitConst.SuitType_Hearts);
+        player.setName(HeroName.GuanYu);
+        player.setSkill(skill);
+        assertEquals(false, player.checkSkill(Arrays.asList(strikeCard), Arrays.asList(player1)));
     }
 
 }
