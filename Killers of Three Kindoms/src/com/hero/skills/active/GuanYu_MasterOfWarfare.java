@@ -1,5 +1,6 @@
 package com.hero.skills.active;
 
+import com.card.base.StrikeCard;
 import com.card.interfaces.ACard;
 import com.hero.skills.interfaces.ISkill;
 import com.logic.player.APlayer;
@@ -24,6 +25,7 @@ public class GuanYu_MasterOfWarfare implements ISkill {
         }
         return operator.getName().equals(HeroName.GuanYu)
                 && cards.get(0).getSuit() != SuitConst.SuitType_Spades
-                && cards.get(0).getSuit() != SuitConst.SuitType_Clubs;
+                && cards.get(0).getSuit() != SuitConst.SuitType_Clubs
+                && (new StrikeCard()).checkTarget(operator, players);
     }
 }
