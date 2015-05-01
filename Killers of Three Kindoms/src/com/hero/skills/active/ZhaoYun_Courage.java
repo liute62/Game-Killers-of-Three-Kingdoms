@@ -3,6 +3,7 @@ package com.hero.skills.active;
 import com.card.interfaces.ACard;
 import com.hero.skills.interfaces.ISkill;
 import com.logic.player.APlayer;
+import com.system.constants.CardConst;
 import com.system.enums.HeroName;
 
 import java.util.List;
@@ -16,6 +17,8 @@ public class ZhaoYun_Courage implements ISkill {
 
     @Override
     public boolean check(APlayer operator, List<ACard> cards, List<APlayer> players) {
-        return operator.getName().equals(HeroName.ZhaoYun);
+        return operator.getName().equals(HeroName.ZhaoYun)
+                && (cards.get(0).getType() == CardConst.CardType_Dodge
+                || cards.get(0).getType() == CardConst.CardType_Strike);
     }
 }
