@@ -1,9 +1,61 @@
 package com.system.utils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.logic.player.APlayer;
+import com.logic.player.Player;
 
 public class PlayerUtil {
 
+	private static PlayerUtil instance = null;
+	private APlayer player;
+	private List<APlayer> players;
+	
+	private PlayerUtil() {
+		setPlayers(playerInitial());
+		setPlayer(getPlayers().get(0));
+	}
+	
+	public static PlayerUtil getInstance() {
+		if (instance == null) {
+			return new PlayerUtil();
+		}
+		return instance;
+	}
+	
+	private List<APlayer> playerInitial(){
+		List<APlayer> data = new ArrayList<APlayer>();
+		APlayer player1 = new Player();
+		APlayer player2 = new Player();
+		APlayer player3 = new Player();
+		APlayer player4 = new Player();
+		APlayer player5 = new Player();
+		data.add(player1);
+		data.add(player2);
+		data.add(player3);
+		data.add(player4);
+		data.add(player5);
+		initPos(data);
+		initInfo(data);
+		return data;
+	}
+	
+	private void initPos(List<APlayer> players){
+		for (int i = 0; i < players.size(); i++) {
+			players.get(i).setPosition(i+1);
+			int tmp = i+1;
+			if (tmp > players.size() - 1) {
+				tmp = 0;
+			}
+			players.get(i).setNextPlayer(players.get(tmp));
+		}
+	}
+	
+	private void initInfo(List<APlayer> players){
+		
+	}
+	
     /**
      * Calculate the distance between two player.
      * 1. clockwise direction;
@@ -34,4 +86,20 @@ public class PlayerUtil {
         }
         return distance;
     }
+
+	public List<APlayer> getPlayers() {
+		return players;
+	}
+
+	public void setPlayers(List<APlayer> players) {
+		this.players = players;
+	}
+
+	public APlayer getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(APlayer player) {
+		this.player = player;
+	}
 }

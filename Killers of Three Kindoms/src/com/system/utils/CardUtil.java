@@ -6,12 +6,20 @@ import java.util.List;
 import java.util.Random;
 
 import com.card.interfaces.ACard;
+import com.logic.player.APlayer;
+import com.logic.player.Player;
 
 
 public class CardUtil {
 
 	private static CardUtil instance;
 	
+	public static CardUtil getInstance() {
+		if (instance == null) {
+			return new CardUtil();
+		}
+		return instance;
+	}
 	
 	/**
 	 * Shuffle the card after game reset.

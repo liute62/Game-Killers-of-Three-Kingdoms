@@ -18,7 +18,7 @@ public class PlayerUtilTestcase {
     
     @Before
     public void setUp() {
-        playerUtil = new PlayerUtil();
+        playerUtil = PlayerUtil.getInstance();
     }
     
     @Test

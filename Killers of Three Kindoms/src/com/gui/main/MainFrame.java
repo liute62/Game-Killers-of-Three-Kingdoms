@@ -1,8 +1,14 @@
 package com.gui.main;
 
+import java.util.List;
+
 import javax.swing.JFrame;
+
+import com.logic.player.APlayer;
+import com.logic.player.Player;
 import com.system.constants.GUIConst;
 import com.system.utils.DebugUtil;
+import com.system.utils.PlayerUtil;
 
 public class MainFrame extends JFrame{
 
@@ -11,7 +17,7 @@ public class MainFrame extends JFrame{
 	private SelectHeroPanel selectHeroPanel;
 	private MainPanel mainPanel;
 	private static GameThread gt;
-
+	private APlayer firstPlayer;
 	public static MainFrame getInstance(){
 		if(instance == null){
 			return new MainFrame();
@@ -75,6 +81,11 @@ public class MainFrame extends JFrame{
 	}
 	
 	public void startGame() {
-		
+		initial();
+		firstPlayer.playerProcess();
+	}
+	
+	private void initial(){
+		firstPlayer = PlayerUtil.getInstance().getPlayer();
 	}
 }
