@@ -12,6 +12,8 @@ import com.system.enums.HeroName;
 import com.system.enums.RoleType;
 
 public class Player extends APlayer{
+	
+	 PlayerProcess playerProcess;
      public Player() {
         // TODO Auto-generated constructor stub
 
@@ -19,27 +21,9 @@ public class Player extends APlayer{
          this.attackAbility = 1;
          this.attackRange = 1;
          this.hands = new ArrayList<ACard>();
+         playerProcess = new PlayerProcess(this);
     }
-     
-    
-//    public Player(String heroName, int roleType) {
-//		// TODO Auto-generated constructor stub
-//    	this.heroName = heroName;
-//    	this.roleType = roleType;
-//    	this.attackRange = 1;
-//        this.hands = new ArrayList<ACard>();
-//	}
-//    
-//    public void initializePlayerInfo() {
-//    	if(this.roleType == 1)
-//    	{
-//    		this.maxHP = Database.getMaxHP(this.heroName) + 1;
-//    	}
-//    	else 
-//    	{
-//    		this.maxHP = Database.getMaxHP(this.heroName);
-//		}
-//    }
+
 
 	public Player(HeroName name, RoleType roleType) {
 		// TODO Auto-generated constructor stub
@@ -128,7 +112,12 @@ public class Player extends APlayer{
     		this.maxHP = Database.getMaxHP(this.name);
 		}
 	}
-	
-	
 
+
+	@Override
+	public void playerProcess() {
+		// TODO Auto-generated method stub
+		playerProcess.start();
+	}
+	
 }

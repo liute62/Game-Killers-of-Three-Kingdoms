@@ -34,11 +34,12 @@ public abstract class APlayer implements IPlayer{
 	 protected HeroName name;
 	 protected RoleType roleType;
 	 
-	public GameState gameState;
+	 public GameState gameState;
 	 protected ISkill skill;
 	 protected int drawCardNum = 2;
 	 protected int discardNum = 0;
 	 protected ACard beingUsedCard;
+	 private APlayer nextPlayer;
 
 	 
 	 public List<ACard> getAvailableCards(List<ACard> cards){ 
@@ -209,6 +210,14 @@ public abstract class APlayer implements IPlayer{
     public ACard getBeingUsedCard(){
     	return beingUsedCard;
     }
+
+	public APlayer getNextPlayer() {
+		return nextPlayer;
+	}
+
+	public void setNextPlayer(APlayer nextPlayer) {
+		this.nextPlayer = nextPlayer;
+	}
 }
 
 

@@ -55,4 +55,10 @@ public class BattleFieldPanel extends JPanel{
 		cardPanel.setLocation(cardPanel.getWidth()*i, 20);
 		repaint();
 	}
+	
+	public void clear(){
+		cards.clear();
+		this.removeAll();
+		repaint();
+	}
 }

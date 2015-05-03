@@ -23,4 +23,6 @@ public interface IPlayer {
 	void drawACard();
 	
 	void initializePlayerInfo();
+	
+	void playerProcess();
 }
