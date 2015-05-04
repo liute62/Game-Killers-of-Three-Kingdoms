@@ -9,7 +9,7 @@ import java.util.ListIterator;
 import com.card.interfaces.ACard;
 import com.logic.player.APlayer;
 import com.logic.player.Player;
-import com.system.enums.GameState;
+import com.system.enums.GameStage;
 import com.system.utils.DebugUtil;
 
 public class AIAction {
@@ -20,6 +20,10 @@ public class AIAction {
 	private APlayer target;
 	public AIAction(APlayer player){
 		this.setPlayer(player);
+	}
+	
+	public void process(){
+		
 	}
 	
 	/**
@@ -47,7 +51,7 @@ public class AIAction {
 	 * 7.then finish.
 	 */
 	public void castCard(){
-		player.gameState = GameState.castCard;
+		player.gameStage = GameStage.castCard;
 		List<ACard> cards = player.getAvailableCards(player.getHands());
 		setAvailableCards(cards);
 		player.setBeingUsedCard(cards.get(castCardIndex));

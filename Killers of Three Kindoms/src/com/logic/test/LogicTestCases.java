@@ -13,7 +13,7 @@ import com.card.interfaces.ACard;
 import com.logic.player.APlayer;
 import com.logic.player.Player;
 import com.system.constants.CardConst;
-import com.system.enums.GameState;
+import com.system.enums.GameStage;
 
 public class LogicTestCases {
 
@@ -47,15 +47,15 @@ public class LogicTestCases {
 		return list;
 	}
 	
-	List<ACard> generateAvailableCards(int num,GameState state){
+	List<ACard> generateAvailableCards(int num,GameStage state){
 		List<ACard> list = new ArrayList<ACard>();
-		if(state == GameState.begin){
+		if(state == GameStage.begin){
 			return list;
-		}if(state == GameState.check){
+		}if(state == GameStage.check){
 			return list;
-		}if(state == GameState.drawCard){
+		}if(state == GameStage.drawCard){
 			return list;
-		}if(state == GameState.castCard){
+		}if(state == GameStage.castCard){
 		}
 		for (int i = 0; i < num; i++) {
 			ACard card = null;
@@ -96,49 +96,49 @@ public class LogicTestCases {
 	@Test
 	public void testForBeginState(){
 		Player player = generateTestPlayer();
-		player.gameState = GameState.begin;
-		Assert.assertEquals(generateAvailableCards(10,GameState.begin),player.getAvailableCards(generateTestCards(10)));
+		player.gameStage = GameStage.begin;
+		Assert.assertEquals(generateAvailableCards(10,GameStage.begin),player.getAvailableCards(generateTestCards(10)));
 	}
 	
 	@Test
 	public void testForCheckState(){
 		Player player = generateTestPlayer();
-		player.gameState = GameState.check;
-		Assert.assertEquals(generateAvailableCards(10,GameState.check),player.getAvailableCards(generateTestCards(10)));
+		player.gameStage = GameStage.check;
+		Assert.assertEquals(generateAvailableCards(10,GameStage.check),player.getAvailableCards(generateTestCards(10)));
 	}
 	
 	@Test
 	public void testForDrawCardState(){
 		Player player = generateTestPlayer();
-		player.gameState = GameState.drawCard;
-		Assert.assertEquals(generateAvailableCards(10,GameState.drawCard),player.getAvailableCards(generateTestCards(10)));
+		player.gameStage = GameStage.drawCard;
+		Assert.assertEquals(generateAvailableCards(10,GameStage.drawCard),player.getAvailableCards(generateTestCards(10)));
 	}
 	
 	@Test
 	public void testForCastCardState(){
 		Player player = generateTestPlayer();
-		player.gameState = GameState.castCard;
-		Assert.assertEquals(generateAvailableCards(10,GameState.castCard),player.getAvailableCards(generateTestCards(10)));
+		player.gameStage = GameStage.castCard;
+		Assert.assertEquals(generateAvailableCards(10,GameStage.castCard),player.getAvailableCards(generateTestCards(10)));
 	}
 	
 	@Test
 	public void testForCastCardStateAndDodgeCard(){
 		Player player = generateTestPlayer();
-		player.gameState = GameState.castCard;
+		player.gameStage = GameStage.castCard;
 		Assert.assertEquals(generateAvailableCards_castCard_Dodge(10,10),player.getAvailableCards(generateTestDodgeCards(10)));
 	}
 	
 	@Test
 	public void testForDropCardState(){
 		Player player = generateTestPlayer();
-		player.gameState = GameState.dropCard;
-		Assert.assertEquals(generateAvailableCards(10,GameState.dropCard),player.getAvailableCards(generateTestCards(10)));
+		player.gameStage = GameStage.discard;
+		Assert.assertEquals(generateAvailableCards(10,GameStage.discard),player.getAvailableCards(generateTestCards(10)));
 	}
 	
 	@Test
 	public void testForEndState(){
 		Player player = generateTestPlayer();
-		player.gameState = GameState.end;
-		Assert.assertEquals(generateAvailableCards(10,GameState.end),player.getAvailableCards(generateTestCards(10)));
+		player.gameStage = GameStage.end;
+		Assert.assertEquals(generateAvailableCards(10,GameStage.end),player.getAvailableCards(generateTestCards(10)));
 	}
 }

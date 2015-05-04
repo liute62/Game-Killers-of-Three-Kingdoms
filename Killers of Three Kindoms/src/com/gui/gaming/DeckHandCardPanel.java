@@ -21,6 +21,7 @@ import com.card.base.DodgeCard;
 import com.card.base.PeachCard;
 import com.card.base.StrikeCard;
 import com.card.interfaces.ACard;
+import com.logic.player.APlayer;
 import com.system.constants.GUIConst;
 import com.system.utils.DebugUtil;
 
@@ -32,6 +33,7 @@ import com.system.utils.DebugUtil;
 public class DeckHandCardPanel extends JPanel{
 
 	private static final long serialVersionUID = -5337278012812148749L;
+	APlayer player;
 	List<CardPanel> cardPanels;
 	List<ACard> cards;
 	BtnPanel sureBtnPanel;
@@ -41,14 +43,8 @@ public class DeckHandCardPanel extends JPanel{
 	boolean isCardAvailablePanel;
 	private static DeckHandCardPanel instance = null;
 	
-	public static DeckHandCardPanel Instance(){
-		if(instance == null){
-			instance = new DeckHandCardPanel();
-		}
-		return instance;
-	}
-	
-	public DeckHandCardPanel(){
+	public DeckHandCardPanel(APlayer player){
+		this.player = player;
 		instance = this;
 		this.setLayout(null);
 		initial();
@@ -198,6 +194,15 @@ public class DeckHandCardPanel extends JPanel{
 		
 		class skipListener extends MyClick{
 			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				super.mouseReleased(e);
+				DebugUtil.print("pressed skip player id:"+player.getId());
+				DebugUtil.print(player.isSkipped());
+				player.setSkipped(true);
+				DebugUtil.print(player.isSkipped());
+			}
 		}
 		
 		class SureListener extends MyClick{

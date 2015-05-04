@@ -61,7 +61,8 @@ public class MainFrame extends JFrame{
 		DebugUtil.print("loadMain");
 		this.remove(selectHeroPanel);
 		repaint();
-		mainPanel = new MainPanel();
+		createPlayer();
+		mainPanel = new MainPanel(firstPlayer);
 		add(mainPanel);
 		startThread();
 	}
@@ -81,11 +82,10 @@ public class MainFrame extends JFrame{
 	}
 	
 	public void startGame() {
-		initial();
 		firstPlayer.playerProcess();
 	}
 	
-	private void initial(){
+	private void createPlayer(){
 		firstPlayer = PlayerUtil.getInstance().getPlayer();
 	}
 }

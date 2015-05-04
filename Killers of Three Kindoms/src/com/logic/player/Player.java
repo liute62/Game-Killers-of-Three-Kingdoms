@@ -14,13 +14,32 @@ import com.system.enums.RoleType;
 public class Player extends APlayer{
 	
 	 PlayerProcess playerProcess;
-     public Player() {
-        // TODO Auto-generated constructor stub
-
+	 
+	 public Player(){
+		 this.setAI(false);
+		 this.maxHP = 5;
+         this.attackAbility = 1;
+         this.attackRange = 1;
+         this.hands = new ArrayList<ACard>();
+         this.setSkipped(false);
+         this.setCastingcard(false);
+         playerProcess = new PlayerProcess(this);
+	 }
+	 
+     public Player(boolean isAI,int id) {
+    	 this.setId(id);
+    	 if (isAI) {
+			this.setAI(true);
+		 }else {
+			this.setAI(false);
+		 }
          this.maxHP = 5;
          this.attackAbility = 1;
          this.attackRange = 1;
          this.hands = new ArrayList<ACard>();
+         this.setSkipped(false);
+         this.setCastingcard(false);
+         this.setUsingSkill(false);
          playerProcess = new PlayerProcess(this);
     }
 

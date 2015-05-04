@@ -13,10 +13,12 @@ import com.gui.gaming.MessagePanel;
 import com.system.constants.GUIConst;
 import com.system.constants.MainConst;
 import com.gui.gaming.*;
+import com.logic.player.APlayer;
 
 public class MainPanel extends JPanel{
 
 
+	APlayer player;
 	private static final long serialVersionUID = 214504522875008913L;
 	DeckPanel deckPanel;
 	BattleFieldPanel battleFieldPanel;
@@ -25,7 +27,8 @@ public class MainPanel extends JPanel{
 	private MessagePanel messagePanel;
 	
 	
-	public MainPanel() {
+	public MainPanel(APlayer player) {
+		this.player = player;
 		initial();
 		this.setSize(GUIConst.mainPanelWidth,GUIConst.mainPanelHeight);
 		this.setLocation(0,0);
@@ -47,7 +50,7 @@ public class MainPanel extends JPanel{
 		exitBtn = new JButton("Exit");
 		battleFieldPanel = BattleFieldPanel.Instance();
 		otherPlayerPanels = new ArrayList<OtherPlayerPanel>();
-		deckPanel = new DeckPanel();
+		deckPanel = new DeckPanel(player);
 	}
 	
 	private void setMessagePanel(){

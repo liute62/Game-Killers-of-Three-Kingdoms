@@ -5,6 +5,7 @@ import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+import com.logic.player.APlayer;
 import com.system.constants.GUIConst;
 import com.system.utils.DebugUtil;
 
@@ -16,13 +17,14 @@ import com.system.utils.DebugUtil;
 public class DeckPanel extends JPanel{
 	
 
+	APlayer player;
 	private static final long serialVersionUID = 8244929675740650403L;
-
 	private DeckEquipmentPanel deckEquipmentPanel;
 	private DeckHandCardPanel deckHandCardPanel;
 	private DeckProfilePanel deckProfilePanel;
 	
-	public DeckPanel(){
+	public DeckPanel(APlayer player){
+		this.player = player;
 		initial();
 		this.setLayout(null);
 		this.setSize(GUIConst.mainFrameWidth,GUIConst.mainFrameHeight/3-30);
@@ -36,7 +38,7 @@ public class DeckPanel extends JPanel{
 	
 	private void initial(){
 		deckEquipmentPanel = DeckEquipmentPanel.Instance();
-		deckHandCardPanel = DeckHandCardPanel.Instance();
+		deckHandCardPanel = new DeckHandCardPanel(player);
 		deckProfilePanel = new DeckProfilePanel(5);
 	}
 	

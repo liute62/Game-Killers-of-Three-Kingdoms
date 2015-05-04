@@ -1,5 +1,6 @@
 package com.system.utils;
 
+
 public class DebugUtil {
 
 	public static void print(String param) {
@@ -17,5 +18,9 @@ public class DebugUtil {
 	
 	public static void print(){
 		System.out.println("success print!");
+	}
+	
+	public static void print(boolean param){
+		System.out.println(String.valueOf(param));
 	}
 }

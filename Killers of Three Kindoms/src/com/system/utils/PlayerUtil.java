@@ -26,11 +26,11 @@ public class PlayerUtil {
 	
 	private List<APlayer> playerInitial(){
 		List<APlayer> data = new ArrayList<APlayer>();
-		APlayer player1 = new Player();
-		APlayer player2 = new Player();
-		APlayer player3 = new Player();
-		APlayer player4 = new Player();
-		APlayer player5 = new Player();
+		APlayer player1 = new Player(false,0);
+		APlayer player2 = new Player(true,1);
+		APlayer player3 = new Player(true,2);
+		APlayer player4 = new Player(true,3);
+		APlayer player5 = new Player(true,4);
 		data.add(player1);
 		data.add(player2);
 		data.add(player3);

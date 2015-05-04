@@ -63,5 +63,10 @@ public class MessagePanel extends JPanel{
 		contents.add(jLabel);
 		this.add(jLabel);
 	}
+	
+	public void clear(){
+		msgList.clear();
+		showMessage();
+	}
 
 }

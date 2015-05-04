@@ -9,15 +9,15 @@ import com.card.interfaces.*;
 import com.hero.skills.interfaces.ISkill;
 import com.logic.interfaces.IPlayer;
 import com.system.constants.CardConst;
-import com.system.enums.GameState;
+import com.system.enums.GameStage;
 import com.system.enums.HeroName;
 import com.system.enums.RoleType;
 import com.system.utils.IDatabase;
 
 public abstract class APlayer implements IPlayer{
 
-	public IDatabase Database;
-	
+	 public IDatabase Database;
+	 private int id;
 	 protected int maxHP;
 	 protected int currentHP;
 	 protected List<ACard> hands;
@@ -34,18 +34,22 @@ public abstract class APlayer implements IPlayer{
 	 protected HeroName name;
 	 protected RoleType roleType;
 	 
-	 public GameState gameState;
+	 public GameStage gameStage;
 	 protected ISkill skill;
 	 protected int drawCardNum = 2;
 	 protected int discardNum = 0;
 	 protected ACard beingUsedCard;
 	 private APlayer nextPlayer;
+	 private boolean isAI;
+	 private boolean isSkipped;
+	 private boolean castingcard;
+	 private boolean usingSkill;
 
 	 
 	 public List<ACard> getAvailableCards(List<ACard> cards){ 
-		 if(gameState == GameState.begin || gameState == gameState.check || gameState == GameState.drawCard){
+		 if(gameStage == GameStage.begin || gameStage == gameStage.check || gameStage == GameStage.drawCard){
 			 return new ArrayList<ACard>();
-		 }if(gameState == GameState.castCard){
+		 }if(gameStage == GameStage.castCard){
 			 List<ACard> listType = new ArrayList<ACard>();
 			 for (ACard c : cards) {
 					if (c != null && c.getType() == CardConst.CardType_Dodge) {
@@ -218,6 +222,48 @@ public abstract class APlayer implements IPlayer{
 	public void setNextPlayer(APlayer nextPlayer) {
 		this.nextPlayer = nextPlayer;
 	}
+
+	public boolean isSkipped() {
+		return isSkipped;
+	}
+
+	public void setSkipped(boolean isSkipped) {
+		this.isSkipped = isSkipped;
+	}
+
+	public boolean isCastingcard() {
+		return castingcard;
+	}
+
+	public void setCastingcard(boolean castingcard) {
+		this.castingcard = castingcard;
+	}
+
+	public boolean isUsingSkill() {
+		return usingSkill;
+	}
+
+	public void setUsingSkill(boolean usingSkill) {
+		this.usingSkill = usingSkill;
+	}
+
+	public boolean isAI() {
+		return isAI;
+	}
+
+	public void setAI(boolean isAI) {
+		this.isAI = isAI;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
 }
 
 
