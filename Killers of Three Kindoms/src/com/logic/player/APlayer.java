@@ -45,7 +45,11 @@ public abstract class APlayer implements IPlayer{
 	 private boolean castingcard;
 	 private boolean usingSkill;
 
-	 
+	 /**
+	  * check if a card can be casted.
+	  * @param cards always be the player's handcard.
+	  * @return a list of cards can be casted.
+	  */
 	 public List<ACard> getAvailableCards(List<ACard> cards){ 
 		 if(gameStage == GameStage.begin || gameStage == gameStage.check || gameStage == GameStage.drawCard){
 			 return new ArrayList<ACard>();

@@ -22,7 +22,9 @@ import com.card.base.PeachCard;
 import com.card.base.StrikeCard;
 import com.card.interfaces.ACard;
 import com.logic.player.APlayer;
+import com.system.constants.CardConst;
 import com.system.constants.GUIConst;
+import com.system.utils.CardUtil;
 import com.system.utils.DebugUtil;
 
 /**
@@ -70,14 +72,11 @@ public class DeckHandCardPanel extends JPanel{
 	}
 	
 	private void addDataForTest(){
-		PeachCard peachCard = new PeachCard();
-		cardPanels.add(new CardPanel(peachCard));
-		DodgeCard dodgeCard = new DodgeCard();
-		cardPanels.add(new CardPanel(dodgeCard));
-		StrikeCard strikeCard = new StrikeCard();
-		DodgeCard dodgeCard2 = new DodgeCard();
-		cardPanels.add(new CardPanel(dodgeCard2));
-		cardPanels.add(new CardPanel(strikeCard));
+		cards = CardUtil.getInstance().getInitialCards(player);
+		player.setHands(cards);
+		for (int i = 0; i < cards.size(); i++) {
+			cardPanels.add(new CardPanel(cards.get(i)));
+		}
 	}
 	
 	private void cardInitial(){
@@ -217,10 +216,18 @@ public class DeckHandCardPanel extends JPanel{
 				for (int i = 0; i < cardPanels.size(); i++) {
 					if(cardPanels.get(i).isSelected){
 						CardPanel tmp = cardPanels.get(i);
-						removedList.add(tmp);
-						BattleFieldPanel.Instance().addACard(player,tmp.getCard());
-						tmp.unselect();
-						DeckHandCardPanel.this.remove(tmp);
+						if (player.getAvailableCards(player.getHands()).contains(tmp.getCard())) {
+							//this card can be used
+							removedList.add(tmp);
+							BattleFieldPanel.Instance().addACard(player,tmp.getCard());
+							tmp.unselect();
+							DeckHandCardPanel.this.remove(tmp);
+							player.setCastingcard(true);
+						}else {
+							tmp.unselect();
+							player.setCastingcard(false);
+						}
+						
 					}
 				}
 				cardPanels.removeAll(removedList);

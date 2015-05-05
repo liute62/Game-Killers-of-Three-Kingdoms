@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import com.card.base.DodgeCard;
+import com.card.base.PeachCard;
+import com.card.base.StrikeCard;
 import com.card.interfaces.ACard;
 import com.logic.player.APlayer;
 import com.logic.player.Player;
@@ -21,6 +24,14 @@ public class CardUtil {
 		return instance;
 	}
 	
+	public List<ACard> getInitialCards(APlayer player){
+		List<ACard> cards = new ArrayList<ACard>();
+		cards.add(new PeachCard());
+		cards.add(new StrikeCard());
+		cards.add(new PeachCard());
+		cards.add(new DodgeCard());
+		return cards;
+	}
 	/**
 	 * Shuffle the card after game reset.
 	 * Shuffle uses the following algorithm:
