@@ -43,14 +43,14 @@ public class PlayerProcess {
 	private void stage_begin(){
 		player.gameStage = GameStage.begin;
 		BattleFieldPanel.Instance().clear();
-		MessagePanel.Instance().addAMessage(player.getName() + "begin stage");
+		MessagePanel.Instance().addAMessage(player.getName() + " begin stage",1);
 		//refresh
 	}
 	
 	private void stage_check(){
 		player.gameStage = GameStage.check;
 		BattleFieldPanel.Instance().clear();
-		MessagePanel.Instance().addAMessage(player.getName()+"check stage");
+		MessagePanel.Instance().addAMessage(player.getName()+" check stage");
 		//get the cards for check
 		//check for delay skill
 		//refresh
@@ -59,7 +59,7 @@ public class PlayerProcess {
 	private void stage_drawcard(){
 		player.gameStage = GameStage.drawCard;
 		BattleFieldPanel.Instance().clear();
-		MessagePanel.Instance().addAMessage(player.getName()+"drawCard stage");
+		MessagePanel.Instance().addAMessage(player.getName()+" drawCard stage");
 		player.drawACard();
 		player.drawACard();
 		//refresh
@@ -73,8 +73,8 @@ public class PlayerProcess {
 			return ;
 		}
 		//if is player
-		MessagePanel.Instance().addAMessage(player.getName()+"castCard stage");
-		DebugUtil.print("castcard player id:"+player.getId());
+		MessagePanel.Instance().addAMessage(player.getName()+" castCard stage");
+		//DebugUtil.print("castcard player id:"+player.getId());
 		while(! player.isSkipped()){
 			
 			if (player.isCastingcard()) {
@@ -92,7 +92,7 @@ public class PlayerProcess {
 	
 	private void stage_discard(){
 		player.gameStage = GameStage.discard;
-		MessagePanel.Instance().addAMessage(player.getName()+"discard stage");
+		MessagePanel.Instance().addAMessage(player.getName()+" discard stage");
 		if (player.isAI()) {
 			new AIAction(player).dropCard();
 			return ;
@@ -101,7 +101,7 @@ public class PlayerProcess {
 	
 	private void stage_end(){
 		player.gameStage = GameStage.end;
-		MessagePanel.Instance().addAMessage(player.getName()+"end stage");
+		MessagePanel.Instance().addAMessage(player.getName()+" end stage",1);
 	}
 	
 	private void nextPlayer(){

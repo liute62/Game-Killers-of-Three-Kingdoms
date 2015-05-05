@@ -44,7 +44,9 @@ public class GUIConst {
 	
 	public static final int HPPanelHeight = 120;
 	
-	public static final int messagePanelWidth = 180;
+	public static final int messagePanelWidth = 190;
 	
 	public static final int messagePanelHeight = 400;
+	
+	public static final int messageLabelHeight = 20;
 }

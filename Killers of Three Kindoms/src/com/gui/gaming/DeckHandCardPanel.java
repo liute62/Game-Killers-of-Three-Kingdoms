@@ -218,7 +218,7 @@ public class DeckHandCardPanel extends JPanel{
 					if(cardPanels.get(i).isSelected){
 						CardPanel tmp = cardPanels.get(i);
 						removedList.add(tmp);
-						BattleFieldPanel.Instance().addACard(tmp.getCard());
+						BattleFieldPanel.Instance().addACard(player,tmp.getCard());
 						tmp.unselect();
 						DeckHandCardPanel.this.remove(tmp);
 					}

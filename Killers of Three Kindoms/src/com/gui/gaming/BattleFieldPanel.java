@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 import com.card.interfaces.ACard;
 import com.gui.gaming.DeckHandCardPanel.BtnPanel;
+import com.logic.player.APlayer;
 import com.system.constants.GUIConst;
 import com.system.utils.DebugUtil;
 
@@ -46,8 +47,8 @@ public class BattleFieldPanel extends JPanel{
 		cards = new ArrayList<>();
 	}
 	
-	public void addACard(ACard card){
-		MessagePanel.Instance().addAMessage("xxxx"+" cast "+card.getName()+" card.");
+	public void addACard(APlayer player,ACard card){
+		MessagePanel.Instance().addAMessage(player.getName()+" cast "+card.getName()+" card.");
 		cards.add(card);	
 		int i = cards.size() - 1;
 		CardPanel cardPanel = new CardPanel(card);

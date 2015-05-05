@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.logic.player.APlayer;
 import com.logic.player.Player;
+import com.system.enums.HeroName;
 
 public class PlayerUtil {
 
@@ -53,7 +54,11 @@ public class PlayerUtil {
 	}
 	
 	private void initInfo(List<APlayer> players){
-		
+		players.get(0).setName(HeroName.ZhaoYun);
+		players.get(1).setName(HeroName.GuanYu);
+		players.get(2).setName(HeroName.CaoCao);
+		players.get(3).setName(HeroName.GuoJia);
+		players.get(4).setName(HeroName.ZhangLiao);
 	}
 	
     /**
