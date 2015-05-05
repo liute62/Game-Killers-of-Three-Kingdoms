@@ -13,7 +13,7 @@ import com.hero.skills.interfaces.ISkill;
 import com.hero.skills.trigger.GuoJia_Talented;
 import com.logic.player.APlayer;
 import com.logic.player.Player;
-import com.system.enums.GameState;
+import com.system.enums.GameStage;
 import com.system.enums.HeroName;
 
 public class HeroSkillTest {
@@ -39,7 +39,7 @@ public class HeroSkillTest {
 		APlayer p1 = new Player();
 		APlayer p2 = new Player();
 		ACard dodgeCard = new DodgeCard();
-		p1.gameState = GameState.check;
+		p1.gameStage = GameStage.check;
 		p1.setMaxHP(3);
 		p1.setCurrentHP(3);
 		p1.setName(HeroName.GuoJia);
@@ -56,7 +56,7 @@ public class HeroSkillTest {
 		APlayer p1 = new Player();
 		APlayer p2 = new Player();
 		ACard dodgeCard = new DodgeCard();
-		p1.gameState = GameState.begin;
+		p1.gameStage = GameStage.begin;
 		p1.setMaxHP(3);
 		p1.setCurrentHP(3);
 		p1.setName(HeroName.GuoJia);
@@ -72,7 +72,7 @@ public class HeroSkillTest {
 		APlayer p1 = new Player();
 		APlayer p2 = new Player();
 		ACard checkCard = null;
-		p1.gameState = GameState.check;
+		p1.gameStage = GameStage.check;
 		p1.setMaxHP(3);
 		p1.setCurrentHP(3);
 		p1.setName(HeroName.GuoJia);
@@ -87,7 +87,7 @@ public class HeroSkillTest {
 		APlayer p1 = new Player();
 		APlayer p2 = new Player();
 		ACard dodgeCard = new DodgeCard();
-		p1.gameState = GameState.begin;
+		p1.gameStage = GameStage.begin;
 		p1.setMaxHP(3);
 		p1.setCurrentHP(3);
 		p1.setName(HeroName.GuoJia);

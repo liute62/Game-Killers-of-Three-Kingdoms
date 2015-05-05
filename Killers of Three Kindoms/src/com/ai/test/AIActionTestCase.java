@@ -16,7 +16,7 @@ import com.card.base.StrikeCard;
 import com.card.interfaces.ACard;
 import com.logic.player.APlayer;
 import com.logic.player.Player;
-import com.system.enums.GameState;
+import com.system.enums.GameStage;
 import com.system.utils.DebugUtil;
 
 public class AIActionTestCase {
@@ -79,7 +79,7 @@ public class AIActionTestCase {
 	
 	private ACard result_test_7_8(int strikeNum,int dodgeNum,int peachNum,int index){
 		APlayer result = new Player();
-		result.gameState = GameState.castCard;
+		result.gameStage = GameStage.castCard;
 		List<ACard> tmp = getHandsList(strikeNum,dodgeNum,peachNum);
 		result.setHands(tmp);
 		List<ACard> cards = result.getAvailableCards(tmp);

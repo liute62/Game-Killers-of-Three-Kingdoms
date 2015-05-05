@@ -5,7 +5,7 @@ import java.util.List;
 import com.card.interfaces.ACard;
 import com.hero.skills.interfaces.ISkill;
 import com.logic.player.APlayer;
-import com.system.enums.GameState;
+import com.system.enums.GameStage;
 
 public class GuoJia_Talented implements ISkill{
 	
@@ -25,7 +25,7 @@ public class GuoJia_Talented implements ISkill{
 	@Override
 	public boolean check(APlayer operator, List<ACard> cards,
 			List<APlayer> players) {
-		if(operator.gameState == GameState.check && cards.get(0) != null)
+		if(operator.gameStage == GameStage.check && cards.get(0) != null)
 		{
 			return true;
 		}
