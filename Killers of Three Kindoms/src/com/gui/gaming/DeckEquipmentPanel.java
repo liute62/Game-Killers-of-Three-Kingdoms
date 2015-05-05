@@ -12,6 +12,7 @@ import javax.swing.border.Border;
 import com.card.equipment.BlackPommelCard;
 import com.card.equipment.EightDiagramFormationCard;
 import com.card.interfaces.ACard;
+import com.logic.player.APlayer;
 import com.system.constants.CardConst;
 import com.system.utils.DebugUtil;
 
@@ -19,22 +20,14 @@ public class DeckEquipmentPanel extends JPanel{
 
 
 	private static final long serialVersionUID = -2232599134692339919L;
-
-	private static DeckEquipmentPanel instance;
+	APlayer player;
 	DeckEquipmentSubPanel weapon;
 	DeckEquipmentSubPanel armor;
 	DeckEquipmentSubPanel horseAttact;
 	DeckEquipmentSubPanel horseDefend;
 	
-	public static DeckEquipmentPanel Instance(){
-		if(instance == null){
-			instance = new DeckEquipmentPanel();
-		}
-		return instance;
-	}
-	
-	public DeckEquipmentPanel(){
-		instance = this;
+	public DeckEquipmentPanel(APlayer player){
+		this.player = player;
 		this.setLayout(new GridLayout(4, 1));
 		this.setBackground(Color.WHITE);
 		weapon = new DeckEquipmentSubPanel();

@@ -12,6 +12,7 @@ import com.gui.gaming.BattleFieldPanel;
 import com.gui.gaming.MessagePanel;
 import com.system.constants.GUIConst;
 import com.system.constants.MainConst;
+import com.system.utils.PlayerUtil;
 import com.gui.gaming.*;
 import com.logic.player.APlayer;
 
@@ -36,7 +37,7 @@ public class MainPanel extends JPanel{
 		setExitBtn();
 		this.add(deckPanel);
 		for (int i = 0; i < MainConst.gamePlayerNum-1; i++) {
-			OtherPlayerPanel pp = new OtherPlayerPanel();
+			OtherPlayerPanel pp = new OtherPlayerPanel(PlayerUtil.getInstance().getPlayers().get(i+1));
 			otherPlayerPanels.add(pp);
 			this.add(otherPlayerPanels.get(i));
 		}
