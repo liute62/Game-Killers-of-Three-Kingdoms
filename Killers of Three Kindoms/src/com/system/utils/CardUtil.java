@@ -9,6 +9,7 @@ import com.card.base.DodgeCard;
 import com.card.base.PeachCard;
 import com.card.base.StrikeCard;
 import com.card.interfaces.ACard;
+import com.gui.gaming.CardPanel;
 import com.logic.player.APlayer;
 import com.logic.player.Player;
 
@@ -16,12 +17,17 @@ import com.logic.player.Player;
 public class CardUtil {
 
 	private static CardUtil instance;
+	private List<CardPanel> playerHandCardPanels;
 	
 	public static CardUtil getInstance() {
 		if (instance == null) {
 			return new CardUtil();
 		}
 		return instance;
+	}
+	
+	private CardUtil(){
+		instance = this;
 	}
 	
 	public List<ACard> getInitialCards(APlayer player){
@@ -62,5 +68,13 @@ public class CardUtil {
 			cards.set(pos1, temp);
 		}
 		return cards;
+	}
+
+	public List<CardPanel> getPlayerHandCardPanels() {
+		return playerHandCardPanels;
+	}
+
+	public void setPlayerHandCardPanels(List<CardPanel> playerHandCardPanels) {
+		this.playerHandCardPanels = playerHandCardPanels;
 	}
 }

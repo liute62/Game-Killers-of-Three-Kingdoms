@@ -7,12 +7,15 @@ import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import com.card.interfaces.ACard;
+import com.system.constants.CardConst;
 import com.system.constants.GUIConst;
+import com.system.utils.CardUtil;
 
 /**
  * This is a panel for a card
@@ -32,7 +35,7 @@ public class CardPanel extends JPanel{
 	public CardPanel(ACard card){
 		this.setSize(GUIConst.cardWidth,GUIConst.cardHeight);
 		this.setForeground(Color.BLACK);
-		this.setBorder(BorderFactory.createLineBorder(Color.orange, 3));
+		borderInitial(card);
 		this.id = id;
 		this.setCard(card);
 		this.cardName = card.getName();
@@ -42,12 +45,21 @@ public class CardPanel extends JPanel{
 		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
 	}
 	
+	private void borderInitial(ACard card){
+		if (card.getType() == CardConst.CardType_Strike) {
+			this.setBorder(BorderFactory.createLineBorder(Color.red, 3));
+		}if (card.getType() == CardConst.CardType_Dodge) {
+			this.setBorder(BorderFactory.createLineBorder(Color.blue, 3));
+		}if (card.getType() == CardConst.CardType_Peach) {
+			this.setBorder(BorderFactory.createLineBorder(Color.orange, 3));
+		}
+	}
 	@Override
 	protected void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
 		super.paintComponent(g);
 		g.setFont(new Font(g.getFont().getName(), Font.BOLD, 18));
-		g.drawString(cardName, 15, 115);
+		g.drawString(cardName, 15, 20);
 	}
 	
 	public void unselect(){
@@ -56,6 +68,13 @@ public class CardPanel extends JPanel{
 	}
 	
 	public void select(){
+		//check other cardpanel to see if they are selected
+		List<CardPanel> tmp = CardUtil.getInstance().getPlayerHandCardPanels();
+		for (int i = 0; i < tmp.size(); i++) {
+			if (tmp.get(i).isSelected) {
+				tmp.get(i).unselect();
+			}
+		}
 		this.setLocation(this.getX(), this.getY() - 50);
 		this.setSelected(true);
 	}

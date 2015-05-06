@@ -54,7 +54,7 @@ public class CardUtilTestcase {
 
     @Before
     public void initializeCardUtil() {
-        this.cardUtil = new CardUtil();
+        this.cardUtil = CardUtil.getInstance();
     }
 
     @Parameterized.Parameters
