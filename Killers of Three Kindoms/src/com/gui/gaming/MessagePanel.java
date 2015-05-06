@@ -69,6 +69,9 @@ public class MessagePanel extends JPanel{
     public void addAMessage(String msg){
         String[] msgs = splitString(msg, MAX_CHAR_IN_LINE, msg.length());
         for (int i = 0; i < msgs.length; i++) {
+            if (i != 0) {
+                msgs[i] = "    " + msgs[i];
+            }
             addAMessageHelper(msgs[i]);
         }
 	}
