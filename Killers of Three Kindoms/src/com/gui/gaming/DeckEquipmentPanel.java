@@ -38,12 +38,6 @@ public class DeckEquipmentPanel extends JPanel{
 		this.add(armor);
 		this.add(horseAttact);
 		this.add(horseDefend);
-		addDataForTest();
-	}
-	
-	private void addDataForTest(){
-		EightDiagramFormationCard card = new EightDiagramFormationCard();
-		setAEquipment(card);
 	}
 	
 	public void setAEquipment(ACard card){

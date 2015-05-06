@@ -37,17 +37,15 @@ public class DeckHandCardPanel extends JPanel{
 	private static final long serialVersionUID = -5337278012812148749L;
 	APlayer player;
 	List<CardPanel> cardPanels;
-	List<ACard> cards;
 	BtnPanel sureBtnPanel;
 	BtnPanel cancelBtnPanel;
 	BtnPanel skipBtnPanel;
 	MouseListener listener;
 	boolean isCardAvailablePanel;
-	private static DeckHandCardPanel instance = null;
 	
 	public DeckHandCardPanel(APlayer player){
 		this.player = player;
-		instance = this;
+		this.player.setDeckHandCardPanel(this);
 		this.setLayout(null);
 		initial();
 		this.add(sureBtnPanel);
@@ -63,30 +61,41 @@ public class DeckHandCardPanel extends JPanel{
 	
 	private void initial(){
 		cardPanels = new ArrayList<CardPanel>();
-		cards = new ArrayList<>();
 		sureBtnPanel = new BtnPanel("Sure");
 		cancelBtnPanel = new BtnPanel("Cancel");
 		skipBtnPanel = new BtnPanel("Skip");
 		addDataForTest();
-		cardInitial();
+		cardPanelInitial();
 	}
 	
 	private void addDataForTest(){
-		cards = CardUtil.getInstance().getInitialCards(player);
+		List<ACard> cards = CardUtil.getInstance().getInitialCards(player);
 		player.setHands(cards);
 		for (int i = 0; i < cards.size(); i++) {
 			cardPanels.add(new CardPanel(cards.get(i)));
 		}
 	}
 	
-	private void cardInitial(){
+	private void cardPanelInitial(){
 		for (int i = 0; i < cardPanels.size(); i++) {
 			this.add(cardPanels.get(i));
 		}
 		this.repaint();
 		for (int i = 0; i < cardPanels.size(); i++) {
 			cardPanels.get(i).setLocation(i * GUIConst.cardWidth, GUIConst.cardUp);
-
+		}
+		CardUtil.getInstance().setPlayerHandCardPanels(cardPanels);
+		carding();
+	}
+	
+	public void carding() {
+		int interval = GUIConst.cardWidth;
+		if (cardPanels.size() > 5) {
+			interval = (GUIConst.cardWidth * 5 - GUIConst.cardWidth)
+					/ (cardPanels.size() - 1);
+		}
+		for (int i = 0; i < cardPanels.size(); i++) {
+			cardPanels.get(i).setLocation(i * interval, GUIConst.cardUp);
 		}
 	}
 	
@@ -111,6 +120,17 @@ public class DeckHandCardPanel extends JPanel{
 		super.paintComponent(g);
 		
 	}
+	
+	public void refresh(){
+		for (int i = 0; i < cardPanels.size(); i++) {
+			this.remove(cardPanels.get(i));
+		}
+		for (int i = 0; i < player.getHands().size(); i++) {
+			cardPanels.add(new CardPanel(player.getHands().get(i)));
+		}
+		cardPanelInitial();
+	}
+	
 	/**
 	 * this is a panel for
 	 * 1.confirm casting card
@@ -231,7 +251,7 @@ public class DeckHandCardPanel extends JPanel{
 					}
 				}
 				cardPanels.removeAll(removedList);
-				cardInitial();
+				cardPanelInitial();
 			}
 			
 		}

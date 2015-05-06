@@ -5,7 +5,9 @@ import java.util.List;
 
 
 
+
 import com.card.interfaces.*;
+import com.gui.gaming.DeckHandCardPanel;
 import com.hero.skills.interfaces.ISkill;
 import com.logic.interfaces.IPlayer;
 import com.system.constants.CardConst;
@@ -44,7 +46,7 @@ public abstract class APlayer implements IPlayer{
 	 private boolean isSkipped;
 	 private boolean castingcard;
 	 private boolean usingSkill;
-
+	 private DeckHandCardPanel deckHandCardPanel;
 	 /**
 	  * check if a card can be casted.
 	  * @param cards always be the player's handcard.
@@ -265,6 +267,14 @@ public abstract class APlayer implements IPlayer{
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public DeckHandCardPanel getDeckHandCardPanel() {
+		return deckHandCardPanel;
+	}
+
+	public void setDeckHandCardPanel(DeckHandCardPanel deckHandCardPanel) {
+		this.deckHandCardPanel = deckHandCardPanel;
 	}
 
 

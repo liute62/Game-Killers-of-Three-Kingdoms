@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.card.base.PeachCard;
 import com.card.interfaces.ACard;
 import com.hero.skills.interfaces.ISkill;
 import com.logic.interfaces.IPlayer;
@@ -113,9 +114,10 @@ public class Player extends APlayer{
         if(handCards == null){
             handCards = new ArrayList<ACard>();
         }
-        ACard card = null;
+        ACard card = new PeachCard();
         handCards.add(card);
         setHands(handCards);
+        this.getDeckHandCardPanel().refresh();
     }
 
 
