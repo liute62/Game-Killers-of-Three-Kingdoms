@@ -7,7 +7,7 @@ import com.hero.skills.interfaces.ISkill;
 import com.logic.player.APlayer;
 import com.system.enums.GameStage;
 
-public class GuoJia_Talented implements ISkill{
+public class GuoJia_Talented implements ISkill {
 	
 	public void talented(APlayer player, ACard card)
 	{
