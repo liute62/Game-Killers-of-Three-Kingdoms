@@ -26,6 +26,7 @@ import com.system.constants.CardConst;
 import com.system.constants.GUIConst;
 import com.system.utils.CardUtil;
 import com.system.utils.DebugUtil;
+import com.system.utils.PlayerUtil;
 
 /**
  * A panel for handcard
@@ -233,11 +234,13 @@ public class DeckHandCardPanel extends JPanel{
 				// TODO Auto-generated method stub
 				super.mouseReleased(e);
 				List<CardPanel> removedList = new ArrayList<>();
+				player.setTargetPlayer(PlayerUtil.getInstance().getTargertPlayer());
 				for (int i = 0; i < cardPanels.size(); i++) {
 					if(cardPanels.get(i).isSelected){
 						CardPanel tmp = cardPanels.get(i);
-						if (player.getAvailableCards(player.getHands()).contains(tmp.getCard())) {
+						if (player.getTargetPlayer() != null) {
 							//this card can be used
+							DebugUtil.print(player.getTargetPlayer().getName().toString());
 							removedList.add(tmp);
 							BattleFieldPanel.Instance().addACard(player,tmp.getCard());
 							tmp.unselect();

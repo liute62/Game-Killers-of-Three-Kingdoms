@@ -42,6 +42,7 @@ public class MainPanel extends JPanel{
 			this.add(otherPlayerPanels.get(i));
 		}
 		setPanelPosition();
+		PlayerUtil.getInstance().setPlayerPanels(otherPlayerPanels);
 		this.add(battleFieldPanel);
 		setMessagePanel();
 		validate();

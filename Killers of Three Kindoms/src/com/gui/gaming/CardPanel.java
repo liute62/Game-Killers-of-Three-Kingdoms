@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -16,6 +17,7 @@ import com.card.interfaces.ACard;
 import com.system.constants.CardConst;
 import com.system.constants.GUIConst;
 import com.system.utils.CardUtil;
+import com.system.utils.PlayerUtil;
 
 /**
  * This is a panel for a card
@@ -27,6 +29,7 @@ public class CardPanel extends JPanel{
 
 	private static final long serialVersionUID = 4192067258235873873L;
 	boolean isSelected = false;
+	private boolean selectable = true;
 	int id = -1;
 	String cardName = "card";
 	MouseListener listener;
@@ -65,6 +68,11 @@ public class CardPanel extends JPanel{
 	public void unselect(){
 		this.setLocation(this.getX(), this.getY() + 50);
 		this.setSelected(false);
+		List<OtherPlayerPanel> panels = PlayerUtil.getInstance().getPlayerPanels();
+		for (int i = 0; i < panels.size(); i++) {
+			panels.get(i).unselect();
+			panels.get(i).unBorder();
+		}
 	}
 	
 	public void select(){
@@ -77,6 +85,24 @@ public class CardPanel extends JPanel{
 		}
 		this.setLocation(this.getX(), this.getY() - 50);
 		this.setSelected(true);
+		List<OtherPlayerPanel> panels = PlayerUtil.getInstance().getPlayerPanels();
+		for (int i = 0; i < panels.size(); i++) {
+			panels.get(i).untarget();
+		}
+		panels = getTargetPlayerPanels();
+		for (int i = 0; i < panels.size(); i++) {
+			panels.get(i).target();
+		}
+	}
+	
+	private List<OtherPlayerPanel> getTargetPlayerPanels(){
+		List<OtherPlayerPanel> result = new ArrayList<OtherPlayerPanel>();
+		//check the available target by the card.
+		List<OtherPlayerPanel> tmp = PlayerUtil.getInstance().getPlayerPanels();
+		/**To Do**/
+		result.add(tmp.get(0));
+		result.add(tmp.get(1));
+		return result;
 	}
 	
 	class Mouse extends MouseAdapter{
@@ -87,10 +113,12 @@ public class CardPanel extends JPanel{
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			// TODO Auto-generated method stub
-			if (card.isSelected) {
-				card.unselect();
-			} else {
-				card.select();
+			if (card.isSelectable()) {
+				if (card.isSelected) {
+					card.unselect();
+				} else {
+					card.select();
+				}
 			}
 		}
 	}
@@ -105,5 +133,13 @@ public class CardPanel extends JPanel{
 
 	public void setCard(ACard card) {
 		this.card = card;
+	}
+
+	public boolean isSelectable() {
+		return selectable;
+	}
+
+	public void setSelectable(boolean selectable) {
+		this.selectable = selectable;
 	}
 }

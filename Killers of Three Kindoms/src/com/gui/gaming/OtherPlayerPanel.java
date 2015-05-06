@@ -7,15 +7,20 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.nio.channels.SelectableChannel;
+import java.util.List;
 
 import javax.naming.InitialContext;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import org.hamcrest.CoreMatchers;
+
 import com.logic.player.APlayer;
 import com.system.constants.GUIConst;
 import com.system.utils.DebugUtil;
+import com.system.utils.PlayerUtil;
 
 /**
  * Other player's panel
@@ -30,6 +35,7 @@ public class OtherPlayerPanel extends JPanel implements MouseListener{
 	private static final long serialVersionUID = 3399450628324751951L;
 	APlayer player;
 	private boolean isSelected;
+	private boolean isTarget;
 	JLabel name;
 	JLabel HP;
 	DeckEquipmentPanel equipmentPanel;
@@ -38,6 +44,7 @@ public class OtherPlayerPanel extends JPanel implements MouseListener{
 	public OtherPlayerPanel(APlayer player){
 		this.player = player;
 		isSelected = false;
+		isTarget = false;
 		this.setSize(GUIConst.otherPlayerPanelWidth, GUIConst.otherPlayerPanelHeight);
 		this.setLayout(null);
 		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -71,6 +78,35 @@ public class OtherPlayerPanel extends JPanel implements MouseListener{
 		equipmentPanel.setSize(getWidth()-35, getHeight()/2);
 		equipmentPanel.setLocation(18, getHeight()/2-10);
 		this.add(equipmentPanel);
+	}
+	
+	public void select(){
+		List<OtherPlayerPanel> tmp = PlayerUtil.getInstance().getPlayerPanels();
+		for (int i = 0; i < tmp.size(); i++) {
+			tmp.get(i).unselect();
+		}
+		this.setBackground(Color.red);
+		isSelected = true;
+		PlayerUtil.getInstance().setTargertPlayer(this.player);
+	}
+	
+	public void unselect(){
+		this.setBackground(Color.BLUE);	
+		isSelected = false;
+		PlayerUtil.getInstance().setTargertPlayer(null);
+	}
+	
+	public void target(){
+		this.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+		isTarget = true;
+	}
+	
+	public void untarget(){
+		isTarget = false;
+	}
+	
+	public void unBorder(){
+		this.setBorder(BorderFactory.createLineBorder(Color.blue));
 	}
 	
 	@Override
@@ -109,12 +145,12 @@ public class OtherPlayerPanel extends JPanel implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub\
-		if(isSelected){
-			this.setBackground(Color.BLUE);
-			isSelected = false;
-		}else {
-			this.setBackground(Color.red);
-			isSelected = true;
+		if (isTarget) {
+			if(isSelected){
+				unselect();
+			}else {
+				select();	
+			}	
 		}
 	}
 

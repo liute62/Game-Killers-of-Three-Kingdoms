@@ -3,6 +3,7 @@ package com.system.utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.gui.gaming.OtherPlayerPanel;
 import com.logic.player.APlayer;
 import com.logic.player.Player;
 import com.system.enums.HeroName;
@@ -12,8 +13,11 @@ public class PlayerUtil {
 	private static PlayerUtil instance = null;
 	private APlayer player;
 	private List<APlayer> players;
+	private List<OtherPlayerPanel> playerPanels;
+	private APlayer targertPlayer;
 	
 	private PlayerUtil() {
+		instance = this;
 		setPlayers(playerInitial());
 		setPlayer(getPlayers().get(0));
 	}
@@ -106,5 +110,21 @@ public class PlayerUtil {
 
 	public void setPlayer(APlayer player) {
 		this.player = player;
+	}
+
+	public List<OtherPlayerPanel> getPlayerPanels() {
+		return playerPanels;
+	}
+
+	public void setPlayerPanels(List<OtherPlayerPanel> playerPanels) {
+		this.playerPanels = playerPanels;
+	}
+
+	public APlayer getTargertPlayer() {
+		return targertPlayer;
+	}
+
+	public void setTargertPlayer(APlayer targertPlayer) {
+		this.targertPlayer = targertPlayer;
 	}
 }

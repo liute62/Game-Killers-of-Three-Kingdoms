@@ -47,6 +47,7 @@ public abstract class APlayer implements IPlayer{
 	 private boolean castingcard;
 	 private boolean usingSkill;
 	 private DeckHandCardPanel deckHandCardPanel;
+	 private APlayer targetPlayer;
 	 /**
 	  * check if a card can be casted.
 	  * @param cards always be the player's handcard.
@@ -275,6 +276,14 @@ public abstract class APlayer implements IPlayer{
 
 	public void setDeckHandCardPanel(DeckHandCardPanel deckHandCardPanel) {
 		this.deckHandCardPanel = deckHandCardPanel;
+	}
+
+	public APlayer getTargetPlayer() {
+		return targetPlayer;
+	}
+
+	public void setTargetPlayer(APlayer targetPlayer) {
+		this.targetPlayer = targetPlayer;
 	}
 
 
