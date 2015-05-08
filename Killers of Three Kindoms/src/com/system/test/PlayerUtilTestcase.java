@@ -4,11 +4,18 @@ import com.card.equipment.RedHareCard;
 import com.card.equipment.ShadowRunnerCard;
 import com.card.interfaces.MinusMountCard;
 import com.card.interfaces.PlusMountCard;
+import com.logic.player.APlayer;
 import com.logic.player.Player;
+import com.system.enums.HeroName;
+import com.system.enums.Kingdoms;
+import com.system.enums.RoleType;
 import com.system.utils.PlayerUtil;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -192,5 +199,48 @@ public class PlayerUtilTestcase {
         player2.setPlusMount(shadowRunner);
         assertEquals(playerUtil.getDistance(player1, player2), 2);
         assertEquals(playerUtil.getDistance(player2, player1), 2);
+    }
+
+    @Test
+    public void testInitInfoHelperZhaoYun() {
+        PlayerUtil util = new PlayerUtil();
+        APlayer player1 = new Player(false,0);
+        util.initInfoHelper(0, player1, HeroName.ZhaoYun, false, RoleType.Minister);
+        assertEquals(4, player1.getCurrentHP());
+        assertEquals(4, player1.getMaxHP());
+        assertEquals(Kingdoms.SHU, player1.getKingdom());
+        assertEquals(1, player1.getAttackAbility());
+        assertEquals(1, player1.getAttackRange());
+    }
+
+    @Test
+    public void testInitInfoHelperZhenJi() {
+        PlayerUtil util = new PlayerUtil();
+        APlayer player1 = new Player(false,0);
+        util.initInfoHelper(0, player1, HeroName.ZhenJi, false, RoleType.Minister);
+        assertEquals(3, player1.getCurrentHP());
+        assertEquals(3, player1.getMaxHP());
+        assertEquals(Kingdoms.WEI, player1.getKingdom());
+        assertEquals(1, player1.getAttackAbility());
+        assertEquals(1, player1.getAttackRange());
+    }
+
+    @Test
+    public void testInitInfo() {
+        PlayerUtil util = new PlayerUtil();
+        List<APlayer> data = new ArrayList<APlayer>();
+        APlayer player1 = new Player(false,0);
+        APlayer player2 = new Player(true,1);
+        APlayer player3 = new Player(true,2);
+        APlayer player4 = new Player(true,3);
+        APlayer player5 = new Player(true,4);
+        data.add(player1);
+        data.add(player2);
+        data.add(player3);
+        data.add(player4);
+        data.add(player5);
+        util.initInfo(data);
+        assertEquals(5, data.size());
+        // TODO: add some verifications
     }
 }

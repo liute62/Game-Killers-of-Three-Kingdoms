@@ -24,7 +24,7 @@ public class PlayerUtil {
 	private List<OtherPlayerPanel> playerPanels;
 	private APlayer targertPlayer;
 	
-	private PlayerUtil() {
+	public PlayerUtil() {
 		instance = this;
 		setPlayers(playerInitial());
 		setPlayer(getPlayers().get(0));
@@ -65,7 +65,7 @@ public class PlayerUtil {
 		}
 	}
 	
-	private void initInfo(List<APlayer> players){
+	public void initInfo(List<APlayer> players){
         // Shuffle all heroes.
         ArrayList<HeroName> names = new ArrayList<>();
         names.addAll(Arrays.asList(HeroName.values()));
@@ -85,7 +85,7 @@ public class PlayerUtil {
         initInfoHelper(players.get(4).issueId(), players.get(4), names.get(4), false, roles.get(4));
 	}
 
-    private void initInfoHelper(int id, APlayer player, HeroName name, boolean isAI, RoleType role) {
+    public void initInfoHelper(int id, APlayer player, HeroName name, boolean isAI, RoleType role) {
         player.setName(name);
         if (name == HeroName.ZhaoYun) {
             ISkill skill = new ZhaoYun_Courage();
