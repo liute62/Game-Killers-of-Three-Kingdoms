@@ -34,7 +34,9 @@ public class CardPanel extends JPanel{
 	String cardName = "card";
 	MouseListener listener;
 	private ACard card;
+	private int effectRange;
 	
+
 	public CardPanel(ACard card){
 		this.setSize(GUIConst.cardWidth,GUIConst.cardHeight);
 		this.setForeground(Color.BLACK);
@@ -95,7 +97,7 @@ public class CardPanel extends JPanel{
 		}
 	}
 	
-	private List<OtherPlayerPanel> getTargetPlayerPanels(){
+	public List<OtherPlayerPanel> getTargetPlayerPanels(){
 		List<OtherPlayerPanel> result = new ArrayList<OtherPlayerPanel>();
 		//check the available target by the card.
 		List<OtherPlayerPanel> tmp = PlayerUtil.getInstance().getPlayerPanels();
@@ -104,6 +106,15 @@ public class CardPanel extends JPanel{
 		result.add(tmp.get(1));
 		return result;
 	}
+	
+	public int getEffectRange() {
+		return effectRange;
+	}
+
+	public void setEffectRange(int effectRange) {
+		this.effectRange = effectRange;
+	}
+	
 	
 	class Mouse extends MouseAdapter{
 		CardPanel card;
