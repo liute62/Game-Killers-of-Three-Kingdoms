@@ -36,6 +36,11 @@ public class PlayerUtil {
 		APlayer player3 = new Player(true,2);
 		APlayer player4 = new Player(true,3);
 		APlayer player5 = new Player(true,4);
+		player1.setPosition(1);
+		player2.setPosition(2);
+		player3.setPosition(3);
+		player4.setPosition(4);
+		player5.setPosition(5);
 		data.add(player1);
 		data.add(player2);
 		data.add(player3);
