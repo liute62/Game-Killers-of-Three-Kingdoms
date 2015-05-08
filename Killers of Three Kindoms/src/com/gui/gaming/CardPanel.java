@@ -125,6 +125,10 @@ public class CardPanel extends JPanel{
 		return targetPlayers;
 	}
 	
+	public void checkEffectRange() {
+		
+	}
+	
 	public int getEffectRange() {
 		return effectRange;
 	}

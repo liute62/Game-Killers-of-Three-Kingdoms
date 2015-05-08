@@ -67,4 +67,16 @@ public class PlayerUtilTest {
 		actualTargetPlayers = cardPanel.getTargetPlayers();
 		Assert.assertEquals(expectTargetPlayers, actualTargetPlayers);
 	}
+	
+	@Test
+	public void testCheckEffectRangeForStirkeCard1() {
+		APlayer p1 = PlayerUtil.getInstance().getPlayer();
+		p1.setAttackRange(1);
+		int expectRange = p1.getAttackRange();
+		ACard card = new StrikeCard();
+		CardPanel cardPanel = new CardPanel(card);
+		cardPanel.checkEffectRange();
+		Assert.assertEquals(expectRange, cardPanel.getEffectRange());
+	}
+	
 }
