@@ -109,8 +109,10 @@ public class CardPanel extends JPanel{
 	}
 	
 	public List<APlayer> getTargetPlayers() {
-		return null;
-		
+		List<APlayer> targetPlayers = new ArrayList<APlayer>();
+		targetPlayers.add(PlayerUtil.getInstance().getPlayers().get(1));
+		targetPlayers.add(PlayerUtil.getInstance().getPlayers().get(4));
+		return targetPlayers;
 	}
 	
 	public int getEffectRange() {
