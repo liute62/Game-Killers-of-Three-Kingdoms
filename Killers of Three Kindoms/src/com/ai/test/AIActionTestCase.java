@@ -182,4 +182,15 @@ public class AIActionTestCase {
 		aiAction.castCard();
 		Assert.assertEquals(result_9().getPosition(),aiAction.getTarget().getPosition());
 	}
+	
+	@Test
+	public void test10_randomlySetATarget(){
+		initial();
+		int num = 3;
+		aiAction.getPlayer().setHands(getHandsList(num,num,num));
+		aiAction.getPlayer().setAttackRange(1);
+		aiAction.getPlayer().setPosition(0);
+		aiAction.castCard();
+		Assert.assertNotNull(aiAction.getTarget());
+	}
 }
