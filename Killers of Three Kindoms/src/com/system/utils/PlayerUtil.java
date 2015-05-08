@@ -84,10 +84,10 @@ public class PlayerUtil {
         // Get first five heroes and initialize accordingly.
         // Assume the first one (index 0) is the human player.
         initInfoHelper(players.get(0).issueId(), players.get(0), names.get(0), false, roles.get(0));
-        initInfoHelper(players.get(1).issueId(), players.get(1), names.get(1), false, roles.get(1));
-        initInfoHelper(players.get(2).issueId(), players.get(2), names.get(2), false, roles.get(2));
-        initInfoHelper(players.get(3).issueId(), players.get(3), names.get(3), false, roles.get(3));
-        initInfoHelper(players.get(4).issueId(), players.get(4), names.get(4), false, roles.get(4));
+        initInfoHelper(players.get(1).issueId(), players.get(1), names.get(1), true, roles.get(1));
+        initInfoHelper(players.get(2).issueId(), players.get(2), names.get(2), true, roles.get(2));
+        initInfoHelper(players.get(3).issueId(), players.get(3), names.get(3), true, roles.get(3));
+        initInfoHelper(players.get(4).issueId(), players.get(4), names.get(4), true, roles.get(4));
 	}
 
     private void initInfoHelper(int id, APlayer player, HeroName name, boolean isAI, RoleType role) {

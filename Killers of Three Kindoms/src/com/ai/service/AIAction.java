@@ -7,10 +7,12 @@ import java.util.List;
 import java.util.ListIterator;
 
 import com.card.interfaces.ACard;
+import com.gui.gaming.BattleFieldPanel;
 import com.logic.player.APlayer;
 import com.logic.player.Player;
 import com.system.enums.GameStage;
 import com.system.utils.DebugUtil;
+import com.system.utils.PlayerUtil;
 
 public class AIAction {
 
@@ -30,6 +32,7 @@ public class AIAction {
 	 * Draw card stage for AI. 
 	 */
 	public void drawCard(){
+		player.setDrawCardNum(2);
 		int num = player.getDrawCardNum();
 		for (int i = 0; i < num; i++) {
 			player.drawACard();	
@@ -59,6 +62,8 @@ public class AIAction {
 		APlayer target = new Player();
 		target.setPosition(1);
 		setTarget(target);
+		player.setTargetPlayer(PlayerUtil.getInstance().getPlayers().get(0));
+		BattleFieldPanel.Instance().addACard(player, cards.get(0));
 	}
 	
 	/**

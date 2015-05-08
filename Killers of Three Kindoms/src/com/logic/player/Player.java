@@ -117,7 +117,10 @@ public class Player extends APlayer{
         ACard card = new PeachCard();
         handCards.add(card);
         setHands(handCards);
-        this.getDeckHandCardPanel().refresh();
+        if(this.getDeckHandCardPanel() != null){
+
+            this.getDeckHandCardPanel().refresh();	
+        }
     }
 
 

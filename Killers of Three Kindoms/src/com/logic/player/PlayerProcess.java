@@ -60,20 +60,21 @@ public class PlayerProcess {
 		player.gameStage = GameStage.drawCard;
 		BattleFieldPanel.Instance().clear();
 		MessagePanel.Instance().addAMessage(player.getName()+" drawCard stage");
-		player.drawACard();
-		player.drawACard();
-		//refresh
+		if (player.isAI()) {
+			new AIAction(player).drawCard();
+			return ;
+		}
 	}
 	
 	private void stage_castcard(){
 		player.gameStage = GameStage.castCard;
+		MessagePanel.Instance().addAMessage(player.getName()+" castCard stage");
 		//if is a AI
 		if (player.isAI()) {
 			new AIAction(player).castCard();
 			return ;
 		}
 		//if is player
-		MessagePanel.Instance().addAMessage(player.getName()+" castCard stage");
 		//DebugUtil.print("castcard player id:"+player.getId());
 		while(! player.isSkipped()){
 			
@@ -86,7 +87,7 @@ public class PlayerProcess {
 			}if (player.gameStage == GameStage.gameOver) {
 				break;
 			}
-			//DebugUtil.print(player.isSkipped());
+			DebugUtil.print(player.isSkipped());
 		}
 	}
 	
