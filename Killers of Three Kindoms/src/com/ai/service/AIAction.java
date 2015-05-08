@@ -22,6 +22,7 @@ public class AIAction {
 	private APlayer target;
 	public AIAction(APlayer player){
 		this.setPlayer(player);
+		player.setTargetPlayer(PlayerUtil.getInstance().getPlayers().get(0));
 	}
 	
 	public void process(){
@@ -62,7 +63,6 @@ public class AIAction {
 		APlayer target = new Player();
 		target.setPosition(1);
 		setTarget(target);
-		player.setTargetPlayer(PlayerUtil.getInstance().getPlayers().get(0));
 		BattleFieldPanel.Instance().addACard(player, cards.get(0));
 	}
 	
