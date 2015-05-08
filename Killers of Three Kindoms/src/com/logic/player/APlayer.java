@@ -13,6 +13,7 @@ import com.logic.interfaces.IPlayer;
 import com.system.constants.CardConst;
 import com.system.enums.GameStage;
 import com.system.enums.HeroName;
+import com.system.enums.Kingdoms;
 import com.system.enums.RoleType;
 import com.system.utils.IDatabase;
 
@@ -35,6 +36,7 @@ public abstract class APlayer implements IPlayer{
 	 //protected int roleType;
 	 protected HeroName name;
 	 protected RoleType roleType;
+     protected Kingdoms kingdom;
 	 
 	 public GameStage gameStage;
 	 protected ISkill skill;
@@ -48,6 +50,9 @@ public abstract class APlayer implements IPlayer{
 	 private boolean usingSkill;
 	 private DeckHandCardPanel deckHandCardPanel;
 	 private APlayer targetPlayer;
+
+     static int currentId = 0;
+
 	 /**
 	  * check if a card can be casted.
 	  * @param cards always be the player's handcard.
@@ -270,6 +275,12 @@ public abstract class APlayer implements IPlayer{
 		this.id = id;
 	}
 
+    public int issueId() {
+        this.setId(APlayer.currentId);
+        APlayer.currentId++;
+        return this.getId();
+    }
+
 	public DeckHandCardPanel getDeckHandCardPanel() {
 		return deckHandCardPanel;
 	}
@@ -286,7 +297,13 @@ public abstract class APlayer implements IPlayer{
 		this.targetPlayer = targetPlayer;
 	}
 
+    public Kingdoms getKingdom() {
+        return kingdom;
+    }
 
+    public void setKingdom(Kingdoms kingdom) {
+        this.kingdom = kingdom;
+    }
 }
 
 

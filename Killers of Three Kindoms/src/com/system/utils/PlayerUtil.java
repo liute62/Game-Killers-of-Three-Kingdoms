@@ -1,12 +1,20 @@
 package com.system.utils;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import com.gui.gaming.OtherPlayerPanel;
+import com.hero.skills.ability.MaChao_Horsemanship;
+import com.hero.skills.active.GuanYu_MasterOfWarfare;
+import com.hero.skills.active.ZhaoYun_Courage;
+import com.hero.skills.interfaces.ISkill;
+import com.hero.skills.process.ZhenJi_Siren;
+import com.hero.skills.trigger.CaoCao_Treachery;
+import com.hero.skills.trigger.GuoJia_Talented;
 import com.logic.player.APlayer;
 import com.logic.player.Player;
 import com.system.enums.HeroName;
+import com.system.enums.Kingdoms;
+import com.system.enums.RoleType;
 
 public class PlayerUtil {
 
@@ -63,12 +71,75 @@ public class PlayerUtil {
 	}
 	
 	private void initInfo(List<APlayer> players){
-		players.get(0).setName(HeroName.ZhaoYun);
-		players.get(1).setName(HeroName.GuanYu);
-		players.get(2).setName(HeroName.CaoCao);
-		players.get(3).setName(HeroName.GuoJia);
-		players.get(4).setName(HeroName.ZhangLiao);
+        // Shuffle all heroes.
+        ArrayList<HeroName> names = new ArrayList<>();
+        names.addAll(Arrays.asList(HeroName.values()));
+        Collections.shuffle(names, new Random(System.nanoTime()));
+
+        ArrayList<RoleType> roles = new ArrayList<>();
+        roles.addAll(Arrays.asList(RoleType.Minister, RoleType.Monarch, RoleType.Trun_coat,
+                RoleType.Rebel, RoleType.Rebel));
+        Collections.shuffle(roles, new Random(System.nanoTime()));
+
+        // Get first five heroes and initialize accordingly.
+        // Assume the first one (index 0) is the human player.
+        initInfoHelper(players.get(0).issueId(), players.get(0), names.get(0), false, roles.get(0));
+        initInfoHelper(players.get(1).issueId(), players.get(1), names.get(1), false, roles.get(1));
+        initInfoHelper(players.get(2).issueId(), players.get(2), names.get(2), false, roles.get(2));
+        initInfoHelper(players.get(3).issueId(), players.get(3), names.get(3), false, roles.get(3));
+        initInfoHelper(players.get(4).issueId(), players.get(4), names.get(4), false, roles.get(4));
 	}
+
+    private void initInfoHelper(int id, APlayer player, HeroName name, boolean isAI, RoleType role) {
+        player.setName(name);
+        if (name == HeroName.ZhaoYun) {
+            ISkill skill = new ZhaoYun_Courage();
+            player.setSkill(skill);
+            player.setMaxHP(4);
+            player.setCurrentHP(4);
+            player.setKingdom(Kingdoms.SHU);
+        } else if (name == HeroName.GuanYu) {
+            ISkill skill = new GuanYu_MasterOfWarfare();
+            player.setSkill(skill);
+            player.setMaxHP(4);
+            player.setCurrentHP(4);
+            player.setKingdom(Kingdoms.SHU);
+        } else if (name == HeroName.CaoCao) {
+            ISkill skill = new CaoCao_Treachery();
+            player.setSkill(skill);
+            player.setMaxHP(4);
+            player.setCurrentHP(4);
+            player.setKingdom(Kingdoms.WEI);
+        } else if (name == HeroName.GuoJia) {
+            ISkill skill = new GuoJia_Talented();
+            player.setSkill(skill);
+            player.setMaxHP(3);
+            player.setCurrentHP(3);
+            player.setKingdom(Kingdoms.WEI);
+        } else if (name == HeroName.ZhangLiao) {
+            player.setSkill(null); // TODO
+            player.setMaxHP(4);
+            player.setCurrentHP(4);
+            player.setKingdom(Kingdoms.WEI);
+        } else if (name == HeroName.MaChao) {
+            ISkill skill = new MaChao_Horsemanship();
+            player.setSkill(skill);
+            player.setMaxHP(4);
+            player.setCurrentHP(4);
+            player.setKingdom(Kingdoms.SHU);
+        } else if (name == HeroName.ZhenJi) {
+            ISkill skill = new ZhenJi_Siren();
+            player.setSkill(skill);
+            player.setMaxHP(3);
+            player.setCurrentHP(3);
+            player.setKingdom(Kingdoms.WEI);
+        }
+        player.setAttackRange(1);
+        player.setAttackAbility(1);
+        player.setRoleType(role);
+        player.setAI(isAI);
+        player.setId(id);
+    }
 	
     /**
      * Calculate the distance between two player.

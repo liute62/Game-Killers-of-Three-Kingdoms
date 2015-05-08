@@ -19,7 +19,7 @@ import com.system.constants.GUIConst;
  *
  */
 public class MessagePanel extends JPanel{
-
+    private static final int MAX_CHAR_IN_LINE = 22;
 	private static final long serialVersionUID = -3747578749991283567L;
 	private static MessagePanel instance = null;
 	private List<String> msgList = new ArrayList<String>();
@@ -52,13 +52,36 @@ public class MessagePanel extends JPanel{
 		initialLabel(msgList.get(lastIndex),lastIndex, msgColor.get(lastIndex));
 		SwingUtilities.updateComponentTreeUI(instance);
 	}
-	
-	public void addAMessage(String msg){
-		msgColor.add(0);
-		int tmp = msgList.size();
-		msgList.add(msg);
-		showAMessage(tmp);
+
+    // Solution from http://stackoverflow.com/questions/11242208/splitting-string-in-java-into-fixed-length-chunks
+    public static String[] splitString (String text, int chunkSize, int maxLength) {
+        char[] data = text.toCharArray();
+        int len = Math.min(data.length,maxLength);
+        String[] result = new String[(len+chunkSize-1)/chunkSize];
+        int linha = 0;
+        for (int i=0; i < len; i+=chunkSize) {
+            result[linha] = new String(data, i, Math.min(chunkSize,len-i));
+            linha++;
+        }
+        return result;
+    }
+
+    public void addAMessage(String msg){
+        String[] msgs = splitString(msg, MAX_CHAR_IN_LINE, msg.length());
+        for (int i = 0; i < msgs.length; i++) {
+            if (i != 0) {
+                msgs[i] = "    " + msgs[i];
+            }
+            addAMessageHelper(msgs[i]);
+        }
 	}
+
+    public void addAMessageHelper(String msg) {
+        msgColor.add(0);
+        int tmp = msgList.size();
+        msgList.add(msg);
+        showAMessage(tmp);
+    }
 	
 	/**
 	 * 
