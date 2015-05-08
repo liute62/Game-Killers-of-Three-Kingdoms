@@ -14,6 +14,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import com.card.interfaces.ACard;
+import com.logic.player.APlayer;
 import com.system.constants.CardConst;
 import com.system.constants.GUIConst;
 import com.system.utils.CardUtil;
@@ -105,6 +106,11 @@ public class CardPanel extends JPanel{
 		result.add(tmp.get(0));
 		result.add(tmp.get(1));
 		return result;
+	}
+	
+	public List<APlayer> getTargetPlayers() {
+		return null;
+		
 	}
 	
 	public int getEffectRange() {
