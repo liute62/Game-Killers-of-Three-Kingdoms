@@ -52,4 +52,19 @@ public class PlayerUtilTest {
 		actualTargetPlayers = cardPanel.getTargetPlayers();
 		Assert.assertEquals(expectTargetPlayers, actualTargetPlayers);
 	}
+	
+	@Test
+	public void testGetTargetPlayersWhenCardRangeIs3() {
+		this.expectTargetPlayers.add(playerUtil.getPlayers().get(1));
+		this.expectTargetPlayers.add(playerUtil.getPlayers().get(2));
+		this.expectTargetPlayers.add(playerUtil.getPlayers().get(3));
+		this.expectTargetPlayers.add(playerUtil.getPlayers().get(4));
+		
+		List<APlayer> actualTargetPlayers = new ArrayList<APlayer>();
+		ACard card = new StrikeCard();
+		CardPanel cardPanel = new CardPanel(card);
+		cardPanel.setEffectRange(3);
+		actualTargetPlayers = cardPanel.getTargetPlayers();
+		Assert.assertEquals(expectTargetPlayers, actualTargetPlayers);
+	}
 }
