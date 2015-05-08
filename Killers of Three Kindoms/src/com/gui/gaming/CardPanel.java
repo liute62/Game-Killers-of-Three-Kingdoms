@@ -126,7 +126,7 @@ public class CardPanel extends JPanel{
 	}
 	
 	public void checkEffectRange() {
-		
+		this.effectRange = 1;
 	}
 	
 	public int getEffectRange() {
