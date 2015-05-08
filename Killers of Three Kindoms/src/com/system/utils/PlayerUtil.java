@@ -154,7 +154,7 @@ public class PlayerUtil {
      * @return distance between two player.
      * @throws java.lang.RuntimeException if distance is not valid.
      */
-    public int getDistance(APlayer player1, APlayer player2) {
+    public static int getDistance(APlayer player1, APlayer player2) {
         if (player1.getPosition() < 1 || player2.getPosition() < 1 ||
             player1.getPosition() > 5 || player2.getPosition() > 5) {
             throw new RuntimeException("Invalid distance.");

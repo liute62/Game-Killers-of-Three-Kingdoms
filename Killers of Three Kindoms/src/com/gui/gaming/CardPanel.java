@@ -109,9 +109,19 @@ public class CardPanel extends JPanel{
 	}
 	
 	public List<APlayer> getTargetPlayers() {
+		List<APlayer> allPlayers = new ArrayList<APlayer>();
 		List<APlayer> targetPlayers = new ArrayList<APlayer>();
-		targetPlayers.add(PlayerUtil.getInstance().getPlayers().get(1));
-		targetPlayers.add(PlayerUtil.getInstance().getPlayers().get(4));
+		
+		allPlayers = PlayerUtil.getInstance().getPlayers();
+		for(int i = 1; i < allPlayers.size(); i ++)
+		{
+			int distance;
+			distance = PlayerUtil.getDistance(allPlayers.get(0), allPlayers.get(i));
+			if(distance <= this.effectRange)
+			{
+				targetPlayers.add(allPlayers.get(i));
+			}
+		}
 		return targetPlayers;
 	}
 	
