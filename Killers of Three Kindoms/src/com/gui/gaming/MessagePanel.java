@@ -2,6 +2,7 @@ package com.gui.gaming;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
 import com.system.constants.GUIConst;
+import com.system.utils.ResUtil;
 
 /**
  * this is a panel to show history of casting card and something.
@@ -25,6 +27,7 @@ public class MessagePanel extends JPanel{
 	private List<String> msgList = new ArrayList<String>();
 	private List<Integer> msgColor = new ArrayList<Integer>();
 	List<JLabel> contents = new ArrayList<>();
+	private BufferedImage bg;
 	
 	public static MessagePanel Instance(){
 		if(instance == null){
@@ -36,9 +39,21 @@ public class MessagePanel extends JPanel{
 	public MessagePanel(){
 		this.setLayout(null);
 		instance = this;
+		resInitial();
 		this.setSize(GUIConst.messagePanelWidth,GUIConst.messagePanelHeight);
 		this.setBorder(BorderFactory.createLineBorder(Color.black));
 		showAllMessage();
+	}
+	
+	@Override
+	public void paint(Graphics g) {
+		// TODO Auto-generated method stub
+		super.paint(g);
+		g.drawImage(bg, 0, 0, this.getWidth(), this.getHeight(),null);
+	}
+	
+	private void resInitial(){
+		bg = ResUtil.getImgByName("bg", 0);
 	}
 	
 	private void showAllMessage(){

@@ -3,13 +3,16 @@ package com.gui.gaming;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.system.constants.GUIConst;
+import com.system.utils.ResUtil;
 
 public class DeckProfilePanel extends JPanel{
 
@@ -20,13 +23,23 @@ public class DeckProfilePanel extends JPanel{
 	JLabel[] hps ;
 	JLabel character;
 	int maxHp;
+	BufferedImage profile;
+	BufferedImage skillBg;
+	
 	public DeckProfilePanel(int maxHp){
 		this.maxHp = maxHp;
 		this.setLayout(null);
+		resInitial();
 		initial();
 		setHPPanel();
 		setCharacterPanel();
 		setSkillPanel();
+	}
+	
+	private void resInitial(){
+		profile = ResUtil.getImgByName("shu_zhaoyun", 1);
+		profile = profile.getSubimage(0, 0, profile.getWidth(), profile.getHeight()-60);
+		skillBg = ResUtil.getImgByName("bok", 1);
 	}
 	
 	private void initial(){
@@ -42,6 +55,14 @@ public class DeckProfilePanel extends JPanel{
 		this.add(hpPanel);
 		hpPanel.setLocation(GUIConst.mainFrameWidth/5-hpPanel.getWidth(), 25);
 		
+	}
+	
+	@Override
+	public void paint(Graphics g) {
+		// TODO Auto-generated method stub
+		super.paint(g);
+		g.drawImage(profile, 0, 0, this.getWidth(), this.getHeight(),null);
+	
 	}
 	
 	private void setCharacterPanel(){
@@ -95,10 +116,16 @@ public class DeckProfilePanel extends JPanel{
 				this.setCursor(new Cursor(Cursor.HAND_CURSOR));
 				Font f = new Font("Arial", Font.BOLD, 22);
 				text.setFont(f);
-				text.setForeground(Color.white);
 				text.setText(name);
 				this.add(text);
 			}
+			
+			@Override
+				public void paint(Graphics g) {
+					// TODO Auto-generated method stub
+					super.paint(g);
+					g.drawImage(skillBg, 0, 0, this.getWidth(), this.getHeight(),null);
+				}
 		}
 	}
 	

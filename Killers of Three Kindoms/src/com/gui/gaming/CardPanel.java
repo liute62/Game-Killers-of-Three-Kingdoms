@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import com.system.constants.CardConst;
 import com.system.constants.GUIConst;
 import com.system.utils.CardUtil;
 import com.system.utils.PlayerUtil;
+import com.system.utils.ResUtil;
 
 /**
  * This is a panel for a card
@@ -36,11 +38,12 @@ public class CardPanel extends JPanel{
 	MouseListener listener;
 	private ACard card;
 	private int effectRange;
-	
+	BufferedImage bg;
 
 	public CardPanel(ACard card){
 		this.setSize(GUIConst.cardWidth,GUIConst.cardHeight);
 		this.setForeground(Color.BLACK);
+		resInitial();
 		borderInitial(card);
 		this.id = id;
 		this.setCard(card);
@@ -49,6 +52,10 @@ public class CardPanel extends JPanel{
 		this.addMouseListener(listener);
 		this.requestFocus();
 		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
+	}
+	
+	private void resInitial(){
+		bg = ResUtil.getImgByName("basic_strike", 1);
 	}
 	
 	private void borderInitial(ACard card){
@@ -60,6 +67,14 @@ public class CardPanel extends JPanel{
 			this.setBorder(BorderFactory.createLineBorder(Color.orange, 3));
 		}
 	}
+	
+	@Override
+	public void paint(Graphics g) {
+		// TODO Auto-generated method stub
+		super.paint(g);
+		g.drawImage(bg, 2, 5, this.getWidth() - 8, this.getHeight()-50,null);
+	}
+	
 	@Override
 	protected void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub

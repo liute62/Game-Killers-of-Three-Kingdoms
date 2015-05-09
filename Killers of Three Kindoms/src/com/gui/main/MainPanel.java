@@ -1,7 +1,9 @@
 package com.gui.main;
 
+import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +15,7 @@ import com.gui.gaming.MessagePanel;
 import com.system.constants.GUIConst;
 import com.system.constants.MainConst;
 import com.system.utils.PlayerUtil;
+import com.system.utils.ResUtil;
 import com.gui.gaming.*;
 import com.logic.player.APlayer;
 
@@ -26,10 +29,11 @@ public class MainPanel extends JPanel{
 	List<OtherPlayerPanel> otherPlayerPanels;
 	JButton exitBtn;
 	private MessagePanel messagePanel;
-	
+	BufferedImage bgImg;
 	
 	public MainPanel(APlayer player) {
 		this.player = player;
+		resIntial();
 		initial();
 		this.setSize(GUIConst.mainPanelWidth,GUIConst.mainPanelHeight);
 		this.setLocation(0,0);
@@ -46,6 +50,15 @@ public class MainPanel extends JPanel{
 		this.add(battleFieldPanel);
 		setMessagePanel();
 		validate();
+	}
+	
+	public void paintComponent(Graphics g){
+		super.paintComponents(g);
+		g.drawImage(bgImg, 0, 0, this.getWidth(), this
+				.getHeight(), null);
+	}
+	private void resIntial(){
+		bgImg = ResUtil.getImgByName("bg2",0);
 	}
 	
 	private void initial(){
