@@ -41,7 +41,7 @@ public class MessagePanel extends JPanel{
 		instance = this;
 		resInitial();
 		this.setSize(GUIConst.messagePanelWidth,GUIConst.messagePanelHeight);
-		this.setBorder(BorderFactory.createLineBorder(Color.black));
+		//this.setBorder(BorderFactory.createLineBorder(Color.black));
 		showAllMessage();
 	}
 	
@@ -50,6 +50,7 @@ public class MessagePanel extends JPanel{
 		// TODO Auto-generated method stub
 		super.paint(g);
 		g.drawImage(bg, 0, 0, this.getWidth(), this.getHeight(),null);
+		
 	}
 	
 	private void resInitial(){

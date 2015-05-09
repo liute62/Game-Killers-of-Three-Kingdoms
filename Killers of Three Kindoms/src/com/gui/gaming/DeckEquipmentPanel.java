@@ -1,7 +1,9 @@
 package com.gui.gaming;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.image.BufferedImage;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
@@ -15,6 +17,7 @@ import com.card.interfaces.ACard;
 import com.logic.player.APlayer;
 import com.system.constants.CardConst;
 import com.system.utils.DebugUtil;
+import com.system.utils.ResUtil;
 
 public class DeckEquipmentPanel extends JPanel{
 
@@ -25,19 +28,32 @@ public class DeckEquipmentPanel extends JPanel{
 	DeckEquipmentSubPanel armor;
 	DeckEquipmentSubPanel horseAttact;
 	DeckEquipmentSubPanel horseDefend;
+	BufferedImage bg;
 	
 	public DeckEquipmentPanel(APlayer player){
 		this.player = player;
 		this.setLayout(new GridLayout(4, 1));
 		this.setBackground(Color.WHITE);
+		resInitial();
 		weapon = new DeckEquipmentSubPanel();
 		armor = new DeckEquipmentSubPanel();
 		horseAttact = new DeckEquipmentSubPanel();
 		horseDefend = new DeckEquipmentSubPanel();
-		this.add(weapon);
-		this.add(armor);
-		this.add(horseAttact);
-		this.add(horseDefend);
+		//this.add(weapon);
+		//this.add(armor);
+		//this.add(horseAttact);
+		//this.add(horseDefend);
+	}
+	
+	private void resInitial(){
+		bg = ResUtil.getImgByName("bg_equipment", 0);
+	}
+	
+	@Override
+	public void paint(Graphics g) {
+		// TODO Auto-generated method stub		
+		super.paint(g);
+		g.drawImage(bg, 0, 0, this.getWidth(), this.getHeight(),null);
 	}
 	
 	public void setAEquipment(ACard card){

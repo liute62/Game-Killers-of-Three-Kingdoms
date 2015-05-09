@@ -44,6 +44,7 @@ public class OtherPlayerPanel extends JPanel implements MouseListener{
 	CardNumPanel cardNumPanel;
 	BufferedImage img1;
 	BufferedImage img2;
+	BufferedImage bg;
 	
 	public OtherPlayerPanel(APlayer player){
 		this.player = player;
@@ -52,7 +53,7 @@ public class OtherPlayerPanel extends JPanel implements MouseListener{
 		this.setSize(GUIConst.otherPlayerPanelWidth, GUIConst.otherPlayerPanelHeight);
 		this.setLayout(null);
 		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		this.setBackground(Color.BLUE);
+		this.setBackground(Color.black);
 		resInitial();
 		addMouseListener(this);
 		addEquipmentPanel();
@@ -63,6 +64,7 @@ public class OtherPlayerPanel extends JPanel implements MouseListener{
 	private void resInitial(){
 		img1 = ResUtil.getImgByName("caocao",0);
 		img2 = img1.getSubimage(0, 0, img1.getWidth(), img1.getHeight() / 3);
+		bg = ResUtil.getImgByName("bg_profile", 1);
 	}
 	
 	private void addProfilePanel(){
@@ -124,7 +126,8 @@ public class OtherPlayerPanel extends JPanel implements MouseListener{
 		// TODO Auto-generated method stub
 		super.paint(g);
 		g.drawImage(img2, 2, 5, this.getWidth() - 8, this.getHeight()-115,null);
-	
+		g.drawImage(bg, -10, -10, this.getWidth()+20, this.getHeight()+20,null);
+		
 	}
 	
 	class CardNumPanel extends JPanel {

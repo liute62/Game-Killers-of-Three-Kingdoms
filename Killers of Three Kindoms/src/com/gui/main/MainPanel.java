@@ -1,5 +1,6 @@
 package com.gui.main;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -27,9 +28,10 @@ public class MainPanel extends JPanel{
 	DeckPanel deckPanel;
 	BattleFieldPanel battleFieldPanel;
 	List<OtherPlayerPanel> otherPlayerPanels;
-	JButton exitBtn;
+	ExitBtn exitBtn;
 	private MessagePanel messagePanel;
 	BufferedImage bgImg;
+	BufferedImage bgExitImg;
 	
 	public MainPanel(APlayer player) {
 		this.player = player;
@@ -59,10 +61,11 @@ public class MainPanel extends JPanel{
 	}
 	private void resIntial(){
 		bgImg = ResUtil.getImgByName("bg2",0);
+		bgExitImg = ResUtil.getImgByName("bg_exit", 1);
 	}
 	
 	private void initial(){
-		exitBtn = new JButton("Exit");
+		exitBtn = new ExitBtn();
 		battleFieldPanel = BattleFieldPanel.Instance();
 		otherPlayerPanels = new ArrayList<OtherPlayerPanel>();
 		deckPanel = new DeckPanel(player);
@@ -74,43 +77,27 @@ public class MainPanel extends JPanel{
 		messagePanel.setLocation(800,0);
 	}
 	
+	class ExitBtn extends JButton{
+		
+		public ExitBtn(){
+			this.setLocation(0, 0);
+			this.setSize(120, 40);
+			this.setBackground(Color.black);
+			this.setText("Exit");
+			this.setForeground(Color.white);
+		}
+		
+		@Override
+		public void paint(Graphics g) {
+			// TODO Auto-generated method stub
+			super.paint(g);
+			g.drawImage(bgExitImg, 0, 0, this.getWidth(), this
+					.getHeight(), null);
+		}
+	}
 	private void setExitBtn(){
 		this.add(exitBtn);
-		exitBtn.setLocation(0, 0);
-		exitBtn.setSize(120, 40);
-		exitBtn.addMouseListener(new MouseListener() {
-			
-	
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				MainFrame.getInstance().loadHeroSelect();
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
+		
 	}
 	
 	private void setPanelPosition(){

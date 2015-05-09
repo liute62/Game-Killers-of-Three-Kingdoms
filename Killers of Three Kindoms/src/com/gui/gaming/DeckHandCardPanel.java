@@ -8,6 +8,7 @@ import java.awt.Paint;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -27,6 +28,7 @@ import com.system.constants.GUIConst;
 import com.system.utils.CardUtil;
 import com.system.utils.DebugUtil;
 import com.system.utils.PlayerUtil;
+import com.system.utils.ResUtil;
 
 /**
  * A panel for handcard
@@ -43,11 +45,13 @@ public class DeckHandCardPanel extends JPanel{
 	BtnPanel skipBtnPanel;
 	MouseListener listener;
 	boolean isCardAvailablePanel;
+	BufferedImage bg;
 	
 	public DeckHandCardPanel(APlayer player){
 		this.player = player;
 		this.player.setDeckHandCardPanel(this);
 		this.setLayout(null);
+		resInitial();
 		initial();
 		this.add(sureBtnPanel);
 		this.add(cancelBtnPanel);
@@ -58,6 +62,10 @@ public class DeckHandCardPanel extends JPanel{
 		skipBtnPanel.setLocation(GUIConst.cardWidth * 5 + GUIConst.btnSureOffset,
 				sureBtnPanel.getHeight() + cancelBtnPanel.getHeight()
 						+ GUIConst.btnSkipOffset);
+	}
+	
+	private void resInitial(){
+		bg = ResUtil.getImgByName("bg_hand_card",0);
 	}
 	
 	private void initial(){
@@ -116,6 +124,13 @@ public class DeckHandCardPanel extends JPanel{
 	}
 	
 	@Override
+	public void paint(Graphics g) {
+		// TODO Auto-generated method stub
+		g.drawImage(bg, 0, 0, this.getWidth(), this.getHeight(),null);
+		super.paint(g);
+	}
+	
+	@Override
 	protected void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
 		super.paintComponent(g);
@@ -145,18 +160,17 @@ public class DeckHandCardPanel extends JPanel{
 		private static final long serialVersionUID = 1802023971429379500L;
 		JLabel text = new JLabel();
 		MouseListener listener;
+		BufferedImage bg;
 		
 		public BtnPanel(String name){
 			this.setSize(80,45);
 			this.setLayout(null);
 			this.setCursor(new Cursor(Cursor.HAND_CURSOR));
-			text.setForeground(Color.white);
 			text.setText(name);
-			this.setForeground(Color.white);
 			this.add(text);
+			resInitial();
 			text.setSize(80,45);
 			text.setHorizontalAlignment(SwingConstants.CENTER);
-			this.setBackground(Color.white);
 			if(name.equals("Sure")){
 				listener = new SureListener();
 			}else if(name.equals("Cancel")){
@@ -167,12 +181,17 @@ public class DeckHandCardPanel extends JPanel{
 			this.addMouseListener(listener);
 		}
 		
+		private void resInitial(){
+			bg = ResUtil.getImgByName("bg_btn", 1);
+		}
+		
 		@Override
 		public void paint(Graphics g) {
 			// TODO Auto-generated method stub
-			g.drawRect(0, 0, this.getWidth(), this.getHeight());
-			super.paintChildren(g);
-			g.dispose();
+			//g.drawRect(0, 0, this.getWidth(), this.getHeight());
+			super.paint(g);
+			g.drawImage(bg, 0, 0, this.getWidth(), this.getHeight(),null);
+			
 		}
 		
 		class MyClick extends MouseAdapter{

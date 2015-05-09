@@ -39,7 +39,7 @@ public class DeckProfilePanel extends JPanel{
 	private void resInitial(){
 		profile = ResUtil.getImgByName("shu_zhaoyun", 1);
 		profile = profile.getSubimage(0, 0, profile.getWidth(), profile.getHeight()-60);
-		skillBg = ResUtil.getImgByName("bok", 1);
+		skillBg = ResUtil.getImgByName("bg_skill", 1);
 	}
 	
 	private void initial(){
