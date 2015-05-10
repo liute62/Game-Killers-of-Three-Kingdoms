@@ -35,14 +35,15 @@ public class DeckEquipmentPanel extends JPanel{
 		this.setLayout(new GridLayout(4, 1));
 		this.setBackground(Color.WHITE);
 		resInitial();
+		this.setOpaque(true);
 		weapon = new DeckEquipmentSubPanel();
 		armor = new DeckEquipmentSubPanel();
 		horseAttact = new DeckEquipmentSubPanel();
 		horseDefend = new DeckEquipmentSubPanel();
-		//this.add(weapon);
-		//this.add(armor);
-		//this.add(horseAttact);
-		//this.add(horseDefend);
+		this.add(weapon);
+		this.add(armor);
+		this.add(horseAttact);
+		this.add(horseDefend);
 	}
 	
 	private void resInitial(){
@@ -54,6 +55,13 @@ public class DeckEquipmentPanel extends JPanel{
 		// TODO Auto-generated method stub		
 		super.paint(g);
 		g.drawImage(bg, 0, 0, this.getWidth(), this.getHeight(),null);
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		// TODO Auto-generated method stub
+		super.paintComponent(g);
+		//g.drawImage(bg, 0, 0, this.getWidth(), this.getHeight(),null);
 	}
 	
 	public void setAEquipment(ACard card){
@@ -74,6 +82,7 @@ public class DeckEquipmentPanel extends JPanel{
 		Border border;
 		JLabel name;
 		public DeckEquipmentSubPanel(){
+			this.setOpaque(false);
 			this.setLayout(null);
 			border = BorderFactory.createLineBorder(Color.BLACK, 1);
 			this.setBorder(border);

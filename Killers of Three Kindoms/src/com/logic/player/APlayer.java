@@ -1,7 +1,9 @@
 package com.logic.player;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
+
 
 
 
@@ -50,7 +52,7 @@ public abstract class APlayer implements IPlayer{
 	 private boolean usingSkill;
 	 private DeckHandCardPanel deckHandCardPanel;
 	 private APlayer targetPlayer;
-
+	 private BufferedImage profile;
      static int currentId = 0;
 
 	 /**
@@ -304,6 +306,14 @@ public abstract class APlayer implements IPlayer{
     public void setKingdom(Kingdoms kingdom) {
         this.kingdom = kingdom;
     }
+
+	public BufferedImage getProfile() {
+		return profile;
+	}
+
+	public void setProfile(BufferedImage profile) {
+		this.profile = profile;
+	}
 }
 
 

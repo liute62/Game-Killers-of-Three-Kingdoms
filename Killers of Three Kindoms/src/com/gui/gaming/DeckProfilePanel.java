@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import com.logic.player.APlayer;
 import com.system.constants.GUIConst;
 import com.system.utils.ResUtil;
 
@@ -18,6 +19,7 @@ public class DeckProfilePanel extends JPanel{
 
 	private static final long serialVersionUID = -2029866497979448042L;
 
+	APlayer player;
 	HPPanel hpPanel;
 	SkillPanel skillPanel;
 	JLabel[] hps ;
@@ -26,7 +28,8 @@ public class DeckProfilePanel extends JPanel{
 	BufferedImage profile;
 	BufferedImage skillBg;
 	
-	public DeckProfilePanel(int maxHp){
+	public DeckProfilePanel(int maxHp,APlayer player){
+		this.player = player;
 		this.maxHp = maxHp;
 		this.setLayout(null);
 		resInitial();
@@ -37,7 +40,7 @@ public class DeckProfilePanel extends JPanel{
 	}
 	
 	private void resInitial(){
-		profile = ResUtil.getImgByName("shu_zhaoyun", 1);
+		profile = player.getProfile();
 		profile = profile.getSubimage(0, 0, profile.getWidth(), profile.getHeight()-60);
 		skillBg = ResUtil.getImgByName("bg_skill", 1);
 	}
@@ -107,21 +110,21 @@ public class DeckProfilePanel extends JPanel{
 			}
 		}
 		
-		class SKillBtn extends JButton{
+		class SKillBtn extends JPanel{
 			
 		private static final long serialVersionUID = 3569271486968472594L;
 
 			public SKillBtn(String name){
 				this.setSize(100, 50);
-				this.setCursor(new Cursor(Cursor.HAND_CURSOR));
 				Font f = new Font("Arial", Font.BOLD, 22);
 				text.setFont(f);
 				text.setText(name);
+				//text.setOpaque(false);
 				this.add(text);
 			}
 			
 			@Override
-				public void paint(Graphics g) {
+			public void paint(Graphics g) {
 					// TODO Auto-generated method stub
 					super.paint(g);
 					g.drawImage(skillBg, 0, 0, this.getWidth(), this.getHeight(),null);

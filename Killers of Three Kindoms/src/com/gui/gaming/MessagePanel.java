@@ -38,6 +38,7 @@ public class MessagePanel extends JPanel{
 	
 	public MessagePanel(){
 		this.setLayout(null);
+		this.setOpaque(false);
 		instance = this;
 		resInitial();
 		this.setSize(GUIConst.messagePanelWidth,GUIConst.messagePanelHeight);
@@ -48,8 +49,8 @@ public class MessagePanel extends JPanel{
 	@Override
 	public void paint(Graphics g) {
 		// TODO Auto-generated method stub
-		super.paint(g);
 		g.drawImage(bg, 0, 0, this.getWidth(), this.getHeight(),null);
+		super.paint(g);
 		
 	}
 	

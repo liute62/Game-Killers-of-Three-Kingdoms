@@ -39,7 +39,7 @@ public class DeckPanel extends JPanel{
 	private void initial(){
 		deckEquipmentPanel = new DeckEquipmentPanel(player);
 		deckHandCardPanel = new DeckHandCardPanel(player);
-		deckProfilePanel = new DeckProfilePanel(5);
+		deckProfilePanel = new DeckProfilePanel(5,player);
 	}
 	
 	private void setEquipmentPanel(){

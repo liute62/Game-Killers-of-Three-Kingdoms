@@ -50,20 +50,20 @@ public class OtherPlayerPanel extends JPanel implements MouseListener{
 		this.player = player;
 		isSelected = false;
 		isTarget = false;
+		this.setOpaque(false);
 		this.setSize(GUIConst.otherPlayerPanelWidth, GUIConst.otherPlayerPanelHeight);
 		this.setLayout(null);
 		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		this.setBackground(Color.black);
 		resInitial();
 		addMouseListener(this);
 		addEquipmentPanel();
-		addProfilePanel();
+		//addProfilePanel();
 		addCardNumPanel();
 	}
 	
 	private void resInitial(){
-		img1 = ResUtil.getImgByName("caocao",0);
-		img2 = img1.getSubimage(0, 0, img1.getWidth(), img1.getHeight() / 3);
+		img1 = player.getProfile();
+		img2 = img1.getSubimage(0, 0, img1.getWidth(), img1.getHeight());
 		bg = ResUtil.getImgByName("bg_profile", 1);
 	}
 	
@@ -125,9 +125,17 @@ public class OtherPlayerPanel extends JPanel implements MouseListener{
 	public void paint(Graphics g) {
 		// TODO Auto-generated method stub
 		super.paint(g);
-		g.drawImage(img2, 2, 5, this.getWidth() - 8, this.getHeight()-115,null);
-		g.drawImage(bg, -10, -10, this.getWidth()+20, this.getHeight()+20,null);
 		
+		
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		// TODO Auto-generated method stub
+		super.paintComponent(g);
+		g.drawImage(img2, 0, 0, this.getWidth(), this.getHeight(),null);
+		//g.drawImage(img2, 2, 5, this.getWidth() - 8, this.getHeight(),null);
+		g.drawImage(bg, -10, -10, this.getWidth()+20, this.getHeight()+20,null);
 	}
 	
 	class CardNumPanel extends JPanel {

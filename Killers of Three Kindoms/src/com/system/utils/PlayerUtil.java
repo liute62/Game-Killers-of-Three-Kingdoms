@@ -1,5 +1,6 @@
 package com.system.utils;
 
+import java.awt.image.BufferedImage;
 import java.util.*;
 
 import com.gui.gaming.OtherPlayerPanel;
@@ -56,7 +57,21 @@ public class PlayerUtil {
 		data.add(player5);
 		initPos(data);
 		initInfo(data);
+		initProfile(data);
 		return data;
+	}
+	
+	private void initProfile(List<APlayer> players){
+		BufferedImage img1 = ResUtil.getImgByName("shu_zhaoyun", 1);
+		BufferedImage img2 = ResUtil.getImgByName("shu_huangyueying", 1);
+		BufferedImage img3 = ResUtil.getImgByName("wei_guojia",1);
+		BufferedImage img4 = ResUtil.getImgByName("wei_zhenji", 1);
+		BufferedImage img5 = ResUtil.getImgByName("wei_caocao", 1);
+		players.get(0).setProfile(img1);
+		players.get(1).setProfile(img2);
+		players.get(2).setProfile(img3);
+		players.get(3).setProfile(img4);
+		players.get(4).setProfile(img5);
 	}
 	
 	private void initPos(List<APlayer> players){
