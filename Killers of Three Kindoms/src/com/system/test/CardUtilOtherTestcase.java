@@ -27,4 +27,13 @@ public class CardUtilOtherTestcase {
         assertEquals(53, cards.size());
         printCards(cards);
     }
+
+    @Test
+    public void testAllCardsGeneratedAndShuffled() {
+        CardUtil cardUtil = CardUtil.getInstance();
+        List<ACard> cards = cardUtil.generateInitialCardDeck();
+        cardUtil.shuffleCard(cards);
+        assertEquals(53, cards.size());
+        printCards(cards);
+    }
 }

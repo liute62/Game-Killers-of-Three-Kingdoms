@@ -57,17 +57,21 @@ public class CardUtil {
 	public List<ACard> shuffleCard(List<ACard> cards) {
 		// Generate a list of integers.
 		List<Integer> randInts = new ArrayList<Integer>();
-//        Random random = new Random();
-//        for (int i = 0, len = cards.size(); i < len; i++) {
-//            randInts.add(random.nextInt());
-//        }
-		randInts = Arrays.asList(1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31);
+        Random random = new Random();
+        for (int i = 0, len = cards.size(); i < len; i++) {
+            int t = random.nextInt();
+            while (t <= 0) {
+                t = random.nextInt();
+            }
+            randInts.add(t);
+        }
+//		randInts = Arrays.asList(1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31);
 
         // Shuffle cards.
 		for (int n = 1; n < cards.size(); n++) {
-			int pos0 = randInts.get((2 * n - 2) % randInts.size()) % cards.size();
-			int pos1 = randInts.get((2 * n - 1) % randInts.size()) % cards.size();
-			ACard temp = cards.get(pos0);
+            int pos0 = randInts.get((2 * n - 2) % randInts.size()) % cards.size();
+            int pos1 = randInts.get((2 * n - 1) % randInts.size()) % cards.size();
+            ACard temp = cards.get(pos0);
 			cards.set(pos0, cards.get(pos1));
 			cards.set(pos1, temp);
 		}
