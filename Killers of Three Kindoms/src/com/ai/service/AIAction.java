@@ -1,6 +1,7 @@
 package com.ai.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -58,6 +59,7 @@ public class AIAction {
 	 */
 	public void castCard(){
 		ACard cardToCast;
+		APlayer targetPlayer;
 		player.gameStage = GameStage.castCard;
 		List<ACard> cards = player.getAvailableCards(player.getHands());
 		setAvailableCards(cards);
@@ -77,15 +79,12 @@ public class AIAction {
 			if(cardToCast != null) break;
 			break;
 		}
-		player.setBeingUsedCard(cards.get(castCardIndex));
+		this.player.setBeingUsedCard(cards.get(castCardIndex));
 		//choose the available target
-		selectTarget(cardToCast);
-		
-		
-		APlayer target = new Player();
-		target.setPosition(1);
-		setTarget(target);
-		BattleFieldPanel.Instance().addACard(player, cards.get(0));
+		targetPlayer = selectTarget(cardToCast);
+		setTarget(targetPlayer);
+		cardToCast.use(this.player, Arrays.asList(targetPlayer));
+		BattleFieldPanel.Instance().addACard(this.player, cardToCast);
 	}
 	
 
