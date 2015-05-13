@@ -47,6 +47,7 @@ public class DeckHandCardPanel extends JPanel{
 	MouseListener listener;
 	boolean isCardAvailablePanel;
 	BufferedImage bg;
+	private boolean isDiscardStage;
 	
 	public static DeckHandCardPanel getTheInstance(){
 		return instance;
@@ -146,6 +147,14 @@ public class DeckHandCardPanel extends JPanel{
 		cancelBtnPanel.setClickable(false);
 	}
 	
+	public void setSkipBtnClickable(){
+		skipBtnPanel.setClickable(true);
+	}
+	
+	public void setSkipBtnUnClikable(){
+		skipBtnPanel.setClickable(false);
+	}
+	
 	@Override
 	public void paint(Graphics g) {
 		// TODO Auto-generated method stub
@@ -170,6 +179,14 @@ public class DeckHandCardPanel extends JPanel{
 		cardPanelInitial();
 	}
 	
+	public boolean isDiscardStage() {
+		return isDiscardStage;
+	}
+
+	public void setDiscardStage(boolean isDiscardStage) {
+		this.isDiscardStage = isDiscardStage;
+	}
+
 	/**
 	 * this is a panel for
 	 * 1.confirm casting card

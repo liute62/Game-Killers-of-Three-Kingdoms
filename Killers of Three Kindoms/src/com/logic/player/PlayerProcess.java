@@ -4,6 +4,7 @@ import javax.swing.DebugGraphics;
 
 import com.ai.service.AIAction;
 import com.gui.gaming.BattleFieldPanel;
+import com.gui.gaming.DeckHandCardPanel;
 import com.gui.gaming.MessagePanel;
 import com.system.enums.GameStage;
 import com.system.utils.DebugUtil;
@@ -97,6 +98,12 @@ public class PlayerProcess {
 		if (player.isAI()) {
 			new AIAction(player).dropCard();
 			return ;
+		}
+		DeckHandCardPanel panel = player.getDeckHandCardPanel();
+		panel.setSkipBtnUnClikable();
+		panel.setDiscardStage(true);
+		panel.refresh();
+		while (true) {
 		}
 	}
 	
