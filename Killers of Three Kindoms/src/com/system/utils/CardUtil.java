@@ -22,6 +22,7 @@ public class CardUtil {
 
 	private static CardUtil instance;
 	private List<CardPanel> playerHandCardPanels;
+    private static List<ACard> deckCards;
 	
 	public static CardUtil getInstance() {
 		if (instance == null) {
@@ -29,9 +30,17 @@ public class CardUtil {
 		}
 		return instance;
 	}
+
+    public static List<ACard> getDeckCards() {
+        if (instance == null) {
+            new CardUtil();
+        }
+        return deckCards;
+    }
 	
 	private CardUtil(){
 		instance = this;
+        deckCards = shuffleCard(generateInitialCardDeck());
 	}
 	
 	public List<ACard> getInitialCards(APlayer player){
