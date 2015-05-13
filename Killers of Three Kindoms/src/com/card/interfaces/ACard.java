@@ -1,6 +1,8 @@
 package com.card.interfaces;
 
 
+import java.awt.image.BufferedImage;
+
 public abstract class ACard implements ICard {
 
     protected int id;
@@ -12,6 +14,8 @@ public abstract class ACard implements ICard {
     protected int type;
 
     protected int suit;
+
+    protected BufferedImage profile;
 
     public int getSuit() {
         return suit;
@@ -37,8 +41,15 @@ public abstract class ACard implements ICard {
         return id;
     }
 
-
     public String getName() {
         return name;
+    }
+
+    public BufferedImage getProfile() {
+        return profile;
+    }
+
+    public void setProfile(BufferedImage profile) {
+        this.profile = profile;
     }
 }

@@ -9,6 +9,7 @@ import java.util.List;
 import com.logic.player.APlayer;
 import com.system.constants.CardConst;
 import com.system.utils.PositionCompare;
+import com.system.utils.ResUtil;
 
 //Play Phase.
 //Target: All Heroes.
@@ -22,6 +23,7 @@ public class PeachGarden extends ScrollCardAbstract {
     public PeachGarden() {
         this.name = "PeachGarden";
         this.type = CardConst.CardType_Scroll_Card;
+        this.profile = ResUtil.getImgByName("scroll_peachgarden", 1);
     }
 
     public List<APlayer> getOrderOfRecovering() {

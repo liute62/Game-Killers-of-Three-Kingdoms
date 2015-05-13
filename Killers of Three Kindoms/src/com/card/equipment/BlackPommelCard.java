@@ -7,6 +7,7 @@ import com.card.interfaces.IWeaponCard;
 import com.card.interfaces.WeaponCard;
 import com.logic.player.APlayer;
 import com.system.constants.CardConst;
+import com.system.utils.ResUtil;
 
 
 public class BlackPommelCard extends WeaponCard implements IWeaponCard{
@@ -15,8 +16,9 @@ public class BlackPommelCard extends WeaponCard implements IWeaponCard{
 		// TODO Auto-generated constructor stub
 		this.name = "BlackPommel";
 		this.type = CardConst.CardType_Weapon;
-		this.attackRange = 2;
-	}
+        this.profile = ResUtil.getImgByName("weapon_blackpommel", 1);
+        this.attackRange = 2;
+    }
 	
 	@Override
 	public void checkArmor() {
