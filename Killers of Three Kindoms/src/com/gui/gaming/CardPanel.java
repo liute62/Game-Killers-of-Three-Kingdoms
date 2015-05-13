@@ -46,9 +46,9 @@ public class CardPanel extends JPanel{
 		this.setSize(GUIConst.cardWidth,GUIConst.cardHeight);
 		this.setForeground(Color.BLACK);
 		this.isUsed = false;
-		resInitial();
 		this.setCard(card);
-		this.cardName = card.getName();
+        resInitial();
+        this.cardName = card.getName();
 		listener = new Mouse(this);
 		this.addMouseListener(listener);
 		this.requestFocus();
@@ -56,7 +56,8 @@ public class CardPanel extends JPanel{
 	}
 	
 	private void resInitial(){
-		bg = ResUtil.getImgByName("basic_strike", 1);
+//		bg = ResUtil.getImgByName("basic_strike", 1);
+        bg = getCard().getProfile();
 	}
 	
 	private void borderInitial(ACard card){
