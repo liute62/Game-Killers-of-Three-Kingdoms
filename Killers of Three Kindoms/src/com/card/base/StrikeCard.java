@@ -4,6 +4,7 @@ import com.card.interfaces.ACard;
 import com.logic.player.APlayer;
 import com.system.constants.CardConst;
 import com.system.utils.PlayerUtil;
+import com.system.utils.ResUtil;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ public class StrikeCard extends ACard {
     public StrikeCard() {
         this.name = "Strike";
         this.type = CardConst.CardType_Strike;
+        this.profile = ResUtil.getImgByName("basic_strike", 1);
     }
 
     /**

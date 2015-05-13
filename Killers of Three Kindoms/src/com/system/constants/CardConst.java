@@ -16,5 +16,10 @@ public class CardConst {
 	public static final int CardType_Mount_Minus = 6; //Horse for attacking
 	  
 	public static final int CardType_Mount_Plus = 7; //Horse for defending
+
+    public static final int CardType_Scroll_Card = 8;
+
+    public static final int CardType_Delayed_Scroll_Card = 9;
+
 }
 
