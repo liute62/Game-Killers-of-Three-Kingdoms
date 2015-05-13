@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import com.logic.player.APlayer;
+import com.system.constants.CardConst;
 import com.system.utils.PositionCompare;
 
 //Play Phase.
@@ -17,8 +18,13 @@ public class PeachGarden extends ScrollCardAbstract {
 	
 	private List<APlayer> orderOfRecovering;
 	PositionCompare comparePosition = new PositionCompare();
-	
-	public List<APlayer> getOrderOfRecovering() {
+
+    public PeachGarden() {
+        this.name = "PeachGarden";
+        this.type = CardConst.CardType_Scroll_Card;
+    }
+
+    public List<APlayer> getOrderOfRecovering() {
 		return orderOfRecovering;
 	}
 
