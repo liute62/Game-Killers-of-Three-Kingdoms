@@ -40,14 +40,16 @@ public class CardPanel extends JPanel{
 	private ACard card;
 	private int effectRange;
 	BufferedImage bg;
+	private boolean isDiscardStage;
 
 	public CardPanel(ACard card){
 		this.setOpaque(false);
 		this.setSize(GUIConst.cardWidth,GUIConst.cardHeight);
 		this.setForeground(Color.BLACK);
 		this.isUsed = false;
+		this.isDiscardStage = false;	
+		resInitial();
 		this.setCard(card);
-        resInitial();
         this.cardName = card.getName();
 		listener = new Mouse(this);
 		this.addMouseListener(listener);
@@ -87,6 +89,17 @@ public class CardPanel extends JPanel{
 		super.paintComponent(g);
 		g.setFont(new Font(g.getFont().getName(), Font.BOLD, 18));
 		g.drawString(cardName, 15, 20);
+	}
+	
+	public void selectForDiscard(){
+		this.setLocation(this.getX(), this.getY() - 50);
+		repaint();
+		this.setSelected(true);
+	}
+	
+	public void unselectFoDiscard(){
+		this.setLocation(this.getX(), this.getY() + 50);
+		this.setSelected(false);
 	}
 	
 	public void unselect(){
@@ -174,10 +187,18 @@ public class CardPanel extends JPanel{
 		public void mouseClicked(MouseEvent e) {
 			// TODO Auto-generated method stub
 			if (card.isSelectable()) {
-				if (card.isSelected) {
-					card.unselect();
-				} else {
-					card.select();
+				if (isDiscardStage) {
+					if (card.isSelected) {
+						card.unselectFoDiscard();
+					} else {
+						card.selectForDiscard();
+					}	
+				}else {
+					if (card.isSelected) {
+						card.unselect();
+					} else {
+						card.select();
+					}	
 				}
 			}
 		}
@@ -210,5 +231,9 @@ public class CardPanel extends JPanel{
 	public void setUsed(boolean isUsed) {
 		this.isUsed = isUsed;
 		repaint();
+	}
+	
+	public void setDiscardStage(boolean isDiscardStage){
+		this.isDiscardStage = isDiscardStage;
 	}
 }

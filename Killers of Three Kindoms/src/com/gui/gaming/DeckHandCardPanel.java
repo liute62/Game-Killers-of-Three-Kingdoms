@@ -59,6 +59,7 @@ public class DeckHandCardPanel extends JPanel{
 		this.player = player;
 		this.player.setDeckHandCardPanel(this);
 		this.setLayout(null);
+		this.isDiscardStage = false;
 		resInitial();
 		initial();
 		this.add(confirmBtnPanel);
@@ -181,7 +182,13 @@ public class DeckHandCardPanel extends JPanel{
 			this.remove(cardPanels.get(i));
 		}
 		for (int i = 0; i < player.getHands().size(); i++) {
-			cardPanels.add(new CardPanel(player.getHands().get(i)));
+			CardPanel panel = new CardPanel(player.getHands().get(i));
+			if (isDiscardStage) {
+				panel.setDiscardStage(true);
+			}else {
+				panel.setDiscardStage(false);
+			}
+			cardPanels.add(panel);
 		}
 		cardPanelInitial();
 	}
@@ -192,6 +199,7 @@ public class DeckHandCardPanel extends JPanel{
 
 	public void setDiscardStage(boolean isDiscardStage) {
 		this.isDiscardStage = isDiscardStage;
+		this.refresh();
 	}
 
 	/**
