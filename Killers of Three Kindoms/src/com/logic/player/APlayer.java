@@ -8,8 +8,10 @@ import java.util.List;
 
 
 
+
 import com.card.interfaces.*;
 import com.gui.gaming.DeckHandCardPanel;
+import com.gui.gaming.OtherPlayerPanel;
 import com.hero.skills.interfaces.ISkill;
 import com.logic.interfaces.IPlayer;
 import com.system.constants.CardConst;
@@ -51,6 +53,7 @@ public abstract class APlayer implements IPlayer{
 	 private boolean castingcard;
 	 private boolean usingSkill;
 	 private DeckHandCardPanel deckHandCardPanel;
+	 private OtherPlayerPanel otherPlayerPanel;
 	 private APlayer targetPlayer;
 	 private BufferedImage profile;
      static int currentId = 0;
@@ -313,6 +316,14 @@ public abstract class APlayer implements IPlayer{
 
 	public void setProfile(BufferedImage profile) {
 		this.profile = profile;
+	}
+
+	public OtherPlayerPanel getOtherPlayerPanel() {
+		return otherPlayerPanel;
+	}
+
+	public void setOtherPlayerPanel(OtherPlayerPanel otherPlayerPanel) {
+		this.otherPlayerPanel = otherPlayerPanel;
 	}
 }
 

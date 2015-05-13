@@ -36,8 +36,10 @@ public class PlayerProcess {
 	
 	private void init(){
 		if (player.isAI()) {
-			
+			player.getOtherPlayerPanel().setDoing(true);
 		}else {
+			//refresh
+			
 			player.setSkipped(false);
 		}
 	}
@@ -66,6 +68,9 @@ public class PlayerProcess {
 			new AIAction(player).drawCard();
 			return ;
 		}
+		player.drawACard();
+		player.drawACard();
+		player.getDeckHandCardPanel().refresh();
 	}
 	
 	private void stage_castcard(){
@@ -115,6 +120,10 @@ public class PlayerProcess {
 	private void stage_end(){
 		player.gameStage = GameStage.end;
 		MessagePanel.Instance().addAMessage(player.getName()+" end stage",1);
+		if (player.isAI()) {
+			new AIAction(player).end();
+			return ;
+		}
 	}
 	
 	private void nextPlayer(){

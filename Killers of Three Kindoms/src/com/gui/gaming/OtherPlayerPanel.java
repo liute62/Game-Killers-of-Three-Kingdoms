@@ -38,6 +38,7 @@ public class OtherPlayerPanel extends JPanel implements MouseListener{
 	APlayer player;
 	private boolean isSelected;
 	private boolean isTarget;
+	private boolean isDoing;
 	JLabel name;
 	JLabel HP;
 	DeckEquipmentPanel equipmentPanel;
@@ -45,11 +46,14 @@ public class OtherPlayerPanel extends JPanel implements MouseListener{
 	BufferedImage img1;
 	BufferedImage img2;
 	BufferedImage bg;
+	BufferedImage isDoingBg;
 	
 	public OtherPlayerPanel(APlayer player){
 		this.player = player;
+		this.player.setOtherPlayerPanel(this);
 		isSelected = false;
 		isTarget = false;
+		isDoing = false;
 		this.setOpaque(false);
 		this.setSize(GUIConst.otherPlayerPanelWidth, GUIConst.otherPlayerPanelHeight);
 		this.setLayout(null);
@@ -59,12 +63,14 @@ public class OtherPlayerPanel extends JPanel implements MouseListener{
 		addEquipmentPanel();
 		//addProfilePanel();
 		addCardNumPanel();
+	
 	}
 	
 	private void resInitial(){
 		img1 = player.getProfile();
 		img2 = img1.getSubimage(0, 0, img1.getWidth(), img1.getHeight());
 		bg = ResUtil.getImgByName("bg_profile", 1);
+		isDoingBg = ResUtil.getImgByName("bg_doing", 1);
 	}
 	
 	private void addProfilePanel(){
@@ -136,6 +142,10 @@ public class OtherPlayerPanel extends JPanel implements MouseListener{
 		g.drawImage(img2, 0, 0, this.getWidth(), this.getHeight(),null);
 		//g.drawImage(img2, 2, 5, this.getWidth() - 8, this.getHeight(),null);
 		g.drawImage(bg, -10, -10, this.getWidth()+20, this.getHeight()+20,null);
+		if (isDoing) {
+			g.drawImage(isDoingBg, -10, -10, this.getWidth()+10, this.getHeight()+10,null);
+		}
+		
 	}
 	
 	class CardNumPanel extends JPanel {
@@ -199,6 +209,15 @@ public class OtherPlayerPanel extends JPanel implements MouseListener{
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public boolean isDoing() {
+		return isDoing;
+	}
+
+	public void setDoing(boolean isDoing) {
+		this.isDoing = isDoing;
+		repaint();
 	}
 	
 	

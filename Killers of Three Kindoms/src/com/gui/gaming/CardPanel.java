@@ -111,6 +111,7 @@ public class CardPanel extends JPanel{
 			panels.get(i).unselect();
 			panels.get(i).unBorder();
 		}
+		DeckHandCardPanel.getTheInstance().setConfirmBtnUnClickable();
 	}
 	
 	public void select(){
@@ -133,6 +134,8 @@ public class CardPanel extends JPanel{
 		for (int i = 0; i < panels.size(); i++) {
 			panels.get(i).target();
 		}
+		//check if it can be casted
+		DeckHandCardPanel.getTheInstance().setConfirmBtnClickable();
 	}
 	
 	public List<OtherPlayerPanel> getTargetPlayerPanels(){

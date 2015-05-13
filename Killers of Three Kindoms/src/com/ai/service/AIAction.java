@@ -45,6 +45,11 @@ public class AIAction {
 			List<ACard> cards = new ArrayList<ACard>();
 			player.setHands(cards);
 		}
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -86,8 +91,33 @@ public class AIAction {
 		cardToCast.use(this.player, Arrays.asList(targetPlayer));
 		BattleFieldPanel.Instance().addACard(this.player, cardToCast);
 	}
-	
 
+	/**
+	 * Drop card stage for AI
+	 */
+	public void dropCard(){
+		int num = player.getDiscardNum();
+		List<ACard> tmp = new ArrayList<ACard>();
+		for (int i = 0; i < num; i++) {
+			tmp.add(player.getHands().get(i));
+		}
+		player.getHands().removeAll(tmp);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void end(){
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		player.getOtherPlayerPanel().setDoing(false);
+	}
+	
 	private APlayer selectTarget(ACard cardToCast) {
 		// TODO Auto-generated method stub
 		//List<APlayer> players = PlayerUtil.getInstance().getPlayers();
@@ -179,19 +209,6 @@ public class AIAction {
 			}
 		}
 		return null;
-	}
-	
-	
-	/**
-	 * Drop card stage for AI
-	 */
-	public void dropCard(){
-		int num = player.getDiscardNum();
-		List<ACard> tmp = new ArrayList<ACard>();
-		for (int i = 0; i < num; i++) {
-			tmp.add(player.getHands().get(i));
-		}
-		player.getHands().removeAll(tmp);
 	}
 
 	public APlayer getPlayer() {
