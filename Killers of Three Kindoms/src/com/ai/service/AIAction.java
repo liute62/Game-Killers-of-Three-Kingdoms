@@ -7,9 +7,11 @@ import java.util.List;
 import java.util.ListIterator;
 
 import com.card.interfaces.ACard;
+import com.card.interfaces.AmorCard;
 import com.gui.gaming.BattleFieldPanel;
 import com.logic.player.APlayer;
 import com.logic.player.Player;
+import com.system.constants.CardConst;
 import com.system.enums.GameStage;
 import com.system.utils.DebugUtil;
 import com.system.utils.PlayerUtil;
@@ -55,16 +57,131 @@ public class AIAction {
 	 * 7.then finish.
 	 */
 	public void castCard(){
+		ACard cardToCast;
 		player.gameStage = GameStage.castCard;
 		List<ACard> cards = player.getAvailableCards(player.getHands());
 		setAvailableCards(cards);
+		while(true)
+		{
+			cardToCast = IsThereWeapon(cards);
+			if(cardToCast != null) break;
+			cardToCast = IsThereAmor(cards);
+			if(cardToCast != null) break;
+			cardToCast = IsThereMount_minus(cards);
+			if(cardToCast != null) break;
+			cardToCast = IsThereMount_plus(cards);
+			if(cardToCast != null) break;
+			cardToCast = IsThereStrike(cards);
+			if(cardToCast != null) break;
+			cardToCast = IsTherePeach(cards);
+			if(cardToCast != null) break;
+			break;
+		}
 		player.setBeingUsedCard(cards.get(castCardIndex));
 		//choose the available target
+		selectTarget(cardToCast);
+		
+		
 		APlayer target = new Player();
 		target.setPosition(1);
 		setTarget(target);
 		BattleFieldPanel.Instance().addACard(player, cards.get(0));
 	}
+	
+
+	private APlayer selectTarget(ACard cardToCast) {
+		// TODO Auto-generated method stub
+		//List<APlayer> players = PlayerUtil.getInstance().getPlayers();
+		if(cardToCast.getType() == CardConst.CardType_Armor || cardToCast.getType() == CardConst.CardType_Weapon
+				|| cardToCast.getType() == CardConst.CardType_Mount_Minus || cardToCast.getType() == CardConst.CardType_Mount_Plus)
+		{
+			return this.player;
+		}
+		else if(cardToCast.getType() == CardConst.CardType_Strike)
+		{
+			List<APlayer> players = PlayerUtil.getInstance().getPlayers();
+			for(APlayer player: players)
+			{
+				if(PlayerUtil.getDistance(this.player, player) == 1) return player;
+			}
+		}
+		return null;
+	}
+
+	private ACard IsTherePeach(List<ACard> cards) {
+		// TODO Auto-generated method stub
+		for(int i = 0; i < availableCards.size(); i++ )
+		{
+			if(availableCards.get(i).getType() == CardConst.CardType_Peach)
+			{
+				this.castCardIndex = i;
+				return availableCards.get(i);
+			}
+		}
+		return null;
+	}
+
+	private ACard IsThereStrike(List<ACard> cards) {
+		for(int i = 0; i < availableCards.size(); i++ )
+		{
+			if(availableCards.get(i).getType() == CardConst.CardType_Strike)
+			{
+				this.castCardIndex = i;
+				return availableCards.get(i);
+			}
+		}
+		return null;
+	}
+
+	private ACard IsThereMount_minus(List<ACard> cards) {
+		for(int i = 0; i < availableCards.size(); i++ )
+		{
+			if(availableCards.get(i).getType() == CardConst.CardType_Mount_Minus)
+			{
+				this.castCardIndex = i;
+				return availableCards.get(i);
+			}
+		}
+		return null;
+	}
+	
+	private ACard IsThereMount_plus(List<ACard> cards) {
+		for(int i = 0; i < availableCards.size(); i++ )
+		{
+			if(availableCards.get(i).getType() == CardConst.CardType_Mount_Plus)
+			{
+				this.castCardIndex = i;
+				return availableCards.get(i);
+			}
+		}
+		return null;
+	}
+
+	private ACard IsThereAmor(List<ACard> cards) {
+		for(int i = 0; i < availableCards.size(); i++ )
+		{
+			if(availableCards.get(i).getType() == CardConst.CardType_Armor)
+			{
+				this.castCardIndex = i;
+				return availableCards.get(i);
+			}
+		}
+		return null;
+	}
+
+	private ACard IsThereWeapon(List<ACard> availableCards)
+	{
+		for(int i = 0; i < availableCards.size(); i++ )
+		{
+			if(availableCards.get(i).getType() == CardConst.CardType_Weapon)
+			{
+				this.castCardIndex = i;
+				return availableCards.get(i);
+			}
+		}
+		return null;
+	}
+	
 	
 	/**
 	 * Drop card stage for AI
