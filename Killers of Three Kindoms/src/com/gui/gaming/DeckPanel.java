@@ -44,14 +44,12 @@ public class DeckPanel extends JPanel{
 	
 	private void setEquipmentPanel(){
 		this.add(deckEquipmentPanel);
-		deckEquipmentPanel.setBorder(BorderFactory.createLineBorder(Color.yellow, 3));
 		deckEquipmentPanel.setSize(GUIConst.mainFrameWidth/6-20,this.getHeight()-50);
 		deckEquipmentPanel.setLocation(20, 25);
 	}
 	
 	private void setDeckHandCardPanel(){
 		this.add(deckHandCardPanel);
-		deckHandCardPanel.setBorder(BorderFactory.createLineBorder(Color.green, 3));
 		deckHandCardPanel.setSize(
 				deckEquipmentPanel.getX()+this.getWidth()-deckEquipmentPanel.getWidth()
 				-255,this.getHeight());
@@ -61,7 +59,6 @@ public class DeckPanel extends JPanel{
 	
 	private void setDeckProfilePanel(){
 		this.add(deckProfilePanel);
-		deckProfilePanel.setBorder(BorderFactory.createLineBorder(Color.red, 3));
 		deckProfilePanel.setSize(this.getWidth()/5,this.getHeight());
 		deckProfilePanel.setLocation(GUIConst.mainFrameWidth - deckProfilePanel.getWidth()-10, 0);
 	}

@@ -31,11 +31,11 @@ public class DeckEquipmentPanel extends JPanel{
 	BufferedImage bg;
 	
 	public DeckEquipmentPanel(APlayer player){
+		this.setOpaque(false);
 		this.player = player;
 		this.setLayout(new GridLayout(4, 1));
 		this.setBackground(Color.WHITE);
 		resInitial();
-		this.setOpaque(true);
 		weapon = new DeckEquipmentSubPanel();
 		armor = new DeckEquipmentSubPanel();
 		horseAttact = new DeckEquipmentSubPanel();

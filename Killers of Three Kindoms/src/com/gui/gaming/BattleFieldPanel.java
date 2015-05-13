@@ -35,8 +35,8 @@ public class BattleFieldPanel extends JPanel{
 	
 	private BattleFieldPanel(){
 		instance = this;
-		this.setLayout(null);
 		this.setOpaque(false);
+		this.setLayout(null);
 		this.setSize(GUIConst.mainFrameWidth/5*3,GUIConst.playerPanelWidth+20);
 		this.setLocation(GUIConst.mainFrameWidth/5, GUIConst.playerPanelHeight);
 		initial();
@@ -53,6 +53,7 @@ public class BattleFieldPanel extends JPanel{
 		int i = cards.size() - 1;
 		CardPanel cardPanel = new CardPanel(card);
 		cardPanel.setSelectable(false);
+		cardPanel.setUsed(true);
 		this.add(cardPanel);
 		cardPanel.setLocation(cardPanel.getWidth()*i, 20);
 		repaint();

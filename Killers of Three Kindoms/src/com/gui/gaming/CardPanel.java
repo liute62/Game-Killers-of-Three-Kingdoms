@@ -33,6 +33,7 @@ public class CardPanel extends JPanel{
 	private static final long serialVersionUID = 4192067258235873873L;
 	boolean isSelected = false;
 	private boolean selectable = true;
+	private boolean isUsed;
 	int id = -1;
 	String cardName = "card";
 	MouseListener listener;
@@ -41,11 +42,11 @@ public class CardPanel extends JPanel{
 	BufferedImage bg;
 
 	public CardPanel(ACard card){
+		this.setOpaque(false);
 		this.setSize(GUIConst.cardWidth,GUIConst.cardHeight);
 		this.setForeground(Color.BLACK);
+		this.isUsed = false;
 		resInitial();
-		borderInitial(card);
-		this.id = id;
 		this.setCard(card);
 		this.cardName = card.getName();
 		listener = new Mouse(this);
@@ -72,7 +73,11 @@ public class CardPanel extends JPanel{
 	public void paint(Graphics g) {
 		// TODO Auto-generated method stub
 		super.paint(g);
-		g.drawImage(bg, 2, 5, this.getWidth() - 8, this.getHeight()-50,null);
+		if (isUsed) {
+			g.drawImage(bg, 0, 0, this.getWidth(), this.getHeight()-50,null);
+		}else {
+			g.drawImage(bg, 0, 0, this.getWidth(), this.getHeight(),null);	
+		}
 	}
 	
 	@Override
@@ -84,6 +89,7 @@ public class CardPanel extends JPanel{
 	}
 	
 	public void unselect(){
+		DeckHandCardPanel.getTheInstance().setCancelBtnUnClikable();
 		this.setLocation(this.getX(), this.getY() + 50);
 		this.setSelected(false);
 		List<OtherPlayerPanel> panels = PlayerUtil.getInstance().getPlayerPanels();
@@ -95,6 +101,7 @@ public class CardPanel extends JPanel{
 	
 	public void select(){
 		//check other cardpanel to see if they are selected
+		DeckHandCardPanel.getTheInstance().setCancelBtnClickable();
 		List<CardPanel> tmp = CardUtil.getInstance().getPlayerHandCardPanels();
 		for (int i = 0; i < tmp.size(); i++) {
 			if (tmp.get(i).isSelected) {
@@ -102,6 +109,7 @@ public class CardPanel extends JPanel{
 			}
 		}
 		this.setLocation(this.getX(), this.getY() - 50);
+		repaint();
 		this.setSelected(true);
 		List<OtherPlayerPanel> panels = PlayerUtil.getInstance().getPlayerPanels();
 		for (int i = 0; i < panels.size(); i++) {
@@ -192,5 +200,14 @@ public class CardPanel extends JPanel{
 
 	public void setSelectable(boolean selectable) {
 		this.selectable = selectable;
+	}
+
+	public boolean isUsed() {
+		return isUsed;
+	}
+
+	public void setUsed(boolean isUsed) {
+		this.isUsed = isUsed;
+		repaint();
 	}
 }

@@ -38,29 +38,36 @@ import com.system.utils.ResUtil;
 public class DeckHandCardPanel extends JPanel{
 
 	private static final long serialVersionUID = -5337278012812148749L;
+	private static DeckHandCardPanel instance;
 	APlayer player;
 	List<CardPanel> cardPanels;
-	BtnPanel sureBtnPanel;
+	BtnPanel confirmBtnPanel;
 	BtnPanel cancelBtnPanel;
 	BtnPanel skipBtnPanel;
 	MouseListener listener;
 	boolean isCardAvailablePanel;
 	BufferedImage bg;
 	
+	public static DeckHandCardPanel getTheInstance(){
+		return instance;
+	}
+	
 	public DeckHandCardPanel(APlayer player){
+		instance = this;
+		this.setOpaque(false);
 		this.player = player;
 		this.player.setDeckHandCardPanel(this);
 		this.setLayout(null);
 		resInitial();
 		initial();
-		this.add(sureBtnPanel);
+		this.add(confirmBtnPanel);
 		this.add(cancelBtnPanel);
 		this.add(skipBtnPanel);
-		sureBtnPanel.setLocation(GUIConst.cardWidth * 5 + GUIConst.btnSureOffset, 20);
+		confirmBtnPanel.setLocation(GUIConst.cardWidth * 5 + GUIConst.btnSureOffset, 20);
 		cancelBtnPanel.setLocation(GUIConst.cardWidth * 5 + GUIConst.btnSureOffset,
-				sureBtnPanel.getHeight() + sureBtnPanel.getY());
+				confirmBtnPanel.getHeight() + confirmBtnPanel.getY());
 		skipBtnPanel.setLocation(GUIConst.cardWidth * 5 + GUIConst.btnSureOffset,
-				sureBtnPanel.getHeight() + cancelBtnPanel.getHeight()
+				confirmBtnPanel.getHeight() + cancelBtnPanel.getHeight()
 						+ GUIConst.btnSkipOffset);
 	}
 	
@@ -70,7 +77,7 @@ public class DeckHandCardPanel extends JPanel{
 	
 	private void initial(){
 		cardPanels = new ArrayList<CardPanel>();
-		sureBtnPanel = new BtnPanel("Sure");
+		confirmBtnPanel = new BtnPanel("Confirm");
 		cancelBtnPanel = new BtnPanel("Cancel");
 		skipBtnPanel = new BtnPanel("Skip");
 		addDataForTest();
@@ -123,6 +130,22 @@ public class DeckHandCardPanel extends JPanel{
 		repaint();
 	}
 	
+	public void setConfirmBtnClickable(){
+		confirmBtnPanel.setClickable(true);
+	}
+	
+	public void setConfirmBtnUnClickable(){
+		confirmBtnPanel.setClickable(false);
+	}
+	
+	public void setCancelBtnClickable(){
+		cancelBtnPanel.setClickable(true);
+	}
+	
+	public void setCancelBtnUnClikable(){
+		cancelBtnPanel.setClickable(false);
+	}
+	
 	@Override
 	public void paint(Graphics g) {
 		// TODO Auto-generated method stub
@@ -155,34 +178,41 @@ public class DeckHandCardPanel extends JPanel{
 	 * @author liuh4
 	 *
 	 */
-	class BtnPanel extends JPanel{
+	public class BtnPanel extends JPanel{
 
 		private static final long serialVersionUID = 1802023971429379500L;
-		JLabel text = new JLabel();
 		MouseListener listener;
-		BufferedImage bg;
+		BufferedImage bg_clickable;
+		BufferedImage bg_unClickable;
+		private boolean isClickable;
 		
 		public BtnPanel(String name){
+			this.setOpaque(false);
 			this.setSize(80,45);
 			this.setLayout(null);
 			this.setCursor(new Cursor(Cursor.HAND_CURSOR));
-			text.setText(name);
-			this.add(text);
-			resInitial();
-			text.setSize(80,45);
-			text.setHorizontalAlignment(SwingConstants.CENTER);
-			if(name.equals("Sure")){
+			if(name.equals("Confirm")){
+				isClickable = false;
+				bg_clickable = ResUtil.getImgByName("bg_btn_confirm_highlight", 1);
+				bg_unClickable = ResUtil.getImgByName("bg_btn_confirm_gray", 1);
 				listener = new SureListener();
 			}else if(name.equals("Cancel")){
+				isClickable = false;
+				bg_clickable = ResUtil.getImgByName("bg_btn_cancel_highlight", 1);
+				bg_unClickable = ResUtil.getImgByName("bg_btn_cancel_gray", 1);
 				listener = new CancelListener();
 			}else if(name.equals("Skip")){
+				isClickable = true;
+				bg_clickable = ResUtil.getImgByName("bg_btn_skip_highlight", 1);
+				bg_unClickable = ResUtil.getImgByName("bg_btn_skip_gray", 1);
 				listener = new skipListener();
 			}
 			this.addMouseListener(listener);
 		}
 		
-		private void resInitial(){
-			bg = ResUtil.getImgByName("bg_btn", 1);
+		public void setClickable(boolean isClickable) {
+			this.isClickable = isClickable;
+			repaint();
 		}
 		
 		@Override
@@ -190,8 +220,11 @@ public class DeckHandCardPanel extends JPanel{
 			// TODO Auto-generated method stub
 			//g.drawRect(0, 0, this.getWidth(), this.getHeight());
 			super.paint(g);
-			g.drawImage(bg, 0, 0, this.getWidth(), this.getHeight(),null);
-			
+			if (isClickable) {
+				g.drawImage(bg_clickable, 0, 0, this.getWidth(), this.getHeight(),null);			
+			}else {
+				g.drawImage(bg_unClickable, 0, 0, this.getWidth(), this.getHeight(),null);			
+			}
 		}
 		
 		class MyClick extends MouseAdapter{

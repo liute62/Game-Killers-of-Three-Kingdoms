@@ -34,6 +34,7 @@ public class MainPanel extends JPanel{
 	BufferedImage bgExitImg;
 	
 	public MainPanel(APlayer player) {
+		this.setOpaque(false);
 		this.player = player;
 		resIntial();
 		initial();
