@@ -6,6 +6,7 @@ import com.ai.service.AIAction;
 import com.gui.gaming.BattleFieldPanel;
 import com.gui.gaming.DeckHandCardPanel;
 import com.gui.gaming.MessagePanel;
+import com.logic.command.ThrowCards;
 import com.system.enums.GameStage;
 import com.system.utils.DebugUtil;
 
@@ -102,8 +103,12 @@ public class PlayerProcess {
 		DeckHandCardPanel panel = player.getDeckHandCardPanel();
 		panel.setSkipBtnUnClikable();
 		panel.setDiscardStage(true);
-		panel.refresh();
+		//check discard how many cards.
 		while (true) {
+			new Thread(new ThrowCards(player)).start();
+			if(player.getHands().size() <= player.getCurrentHP()){
+				break;
+			}
 		}
 	}
 	
