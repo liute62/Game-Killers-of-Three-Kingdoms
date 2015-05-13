@@ -48,8 +48,8 @@ public class CardPanel extends JPanel{
 		this.setForeground(Color.BLACK);
 		this.isUsed = false;
 		this.isDiscardStage = false;	
-		resInitial();
 		this.setCard(card);
+        resInitial();
         this.cardName = card.getName();
 		listener = new Mouse(this);
 		this.addMouseListener(listener);
