@@ -57,22 +57,9 @@ public class PlayerUtil {
 		data.add(player5);
 		initPos(data);
 		initInfo(data);
-		initProfile(data);
 		return data;
 	}
-	
-	private void initProfile(List<APlayer> players){
-		BufferedImage img1 = ResUtil.getImgByName("shu_zhaoyun", 1);
-		BufferedImage img2 = ResUtil.getImgByName("shu_huangyueying", 1);
-		BufferedImage img3 = ResUtil.getImgByName("wei_guojia",1);
-		BufferedImage img4 = ResUtil.getImgByName("wei_zhenji", 1);
-		BufferedImage img5 = ResUtil.getImgByName("wei_caocao", 1);
-		players.get(0).setProfile(img1);
-		players.get(1).setProfile(img2);
-		players.get(2).setProfile(img3);
-		players.get(3).setProfile(img4);
-		players.get(4).setProfile(img5);
-	}
+
 	
 	private void initPos(List<APlayer> players){
 		for (int i = 0; i < players.size(); i++) {
@@ -113,41 +100,48 @@ public class PlayerUtil {
             player.setMaxHP(4);
             player.setCurrentHP(4);
             player.setKingdom(Kingdoms.SHU);
+            player.setProfile(ResUtil.getImgByName("shu_zhaoyun", 1));
         } else if (name == HeroName.GuanYu) {
             ISkill skill = new GuanYu_MasterOfWarfare();
             player.setSkill(skill);
             player.setMaxHP(4);
             player.setCurrentHP(4);
             player.setKingdom(Kingdoms.SHU);
+            player.setProfile(ResUtil.getImgByName("shu_guanyu", 1));
         } else if (name == HeroName.CaoCao) {
             ISkill skill = new CaoCao_Treachery();
             player.setSkill(skill);
             player.setMaxHP(4);
             player.setCurrentHP(4);
             player.setKingdom(Kingdoms.WEI);
+            player.setProfile(ResUtil.getImgByName("wei_caocao", 1));
         } else if (name == HeroName.GuoJia) {
             ISkill skill = new GuoJia_Talented();
             player.setSkill(skill);
             player.setMaxHP(3);
             player.setCurrentHP(3);
             player.setKingdom(Kingdoms.WEI);
+            player.setProfile(ResUtil.getImgByName("wei_guojia", 1));
         } else if (name == HeroName.ZhangLiao) {
             player.setSkill(null); // TODO
             player.setMaxHP(4);
             player.setCurrentHP(4);
             player.setKingdom(Kingdoms.WEI);
+            player.setProfile(ResUtil.getImgByName("wei_zhangliao", 1));
         } else if (name == HeroName.MaChao) {
             ISkill skill = new MaChao_Horsemanship();
             player.setSkill(skill);
             player.setMaxHP(4);
             player.setCurrentHP(4);
             player.setKingdom(Kingdoms.SHU);
+            player.setProfile(ResUtil.getImgByName("shu_machao", 1));
         } else if (name == HeroName.ZhenJi) {
             ISkill skill = new ZhenJi_Siren();
             player.setSkill(skill);
             player.setMaxHP(3);
             player.setCurrentHP(3);
             player.setKingdom(Kingdoms.WEI);
+            player.setProfile(ResUtil.getImgByName("wei_zhenji", 1));
         }
         player.setAttackRange(1);
         player.setAttackAbility(1);
