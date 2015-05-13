@@ -51,17 +51,9 @@ public class DeckEquipmentPanel extends JPanel{
 	}
 	
 	@Override
-	public void paint(Graphics g) {
-		// TODO Auto-generated method stub		
-		super.paint(g);
-		g.drawImage(bg, 0, 0, this.getWidth(), this.getHeight(),null);
-	}
-	
-	@Override
 	protected void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
-		super.paintComponent(g);
-		//g.drawImage(bg, 0, 0, this.getWidth(), this.getHeight(),null);
+		g.drawImage(bg, 0, 0, this.getWidth(), this.getHeight(),null);
 	}
 	
 	public void setAEquipment(ACard card){
@@ -80,7 +72,7 @@ public class DeckEquipmentPanel extends JPanel{
 		
 		private static final long serialVersionUID = -4080521922706576417L;
 		Border border;
-		JLabel name;
+		String name = "";
 		public DeckEquipmentSubPanel(){
 			this.setOpaque(false);
 			this.setLayout(null);
@@ -88,11 +80,16 @@ public class DeckEquipmentPanel extends JPanel{
 			this.setBorder(border);
 		}
 		
+		@Override
+		public void paint(Graphics g) {
+			// TODO Auto-generated method stub
+			g.setColor(Color.gray);
+			g.drawString(name, this.getWidth() / 2 - 8, this
+					.getHeight() / 3 * 2 + 5);
+		}
+		
 		public void setCard(ACard card){
-			name = new JLabel(card.getName());
-			name.setSize(80,15);
-			name.setLocation(20, 10);
-			this.add(name);
+			name = card.getName();
 			repaint();
 		}
 	}

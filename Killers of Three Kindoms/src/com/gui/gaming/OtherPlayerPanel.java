@@ -95,6 +95,7 @@ public class OtherPlayerPanel extends JPanel implements MouseListener{
 		equipmentPanel = new DeckEquipmentPanel(player);
 		equipmentPanel.setSize(getWidth()-35, getHeight()/2);
 		equipmentPanel.setLocation(18, getHeight()/2-10);
+		equipmentPanel.setOpaque(true);
 		this.add(equipmentPanel);
 	}
 	
@@ -130,23 +131,18 @@ public class OtherPlayerPanel extends JPanel implements MouseListener{
 	@Override
 	public void paint(Graphics g) {
 		// TODO Auto-generated method stub
-		super.paint(g);
-		
-		
-	}
-	
-	@Override
-	protected void paintComponent(Graphics g) {
-		// TODO Auto-generated method stub
-		super.paintComponent(g);
 		g.drawImage(img2, 0, 0, this.getWidth(), this.getHeight(),null);
-		//g.drawImage(img2, 2, 5, this.getWidth() - 8, this.getHeight(),null);
+		
 		g.drawImage(bg, -10, -10, this.getWidth()+20, this.getHeight()+20,null);
+		
 		if (isDoing) {
 			g.drawImage(isDoingBg, -10, -10, this.getWidth()+10, this.getHeight()+10,null);
 		}
-		
+		super.paintChildren(g);
+		//g.dispose();
 	}
+	
+	
 	
 	class CardNumPanel extends JPanel {
 		
