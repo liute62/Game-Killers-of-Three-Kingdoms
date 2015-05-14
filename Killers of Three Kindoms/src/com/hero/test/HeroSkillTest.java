@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import com.card.base.DodgeCard;
 import com.card.base.PeachCard;
+import com.card.base.StrikeCard;
 import com.card.interfaces.ACard;
 import com.hero.skills.active.ZhangLiao_Assault;
 import com.hero.skills.interfaces.ISkill;
@@ -142,6 +143,26 @@ public class HeroSkillTest {
 		ISkill t = new ZhangLiao_Assault();
 		p1.setSkill(t);
 		Assert.assertEquals(false, p1.checkSkill(Arrays.asList(card), Arrays.asList(p2,p3)));
+	}
+	
+	@Test
+	public void testZhangLiaoCanUseAssaultCorrectly()
+	{
+		APlayer p1 = new Player();
+		APlayer p2 = new Player();
+		APlayer p3 = new Player();
+		ACard c = null;
+		ACard card1 = new StrikeCard();
+		ACard card2 = new DodgeCard();
+		p2.setHands(Arrays.asList(card1));
+		p3.setHands(Arrays.asList(card2));
+		p1.gameStage = GameStage.drawCard;
+		p1.setName(HeroName.ZhangLiao);
+		ISkill t = new ZhangLiao_Assault();
+		p1.setSkill(t);
+		p1.getSkill().use(p1, Arrays.asList(c), Arrays.asList(p2,p3));
+		Assert.assertEquals(card1, p1.getHands().get(0));
+		Assert.assertEquals(card2, p1.getHands().get(1));
 	}
 	
 	
