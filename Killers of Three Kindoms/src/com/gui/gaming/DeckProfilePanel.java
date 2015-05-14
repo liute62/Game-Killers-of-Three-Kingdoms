@@ -82,13 +82,7 @@ public class DeckProfilePanel extends JPanel{
             hp.setFont(new Font(Font.DIALOG, Font.BOLD, 21));
             hp.setForeground(Color.white);
 		}
-//
-//		@Override
-//		public void paint(Graphics g) {
-//			// TODO Auto-generated method stub
-//			super.paint(g);
-//			g.drawImage(health, 0, 0, this.getWidth(), this.getHeight(),null);
-//		}
+
 	}
 	
 	class SkillPanel extends JPanel{

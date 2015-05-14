@@ -119,6 +119,9 @@ public class PlayerProcess {
 				break;
 			}
 		}
+
+        // TODO: Just for test and fun
+        player.setCurrentHP(player.getCurrentHP() - 1);
 	}
 	
 	private void stage_end(){

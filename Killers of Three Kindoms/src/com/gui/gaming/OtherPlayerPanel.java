@@ -147,7 +147,10 @@ public class OtherPlayerPanel extends JPanel implements MouseListener{
 		super.paintChildren(g);
 		//g.dispose();
 	}
-	
+
+    public void updateHP() {
+        hpNumPanel.updateNum(false);
+    }
 	
 	class HpNumPanel extends JPanel{
 		
@@ -156,17 +159,22 @@ public class OtherPlayerPanel extends JPanel implements MouseListener{
         JLabel hp;
 
 		public HpNumPanel() {
-            num = player.getCurrentHP();
-			hp = new JLabel(String.valueOf(num));
-			this.setSize(20, 30);
-			this.setLocation(0, 0);
-			this.add(hp);
-			this.setBackground(Color.black);
-			hp.setFont(new Font(Font.DIALOG, Font.BOLD, 21));
-			hp.setForeground(Color.white);
+            updateNum(true);
 		}
 		
-		
+		public void updateNum(boolean isInit) {
+            if (!isInit) {
+                this.remove(hp);
+            }
+            num = player.getCurrentHP();
+            hp = new JLabel(String.valueOf(num));
+            this.setSize(20, 30);
+            this.setLocation(0, 0);
+            this.add(hp);
+            this.setBackground(Color.black);
+            hp.setFont(new Font(Font.DIALOG, Font.BOLD, 21));
+            hp.setForeground(Color.white);
+        }
 	}
 	
 	class CardNumPanel extends JPanel {
