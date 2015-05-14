@@ -82,7 +82,10 @@ public class PlayerProcess {
 			return ;
 		}
 		//if is player
-		//DebugUtil.print("castcard player id:"+player.getId());
+		DeckHandCardPanel panel = player.getDeckHandCardPanel();
+		panel.setSkipBtnClickable();
+		panel.setDiscardStage(false);
+		
 		while(! player.isSkipped()){
 			
 			if (player.isCastingcard()) {
@@ -109,12 +112,13 @@ public class PlayerProcess {
 		panel.setSkipBtnUnClikable();
 		panel.setDiscardStage(true);
 		//check discard how many cards.
-//        new Thread(new ThrowCards(player)).start();
-//        while (true) {
-//			if(player.getHands().size() <= player.getCurrentHP()){
-//				break;
-//			}
-//		}
+       // new Thread(new ThrowCards(player)).start();
+        while (true) {
+        	DebugUtil.print("player.getHands().size()",player.getHands().size());
+			if(player.getHands().size() <= player.getCurrentHP()){
+				break;
+			}
+		}
 	}
 	
 	private void stage_end(){

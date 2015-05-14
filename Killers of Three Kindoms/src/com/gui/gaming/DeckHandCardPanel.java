@@ -306,23 +306,48 @@ public class DeckHandCardPanel extends JPanel{
 		class SureListener extends MyClick{
 			
 			List<CardPanel> removedList = new ArrayList<>();
+			List<ACard> removedCards = new ArrayList<>();
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
 				super.mouseReleased(e);
-				List<CardPanel> removedList = new ArrayList<>();
+				if (isDiscardStage) {
+					discard();
+				}else {
+					castcard();	
+				}
+				player.getHands().removeAll(removedCards);
+				cardPanels.removeAll(removedList);
+				cardPanelInitial();
+			}
+			
+			private void discard(){
+				for (int i = 0; i < cardPanels.size(); i++) {
+					if(cardPanels.get(i).isSelected){
+						CardPanel tmp = cardPanels.get(i);
+						removedList.add(tmp);
+						removedCards.add(tmp.getCard());
+						BattleFieldPanel.Instance().addADiscard(player, tmp.getCard());
+						tmp.unselectFoDiscard();
+						DeckHandCardPanel.this.remove(tmp);
+					}
+				}
+			}
+			
+			private void castcard(){
 				player.setTargetPlayer(PlayerUtil.getInstance().getTargertPlayer());
 				for (int i = 0; i < cardPanels.size(); i++) {
 					if(cardPanels.get(i).isSelected){
 						CardPanel tmp = cardPanels.get(i);
 						if (player.getTargetPlayer() != null) {
 							//this card can be used
-							DebugUtil.print(player.getTargetPlayer().getName().toString());
 							removedList.add(tmp);
+							removedCards.add(tmp.getCard());
 							BattleFieldPanel.Instance().addACard(player,tmp.getCard());
 							tmp.unselect();
 							DeckHandCardPanel.this.remove(tmp);
+							player.getHands().remove(tmp.getCard());
 							player.setCastingcard(true);
 						}else {
 							tmp.unselect();
@@ -331,8 +356,6 @@ public class DeckHandCardPanel extends JPanel{
 						
 					}
 				}
-				cardPanels.removeAll(removedList);
-				cardPanelInitial();
 			}
 			
 		}

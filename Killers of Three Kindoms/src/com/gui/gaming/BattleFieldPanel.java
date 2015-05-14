@@ -59,6 +59,18 @@ public class BattleFieldPanel extends JPanel{
 		repaint();
 	}
 	
+	public void addADiscard(APlayer player,ACard card){
+		MessagePanel.Instance().addAMessage(player.getName()+" dicard "+card.getName()+".");
+		cards.add(card);	
+		int i = cards.size() - 1;
+		CardPanel cardPanel = new CardPanel(card);
+		cardPanel.setSelectable(false);
+		//cardPanel.setUsed(true);
+		this.add(cardPanel);
+		cardPanel.setLocation(cardPanel.getWidth()*i, 20);
+		repaint();
+	}
+	
 	public void clear(){
 		cards.clear();
 		this.removeAll();
