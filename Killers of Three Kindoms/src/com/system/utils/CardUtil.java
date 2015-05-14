@@ -45,7 +45,7 @@ public class CardUtil {
 	
 	public List<ACard> getInitialCards(APlayer player){
 		List<ACard> cards = new ArrayList<ACard>();
-        for (int i = 0, len = player.getMaxHP(); i < len; i++) {
+        for (int i = 0, len = 4; i < len; i++) {
             cards.add(deckCards.get(0));
             deckCards.remove(0);
         }

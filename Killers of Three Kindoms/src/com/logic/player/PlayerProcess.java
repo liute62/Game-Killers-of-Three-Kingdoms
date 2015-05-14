@@ -109,8 +109,8 @@ public class PlayerProcess {
 		panel.setSkipBtnUnClikable();
 		panel.setDiscardStage(true);
 		//check discard how many cards.
+		new Thread(new ThrowCards(player)).start();
 		while (true) {
-			new Thread(new ThrowCards(player)).start();
 			if(player.getHands().size() <= player.getCurrentHP()){
 				break;
 			}

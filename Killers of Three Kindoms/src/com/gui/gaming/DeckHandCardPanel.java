@@ -87,6 +87,8 @@ public class DeckHandCardPanel extends JPanel{
 	}
 
     private void addData() {
+    	DebugUtil.print("Deck HandCard AddData",player.getHands().size());
+    	cardPanels.clear();
         for (int i = 0; i < player.getHands().size(); i++) {
             cardPanels.add(new CardPanel(player.getHands().get(i)));
         }
@@ -172,6 +174,7 @@ public class DeckHandCardPanel extends JPanel{
 		for (int i = 0; i < cardPanels.size(); i++) {
 			this.remove(cardPanels.get(i));
 		}
+		cardPanels.clear();
 		for (int i = 0; i < player.getHands().size(); i++) {
 			CardPanel panel = new CardPanel(player.getHands().get(i));
 			if (isDiscardStage) {

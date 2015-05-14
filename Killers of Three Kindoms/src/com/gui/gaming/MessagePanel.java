@@ -108,7 +108,7 @@ public class MessagePanel extends JPanel{
             e.printStackTrace();
         }
         try {
-            SwingUtilities.updateComponentTreeUI(instance);
+            //SwingUtilities.updateComponentTreeUI(instance);
         } catch (Exception e) {
 //            e.printStackTrace();
         }

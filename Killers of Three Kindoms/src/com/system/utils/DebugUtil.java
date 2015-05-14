@@ -16,6 +16,10 @@ public class DebugUtil {
 		System.out.println(name+" : "+param);
 	}
 	
+	public static void print(String name,int param) {
+		System.out.println(name+" : "+String.valueOf(param));
+	}
+	
 	public static void print(){
 		System.out.println("success print!");
 	}
