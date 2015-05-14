@@ -103,6 +103,7 @@ public abstract class APlayer implements IPlayer{
 			i = maxHP;
 		 }
 		  this.currentHP = i;
+          this.updateGuiHP();
 		}
 
 	 public int getCurrentHP() {
@@ -351,6 +352,16 @@ public abstract class APlayer implements IPlayer{
 		}
 		return false;
 	}
+    public void updateGuiHP() {
+        if (otherPlayerPanel == null && deckHandCardPanel == null) {return;}
+        if (isAI) {
+            otherPlayerPanel.updateHP();
+        }
+    }
+
+    public void updateGuiCardNum() {
+
+    }
 }
 
 
