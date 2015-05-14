@@ -96,6 +96,7 @@ public class AIAction {
 	 * Drop card stage for AI
 	 */
 	public void dropCard(){
+		player.updateDiscardNum();
 		int num = player.getDiscardNum();
 		List<ACard> tmp = new ArrayList<ACard>();
 		for (int i = 0; i < num; i++) {

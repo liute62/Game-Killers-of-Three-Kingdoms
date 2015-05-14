@@ -25,4 +25,6 @@ public interface IPlayer {
 	void initializePlayerInfo();
 	
 	void playerProcess();
+	
+	void updateDiscardNum();
 }
