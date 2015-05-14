@@ -142,5 +142,19 @@ public class HeroSkillTest {
 		Assert.assertEquals(false, p1.checkSkill(Arrays.asList(card), Arrays.asList(p2,p3)));
 	}
 	
+	@Test
+	public void testZhangLiaoCannotUseAssaultWhenTheTargetPlayerHasNoCard()
+	{
+		APlayer p1 = new Player();
+		APlayer p2 = new Player();
+		APlayer p3 = new Player();
+		ACard card = null;
+		p1.gameStage = GameStage.drawCard;
+		p1.setName(HeroName.ZhangLiao);
+		ISkill t = new ZhangLiao_Assault();
+		p1.setSkill(t);
+		Assert.assertEquals(false, p1.checkSkill(Arrays.asList(card), Arrays.asList(p2,p3)));
+	}
+	
 	
 }
