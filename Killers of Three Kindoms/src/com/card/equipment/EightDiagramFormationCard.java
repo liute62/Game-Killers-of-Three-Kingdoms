@@ -34,6 +34,13 @@ public class EightDiagramFormationCard extends AmorCard implements IArmorCard{
 			return false;
 		}
 	}
+	
+	 @Override
+	 public void use(APlayer player, List<APlayer> target) {
+	    	// TODO Auto-generated method stub
+	    	super.use(player, target);
+	    	player.getDeckEquipmentPanel().setAEquipment(this);
+	 }
 
 }
 

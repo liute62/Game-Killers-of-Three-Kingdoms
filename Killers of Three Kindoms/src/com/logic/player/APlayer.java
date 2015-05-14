@@ -9,7 +9,9 @@ import java.util.List;
 
 
 
+
 import com.card.interfaces.*;
+import com.gui.gaming.DeckEquipmentPanel;
 import com.gui.gaming.DeckHandCardPanel;
 import com.gui.gaming.OtherPlayerPanel;
 import com.hero.skills.interfaces.ISkill;
@@ -52,6 +54,7 @@ public abstract class APlayer implements IPlayer{
 	 private boolean isSkipped;
 	 private boolean castingcard;
 	 private boolean usingSkill;
+	 private DeckEquipmentPanel deckEquipmentPanel;
 	 private DeckHandCardPanel deckHandCardPanel;
 	 private OtherPlayerPanel otherPlayerPanel;
 	 private APlayer targetPlayer;
@@ -350,6 +353,14 @@ public abstract class APlayer implements IPlayer{
 			return true;
 		}
 		return false;
+	}
+
+	public DeckEquipmentPanel getDeckEquipmentPanel() {
+		return deckEquipmentPanel;
+	}
+
+	public void setDeckEquipmentPanel(DeckEquipmentPanel deckEquipmentPanel) {
+		this.deckEquipmentPanel = deckEquipmentPanel;
 	}
 }
 

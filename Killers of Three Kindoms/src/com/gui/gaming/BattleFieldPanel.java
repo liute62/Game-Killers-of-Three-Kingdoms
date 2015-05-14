@@ -65,7 +65,7 @@ public class BattleFieldPanel extends JPanel{
 		int i = cards.size() - 1;
 		CardPanel cardPanel = new CardPanel(card);
 		cardPanel.setSelectable(false);
-		//cardPanel.setUsed(true);
+		cardPanel.setUsed(true);
 		this.add(cardPanel);
 		cardPanel.setLocation(cardPanel.getWidth()*i, 20);
 		repaint();

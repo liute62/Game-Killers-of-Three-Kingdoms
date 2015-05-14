@@ -33,6 +33,7 @@ public class DeckEquipmentPanel extends JPanel{
 	public DeckEquipmentPanel(APlayer player){
 		this.setOpaque(false);
 		this.player = player;
+		this.player.setDeckEquipmentPanel(this);
 		this.setLayout(new GridLayout(4, 1));
 		this.setBackground(Color.WHITE);
 		resInitial();

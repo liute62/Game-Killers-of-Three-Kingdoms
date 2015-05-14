@@ -3,6 +3,11 @@ package com.system.utils;
 import java.awt.image.BufferedImage;
 import java.util.*;
 
+import com.card.base.PeachCard;
+import com.card.base.StrikeCard;
+import com.card.equipment.BlackPommelCard;
+import com.card.equipment.EightDiagramFormationCard;
+import com.card.interfaces.ACard;
 import com.gui.gaming.OtherPlayerPanel;
 import com.hero.skills.ability.MaChao_Horsemanship;
 import com.hero.skills.active.GuanYu_MasterOfWarfare;
@@ -58,7 +63,13 @@ public class PlayerUtil {
 		data.add(player5);
 		initPos(data);
 		initInfo(data);
-		player1.setHands(cardUtil.getInitialCards(player1));
+		//player1.setHands(cardUtil.getInitialCards(player1));
+		List<ACard> tmpList = new ArrayList<ACard>();
+		tmpList.add(new PeachCard());
+		tmpList.add(new StrikeCard());
+		tmpList.add(new BlackPommelCard());
+		tmpList.add(new EightDiagramFormationCard());
+		player1.setHands(tmpList);
 		player2.setHands(cardUtil.getInitialCards(player2));
 		player3.setHands(cardUtil.getInitialCards(player3));
 		player4.setHands(cardUtil.getInitialCards(player4));
