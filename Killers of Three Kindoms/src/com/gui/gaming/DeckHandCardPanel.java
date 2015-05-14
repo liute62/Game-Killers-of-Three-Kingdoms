@@ -82,24 +82,15 @@ public class DeckHandCardPanel extends JPanel{
 		confirmBtnPanel = new BtnPanel("Confirm");
 		cancelBtnPanel = new BtnPanel("Cancel");
 		skipBtnPanel = new BtnPanel("Skip");
-//		addDataForTest();
         addData();
 		cardPanelInitial();
 	}
 
     private void addData() {
-        for (int i = 0; i < player.getCurrentHP(); i++) {
-            cardPanels.add(new CardPanel(CardUtil.getDeckCards().get(0)));
-            CardUtil.getDeckCards().remove(0);
+        for (int i = 0; i < player.getHands().size(); i++) {
+            cardPanels.add(new CardPanel(player.getHands().get(i)));
         }
     }
-	private void addDataForTest(){
-		List<ACard> cards = CardUtil.getInstance().getInitialCards(player);
-		player.setHands(cards);
-		for (int i = 0; i < cards.size(); i++) {
-			cardPanels.add(new CardPanel(cards.get(i)));
-		}
-	}
 	
 	private void cardPanelInitial(){
 		for (int i = 0; i < cardPanels.size(); i++) {

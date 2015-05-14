@@ -45,10 +45,10 @@ public class CardUtil {
 	
 	public List<ACard> getInitialCards(APlayer player){
 		List<ACard> cards = new ArrayList<ACard>();
-		cards.add(new PeachCard());
-		cards.add(new StrikeCard());
-		cards.add(new PeachCard());
-		cards.add(new DodgeCard());
+        for (int i = 0, len = player.getMaxHP(); i < len; i++) {
+            cards.add(deckCards.get(0));
+            deckCards.remove(0);
+        }
 		return cards;
 	}
 	/**
