@@ -1,12 +1,9 @@
 package com.logic.player;
 
-import javax.swing.DebugGraphics;
-
 import com.ai.service.AIAction;
 import com.gui.gaming.BattleFieldPanel;
 import com.gui.gaming.DeckHandCardPanel;
 import com.gui.gaming.MessagePanel;
-import com.logic.command.ThrowCards;
 import com.system.enums.GameStage;
 import com.system.utils.DebugUtil;
 
@@ -39,7 +36,6 @@ public class PlayerProcess {
 			player.getOtherPlayerPanel().setDoing(true);
 		}else {
 			//refresh
-			
 			player.setSkipped(false);
 		}
 	}
