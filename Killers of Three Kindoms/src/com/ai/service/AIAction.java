@@ -87,7 +87,8 @@ public class AIAction {
 		this.player.setBeingUsedCard(cards.get(castCardIndex));
 		//choose the available target
 		targetPlayer = selectTarget(cardToCast);
-		setTarget(targetPlayer);
+		this.setTarget(targetPlayer);
+		this.player.setTargetPlayer(this.target);
 		cardToCast.use(this.player, Arrays.asList(targetPlayer));
 		BattleFieldPanel.Instance().addACard(this.player, cardToCast);
 	}
