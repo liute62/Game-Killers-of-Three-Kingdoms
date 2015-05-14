@@ -152,9 +152,12 @@ public class OtherPlayerPanel extends JPanel implements MouseListener{
 	class HpNumPanel extends JPanel{
 		
 		private static final long serialVersionUID = -4430152870990297723L;
-		JLabel hp;
+		int num;
+        JLabel hp;
+
 		public HpNumPanel() {
-			hp = new JLabel(String.valueOf(1));
+            num = player.getCurrentHP();
+			hp = new JLabel(String.valueOf(num));
 			this.setSize(20, 30);
 			this.setLocation(0, 0);
 			this.add(hp);
