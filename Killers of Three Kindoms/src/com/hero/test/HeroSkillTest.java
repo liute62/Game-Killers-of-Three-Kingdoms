@@ -134,8 +134,10 @@ public class HeroSkillTest {
 		APlayer p1 = new Player();
 		APlayer p2 = new Player();
 		APlayer p3 = new Player();
+		p2.setHands(null);
+		p3.setHands(null);
 		ACard card = null;
-		p1.gameStage = GameStage.discard;
+		p1.gameStage = GameStage.drawCard;
 		p1.setName(HeroName.ZhangLiao);
 		ISkill t = new ZhangLiao_Assault();
 		p1.setSkill(t);
