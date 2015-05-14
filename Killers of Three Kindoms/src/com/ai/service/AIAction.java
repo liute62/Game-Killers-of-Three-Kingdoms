@@ -82,28 +82,38 @@ public class AIAction {
 			if(cardToCast != null) break;
 			cardToCast = IsTherePeach(cards);
 			if(cardToCast != null) break;
+			cardToCast = null;
 			break;
 		}
-		this.player.setBeingUsedCard(cards.get(castCardIndex));
-		//choose the available target
-		targetPlayer = selectTarget(cardToCast);
-		this.setTarget(targetPlayer);
-		this.player.setTargetPlayer(this.target);
-		cardToCast.use(this.player, Arrays.asList(targetPlayer));
-		BattleFieldPanel.Instance().addACard(this.player, cardToCast);
+		if(cardToCast != null)
+		{
+			this.player.setBeingUsedCard(cards.get(castCardIndex));
+			//choose the available target
+			targetPlayer = selectTarget(cardToCast);
+			this.setTarget(targetPlayer);
+			this.player.setTargetPlayer(this.target);
+			cardToCast.use(this.player, Arrays.asList(targetPlayer));
+			BattleFieldPanel.Instance().addACard(this.player, cardToCast);
+		}
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
 	 * Drop card stage for AI
 	 */
 	public void dropCard(){
-		player.updateDiscardNum();
-		int num = player.getDiscardNum();
+		this.player.updateDiscardNum();
+		int num = this.player.getDiscardNum();
 		List<ACard> tmp = new ArrayList<ACard>();
 		for (int i = 0; i < num; i++) {
-			tmp.add(player.getHands().get(i));
+			tmp.add(this.player.getHands().get(i));
+		BattleFieldPanel.Instance().addADiscard(this.player, this.player.getHands().get(i));	
 		}
-		player.getHands().removeAll(tmp);
+		this.player.getHands().removeAll(tmp);
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
