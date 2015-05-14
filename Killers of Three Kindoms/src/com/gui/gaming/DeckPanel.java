@@ -40,6 +40,7 @@ public class DeckPanel extends JPanel{
 		deckEquipmentPanel = new DeckEquipmentPanel(player);
 		deckHandCardPanel = new DeckHandCardPanel(player);
 		deckProfilePanel = new DeckProfilePanel(5,player);
+        player.setDeckPanel(this);
 	}
 	
 	private void setEquipmentPanel(){
@@ -62,4 +63,8 @@ public class DeckPanel extends JPanel{
 		deckProfilePanel.setSize(this.getWidth()/5,this.getHeight());
 		deckProfilePanel.setLocation(GUIConst.mainFrameWidth - deckProfilePanel.getWidth()-10, 0);
 	}
+
+    public DeckProfilePanel getDeckProfilePanel() {
+        return deckProfilePanel;
+    }
 }

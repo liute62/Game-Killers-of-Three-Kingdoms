@@ -148,7 +148,7 @@ public class Player extends APlayer{
 			this.discardNum = this.hands.size() - this.currentHP; 
 		}
 		else {
-		this.discardNum = 0;	
+            this.discardNum = 0;
 		}
 	}
 	

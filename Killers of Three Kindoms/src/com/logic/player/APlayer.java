@@ -11,6 +11,7 @@ import java.util.List;
 
 import com.card.interfaces.*;
 import com.gui.gaming.DeckHandCardPanel;
+import com.gui.gaming.DeckPanel;
 import com.gui.gaming.OtherPlayerPanel;
 import com.hero.skills.interfaces.ISkill;
 import com.logic.interfaces.IPlayer;
@@ -34,10 +35,7 @@ public abstract class APlayer implements IPlayer{
 	 protected WeaponCard weapon;
 	 protected int attackRange;
 	 protected int attackAbility;
-	 protected int position; //0 1 2 3 4 
-	 //protected String heroName;
-	 //protected String roleName;
-	 //protected int roleType;
+	 protected int position; //0 1 2 3 4
 	 protected HeroName name;
 	 protected RoleType roleType;
      protected Kingdoms kingdom;
@@ -54,6 +52,7 @@ public abstract class APlayer implements IPlayer{
 	 private boolean usingSkill;
 	 private DeckHandCardPanel deckHandCardPanel;
 	 private OtherPlayerPanel otherPlayerPanel;
+     private DeckPanel deckPanel;
 	 private APlayer targetPlayer;
 	 private BufferedImage profile;
 	 private BufferedImage healthBar;
@@ -170,13 +169,14 @@ public abstract class APlayer implements IPlayer{
 	 }
 	 
 	 public List<ACard> getHands() {
-			// TODO Auto-generated method stub
-			return this.hands;
+        // TODO Auto-generated method stub
+        return this.hands;
 	}
 
 	 public void setHands(List<ACard> list) {
-			// TODO Auto-generated method stub
-			this.hands = list;
+        // TODO Auto-generated method stub
+        this.hands = list;
+        updateGuiCardNum();
 	}
 
     public ISkill getSkill() {
@@ -345,22 +345,32 @@ public abstract class APlayer implements IPlayer{
 		this.discardList = discardList;
 	}
 
-	public boolean isCanDiscard() {
+    public void setDeckPanel(DeckPanel deckPanel) {
+        this.deckPanel = deckPanel;
+    }
+
+    public boolean isCanDiscard() {
 		int tmp = hands.size() - currentHP;
 		if (discardList.size() <= tmp) {
 			return true;
 		}
 		return false;
 	}
+
     public void updateGuiHP() {
-        if (otherPlayerPanel == null && deckHandCardPanel == null) {return;}
+        if (otherPlayerPanel == null && deckPanel == null) {return;}
         if (isAI) {
             otherPlayerPanel.updateHP();
+        } else {
+            deckPanel.getDeckProfilePanel().updateHP();
         }
     }
 
     public void updateGuiCardNum() {
-
+        if (otherPlayerPanel == null) {return;}
+        if (isAI) {
+            otherPlayerPanel.updateCardNum();
+        }
     }
 }
 
