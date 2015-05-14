@@ -9,6 +9,7 @@ import org.junit.Test;
 import com.card.base.DodgeCard;
 import com.card.base.PeachCard;
 import com.card.interfaces.ACard;
+import com.hero.skills.active.ZhangLiao_Assault;
 import com.hero.skills.interfaces.ISkill;
 import com.hero.skills.trigger.GuoJia_Talented;
 import com.logic.player.APlayer;
@@ -95,6 +96,20 @@ public class HeroSkillTest {
 		p1.setSkill(t);
 		p1.activateSkill(Arrays.asList(dodgeCard), Arrays.asList(p2));
 		Assert.assertEquals(hands(dodgeCard), p1.getHands());
+	}
+	
+	@Test
+	public void testZhangLiaoCanUseAssult()
+	{
+		APlayer p1 = new Player();
+		APlayer p2 = new Player();
+		APlayer p3 = new Player();
+		ACard card = null;
+		p1.gameStage = GameStage.discard;
+		p1.setName(HeroName.ZhangLiao);
+		ISkill t = new ZhangLiao_Assault();
+		p1.setSkill(t);
+		Assert.assertEquals(true, p1.checkSkill(Arrays.asList(card), Arrays.asList(p2,p3)));
 	}
 	
 	
