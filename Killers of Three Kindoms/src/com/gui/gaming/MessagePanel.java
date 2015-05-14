@@ -121,6 +121,7 @@ public class MessagePanel extends JPanel{
 	public void clear(){
         System.out.println("textArea:" + this.textArea);
        // this.textArea.setText("");
+
 	}
 
 }
