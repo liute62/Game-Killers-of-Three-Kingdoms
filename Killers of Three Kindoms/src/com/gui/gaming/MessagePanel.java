@@ -6,14 +6,15 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Style;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 import com.system.constants.GUIConst;
 import com.system.utils.ResUtil;
+import org.easymock.internal.matchers.Null;
 
 /**
  * this is a panel to show history of casting card and something.
@@ -21,14 +22,15 @@ import com.system.utils.ResUtil;
  *
  */
 public class MessagePanel extends JPanel{
-    private static final int MAX_CHAR_IN_LINE = 22;
 	private static final long serialVersionUID = -3747578749991283567L;
 	private static MessagePanel instance = null;
-	private List<String> msgList = new ArrayList<String>();
-	private List<Integer> msgColor = new ArrayList<Integer>();
-	List<JLabel> contents = new ArrayList<>();
 	private BufferedImage bg;
-	
+
+    private JTextPane textArea;
+    private JScrollPane scrollPane;
+    private StyledDocument doc;
+    private int currentId;
+
 	public static MessagePanel Instance(){
 		if(instance == null){
 			instance = new MessagePanel();
@@ -43,98 +45,73 @@ public class MessagePanel extends JPanel{
 		resInitial();
 		this.setSize(GUIConst.messagePanelWidth,GUIConst.messagePanelHeight);
 		//this.setBorder(BorderFactory.createLineBorder(Color.black));
-		showAllMessage();
+        this.textArea = new JTextPane();
+        this.scrollPane = new JScrollPane(this.textArea);
+        this.doc = this.textArea.getStyledDocument();
+        this.textArea.setSize(GUIConst.messagePanelWidth, GUIConst.messagePanelHeight);
+        this.textArea.setLocation(0, 0);
+        this.textArea.setBackground(new Color(0, 0, 0, 0));
+        this.textArea.setOpaque(true);
+        this.scrollPane.setSize(GUIConst.messagePanelWidth, GUIConst.messagePanelHeight);
+        this.scrollPane.setLocation(0, 0);
+        this.scrollPane.setBackground(new Color(0, 0, 0, 0));
+        this.scrollPane.setOpaque(true);
+        this.textArea.setEnabled(false);
+        this.currentId = 0;
+        this.add(this.scrollPane);
 	}
 	
 	@Override
 	public void paint(Graphics g) {
-		// TODO Auto-generated method stub
-		g.drawImage(bg, 0, 0, this.getWidth(), this.getHeight(),null);
+		g.drawImage(bg, 0, 0, this.getWidth(), this.getHeight(), null);
 		super.paint(g);
-		
-	}
+
+        // FIXME: This is a temporary solution
+        SwingUtilities.updateComponentTreeUI(instance);
+    }
 	
 	private void resInitial(){
 		bg = ResUtil.getImgByName("bg", 0);
 	}
-	
-	private void showAllMessage(){
-		for (int i = 0; i < msgList.size(); i++) {
-			initialLabel(msgList.get(i), i,msgColor.get(i));
-		}
-		SwingUtilities.updateComponentTreeUI(instance);
-	}
-	
-	private void showAMessage(int lastIndex){
-		initialLabel(msgList.get(lastIndex),lastIndex, msgColor.get(lastIndex));
-		SwingUtilities.updateComponentTreeUI(instance);
-	}
-
-    // Solution from http://stackoverflow.com/questions/11242208/splitting-string-in-java-into-fixed-length-chunks
-    public static String[] splitString (String text, int chunkSize, int maxLength) {
-        char[] data = text.toCharArray();
-        int len = Math.min(data.length,maxLength);
-        String[] result = new String[(len+chunkSize-1)/chunkSize];
-        int linha = 0;
-        for (int i=0; i < len; i+=chunkSize) {
-            result[linha] = new String(data, i, Math.min(chunkSize,len-i));
-            linha++;
-        }
-        return result;
-    }
 
     public void addAMessage(String msg){
-        String[] msgs = splitString(msg, MAX_CHAR_IN_LINE, msg.length());
-        for (int i = 0; i < msgs.length; i++) {
-            if (i != 0) {
-                msgs[i] = "    " + msgs[i];
-            }
-            addAMessageHelper(msgs[i]);
-        }
+        this.addAMessage(msg, 0);
 	}
-
-    public void addAMessageHelper(String msg) {
-        msgColor.add(0);
-        int tmp = msgList.size();
-        msgList.add(msg);
-        showAMessage(tmp);
-    }
 	
 	/**
 	 * 
 	 * @param msg msg to show
 	 * @param color 0:black 1:red 2:green 
 	 */
-	public void addAMessage(String msg, int color){
-		msgColor.add(color);
-		int tmp = msgList.size();
-		msgList.add(msg);
-		showAMessage(tmp);
-	}
-	
-	private void initialLabel(String text,int i,int color){
-		JLabel jLabel = new JLabel(String.valueOf(i)+". "+text);
-		if (color == 1) {
-			jLabel.setForeground(Color.red);
-		}else if(color == 2){
-			jLabel.setForeground(Color.green);
-		}else {
-			jLabel.setForeground(Color.black);
-		}
-		jLabel.setSize(GUIConst.messagePanelWidth, GUIConst.messageLabelHeight);
-		jLabel.setLocation(10,10+i * GUIConst.messageLabelHeight);
-		contents.add(jLabel);
-		this.add(jLabel);
-	}
+	public void addAMessage(String msg, int color) {
+        this.currentId++;
+        Color c;
+        Style s = this.textArea.addStyle(String.valueOf(this.currentId), null);
+        if (color == 0) {
+            c = Color.BLACK;
+        } else if (color == 1) {
+            c = Color.RED;
+        } else if (color == 2) {
+            c = Color.GREEN;
+        } else {
+            c = Color.BLACK;
+        }
+        StyleConstants.setForeground(s, c);
+        try {
+            int len = this.doc.getLength();
+            this.doc.insertString(len, this.currentId + ": " + msg + "\r\n", s);
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
+        try {
+            SwingUtilities.updateComponentTreeUI(instance);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 	
 	public void clear(){
-		msgColor.clear();
-		msgList.clear();
-		for (int i = 0; i < contents.size(); i++) {
-			this.remove(contents.get(i));
-		}
-		contents.clear();
-		showAllMessage();
+        textArea.setText("");
 	}
 
 }
