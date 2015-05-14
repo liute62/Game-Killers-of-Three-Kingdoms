@@ -105,7 +105,7 @@ public class HeroSkillTest {
 		APlayer p2 = new Player();
 		APlayer p3 = new Player();
 		ACard card = null;
-		p1.gameStage = GameStage.discard;
+		p1.gameStage = GameStage.drawCard;
 		p1.setName(HeroName.ZhangLiao);
 		ISkill t = new ZhangLiao_Assault();
 		p1.setSkill(t);
@@ -119,7 +119,7 @@ public class HeroSkillTest {
 		APlayer p2 = new Player();
 		APlayer p3 = new Player();
 		ACard card = null;
-		p1.gameStage = GameStage.discard;
+		p1.gameStage = GameStage.drawCard;
 		p1.setName(HeroName.MaChao);
 		ISkill t = new ZhangLiao_Assault();
 		p1.setSkill(t);
