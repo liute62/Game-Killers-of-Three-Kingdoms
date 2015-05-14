@@ -94,7 +94,7 @@ public class PlayerProcess {
 			}if (player.gameStage == GameStage.gameOver) {
 				break;
 			}
-			//DebugUtil.print(player.isSkipped());
+			DebugUtil.print(player.isSkipped());
 		}
 	}
 	

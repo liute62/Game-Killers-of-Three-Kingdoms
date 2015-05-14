@@ -334,6 +334,7 @@ public abstract class APlayer implements IPlayer{
 	public void setHealthBar(BufferedImage healthBar) {
 		this.healthBar = healthBar;
 	}
+
 }
 
 

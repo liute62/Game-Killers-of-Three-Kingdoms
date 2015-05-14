@@ -140,4 +140,14 @@ public class Player extends APlayer{
 		playerProcess.start();
 	}
 	
+	@Override
+	public void updateDiscardNum() {
+		if(ifDropCards() == true) {
+			this.discardNum = this.hands.size() - this.currentHP; 
+		}
+		else {
+		this.discardNum = 0;	
+		}
+	}
+	
 }
