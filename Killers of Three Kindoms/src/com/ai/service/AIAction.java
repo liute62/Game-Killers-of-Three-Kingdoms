@@ -94,6 +94,7 @@ public class AIAction {
 			this.player.setTargetPlayer(this.target);
 			cardToCast.use(this.player, Arrays.asList(targetPlayer));
 			BattleFieldPanel.Instance().addACard(this.player, cardToCast);
+			this.player.getHands().remove(cardToCast);
 		}
 		try {
 			Thread.sleep(1000);
