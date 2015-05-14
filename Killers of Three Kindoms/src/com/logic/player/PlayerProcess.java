@@ -98,23 +98,28 @@ public class PlayerProcess {
 	}
 	
 	private void stage_discard(){
-		player.gameStage = GameStage.discard;
-		MessagePanel.Instance().addAMessage(player.getName()+" discard stage");
-		if (player.isAI()) {
-			new AIAction(player).dropCard();
-			return ;
-		}
-		DeckHandCardPanel panel = player.getDeckHandCardPanel();
-		panel.setSkipBtnUnClikable();
-		panel.setDiscardStage(true);
-		//check discard how many cards.
-       // new Thread(new ThrowCards(player)).start();
+//        TODO: Just for fun
+        player.setCurrentHP(player.getCurrentHP() - 2);
+        MessagePanel.Instance().addAMessage("Current HP: "+player.getCurrentHP());
+
+        player.gameStage = GameStage.discard;
+        MessagePanel.Instance().addAMessage(player.getName()+" discard stage");
+        if (player.isAI()) {
+            new AIAction(player).dropCard();
+            return ;
+        }
+        DeckHandCardPanel panel = player.getDeckHandCardPanel();
+        panel.setSkipBtnUnClikable();
+        panel.setDiscardStage(true);
+        //check discard how many cards.
+        // new Thread(new ThrowCards(player)).start();
         while (true) {
-        	DebugUtil.print("player.getHands().size()",player.getHands().size());
-			if(player.getHands().size() <= player.getCurrentHP()){
-				break;
-			}
-		}
+            DebugUtil.print("player.getHands().size()",player.getHands().size());
+            if(player.getHands().size() <= player.getCurrentHP()){
+                break;
+            }
+        }
+
 	}
 	
 	private void stage_end(){

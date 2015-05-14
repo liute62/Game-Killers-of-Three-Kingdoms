@@ -64,7 +64,11 @@ public class DeckProfilePanel extends JPanel{
 		super.paint(g);
 		g.drawImage(profile, 0, 0, this.getWidth(), this.getHeight(),null);
 	}
-	
+
+    public void updateHP() {
+        hpPanel.updateNum(false);
+    }
+
 	class HPPanel extends JPanel{
 		
 		private static final long serialVersionUID = -6792954420292239728L;
@@ -72,23 +76,22 @@ public class DeckProfilePanel extends JPanel{
         JLabel hp;
 
 		public HPPanel(){
-			DebugUtil.print();
+            updateNum(true);
+		}
+
+        public void updateNum(boolean isInit) {
+            if (!isInit) {
+                this.remove(hp);
+            }
             num = player.getCurrentHP();
             hp = new JLabel(String.valueOf(num));
-            this.setBackground(new Color(0, 0, 0));
-			this.setOpaque(true);
-			this.setSize(GUIConst.HPPanelWidth	,GUIConst.HPPanelHeight);
+            this.setBackground(Color.black);
+            this.setOpaque(true);
+            this.setSize(GUIConst.HPPanelWidth	,GUIConst.HPPanelHeight);
             this.add(hp);
             hp.setFont(new Font(Font.DIALOG, Font.BOLD, 21));
             hp.setForeground(Color.white);
-		}
-//
-//		@Override
-//		public void paint(Graphics g) {
-//			// TODO Auto-generated method stub
-//			super.paint(g);
-//			g.drawImage(health, 0, 0, this.getWidth(), this.getHeight(),null);
-//		}
+        }
 	}
 	
 	class SkillPanel extends JPanel{
@@ -124,10 +127,13 @@ public class DeckProfilePanel extends JPanel{
 			
 			@Override
 			public void paint(Graphics g) {
-					// TODO Auto-generated method stub
-					super.paint(g);
-					g.drawImage(skillBg, 0, 0, this.getWidth(), this.getHeight(),null);
-				}
+                // FIXME: Draw two skill backgrounds
+
+
+                // TODO Auto-generated method stub
+                super.paint(g);
+                g.drawImage(skillBg, 0, 0, this.getWidth(), this.getHeight(),null);
+            }
 		}
 	}
 	
