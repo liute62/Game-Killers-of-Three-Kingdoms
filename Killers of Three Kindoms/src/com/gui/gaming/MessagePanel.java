@@ -27,9 +27,10 @@ public class MessagePanel extends JPanel{
 	private BufferedImage bg;
 
     private JTextPane textArea;
+    private JScrollPane scrollPane;
     private StyledDocument doc;
-    private Style style;
-	
+    private int currentId;
+
 	public static MessagePanel Instance(){
 		if(instance == null){
 			instance = new MessagePanel();
@@ -45,12 +46,19 @@ public class MessagePanel extends JPanel{
 		this.setSize(GUIConst.messagePanelWidth,GUIConst.messagePanelHeight);
 		//this.setBorder(BorderFactory.createLineBorder(Color.black));
         this.textArea = new JTextPane();
+        this.scrollPane = new JScrollPane(this.textArea);
         this.doc = this.textArea.getStyledDocument();
-        this.style = this.textArea.addStyle("This is a style", null);
         this.textArea.setSize(GUIConst.messagePanelWidth, GUIConst.messagePanelHeight);
         this.textArea.setLocation(0, 0);
         this.textArea.setBackground(new Color(0, 0, 0, 0));
-        this.add(this.textArea);
+        this.textArea.setOpaque(true);
+        this.scrollPane.setSize(GUIConst.messagePanelWidth, GUIConst.messagePanelHeight);
+        this.scrollPane.setLocation(0, 0);
+        this.scrollPane.setBackground(new Color(0, 0, 0, 0));
+        this.scrollPane.setOpaque(true);
+        this.textArea.setEnabled(false);
+        this.currentId = 0;
+        this.add(this.scrollPane);
 	}
 	
 	@Override
@@ -76,7 +84,9 @@ public class MessagePanel extends JPanel{
 	 * @param color 0:black 1:red 2:green 
 	 */
 	public void addAMessage(String msg, int color) {
+        this.currentId++;
         Color c;
+        Style s = this.textArea.addStyle(String.valueOf(this.currentId), null);
         if (color == 0) {
             c = Color.BLACK;
         } else if (color == 1) {
@@ -86,13 +96,18 @@ public class MessagePanel extends JPanel{
         } else {
             c = Color.BLACK;
         }
-        StyleConstants.setForeground(this.style, c);
+        StyleConstants.setForeground(s, c);
         try {
-            this.doc.insertString(doc.getLength(), msg + "\r\n", this.style);
+            int len = this.doc.getLength();
+            this.doc.insertString(len, this.currentId + ": " + msg + "\r\n", s);
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
-        SwingUtilities.updateComponentTreeUI(instance);
+        try {
+            SwingUtilities.updateComponentTreeUI(instance);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 	
 	public void clear(){
