@@ -58,6 +58,7 @@ public abstract class APlayer implements IPlayer{
 	 private BufferedImage profile;
 	 private BufferedImage healthBar;
      static int currentId = 0;
+     protected List<ACard> discardList;
 
 	 /**
 	  * check if a card can be casted.
@@ -335,6 +336,21 @@ public abstract class APlayer implements IPlayer{
 		this.healthBar = healthBar;
 	}
 
+	public List<ACard> getDiscardList() {
+		return discardList;
+	}
+
+	public void setDiscardList(List<ACard> discardList) {
+		this.discardList = discardList;
+	}
+
+	public boolean isCanDiscard() {
+		int tmp = hands.size() - currentHP;
+		if (discardList.size() <= tmp) {
+			return true;
+		}
+		return false;
+	}
 }
 
 

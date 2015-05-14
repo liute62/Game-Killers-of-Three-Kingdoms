@@ -22,6 +22,7 @@ public class Player extends APlayer{
          this.attackAbility = 1;
          this.attackRange = 1;
          this.hands = new ArrayList<ACard>();
+         this.discardList = new ArrayList<ACard>();
          this.setSkipped(false);
          this.setCastingcard(false);
          playerProcess = new PlayerProcess(this);
@@ -38,6 +39,7 @@ public class Player extends APlayer{
          this.attackAbility = 1;
          this.attackRange = 1;
          this.hands = new ArrayList<ACard>();
+         this.discardList = new ArrayList<ACard>();
          this.setSkipped(false);
          this.setCastingcard(false);
          this.setUsingSkill(false);

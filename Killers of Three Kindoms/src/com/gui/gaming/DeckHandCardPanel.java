@@ -282,10 +282,12 @@ public class DeckHandCardPanel extends JPanel{
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
 				super.mouseReleased(e);
-				for (int i = 0; i < cardPanels.size(); i++) {
-					if(cardPanels.get(i).isSelected){
-						cardPanels.get(i).unselect();
-					}
+				if (isClickable) {
+					for (int i = 0; i < cardPanels.size(); i++) {
+						if(cardPanels.get(i).isSelected){
+							cardPanels.get(i).unselect();
+						}
+					}	
 				}
 			}
 		}
@@ -296,10 +298,12 @@ public class DeckHandCardPanel extends JPanel{
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
 				super.mouseReleased(e);
-				DebugUtil.print("pressed skip player id:"+player.getId());
-				DebugUtil.print(player.isSkipped());
-				player.setSkipped(true);
-				DebugUtil.print(player.isSkipped());
+				if (isClickable) {
+					DebugUtil.print("pressed skip player id:"+player.getId());
+					DebugUtil.print(player.isSkipped());
+					player.setSkipped(true);
+					DebugUtil.print(player.isSkipped());	
+				}
 			}
 		}
 		
@@ -312,14 +316,17 @@ public class DeckHandCardPanel extends JPanel{
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
 				super.mouseReleased(e);
-				if (isDiscardStage) {
-					discard();
-				}else {
-					castcard();	
+				if (isClickable) {
+					if (isDiscardStage) {
+						discard();
+					}else {
+						castcard();	
+					}
+					player.getHands().removeAll(removedCards);
+					cardPanels.removeAll(removedList);
+					cardPanelInitial();	
 				}
-				player.getHands().removeAll(removedCards);
-				cardPanels.removeAll(removedList);
-				cardPanelInitial();
+				isClickable = false;
 			}
 			
 			private void discard(){

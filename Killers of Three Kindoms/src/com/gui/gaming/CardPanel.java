@@ -95,11 +95,25 @@ public class CardPanel extends JPanel{
 		this.setLocation(this.getX(), this.getY() - 50);
 		repaint();
 		this.setSelected(true);
+		APlayer player = PlayerUtil.getInstance().getPlayer();
+		player.getDiscardList().add(this.getCard());
+		if (player.isCanDiscard()) {
+			DeckHandCardPanel.getTheInstance().setConfirmBtnClickable();
+		}else {
+			DeckHandCardPanel.getTheInstance().setConfirmBtnUnClickable();
+		}
 	}
 	
 	public void unselectFoDiscard(){
+		APlayer player = PlayerUtil.getInstance().getPlayer();
+		player.getDiscardList().remove(this.getCard());
 		this.setLocation(this.getX(), this.getY() + 50);
 		this.setSelected(false);
+		if (player.isCanDiscard()) {
+			DeckHandCardPanel.getTheInstance().setConfirmBtnClickable();
+		}else {
+			DeckHandCardPanel.getTheInstance().setConfirmBtnUnClickable();
+		}
 	}
 	
 	public void unselect(){
@@ -136,6 +150,7 @@ public class CardPanel extends JPanel{
 		}
 		//check if it can be casted
 		DeckHandCardPanel.getTheInstance().setConfirmBtnClickable();
+		DeckHandCardPanel.getTheInstance().setCancelBtnClickable();
 	}
 	
 	public List<OtherPlayerPanel> getTargetPlayerPanels(){
