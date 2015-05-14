@@ -1,8 +1,6 @@
 package com.gui.gaming;
 
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -32,6 +30,7 @@ public class DeckProfilePanel extends JPanel{
 		resInitial();
 		setCharacterPanel();
 		setSkillPanel();
+        setHPPanel();
 	}
 	
 	private void resInitial(){
@@ -44,7 +43,7 @@ public class DeckProfilePanel extends JPanel{
 	private void setHPPanel(){
 		hpPanel = new HPPanel();
 		this.add(hpPanel);
-		hpPanel.setLocation(0, 0);		
+		hpPanel.setLocation(0, 0);
 	}
 	
 	private void setCharacterPanel(){
@@ -69,20 +68,27 @@ public class DeckProfilePanel extends JPanel{
 	class HPPanel extends JPanel{
 		
 		private static final long serialVersionUID = -6792954420292239728L;
+        int num;
+        JLabel hp;
 
 		public HPPanel(){
 			DebugUtil.print();
+            num = player.getCurrentHP();
+            hp = new JLabel(String.valueOf(num));
+            this.setBackground(new Color(0, 0, 0));
 			this.setOpaque(true);
 			this.setSize(GUIConst.HPPanelWidth	,GUIConst.HPPanelHeight);
-			this.setLayout(null);
+            this.add(hp);
+            hp.setFont(new Font(Font.DIALOG, Font.BOLD, 21));
+            hp.setForeground(Color.white);
 		}
-		
-		@Override
-		public void paint(Graphics g) {
-			// TODO Auto-generated method stub
-			super.paint(g);
-			g.drawImage(health, 0, 0, this.getWidth(), this.getHeight(),null);
-		}
+//
+//		@Override
+//		public void paint(Graphics g) {
+//			// TODO Auto-generated method stub
+//			super.paint(g);
+//			g.drawImage(health, 0, 0, this.getWidth(), this.getHeight(),null);
+//		}
 	}
 	
 	class SkillPanel extends JPanel{
