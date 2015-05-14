@@ -105,8 +105,7 @@ public class MessagePanel extends JPanel{
             System.out.println("this.currentId: " + this.currentId);
             System.out.println("msg: " + msg);
             System.out.println("s:" + s);
-            int len = this.doc.getLength();
-            this.doc.insertString(len, this.currentId + ": " + msg + "\r\n", s);
+            this.doc.insertString(0, this.currentId + ": " + msg + "\r\n", s);
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
@@ -119,7 +118,7 @@ public class MessagePanel extends JPanel{
     }
 	
 	public void clear(){
-        System.out.println("textArea:" + this.textArea);
+//        System.out.println("textArea:" + this.textArea);
        // this.textArea.setText("");
 
 	}
