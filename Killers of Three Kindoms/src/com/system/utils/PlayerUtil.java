@@ -101,6 +101,7 @@ public class PlayerUtil {
             player.setCurrentHP(4);
             player.setKingdom(Kingdoms.SHU);
             player.setProfile(ResUtil.getImgByName("shu_zhaoyun", 1));
+            player.setHealthBar(ResUtil.getImgByName("life_4", 1));
         } else if (name == HeroName.GuanYu) {
             ISkill skill = new GuanYu_MasterOfWarfare();
             player.setSkill(skill);
@@ -108,6 +109,7 @@ public class PlayerUtil {
             player.setCurrentHP(4);
             player.setKingdom(Kingdoms.SHU);
             player.setProfile(ResUtil.getImgByName("shu_guanyu", 1));
+            player.setHealthBar(ResUtil.getImgByName("life_4", 1));
         } else if (name == HeroName.CaoCao) {
             ISkill skill = new CaoCao_Treachery();
             player.setSkill(skill);
@@ -115,6 +117,7 @@ public class PlayerUtil {
             player.setCurrentHP(4);
             player.setKingdom(Kingdoms.WEI);
             player.setProfile(ResUtil.getImgByName("wei_caocao", 1));
+            player.setHealthBar(ResUtil.getImgByName("life_4", 1));
         } else if (name == HeroName.GuoJia) {
             ISkill skill = new GuoJia_Talented();
             player.setSkill(skill);
@@ -122,12 +125,14 @@ public class PlayerUtil {
             player.setCurrentHP(3);
             player.setKingdom(Kingdoms.WEI);
             player.setProfile(ResUtil.getImgByName("wei_guojia", 1));
+            player.setHealthBar(ResUtil.getImgByName("life_3", 1));
         } else if (name == HeroName.ZhangLiao) {
             player.setSkill(null); // TODO
             player.setMaxHP(4);
             player.setCurrentHP(4);
             player.setKingdom(Kingdoms.WEI);
             player.setProfile(ResUtil.getImgByName("wei_zhangliao", 1));
+            player.setHealthBar(ResUtil.getImgByName("life_4", 1));
         } else if (name == HeroName.MaChao) {
             ISkill skill = new MaChao_Horsemanship();
             player.setSkill(skill);
@@ -135,6 +140,7 @@ public class PlayerUtil {
             player.setCurrentHP(4);
             player.setKingdom(Kingdoms.SHU);
             player.setProfile(ResUtil.getImgByName("shu_machao", 1));
+            player.setHealthBar(ResUtil.getImgByName("life_4", 1));
         } else if (name == HeroName.ZhenJi) {
             ISkill skill = new ZhenJi_Siren();
             player.setSkill(skill);
@@ -142,6 +148,7 @@ public class PlayerUtil {
             player.setCurrentHP(3);
             player.setKingdom(Kingdoms.WEI);
             player.setProfile(ResUtil.getImgByName("wei_zhenji", 1));
+            player.setHealthBar(ResUtil.getImgByName("life_3", 1));
         }
         player.setAttackRange(1);
         player.setAttackAbility(1);

@@ -40,7 +40,7 @@ public class GUIConst {
 	
 	public static final int btnSkipOffset = 50;
 	
-	public static final int HPPanelWidth = 20;
+	public static final int HPPanelWidth = 100;
 	
 	public static final int HPPanelHeight = 120;
 	

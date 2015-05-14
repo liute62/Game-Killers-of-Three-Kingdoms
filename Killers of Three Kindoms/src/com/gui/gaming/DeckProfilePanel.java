@@ -1,18 +1,15 @@
 package com.gui.gaming;
 
-import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
-
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.logic.player.APlayer;
 import com.system.constants.GUIConst;
+import com.system.utils.DebugUtil;
 import com.system.utils.ResUtil;
 
 public class DeckProfilePanel extends JPanel{
@@ -22,57 +19,39 @@ public class DeckProfilePanel extends JPanel{
 	APlayer player;
 	HPPanel hpPanel;
 	SkillPanel skillPanel;
-	JLabel[] hps ;
 	JLabel character;
 	int maxHp;
 	BufferedImage profile;
 	BufferedImage skillBg;
+	BufferedImage health;
 	
 	public DeckProfilePanel(int maxHp,APlayer player){
 		this.player = player;
 		this.maxHp = maxHp;
 		this.setLayout(null);
 		resInitial();
-		initial();
-		setHPPanel();
 		setCharacterPanel();
 		setSkillPanel();
 	}
 	
 	private void resInitial(){
 		profile = player.getProfile();
-		profile = profile.getSubimage(0, 0, profile.getWidth(), profile.getHeight()-60);
+		profile = profile.getSubimage(0, 0, profile.getWidth(), profile.getHeight());
+		health = player.getHealthBar();
 		skillBg = ResUtil.getImgByName("bg_skill", 1);
 	}
 	
-	private void initial(){
-		hpPanel = new HPPanel(5);
-		for (int i = 0; i < maxHp; i++) {
-			hps[i] = new JLabel(String.valueOf(i));
-			hps[i].setForeground(Color.BLACK);
-			this.add(hps[i]);
-		}
-	}
-	
 	private void setHPPanel(){
+		hpPanel = new HPPanel();
 		this.add(hpPanel);
-		hpPanel.setLocation(GUIConst.mainFrameWidth/5-hpPanel.getWidth(), 25);
-		
-	}
-	
-	@Override
-	public void paint(Graphics g) {
-		// TODO Auto-generated method stub
-		super.paint(g);
-		g.drawImage(profile, 0, 0, this.getWidth(), this.getHeight(),null);
-	
+		hpPanel.setLocation(0, 0);		
 	}
 	
 	private void setCharacterPanel(){
 		character = new JLabel("character");
 		this.add(character);
 		character.setSize(35, 50);
-		character.setLocation(hpPanel.getX()-character.getWidth(), 8);
+		//character.setLocation(hpPanel.getX()-character.getWidth(), 8);
 	}
 	
 	private void setSkillPanel(){
@@ -80,15 +59,29 @@ public class DeckProfilePanel extends JPanel{
 		this.add(skillPanel);
 	}
 	
+	@Override
+	public void paint(Graphics g) {
+		// TODO Auto-generated method stub
+		super.paint(g);
+		g.drawImage(profile, 0, 0, this.getWidth(), this.getHeight(),null);
+	}
+	
 	class HPPanel extends JPanel{
 		
 		private static final long serialVersionUID = -6792954420292239728L;
 
-		public HPPanel(int maxHp){
-			hps = new JLabel[maxHp];
+		public HPPanel(){
+			DebugUtil.print();
 			this.setOpaque(true);
 			this.setSize(GUIConst.HPPanelWidth	,GUIConst.HPPanelHeight);
-			this.setLayout(new GridLayout(5,1));
+			this.setLayout(null);
+		}
+		
+		@Override
+		public void paint(Graphics g) {
+			// TODO Auto-generated method stub
+			super.paint(g);
+			g.drawImage(health, 0, 0, this.getWidth(), this.getHeight(),null);
 		}
 	}
 	
@@ -105,7 +98,7 @@ public class DeckProfilePanel extends JPanel{
 		}
 		
 		private void initial(){
-			for (int i = 0; i < 3; i++) {
+			for (int i = 0; i < 2; i++) {
 				add(new SKillBtn(String.valueOf(i)));
 			}
 		}

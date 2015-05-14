@@ -43,6 +43,7 @@ public class OtherPlayerPanel extends JPanel implements MouseListener{
 	JLabel HP;
 	DeckEquipmentPanel equipmentPanel;
 	CardNumPanel cardNumPanel;
+	HpNumPanel hpNumPanel;
 	BufferedImage img1;
 	BufferedImage img2;
 	BufferedImage bg;
@@ -63,7 +64,7 @@ public class OtherPlayerPanel extends JPanel implements MouseListener{
 		addEquipmentPanel();
 		//addProfilePanel();
 		addCardNumPanel();
-	
+		addHpNumPanel();
 	}
 	
 	private void resInitial(){
@@ -91,6 +92,11 @@ public class OtherPlayerPanel extends JPanel implements MouseListener{
 		this.add(cardNumPanel);
 	}
 	
+	private void addHpNumPanel(){
+		hpNumPanel = new HpNumPanel();
+		this.add(hpNumPanel);
+	}
+	
 	private void addEquipmentPanel(){
 		equipmentPanel = new DeckEquipmentPanel(player);
 		equipmentPanel.setSize(getWidth()-35, getHeight()/2);
@@ -104,13 +110,13 @@ public class OtherPlayerPanel extends JPanel implements MouseListener{
 		for (int i = 0; i < tmp.size(); i++) {
 			tmp.get(i).unselect();
 		}
-		this.setBackground(Color.red);
+		//this.setBackground(Color.red);
 		isSelected = true;
 		PlayerUtil.getInstance().setTargertPlayer(this.player);
 	}
 	
 	public void unselect(){
-		this.setBackground(Color.BLUE);	
+		//this.setBackground(Color.BLUE);	
 		isSelected = false;
 		PlayerUtil.getInstance().setTargertPlayer(null);
 	}
@@ -125,7 +131,7 @@ public class OtherPlayerPanel extends JPanel implements MouseListener{
 	}
 	
 	public void unBorder(){
-		this.setBorder(BorderFactory.createLineBorder(Color.blue));
+		//this.setBorder(BorderFactory.createLineBorder(Color.blue));
 	}
 	
 	@Override
@@ -143,6 +149,22 @@ public class OtherPlayerPanel extends JPanel implements MouseListener{
 	}
 	
 	
+	class HpNumPanel extends JPanel{
+		
+		private static final long serialVersionUID = -4430152870990297723L;
+		JLabel hp;
+		public HpNumPanel() {
+			hp = new JLabel(String.valueOf(1));
+			this.setSize(20, 30);
+			this.setLocation(0, 0);
+			this.add(hp);
+			this.setBackground(Color.black);
+			hp.setFont(new Font(Font.DIALOG, Font.BOLD, 21));
+			hp.setForeground(Color.white);
+		}
+		
+		
+	}
 	
 	class CardNumPanel extends JPanel {
 		
@@ -164,7 +186,6 @@ public class OtherPlayerPanel extends JPanel implements MouseListener{
 		}
 
 		public void paint(Graphics g) {
-			// 更新手牌数
 			num = player.getHands().size();
 			jl.setText(String.valueOf(num));
 			super.paintChildren(g);

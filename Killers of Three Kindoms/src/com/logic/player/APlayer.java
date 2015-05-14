@@ -56,6 +56,7 @@ public abstract class APlayer implements IPlayer{
 	 private OtherPlayerPanel otherPlayerPanel;
 	 private APlayer targetPlayer;
 	 private BufferedImage profile;
+	 private BufferedImage healthBar;
      static int currentId = 0;
 
 	 /**
@@ -324,6 +325,14 @@ public abstract class APlayer implements IPlayer{
 
 	public void setOtherPlayerPanel(OtherPlayerPanel otherPlayerPanel) {
 		this.otherPlayerPanel = otherPlayerPanel;
+	}
+
+	public BufferedImage getHealthBar() {
+		return healthBar;
+	}
+
+	public void setHealthBar(BufferedImage healthBar) {
+		this.healthBar = healthBar;
 	}
 }
 
