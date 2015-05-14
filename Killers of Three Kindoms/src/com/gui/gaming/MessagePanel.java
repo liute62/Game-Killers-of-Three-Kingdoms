@@ -67,7 +67,11 @@ public class MessagePanel extends JPanel{
 		super.paint(g);
 
         // FIXME: This is a temporary solution
-        SwingUtilities.updateComponentTreeUI(instance);
+        try {
+            SwingUtilities.updateComponentTreeUI(instance);
+        } catch (Exception e) {
+//            e.printStackTrace();
+        }
     }
 	
 	private void resInitial(){
