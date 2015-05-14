@@ -18,8 +18,8 @@ public class ZhangLiao_Assault implements ISkill{
 	public boolean check(APlayer operator, List<ACard> cards,
 			List<APlayer> players) {
 		// TODO Auto-generated method stub
+		return true;
 	}
 	
 
 }
-
