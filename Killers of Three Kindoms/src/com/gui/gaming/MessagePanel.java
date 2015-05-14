@@ -64,14 +64,13 @@ public class MessagePanel extends JPanel{
 	@Override
 	public void paint(Graphics g) {
 		g.drawImage(bg, 0, 0, this.getWidth(), this.getHeight(), null);
-		super.paint(g);
-
         // FIXME: This is a temporary solution
         try {
             SwingUtilities.updateComponentTreeUI(instance);
         } catch (Exception e) {
 //            e.printStackTrace();
         }
+        super.paint(g);
     }
 	
 	private void resInitial(){
@@ -102,20 +101,20 @@ public class MessagePanel extends JPanel{
         }
         StyleConstants.setForeground(s, c);
         try {
+            System.out.println("this.doc: " + this.doc);
+            System.out.println("this.currentId: " + this.currentId);
+            System.out.println("msg: " + msg);
+            System.out.println("s:" + s);
             int len = this.doc.getLength();
             this.doc.insertString(len, this.currentId + ": " + msg + "\r\n", s);
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
-        try {
-            SwingUtilities.updateComponentTreeUI(instance);
-        } catch (Exception e) {
-//            e.printStackTrace();
-        }
     }
 	
 	public void clear(){
-        textArea.setText("");
+        System.out.println("textArea:" + this.textArea);
+        this.textArea.setText("");
 	}
 
 }

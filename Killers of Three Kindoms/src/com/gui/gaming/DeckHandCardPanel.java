@@ -87,6 +87,7 @@ public class DeckHandCardPanel extends JPanel{
 	}
 
     private void addData() {
+        MessagePanel.Instance().addAMessage("Player has " + player.getHands().size() + " cards.");
         for (int i = 0; i < player.getHands().size(); i++) {
             cardPanels.add(new CardPanel(player.getHands().get(i)));
         }
@@ -102,7 +103,7 @@ public class DeckHandCardPanel extends JPanel{
 		}
 		CardUtil.getInstance().setPlayerHandCardPanels(cardPanels);
 		carding();
-	}
+    }
 	
 	public void carding() {
 		int interval = GUIConst.cardWidth;
