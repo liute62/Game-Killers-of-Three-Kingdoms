@@ -24,6 +24,12 @@ public class ZhangLiao_Assault implements ISkill{
 		{
 			return false;
 		}
+		else {
+			for(APlayer player: players)
+			{
+				if(player.getHands() == null) return false;
+			}
+		}
 		return true;
 	}
 	
