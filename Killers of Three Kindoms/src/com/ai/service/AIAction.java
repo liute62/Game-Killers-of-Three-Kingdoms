@@ -94,6 +94,7 @@ public class AIAction {
 			this.player.setTargetPlayer(this.target);
 			cardToCast.use(this.player, Arrays.asList(targetPlayer));
 			BattleFieldPanel.Instance().addACard(this.player, cardToCast);
+			this.player.getHands().remove(cardToCast);
 		}
 		try {
 			Thread.sleep(1000);
@@ -111,7 +112,7 @@ public class AIAction {
 		List<ACard> tmp = new ArrayList<ACard>();
 		for (int i = 0; i < num; i++) {
 			tmp.add(this.player.getHands().get(i));
-		BattleFieldPanel.Instance().addADiscard(this.player, this.player.getHands().get(i));
+			BattleFieldPanel.Instance().addADiscard(this.player, this.player.getHands().get(i));
 		}
 		this.player.getHands().removeAll(tmp);
 		try {

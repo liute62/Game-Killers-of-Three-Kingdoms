@@ -125,6 +125,7 @@ public class CardUtil {
         addCardToList(cardList, 1, PeachGarden.class, id, SuitConst.SuitType_Hearts, CardConst.CardType_Scroll_Card);
         return cardList;
     }
+    
     private void addCardToList(
             List<ACard> list, int count, Class<? extends ACard> cardClass, int[] id, int suit, int type) {
         for (int i = 0; i < count; i++) {

@@ -347,8 +347,18 @@ public class DeckHandCardPanel extends JPanel{
 				for (int i = 0; i < cardPanels.size(); i++) {
 					if(cardPanels.get(i).isSelected){
 						CardPanel tmp = cardPanels.get(i);
+						if (tmp.getCard().getType() == CardConst.CardType_Weapon || 
+								tmp.getCard().getType() == CardConst.CardType_Armor||
+								tmp.getCard().getType() == CardConst.CardType_Mount_Minus||
+								tmp.getCard().getType() == CardConst.CardType_Mount_Plus) {
+							player.setTargetPlayer(player);
+						}
+						
 						if (player.getTargetPlayer() != null) {
 							//this card can be used
+							List<APlayer> tmpList = new ArrayList<APlayer>();
+							tmpList.add(player.getTargetPlayer());
+							tmp.getCard().use(player, tmpList);	
 							removedList.add(tmp);
 							removedCards.add(tmp.getCard());
 							BattleFieldPanel.Instance().addACard(player,tmp.getCard());
@@ -360,7 +370,6 @@ public class DeckHandCardPanel extends JPanel{
 							tmp.unselect();
 							player.setCastingcard(false);
 						}
-						
 					}
 				}
 			}

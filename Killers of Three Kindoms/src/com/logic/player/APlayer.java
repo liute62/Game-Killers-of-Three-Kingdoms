@@ -9,7 +9,9 @@ import java.util.List;
 
 
 
+
 import com.card.interfaces.*;
+import com.gui.gaming.DeckEquipmentPanel;
 import com.gui.gaming.DeckHandCardPanel;
 import com.gui.gaming.DeckPanel;
 import com.gui.gaming.OtherPlayerPanel;
@@ -50,6 +52,7 @@ public abstract class APlayer implements IPlayer{
 	 private boolean isSkipped;
 	 private boolean castingcard;
 	 private boolean usingSkill;
+	 private DeckEquipmentPanel deckEquipmentPanel;
 	 private DeckHandCardPanel deckHandCardPanel;
 	 private OtherPlayerPanel otherPlayerPanel;
      private DeckPanel deckPanel;
@@ -357,6 +360,14 @@ public abstract class APlayer implements IPlayer{
 		return false;
 	}
 
+	public DeckEquipmentPanel getDeckEquipmentPanel() {
+		return deckEquipmentPanel;
+	}
+
+	public void setDeckEquipmentPanel(DeckEquipmentPanel deckEquipmentPanel) {
+		this.deckEquipmentPanel = deckEquipmentPanel;
+	}
+	
     public void updateGuiHP() {
         if (otherPlayerPanel == null && deckPanel == null) {return;}
         if (isAI) {

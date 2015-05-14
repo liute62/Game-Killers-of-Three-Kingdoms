@@ -7,6 +7,7 @@ import com.card.interfaces.IWeaponCard;
 import com.card.interfaces.WeaponCard;
 import com.logic.player.APlayer;
 import com.system.constants.CardConst;
+import com.system.utils.DebugUtil;
 import com.system.utils.ResUtil;
 
 
@@ -25,9 +26,14 @@ public class BlackPommelCard extends WeaponCard implements IWeaponCard{
 		// TODO Auto-generated method stub
 		
 	}
-
 	
-
 	
+	@Override
+	public void use(APlayer player, List<APlayer> target) {
+		// TODO Auto-generated method stub
+		super.use(player, target);
+		DebugUtil.print();
+		player.getDeckEquipmentPanel().setAEquipment(this);
+	}	
 }
 
