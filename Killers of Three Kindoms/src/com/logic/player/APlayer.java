@@ -388,6 +388,10 @@ public abstract class APlayer implements IPlayer{
             otherPlayerPanel.updateCardNum();
         }
     }
+
+    public void setGameStage(GameStage gameStage) {
+        this.gameStage = gameStage;
+    }
 }
 
 

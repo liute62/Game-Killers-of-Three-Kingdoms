@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.logic.player.Player;
+import com.system.enums.RoleType;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -89,5 +91,5 @@ public class PlayerUtilTest {
 		cardPanel.checkEffectRange();
 		Assert.assertEquals(expectRange, cardPanel.getEffectRange());
 	}
-	
+
 }
