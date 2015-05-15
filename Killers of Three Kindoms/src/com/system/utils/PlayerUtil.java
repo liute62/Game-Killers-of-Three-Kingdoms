@@ -230,10 +230,13 @@ public class PlayerUtil {
         if (count.get(RoleType.Monarch) == 0 && count.get(RoleType.Rebel) > 0) {
             return Arrays.asList(RoleType.Rebel);
         }
-        if (count.get(RoleType.Monarch) > 0) {
+        if (count.get(RoleType.Monarch) > 0 && count.get(RoleType.Rebel) == 0 && count.get(RoleType.Trun_coat) == 0) {
             return Arrays.asList(RoleType.Monarch, RoleType.Minister);
         }
-        return Arrays.asList(RoleType.Trun_coat);
+        if (count.get(RoleType.Monarch) == 0 && count.get(RoleType.Minister) == 0 && count.get(RoleType.Rebel) == 0) {
+            return Arrays.asList(RoleType.Trun_coat);
+        }
+        return Arrays.asList();
     }
 
 	public List<APlayer> getPlayers() {

@@ -5,6 +5,7 @@ import com.logic.player.Player;
 import com.system.enums.GameStage;
 import com.system.enums.RoleType;
 import com.system.utils.PlayerUtil;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -14,9 +15,15 @@ import static org.junit.Assert.assertEquals;
 
 public class PlayerUtilAnotherTestcase {
 
+    private PlayerUtil playerUtil;
+
+    @Before
+    public void setUp() {
+        this.playerUtil = PlayerUtil.getInstance();
+    }
+
     @Test
     public void testGetWinningRolesReturnsMonarchAndMinister() {
-        PlayerUtil playerUtil = new PlayerUtil();
         APlayer player1 = new Player();
         APlayer player2 = new Player();
         APlayer player3 = new Player();
@@ -53,7 +60,6 @@ public class PlayerUtilAnotherTestcase {
 
     @Test
     public void testGetWinningRolesReturnsTraitor() {
-        PlayerUtil playerUtil = new PlayerUtil();
         APlayer player1 = new Player();
         APlayer player2 = new Player();
         APlayer player3 = new Player();
@@ -89,7 +95,6 @@ public class PlayerUtilAnotherTestcase {
 
     @Test
     public void testGetWinningRolesReturnsRebel() {
-        PlayerUtil playerUtil = new PlayerUtil();
         APlayer player1 = new Player();
         APlayer player2 = new Player();
         APlayer player3 = new Player();
@@ -125,7 +130,6 @@ public class PlayerUtilAnotherTestcase {
 
     @Test
     public void testGetWinningRolesWhenGameIsStillInPlay() {
-        PlayerUtil playerUtil = new PlayerUtil();
         APlayer player1 = new Player();
         APlayer player2 = new Player();
         APlayer player3 = new Player();
