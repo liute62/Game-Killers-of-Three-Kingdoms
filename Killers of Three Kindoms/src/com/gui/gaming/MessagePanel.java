@@ -101,10 +101,10 @@ public class MessagePanel extends JPanel{
         }
         StyleConstants.setForeground(s, c);
         try {
-            System.out.println("this.doc: " + this.doc);
-            System.out.println("this.currentId: " + this.currentId);
-            System.out.println("msg: " + msg);
-            System.out.println("s:" + s);
+//            System.out.println("this.doc: " + this.doc);
+//            System.out.println("this.currentId: " + this.currentId);
+//            System.out.println("msg: " + msg);
+//            System.out.println("s:" + s);
             this.doc.insertString(0, this.currentId + ": " + msg + "\r\n", s);
         } catch (BadLocationException e) {
             e.printStackTrace();
