@@ -1,11 +1,16 @@
 package com.logic.player;
 
+import java.text.BreakIterator;
+import java.util.List;
+
 import com.ai.service.AIAction;
 import com.gui.gaming.BattleFieldPanel;
 import com.gui.gaming.DeckHandCardPanel;
 import com.gui.gaming.MessagePanel;
 import com.system.enums.GameStage;
+import com.system.enums.RoleType;
 import com.system.utils.DebugUtil;
+import com.system.utils.PlayerUtil;
 
 public class PlayerProcess {
 
@@ -13,6 +18,14 @@ public class PlayerProcess {
 	
 	public PlayerProcess(APlayer player){
 		this.player = player;
+	}
+	
+	boolean gameOver(){
+		if (player.isAI() == false && player.isDead()) {
+			player.gameStage = GameStage.gameOver;
+			return true;
+		}
+		return false;
 	}
 	
 	public void start(){
@@ -28,7 +41,16 @@ public class PlayerProcess {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		nextPlayer();
+		if (gameOver()) {
+			List<RoleType> roles = PlayerUtil.getInstance().getWinningRoles();
+			String msg = "";
+			for (RoleType role : roles) {
+				msg += role.name()+" ";
+			}
+			MessagePanel.Instance().addAMessage(msg+" win!");
+		}else {
+			nextPlayer();			
+		}
 	}
 	
 	private void init(){
@@ -125,7 +147,9 @@ public class PlayerProcess {
         //check discard how many cards.
         // new Thread(new ThrowCards(player)).start();
         while (true) {
-            DebugUtil.print("player.getHands().size()",player.getHands().size());
+        	if (gameOver()) {
+				break;
+			}
             if(player.getHands().size() <= player.getCurrentHP()){
                 break;
             }

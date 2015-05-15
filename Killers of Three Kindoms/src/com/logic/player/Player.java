@@ -21,6 +21,7 @@ public class Player extends APlayer{
 		 this.maxHP = 5;
          this.attackAbility = 1;
          this.attackRange = 1;
+         this.isDead = false;
          this.hands = new ArrayList<ACard>();
          this.discardList = new ArrayList<ACard>();
          this.setSkipped(false);
@@ -35,6 +36,7 @@ public class Player extends APlayer{
 		 }else {
 			this.setAI(false);
 		 }
+    	 this.isDead = false;
          this.maxHP = 5;
          this.attackAbility = 1;
          this.attackRange = 1;

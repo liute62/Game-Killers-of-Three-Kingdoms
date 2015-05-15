@@ -61,6 +61,7 @@ public abstract class APlayer implements IPlayer{
 	 private BufferedImage healthBar;
      static int currentId = 0;
      protected List<ACard> discardList;
+     protected boolean isDead;
 
 	 /**
 	  * check if a card can be casted.
@@ -374,6 +375,11 @@ public abstract class APlayer implements IPlayer{
 	}
 	
     public void updateGuiHP() {
+    	if (currentHP <= 0) {
+			isDead = true;
+		}else {
+			isDead = false;
+		}
         if (otherPlayerPanel == null && deckPanel == null) {return;}
         if (isAI) {
             otherPlayerPanel.updateHP();
@@ -396,6 +402,14 @@ public abstract class APlayer implements IPlayer{
     public void setGameStage(GameStage gameStage) {
         this.gameStage = gameStage;
     }
+
+	public boolean isDead() {
+		return isDead;
+	}
+
+	public void setDead(boolean isDead) {
+		this.isDead = isDead;
+	}
 }
 
 
