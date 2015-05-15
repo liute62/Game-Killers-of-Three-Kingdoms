@@ -1,10 +1,14 @@
 package com.gui.gaming;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import com.hero.skills.interfaces.ISkill;
 import com.logic.player.APlayer;
 import com.system.constants.GUIConst;
 import com.system.utils.DebugUtil;
@@ -20,9 +24,11 @@ public class DeckProfilePanel extends JPanel{
 	JLabel character;
 	int maxHp;
 	BufferedImage profile;
-	BufferedImage skillBg;
 	BufferedImage health;
-	
+    BufferedImage skillBg;
+    BufferedImage skillHighlightBg;
+    BufferedImage skillGrayBg;
+
 	public DeckProfilePanel(int maxHp,APlayer player){
 		this.player = player;
 		this.maxHp = maxHp;
@@ -38,6 +44,8 @@ public class DeckProfilePanel extends JPanel{
 		profile = profile.getSubimage(0, 0, profile.getWidth(), profile.getHeight());
 		health = player.getHealthBar();
 		skillBg = ResUtil.getImgByName("bg_skill", 1);
+        skillHighlightBg = ResUtil.getImgByName("bg_skill_highlight", 1);
+        skillGrayBg = ResUtil.getImgByName("bg_skill_gray", 1);
 	}
 	
 	private void setHPPanel(){
@@ -60,7 +68,6 @@ public class DeckProfilePanel extends JPanel{
 	
 	@Override
 	public void paint(Graphics g) {
-		// TODO Auto-generated method stub
 		super.paint(g);
 		g.drawImage(profile, 0, 0, this.getWidth(), this.getHeight(),null);
 	}
@@ -97,44 +104,84 @@ public class DeckProfilePanel extends JPanel{
 	class SkillPanel extends JPanel{
 		
 		private static final long serialVersionUID = -8117196945630496225L;
-		JLabel text = new JLabel();
-		String name;
+		private SKillBtn button;
+
 		public SkillPanel() {
-			this.setSize(170, 40);
-			this.setLayout(new GridLayout(0, 3));
 			this.setLocation(20, 150);
-			initial();
-		}
-		
-		private void initial(){
-			for (int i = 0; i < 2; i++) {
-				add(new SKillBtn(String.valueOf(i)));
-			}
+            this.setSize(72, 50);
+            this.setBackground(new Color(0, 0, 0, 0));
+            button = new SKillBtn();
+            this.add(button);
 		}
 		
 		class SKillBtn extends JPanel{
 			
-		private static final long serialVersionUID = 3569271486968472594L;
+		    private static final long serialVersionUID = 3569271486968472594L;
+            private MouseListener listener;
+            int skillStatus = 0; // 0: no skills; 1: skill ready; 2: skill not available
 
-			public SKillBtn(String name){
-				this.setSize(100, 50);
-				Font f = new Font("Arial", Font.BOLD, 22);
-				text.setFont(f);
-				text.setText(name);
-				//text.setOpaque(false);
-				this.add(text);
+			public SKillBtn(){
+                this.setLocation(0, 0);
+                this.setOpaque(false);
+                this.setSize(72, 45);
+                this.setPreferredSize(new Dimension(72, 45));
+                this.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                this.setLayout(null);
+                this.setBackground(new Color(0, 0, 0, 0));
+                listener = new SkillListener();
+                this.addMouseListener(listener);
 			}
 			
 			@Override
 			public void paint(Graphics g) {
-                // FIXME: Draw two skill backgrounds
-
-
-                // TODO Auto-generated method stub
                 super.paint(g);
-                g.drawImage(skillBg, 0, 0, this.getWidth(), this.getHeight(),null);
+                if (skillStatus == 0) {
+                    g.drawImage(skillBg, 0, 0, 72, 45, null);
+                } else if (skillStatus == 1) {
+                    g.drawImage(skillHighlightBg, 0, 0, 72, 45, null);
+                } else if (skillStatus == 2) {
+                    g.drawImage(skillGrayBg, 0, 0, 72, 45, null);
+                }
             }
-		}
+
+            class MyClick extends MouseAdapter {
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    super.mousePressed(e);
+                    DebugUtil.print("mousePressed");
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    super.mouseReleased(e);
+                }
+
+                private void clicked() {
+
+                }
+            }
+
+            class SkillListener extends MyClick {
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    super.mouseReleased(e);
+                    if (skillStatus == 1) {
+                        // TODO: Cast skill here.
+                        ISkill skill = player.getSkill();
+                        MessagePanel.Instance().addAMessage("Trying to cast spell: " + skill.getClass().getName());
+                    }
+                }
+            }
+        }
+
 	}
-	
+
+    public void setSkillStatus(int skillStatus) {
+        this.skillPanel.button.skillStatus = skillStatus;
+        this.skillPanel.button.repaint();
+    }
+
+    public SkillPanel getSkillPanel() {
+        return skillPanel;
+    }
 }

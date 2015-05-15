@@ -352,6 +352,10 @@ public abstract class APlayer implements IPlayer{
         this.deckPanel = deckPanel;
     }
 
+    public DeckPanel getDeckPanel() {
+        return deckPanel;
+    }
+
     public boolean isCanDiscard() {
 		int tmp = hands.size() - currentHP;
 		if (discardList.size() <= tmp) {
