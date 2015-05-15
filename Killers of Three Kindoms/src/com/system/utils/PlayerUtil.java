@@ -211,7 +211,7 @@ public class PlayerUtil {
      * @return the list of roles that are considered victory.
      */
     public List<RoleType> getWinningRoles() {
-        return null;
+        return Arrays.asList(RoleType.Monarch, RoleType.Minister);
     }
 
 	public List<APlayer> getPlayers() {
