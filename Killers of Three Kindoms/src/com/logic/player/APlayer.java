@@ -389,6 +389,10 @@ public abstract class APlayer implements IPlayer{
         }
     }
 
+    public GameStage getGameStage() {
+        return gameStage;
+    }
+
     public void setGameStage(GameStage gameStage) {
         this.gameStage = gameStage;
     }

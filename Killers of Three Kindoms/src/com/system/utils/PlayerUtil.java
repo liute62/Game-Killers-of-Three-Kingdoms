@@ -18,6 +18,7 @@ import com.hero.skills.trigger.CaoCao_Treachery;
 import com.hero.skills.trigger.GuoJia_Talented;
 import com.logic.player.APlayer;
 import com.logic.player.Player;
+import com.system.enums.GameStage;
 import com.system.enums.HeroName;
 import com.system.enums.Kingdoms;
 import com.system.enums.RoleType;
@@ -211,7 +212,24 @@ public class PlayerUtil {
      * @return the list of roles that are considered victory.
      */
     public List<RoleType> getWinningRoles() {
-        return Arrays.asList(RoleType.Monarch, RoleType.Minister);
+        APlayer firstPlayer = player;
+        APlayer currPlayer = player;
+        HashMap<RoleType, Integer> count = new HashMap<>();
+        do {
+            RoleType currRole = currPlayer.getRoleType();
+            if (!count.containsKey(currRole)) {
+                count.put(currRole, 0);
+            }
+            if (currPlayer.getGameStage() != GameStage.gameOver) {
+                count.put(currRole, count.get(currRole) + 1);
+            }
+            currPlayer = currPlayer.getNextPlayer();
+        } while (currPlayer != firstPlayer);
+
+        if (count.get(RoleType.Monarch) > 0) {
+            return Arrays.asList(RoleType.Monarch, RoleType.Minister);
+        }
+        return Arrays.asList(RoleType.Rebel);
     }
 
 	public List<APlayer> getPlayers() {
