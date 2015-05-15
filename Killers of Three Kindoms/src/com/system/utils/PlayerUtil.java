@@ -204,6 +204,16 @@ public class PlayerUtil {
 		return distance;
 	}
 
+    /**
+     * Finds out which roles win at the end.
+     * Only invoke this method when game ends!
+     *
+     * @return the list of roles that are considered victory.
+     */
+    public List<RoleType> getWinningRoles() {
+        return null;
+    }
+
 	public List<APlayer> getPlayers() {
 		return players;
 	}
@@ -235,4 +245,5 @@ public class PlayerUtil {
 	public void setTargertPlayer(APlayer targertPlayer) {
 		this.targertPlayer = targertPlayer;
 	}
+
 }
