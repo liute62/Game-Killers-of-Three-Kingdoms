@@ -100,12 +100,13 @@ public abstract class APlayer implements IPlayer{
 	 }
 	 
 	 public void setCurrentHP(int i) {
-			// TODO Auto-generated method stub
-		  if (i > maxHP) {
+		 if (i > maxHP) {
 			i = maxHP;
 		 }
 		  this.currentHP = i;
           this.updateGuiHP();
+
+         // TODO: Check if hero dies
 		}
 
 	 public int getCurrentHP() {

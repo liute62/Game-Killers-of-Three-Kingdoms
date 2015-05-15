@@ -71,7 +71,9 @@ public class PlayerProcess {
 	
 	private void stage_castcard(){
         // TODO: Just for fun
-        player.getDeckPanel().getDeckProfilePanel().setSkillStatus(1);
+        if (player.getDeckPanel() != null) {
+            player.getDeckPanel().getDeckProfilePanel().setSkillStatus(1);
+        }
 
 		player.gameStage = GameStage.castCard;
 		MessagePanel.Instance().addAMessage(player.getName()+" castCard stage");
@@ -96,7 +98,7 @@ public class PlayerProcess {
 			}if (player.gameStage == GameStage.gameOver) {
 				break;
 			}
-			//DebugUtil.print(player.isSkipped());
+			DebugUtil.print(player.isSkipped());
 		}
 	}
 	
@@ -104,7 +106,9 @@ public class PlayerProcess {
 //        TODO: Just for fun
         player.setCurrentHP(player.getCurrentHP() - 2);
         MessagePanel.Instance().addAMessage("Current HP: "+player.getCurrentHP());
-        player.getDeckPanel().getDeckProfilePanel().setSkillStatus(2);
+        if (player.getDeckPanel() != null) {
+            player.getDeckPanel().getDeckProfilePanel().setSkillStatus(2);
+        }
 
         player.gameStage = GameStage.discard;
         MessagePanel.Instance().addAMessage(player.getName()+" discard stage");
