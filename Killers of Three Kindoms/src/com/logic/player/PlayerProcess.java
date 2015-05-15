@@ -88,18 +88,21 @@ public class PlayerProcess {
 		panel.setDiscardStage(false);
 		
 		while(! player.isSkipped()){
-			
-			if (player.isCastingcard()) {
+            if (player.isCastingcard()) {
 				//cast the card
 				player.setCastingcard(false);
 			}if (player.isUsingSkill()) {
 				//using the hero skill
 				player.setUsingSkill(false);
 			}if (player.gameStage == GameStage.gameOver) {
-				break;
+                break;
 			}
-			DebugUtil.print(player.isSkipped());
-		}
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 	}
 	
 	private void stage_discard(){
@@ -125,6 +128,11 @@ public class PlayerProcess {
             DebugUtil.print("player.getHands().size()",player.getHands().size());
             if(player.getHands().size() <= player.getCurrentHP()){
                 break;
+            }
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
 
