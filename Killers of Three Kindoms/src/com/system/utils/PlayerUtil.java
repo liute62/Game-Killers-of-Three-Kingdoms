@@ -207,9 +207,10 @@ public class PlayerUtil {
 
     /**
      * Finds out which roles win at the end.
-     * Only invoke this method when game ends!
+     * Only invoke this method when someone dies!
      *
      * @return the list of roles that are considered victory.
+     *         If it returns an empty list, the game is still in play.
      */
     public List<RoleType> getWinningRoles() {
         APlayer firstPlayer = player;
@@ -226,6 +227,9 @@ public class PlayerUtil {
             currPlayer = currPlayer.getNextPlayer();
         } while (currPlayer != firstPlayer);
 
+        if (count.get(RoleType.Monarch) == 0 && count.get(RoleType.Rebel) > 0) {
+            return Arrays.asList(RoleType.Rebel);
+        }
         if (count.get(RoleType.Monarch) > 0) {
             return Arrays.asList(RoleType.Monarch, RoleType.Minister);
         }
