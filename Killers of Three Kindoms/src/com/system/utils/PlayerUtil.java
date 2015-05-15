@@ -229,7 +229,7 @@ public class PlayerUtil {
         if (count.get(RoleType.Monarch) > 0) {
             return Arrays.asList(RoleType.Monarch, RoleType.Minister);
         }
-        return Arrays.asList(RoleType.Rebel);
+        return Arrays.asList(RoleType.Trun_coat);
     }
 
 	public List<APlayer> getPlayers() {
