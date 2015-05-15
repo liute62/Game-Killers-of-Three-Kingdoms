@@ -122,4 +122,39 @@ public class PlayerUtilAnotherTestcase {
         assertEquals(1, results.size());
         assertEquals(true, results.contains(RoleType.Rebel));
     }
+
+    @Test
+    public void testGetWinningRolesWhenGameIsStillInPlay() {
+        PlayerUtil playerUtil = new PlayerUtil();
+        APlayer player1 = new Player();
+        APlayer player2 = new Player();
+        APlayer player3 = new Player();
+        APlayer player4 = new Player();
+        APlayer player5 = new Player();
+        playerUtil.setPlayer(player1);
+        playerUtil.setPlayers(Arrays.asList(player1, player2, player3, player4, player5));
+        player1.setNextPlayer(player2);
+        player2.setNextPlayer(player3);
+        player3.setNextPlayer(player4);
+        player4.setNextPlayer(player5);
+        player5.setNextPlayer(player1);
+        // Player1: Rebel, alive
+        // Player2: Traitor, alive
+        // Player3: Minister, dead
+        // Player4: Monarch, alive
+        // Player5: Rebel, dead
+        player1.setRoleType(RoleType.Rebel);
+        player1.setGameStage(GameStage.end);
+        player2.setRoleType(RoleType.Trun_coat);
+        player2.setGameStage(GameStage.end);
+        player3.setRoleType(RoleType.Minister);
+        player3.setGameStage(GameStage.gameOver);
+        player4.setRoleType(RoleType.Monarch);
+        player4.setGameStage(GameStage.end);
+        player5.setRoleType(RoleType.Rebel);
+        player5.setGameStage(GameStage.gameOver);
+
+        List<RoleType> results = playerUtil.getWinningRoles();
+        assertEquals(0, results.size());
+    }
 }
