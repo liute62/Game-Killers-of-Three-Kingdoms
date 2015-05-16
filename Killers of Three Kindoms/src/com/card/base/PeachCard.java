@@ -21,12 +21,13 @@ public class PeachCard extends ACard{
 	 * @author Xiangtian Li
 	 */
 	@Override
-	public void use(APlayer player, List<APlayer> target) {
+	public void use(APlayer player, List<APlayer> targets) {
 		// TODO Auto-generated method stub
-		/**for(APlayer targert: target)
+		for(APlayer target: targets)
 		{
-			targert.gainHP(1);
-		}**/
+			target.gainHP(1);
+			target.updateGuiHP();
+		}
 	}
 
 }
