@@ -1,6 +1,8 @@
 package com.gui.gaming;
 
 
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +15,7 @@ import com.gui.gaming.DeckHandCardPanel.BtnPanel;
 import com.logic.player.APlayer;
 import com.system.constants.GUIConst;
 import com.system.utils.DebugUtil;
+import com.system.utils.ResUtil;
 
 /**
  * This is a panel for card casted or dropped.
@@ -46,6 +49,8 @@ public class BattleFieldPanel extends JPanel{
 		cardPanels = new ArrayList<CardPanel>();
 		cards = new ArrayList<>();
 	}
+	
+	
 	
 	public void addACard(APlayer player,ACard card){
         MessagePanel.Instance().addAMessage(player.getName()+" cast "+card.getName()+" card to "+player.getTargetPlayer().getName()+".");

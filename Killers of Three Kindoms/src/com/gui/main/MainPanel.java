@@ -32,10 +32,23 @@ public class MainPanel extends JPanel{
 	private MessagePanel messagePanel;
 	BufferedImage bgImg;
 	BufferedImage bgExitImg;
+	BufferedImage bgWin;
+	BufferedImage bgLost;
+	private boolean isGameOver;
+	private static MainPanel instance = null;
+	
+	public static MainPanel getTheInstance(){
+		if (instance == null) {
+			System.err.println("Main Panel instance == null");
+		}
+		return instance;
+	}
 	
 	public MainPanel(APlayer player) {
+		this.instance = this;
 		this.setOpaque(true);
 		this.player = player;
+		this.isGameOver = false;
 		resIntial();
 		initial();
 		this.setSize(GUIConst.mainPanelWidth,GUIConst.mainPanelHeight);
@@ -57,12 +70,27 @@ public class MainPanel extends JPanel{
 	
 	public void paintComponent(Graphics g){
 		super.paintComponents(g);
-		g.drawImage(bgImg, 0, 0, this.getWidth(), this
-				.getHeight(), null);
+		if (isGameOver) {
+			if (player.isDead()) {
+				//that means the player has lose the game
+				g.drawImage(bgLost, 0, 0, this.getWidth(), this
+						.getHeight(), null);
+			}else {
+				g.drawImage(bgWin, 0, 0, this.getWidth(), this
+						.getHeight(), null);
+			}
+			
+		}else {
+			g.drawImage(bgImg, 0, 0, this.getWidth(), this
+					.getHeight(), null);	
+		}
 	}
+	
 	private void resIntial(){
 		bgImg = ResUtil.getImgByName("bg2",0);
 		bgExitImg = ResUtil.getImgByName("bg_exit", 1);
+		bgWin = ResUtil.getImgByName("bg_win", 1);
+		bgLost = ResUtil.getImgByName("bg_lost", 1);
 	}
 	
 	private void initial(){
@@ -106,5 +134,14 @@ public class MainPanel extends JPanel{
 		if(otherPlayerPanels.get(2)!=null)otherPlayerPanels.get(2).setLocation(GUIConst.mainFrameWidth/5*1, 0);
 		if(otherPlayerPanels.get(1)!=null)otherPlayerPanels.get(1).setLocation(GUIConst.mainFrameWidth/5*2, 0);
 		if(otherPlayerPanels.get(0)!=null)otherPlayerPanels.get(0).setLocation(GUIConst.mainFrameWidth/5*3, 0);
+	}
+
+	public boolean isGameOver() {
+		return isGameOver;
+	}
+
+	public void setGameOver(boolean isGameOver) {
+		this.isGameOver = isGameOver;
+		repaint();
 	}
 }

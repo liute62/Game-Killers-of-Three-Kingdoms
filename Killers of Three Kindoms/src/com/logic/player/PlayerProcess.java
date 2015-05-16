@@ -7,6 +7,7 @@ import com.ai.service.AIAction;
 import com.gui.gaming.BattleFieldPanel;
 import com.gui.gaming.DeckHandCardPanel;
 import com.gui.gaming.MessagePanel;
+import com.gui.main.MainPanel;
 import com.system.enums.GameStage;
 import com.system.enums.RoleType;
 import com.system.utils.DebugUtil;
@@ -23,6 +24,7 @@ public class PlayerProcess {
 	boolean gameOver(){
 		if (player.isAI() == false && player.isDead()) {
 			player.gameStage = GameStage.gameOver;
+			MainPanel.getTheInstance().setGameOver(true);
 			return true;
 		}
 		return false;
