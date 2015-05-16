@@ -25,16 +25,30 @@ public class StrikeCard extends ACard {
     @Override
     public void use(APlayer player, List<APlayer> targets) {
         // TODO Auto-generated method stub
+    	boolean ignoreAmor = false; //Ignore target's armor card if it is true
 
         // TODO Check weapon: if Qilin Bow then remove the target's mount
+    	// TODO Check weapon: if BlackPommel then ignore target's amor
         for (APlayer target: targets) {
             if (player.getWeapon() != null
                     && player.getWeapon().getName().equals("QilinBow")) {
                 target.setPlusMount(null);
                 target.setMinusMount(null);
             }
-            target.loseHP(1);
-            target.updateGuiHP();
+            if(player.getWeapon() != null && player.getWeapon().getName().equals("BlackPommel")) {
+            	ignoreAmor = true;
+            } 
+        }
+        
+        for (APlayer target: targets) {
+            if(ignoreAmor == true) {
+            	target.loseHP(1);
+            	target.updateGuiHP();
+            }
+            else {
+            	target.loseHP(1);
+            	target.updateGuiHP();
+			}
         }
     }
 
