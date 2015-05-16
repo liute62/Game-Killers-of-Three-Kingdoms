@@ -139,7 +139,7 @@ public class AIAction {
 		{
 			return this.player;
 		}
-		else if(cardToCast.getType() == CardConst.CardType_Strike)
+		else if(cardToCast.getType() == CardConst.CardType_Strike || cardToCast.getType() == CardConst.CardType_Peach)
 		{
 			List<APlayer> players = PlayerUtil.getInstance().getPlayers();
 			for(APlayer player: players)
