@@ -33,6 +33,8 @@ public class StrikeCard extends ACard {
                 target.setPlusMount(null);
                 target.setMinusMount(null);
             }
+            target.loseHP(1);
+            target.updateGuiHP();
         }
     }
 
