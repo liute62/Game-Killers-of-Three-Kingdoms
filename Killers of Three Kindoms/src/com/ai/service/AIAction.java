@@ -96,14 +96,14 @@ public class AIAction {
 			if(targetPlayers.size() == 1){
 				this.setTarget(targetPlayers.get(0));
 				this.player.setTargetPlayer(this.target);
-				cardToCast.use(this.player, targetPlayers);
 				BattleFieldPanel.Instance().addACard(this.player, cardToCast);
+				cardToCast.use(this.player, targetPlayers);
 			}
 			else {
 				this.setTargets(targetPlayers);
 				this.player.setTargetPlayers(this.targets);
-				cardToCast.use(this.player, targetPlayers);
 				BattleFieldPanel.Instance().addNoneTargetACard(this.player, cardToCast);
+				cardToCast.use(this.player, targetPlayers);
 			}
 			this.player.getHands().remove(cardToCast);
 		}

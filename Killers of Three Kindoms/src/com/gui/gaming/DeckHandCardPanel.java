@@ -354,7 +354,9 @@ public class DeckHandCardPanel extends JPanel{
 							player.setTargetPlayer(player);
 						}if (tmp.getCard().getType() == CardConst.CardType_Scroll_Card) {
 							if (tmp.getCard().getName().equals("PeachGarden")) {
-								
+								List<APlayer> players = PlayerUtil.getInstance().getPlayers();
+								player.setTargetPlayer(null);
+								player.setTargetPlayers(players);
 							}
 						}
 						
@@ -362,10 +364,19 @@ public class DeckHandCardPanel extends JPanel{
 							//this card can be used
 							List<APlayer> tmpList = new ArrayList<APlayer>();
 							tmpList.add(player.getTargetPlayer());
+							BattleFieldPanel.Instance().addACard(player,tmp.getCard());
 							tmp.getCard().use(player, tmpList);	
 							removedList.add(tmp);
 							removedCards.add(tmp.getCard());
-							BattleFieldPanel.Instance().addACard(player,tmp.getCard());
+							tmp.unselect();
+							DeckHandCardPanel.this.remove(tmp);
+							player.getHands().remove(tmp.getCard());
+							player.setCastingcard(true);
+						}else if (player.getTargetPlayers() != null){
+							BattleFieldPanel.Instance().addNoneTargetACard(player, tmp.getCard());
+							tmp.getCard().use(player, player.getTargetPlayers());
+							removedList.add(tmp);
+							removedCards.add(tmp.getCard());
 							tmp.unselect();
 							DeckHandCardPanel.this.remove(tmp);
 							player.getHands().remove(tmp.getCard());

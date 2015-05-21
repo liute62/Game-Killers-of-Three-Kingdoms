@@ -2,6 +2,7 @@ package com.card.base;
 
 import com.card.equipment.EightDiagramFormationCard;
 import com.card.interfaces.ACard;
+import com.gui.gaming.BattleFieldPanel;
 import com.gui.gaming.MessagePanel;
 import com.logic.player.APlayer;
 import com.system.constants.CardConst;
@@ -9,6 +10,7 @@ import com.system.constants.SuitConst;
 import com.system.utils.CardUtil;
 import com.system.utils.PlayerUtil;
 import com.system.utils.ResUtil;
+
 import java.util.List;
 
 public class StrikeCard extends ACard {
@@ -49,6 +51,7 @@ public class StrikeCard extends ACard {
             if (CardUtil.getInstance().checkAndUseDodgeCard(target.getHands())) {
                 MessagePanel.Instance().addAMessage(target.getName() + " uses Dodge Card to avoid damage.");
                 // DONE: [Final] Refresh card count and player's deck hand cards
+               BattleFieldPanel.Instance().addAcard(new DodgeCard());
                 target.updateGuiCardNum();
                 if (target.getDeckHandCardPanel() != null) {
                     target.getDeckHandCardPanel().refresh();

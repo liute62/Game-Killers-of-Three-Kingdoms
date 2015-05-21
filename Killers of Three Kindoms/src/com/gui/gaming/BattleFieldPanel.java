@@ -50,7 +50,16 @@ public class BattleFieldPanel extends JPanel{
 		cards = new ArrayList<>();
 	}
 	
-	
+	public void addAcard(ACard card) {
+		cards.add(card);
+		int i = cards.size() - 1;
+		CardPanel cardPanel = new CardPanel(card);
+		cardPanel.setSelectable(false);
+		cardPanel.setUsed(true);
+		this.add(cardPanel);
+		cardPanel.setLocation(cardPanel.getWidth()*i, 20);
+		repaint();
+	}
 	
 	public void addACard(APlayer player,ACard card){
         System.out.println("PLAYER: " + player.getTargetPlayer());
