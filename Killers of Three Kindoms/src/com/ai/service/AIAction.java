@@ -23,6 +23,7 @@ public class AIAction {
 	private int castCardIndex;
 	private List<ACard> availableCards;
 	private APlayer target;
+	private List<APlayer> targets;
 	public AIAction(APlayer player){
 		this.setPlayer(player);
 		player.setTargetPlayer(PlayerUtil.getInstance().getPlayers().get(0));
@@ -64,7 +65,7 @@ public class AIAction {
 	 */
 	public void castCard(){
 		ACard cardToCast;
-		APlayer targetPlayer;
+		List<APlayer> targetPlayers;
 		player.gameStage = GameStage.castCard;
 		List<ACard> cards = player.getAvailableCards(player.getHands());
 		setAvailableCards(cards);
@@ -82,6 +83,8 @@ public class AIAction {
 			if(cardToCast != null) break;
 			cardToCast = IsTherePeach(cards);
 			if(cardToCast != null) break;
+			cardToCast = IsTherePeachGarden(cards);
+			if(cardToCast != null) break;
 			cardToCast = null;
 			break;
 		}
@@ -89,10 +92,10 @@ public class AIAction {
 		{
 			this.player.setBeingUsedCard(cards.get(castCardIndex));
 			//choose the available target
-			targetPlayer = selectTarget(cardToCast);
-			this.setTarget(targetPlayer);
-			this.player.setTargetPlayer(this.target);
-			cardToCast.use(this.player, Arrays.asList(targetPlayer));
+			targetPlayers = selectTarget(cardToCast);
+			this.setTargets(targetPlayers);
+			this.player.setTargetPlayers(this.targets);
+			cardToCast.use(this.player, targetPlayers);
 			BattleFieldPanel.Instance().addACard(this.player, cardToCast);
 			this.player.getHands().remove(cardToCast);
 		}
@@ -133,20 +136,37 @@ public class AIAction {
 		player.getOtherPlayerPanel().setDoing(false);
 	}
 	
-	private APlayer selectTarget(ACard cardToCast) {
+	private List<APlayer> selectTarget(ACard cardToCast) {
 		// TODO Auto-generated method stub
 		//List<APlayer> players = PlayerUtil.getInstance().getPlayers();
 		if(cardToCast.getType() == CardConst.CardType_Armor || cardToCast.getType() == CardConst.CardType_Weapon
 				|| cardToCast.getType() == CardConst.CardType_Mount_Minus || cardToCast.getType() == CardConst.CardType_Mount_Plus)
 		{
-			return this.player;
+			return Arrays.asList(this.player);
 		}
 		else if(cardToCast.getType() == CardConst.CardType_Strike || cardToCast.getType() == CardConst.CardType_Peach)
 		{
 			List<APlayer> players = PlayerUtil.getInstance().getPlayers();
 			for(APlayer player: players)
 			{
-				if(PlayerUtil.getDistance(this.player, player) == 1) return player;
+				if(PlayerUtil.getDistance(this.player, player) == 1) return Arrays.asList(player);
+			}
+		}
+		else if(cardToCast.getType() == CardConst.CardType_Scroll_Card)
+		{
+			return PlayerUtil.getInstance().getPlayers();
+		}
+		return null;
+	}
+	
+	private ACard IsTherePeachGarden(List<ACard> cards) {
+		// TODO Auto-generated method stub
+		for(int i = 0; i < availableCards.size(); i++ )
+		{
+			if(availableCards.get(i).getType() == CardConst.CardType_Scroll_Card)
+			{
+				this.castCardIndex = i;
+				return availableCards.get(i);
 			}
 		}
 		return null;
@@ -243,12 +263,20 @@ public class AIAction {
 	public void setAvailableCards(List<ACard> availableCards) {
 		this.availableCards = availableCards;
 	}
-
+	
 	public APlayer getTarget() {
 		return target;
 	}
 
 	public void setTarget(APlayer target) {
 		this.target = target;
+	}
+
+	public List<APlayer> getTargets() {
+		return targets;
+	}
+
+	public void setTargets(List<APlayer> targets) {
+		this.targets = targets;
 	}
 }

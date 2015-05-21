@@ -65,6 +65,7 @@ public class PeachGarden extends ScrollCardAbstract {
 		for(APlayer targetPlayer: orderOfRecovering)
 		{
 			targetPlayer.gainHP(1);
+			targetPlayer.updateGuiHP();
 		}
 	}
 }
