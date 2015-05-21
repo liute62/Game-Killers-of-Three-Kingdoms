@@ -1,5 +1,7 @@
 package com.gui.main;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -7,6 +9,7 @@ import javax.swing.JFrame;
 import com.gui.gaming.MessagePanel;
 import com.logic.player.APlayer;
 import com.logic.player.Player;
+import com.system.begin.MusicPlayer;
 import com.system.constants.GUIConst;
 import com.system.enums.RoleType;
 import com.system.utils.DebugUtil;
@@ -20,6 +23,8 @@ public class MainFrame extends JFrame{
 	private MainPanel mainPanel;
 	private static GameThread gt;
 	private APlayer firstPlayer;
+    private MusicPlayer musicPlayer;
+
 	public static MainFrame getInstance(){
 		if(instance == null){
 			return new MainFrame();
@@ -32,7 +37,19 @@ public class MainFrame extends JFrame{
 		instance = this;
 		createSelectUI();
 		createUI();
+
+        playSound(false);
 	}
+
+    public void playSound(boolean theEnd) {
+//        System.out.println(ClassLoader.getSystemResource("res/bgm.mp3").getPath());
+
+        String resPath = MusicPlayer.class.getProtectionDomain().getCodeSource().getLocation().getPath()
+                .replaceAll("%20", " ") + "res/";
+        System.out.println(resPath);
+        this.musicPlayer = new MusicPlayer(resPath, theEnd);
+        this.musicPlayer.start();
+    }
 	
 	/**
 	 * select character panel
