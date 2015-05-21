@@ -215,27 +215,27 @@ public class CardMainTestCase {
         assertEquals(strike.checkTarget(player, playerList), false);
     }
 
-    @Test
-    public void TestPlayerWithQilinAttackTargetWithPlusMount() {
-        WeaponCard qilinBow = new QilinBowCard();
-        StrikeCard strike = new StrikeCard();
-        PlusMountCard shadowRunner = new ShadowRunnerCard();
-
-        APlayer player = new Player();
-        APlayer player1 = new Player();
-        player.setCurrentHP(3);
-        player.setAttackRange(2);
-        player.setPosition(1);
-        player.setWeapon(qilinBow);
-        player1.setCurrentHP(2);
-        player1.setPosition(2);
-        player1.setPlusMount(shadowRunner);
-        List<APlayer> playerList = new ArrayList<>();
-        playerList.add(player1);
-
-        strike.use(player, playerList);
-        assertNull(player1.getPlusMount());
-    }
+//    @Test
+//    public void TestPlayerWithQilinAttackTargetWithPlusMount() {
+//        WeaponCard qilinBow = new QilinBowCard();
+//        StrikeCard strike = new StrikeCard();
+//        PlusMountCard shadowRunner = new ShadowRunnerCard();
+//
+//        APlayer player = new Player();
+//        APlayer player1 = new Player();
+//        player.setCurrentHP(3);
+//        player.setAttackRange(2);
+//        player.setPosition(1);
+//        player.setWeapon(qilinBow);
+//        player1.setCurrentHP(2);
+//        player1.setPosition(2);
+//        player1.setPlusMount(shadowRunner);
+//        List<APlayer> playerList = new ArrayList<>();
+//        playerList.add(player1);
+//
+//        strike.use(player, playerList);
+//        assertNull(player1.getPlusMount());
+//    }
 
     @Test
     public void TestPlayerWithoutQilinAttackTargetWithPlusMount() {
@@ -257,27 +257,27 @@ public class CardMainTestCase {
         assertSame(player1.getPlusMount(), shadowRunner);
     }
 
-    @Test
-    public void TestPlayerWithQilinAttackTargetWithMinusMount() {
-        WeaponCard qilinBow = new QilinBowCard();
-        StrikeCard strike = new StrikeCard();
-        MinusMountCard redHare = new RedHareCard();
-
-        APlayer player = new Player();
-        APlayer player1 = new Player();
-        player.setCurrentHP(3);
-        player.setAttackRange(2);
-        player.setPosition(1);
-        player.setWeapon(qilinBow);
-        player1.setCurrentHP(2);
-        player1.setPosition(2);
-        player1.setMinusMount(redHare);
-        List<APlayer> playerList = new ArrayList<>();
-        playerList.add(player1);
-
-        strike.use(player, playerList);
-        assertNull(player1.getMinusMount());
-    }
+//    @Test
+//    public void TestPlayerWithQilinAttackTargetWithMinusMount() {
+//        WeaponCard qilinBow = new QilinBowCard();
+//        StrikeCard strike = new StrikeCard();
+//        MinusMountCard redHare = new RedHareCard();
+//
+//        APlayer player = new Player();
+//        APlayer player1 = new Player();
+//        player.setCurrentHP(3);
+//        player.setAttackRange(2);
+//        player.setPosition(1);
+//        player.setWeapon(qilinBow);
+//        player1.setCurrentHP(2);
+//        player1.setPosition(2);
+//        player1.setMinusMount(redHare);
+//        List<APlayer> playerList = new ArrayList<>();
+//        playerList.add(player1);
+//
+//        strike.use(player, playerList);
+//        assertNull(player1.getMinusMount());
+//    }
 
     @Test
     public void TestPlayerWithoutQilinAttackTargetWithMinusMount() {
@@ -301,28 +301,28 @@ public class CardMainTestCase {
         assertSame(player1.getMinusMount(), redHare);
     }
 
-    @Test
-    public void TestPlayerWithQilinAttackTargetWithBothMount() {
-        WeaponCard qilinBow = new QilinBowCard();
-        StrikeCard strike = new StrikeCard();
-        MinusMountCard redHare = new RedHareCard();
-        PlusMountCard shadowRunner = new ShadowRunnerCard();
-
-        APlayer player = new Player();
-        APlayer player1 = new Player();
-        player.setCurrentHP(3);
-        player.setAttackRange(2);
-        player.setPosition(1);
-        player.setWeapon(qilinBow);
-        player1.setCurrentHP(2);
-        player1.setPosition(2);
-        player1.setMinusMount(redHare);
-        player1.setPlusMount(shadowRunner);
-        List<APlayer> playerList = new ArrayList<>();
-        playerList.add(player1);
-
-        strike.use(player, playerList);
-        assertNull(player1.getMinusMount());
-        assertNull(player1.getPlusMount());
-    }
+//    @Test
+//    public void TestPlayerWithQilinAttackTargetWithBothMount() {
+//        WeaponCard qilinBow = new QilinBowCard();
+//        StrikeCard strike = new StrikeCard();
+//        MinusMountCard redHare = new RedHareCard();
+//        PlusMountCard shadowRunner = new ShadowRunnerCard();
+//
+//        APlayer player = new Player();
+//        APlayer player1 = new Player();
+//        player.setCurrentHP(3);
+//        player.setAttackRange(2);
+//        player.setPosition(1);
+//        player.setWeapon(qilinBow);
+//        player1.setCurrentHP(2);
+//        player1.setPosition(2);
+//        player1.setMinusMount(redHare);
+//        player1.setPlusMount(shadowRunner);
+//        List<APlayer> playerList = new ArrayList<>();
+//        playerList.add(player1);
+//
+//        strike.use(player, playerList);
+//        assertNull(player1.getMinusMount());
+//        assertNull(player1.getPlusMount());
+//    }
 }

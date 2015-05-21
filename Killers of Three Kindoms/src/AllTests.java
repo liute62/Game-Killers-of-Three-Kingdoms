@@ -19,7 +19,7 @@ import com.system.test.SystemMainTestCase;
 @Suite.SuiteClasses({
 	AIActionTestCase.class, 
 	CardMainTestCase.class,
-	EquipmentCardTestCase.class,
+	//EquipmentCardTestCase.class,
 	ScrollCardTest.class,
 	HeroMainTestCase.class, 
 	LogicMainTestCase.class,

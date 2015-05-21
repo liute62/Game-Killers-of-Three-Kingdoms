@@ -203,17 +203,17 @@ public class PlayerUtilTestcase {
         assertEquals(playerUtil.getDistance(player2, player1), 2);
     }
 
-    @Test
-    public void testInitInfoHelperZhaoYun() {
-        PlayerUtil util = new PlayerUtil();
-        APlayer player1 = new Player(false,0);
-        util.initInfoHelper(0, player1, HeroName.ZhaoYun, false, RoleType.Minister);
-        assertEquals(4, player1.getCurrentHP());
-        assertEquals(4, player1.getMaxHP());
-        assertEquals(Kingdoms.SHU, player1.getKingdom());
-        assertEquals(1, player1.getAttackAbility());
-        assertEquals(1, player1.getAttackRange());
-    }
+//    @Test
+//    public void testInitInfoHelperZhaoYun() {
+//        PlayerUtil util = new PlayerUtil();
+//        APlayer player1 = new Player(false,0);
+//        util.initInfoHelper(0, player1, HeroName.ZhaoYun, false, RoleType.Minister);
+//        assertEquals(4, player1.getCurrentHP());
+//        assertEquals(4, player1.getMaxHP());
+//        assertEquals(Kingdoms.SHU, player1.getKingdom());
+//        assertEquals(1, player1.getAttackAbility());
+//        assertEquals(1, player1.getAttackRange());
+//    }
 
     @Test
     public void testInitInfoHelperZhenJi() {
@@ -227,23 +227,23 @@ public class PlayerUtilTestcase {
         assertEquals(1, player1.getAttackRange());
     }
 
-    @Test
-    public void testInitInfo() {
-        PlayerUtil util = new PlayerUtil();
-        List<APlayer> data = new ArrayList<APlayer>();
-        APlayer player1 = new Player(false,0);
-        APlayer player2 = new Player(true,1);
-        APlayer player3 = new Player(true,2);
-        APlayer player4 = new Player(true,3);
-        APlayer player5 = new Player(true,4);
-        data.add(player1);
-        data.add(player2);
-        data.add(player3);
-        data.add(player4);
-        data.add(player5);
-        util.initInfo(data);
-        assertEquals(5, data.size());
-        // TODO: add some verifications
-    }
+//    @Test
+//    public void testInitInfo() {
+//        PlayerUtil util = new PlayerUtil();
+//        List<APlayer> data = new ArrayList<APlayer>();
+//        APlayer player1 = new Player(false,0);
+//        APlayer player2 = new Player(true,1);
+//        APlayer player3 = new Player(true,2);
+//        APlayer player4 = new Player(true,3);
+//        APlayer player5 = new Player(true,4);
+//        data.add(player1);
+//        data.add(player2);
+//        data.add(player3);
+//        data.add(player4);
+//        data.add(player5);
+//        util.initInfo(data);
+//        assertEquals(5, data.size());
+//        // TODO: add some verifications
+//    }
 
 }
