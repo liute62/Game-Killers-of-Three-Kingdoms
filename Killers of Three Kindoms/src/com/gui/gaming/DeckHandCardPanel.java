@@ -352,6 +352,10 @@ public class DeckHandCardPanel extends JPanel{
 								tmp.getCard().getType() == CardConst.CardType_Mount_Minus||
 								tmp.getCard().getType() == CardConst.CardType_Mount_Plus) {
 							player.setTargetPlayer(player);
+						}if (tmp.getCard().getType() == CardConst.CardType_Scroll_Card) {
+							if (tmp.getCard().getName().equals("PeachGarden")) {
+								
+							}
 						}
 						
 						if (player.getTargetPlayer() != null) {

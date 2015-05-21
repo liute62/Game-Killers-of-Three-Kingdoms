@@ -20,6 +20,6 @@ public class CardConst {
     public static final int CardType_Scroll_Card = 8;
 
     public static final int CardType_Delayed_Scroll_Card = 9;
-
+ 
 }
 
