@@ -31,7 +31,7 @@ public abstract class APlayer implements IPlayer{
 	 protected int maxHP;
 	 protected int currentHP;
 	 protected List<ACard> hands;
-	 protected  AmorCard amor;
+	 protected AmorCard amor;
 	 protected PlusMountCard plusMount;
      protected MinusMountCard minusMount;
 	 protected WeaponCard weapon;

@@ -11,6 +11,7 @@ import com.card.equipment.*;
 import com.card.interfaces.MinusMountCard;
 import com.card.interfaces.PlusMountCard;
 import com.card.interfaces.WeaponCard;
+import com.system.constants.SuitConst;
 import org.junit.Test;
 
 import com.card.base.PeachCard;
@@ -26,10 +27,10 @@ public class CardMainTestCase {
     @Test
     public void testForEightDiagramFormationCard() {
         EightDiagramFormationCard card = new EightDiagramFormationCard();
-        assertEquals(true,card.check("Heart"));
-        assertEquals(true,card.check("Diamond"));
-        assertEquals(false,card.check("Club"));
-        assertEquals(false,card.check("Spade"));
+        assertEquals(true,card.check(SuitConst.SuitType_Hearts));
+        assertEquals(true,card.check(SuitConst.SuitType_Diamonds));
+        assertEquals(false,card.check(SuitConst.SuitType_Clubs));
+        assertEquals(false,card.check(SuitConst.SuitType_Spades));
     }
 
     @Test

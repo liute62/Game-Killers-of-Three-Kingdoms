@@ -1,10 +1,15 @@
 package com.card.base;
 
+import com.card.equipment.EightDiagramFormationCard;
 import com.card.interfaces.ACard;
+import com.gui.gaming.MessagePanel;
 import com.logic.player.APlayer;
 import com.system.constants.CardConst;
+import com.system.constants.SuitConst;
+import com.system.utils.CardUtil;
 import com.system.utils.PlayerUtil;
 import com.system.utils.ResUtil;
+import sun.plugin2.message.Message;
 
 import java.util.List;
 
@@ -38,16 +43,35 @@ public class StrikeCard extends ACard {
                 target.getDeckEquipmentPanel().removeMount(1);
             }
             if(player.getWeapon() != null && player.getWeapon().getName().equals("BlackPommel")) {
-            	ignoreAmor = true;
-            } 
+//            	ignoreAmor = true;
+            }
         }
         
         for (APlayer target: targets) {
+            if (CardUtil.getInstance().checkAndUseDodgeCard(target.getHands())) {
+                MessagePanel.Instance().addAMessage(target.getName() + " uses Dodge Card to avoid damage.");
+                // TODO: [Final] Refresh card count and player's deck hand cards
+                continue;
+            }
             if(ignoreAmor) {
             	target.loseHP(1);
             	target.updateGuiHP();
-            }
-            else {
+            } else {
+                if (target.getAmor() != null) {
+                    if (target.getAmor().getName().equals("EightDiagramFormation")) {
+                        //DONE: [Final] Check EightDiagram here
+                        int size = (int) (Math.random() * CardUtil.getDeckCards().size());
+                        int suit = CardUtil.getDeckCards().get(size).getSuit();
+                        if (((EightDiagramFormationCard) target.getAmor()).check(suit)) {
+                            MessagePanel.Instance().addAMessage(target.getName() + " draws a red suit card.");
+                            MessagePanel.Instance().addAMessage(target.getName() + " uses Eight Diagram Formation to avoid damage.");
+                            continue;
+                        } else {
+                            MessagePanel.Instance().addAMessage(target.getName() + " draws a black suit card.");
+                            MessagePanel.Instance().addAMessage(target.getName() + " uses Eight Diagram Formation but failed.");
+                        }
+                    }
+                }
             	target.loseHP(1);
             	target.updateGuiHP();
 			}

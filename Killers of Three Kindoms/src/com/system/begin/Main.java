@@ -20,6 +20,6 @@ public class Main {
     // 1. Beautify start screen
     // 2. Game over pop out message
     // 3. Use dodge when being striked
-    // 4. Default skill: heal yourself by 1
+    // 4. Default skill: heal yourself by 1 [done]
 
 }

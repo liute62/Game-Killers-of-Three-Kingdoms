@@ -117,7 +117,7 @@ public class CardUtil {
         // Clubs BlackPommel * 1
         addCardToList(cardList, 1, BlackPommelCard.class, id, SuitConst.SuitType_Clubs, CardConst.CardType_Weapon);
         // Clubs EightDiagramFormation * 1
-        addCardToList(cardList, 1, EightDiagramFormationCard.class, id,
+        addCardToList(cardList, 10, EightDiagramFormationCard.class, id,
                 SuitConst.SuitType_Clubs, CardConst.CardType_Armor);
         // Hearts QilinBow * 1
         addCardToList(cardList, 1, QilinBowCard.class, id, SuitConst.SuitType_Hearts, CardConst.CardType_Weapon);
@@ -128,6 +128,16 @@ public class CardUtil {
         // Hearts PeachGarden * 1
         addCardToList(cardList, 1, PeachGarden.class, id, SuitConst.SuitType_Hearts, CardConst.CardType_Scroll_Card);
         return cardList;
+    }
+
+    public boolean checkAndUseDodgeCard(List<ACard> cards) {
+        for (ACard card : cards) {
+            if (card.getName().equals("Dodge")) {
+                cards.remove(card);
+                return true;
+            }
+        }
+        return false;
     }
     
     private void addCardToList(
