@@ -95,11 +95,11 @@ public class PlayerUtil {
 	
 	public void initInfo(List<APlayer> players){
 		// Shuffle all heroes.
-		ArrayList<HeroName> names = new ArrayList<>();
+		ArrayList<HeroName> names = new ArrayList<HeroName>();
 		names.addAll(Arrays.asList(HeroName.values()));
 		Collections.shuffle(names, new Random(System.nanoTime()));
 
-		ArrayList<RoleType> roles = new ArrayList<>();
+		ArrayList<RoleType> roles = new ArrayList<RoleType>();
 		roles.addAll(Arrays.asList(RoleType.Minister, RoleType.Monarch, RoleType.Trun_coat,
 				RoleType.Rebel, RoleType.Rebel));
 		Collections.shuffle(roles, new Random(System.nanoTime()));
@@ -219,7 +219,7 @@ public class PlayerUtil {
     public List<RoleType> getWinningRoles() {
         APlayer firstPlayer = player;
         APlayer currPlayer = player;
-        HashMap<RoleType, Integer> count = new HashMap<>();
+        HashMap<RoleType, Integer> count = new HashMap<RoleType, Integer>();
         do {
             RoleType currRole = currPlayer.getRoleType();
             if (!count.containsKey(currRole)) {

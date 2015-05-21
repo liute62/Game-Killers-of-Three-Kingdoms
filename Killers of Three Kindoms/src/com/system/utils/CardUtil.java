@@ -96,7 +96,7 @@ public class CardUtil {
      * @return the generated deck.
      */
     public List<ACard> generateInitialCardDeck() {
-        ArrayList<ACard> cardList = new ArrayList<>();
+        ArrayList<ACard> cardList = new ArrayList<ACard>();
         int[] id = new int[1];
         id[0] = 0;
 
