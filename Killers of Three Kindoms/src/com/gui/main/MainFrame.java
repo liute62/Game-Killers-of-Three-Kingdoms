@@ -46,7 +46,7 @@ public class MainFrame extends JFrame{
 
         String resPath = MusicPlayer.class.getProtectionDomain().getCodeSource().getLocation().getPath()
                 .replaceAll("%20", " ") + "res/";
-        System.out.println(resPath);
+//        System.out.println(resPath);
         this.musicPlayer = new MusicPlayer(resPath, theEnd);
         this.musicPlayer.start();
     }

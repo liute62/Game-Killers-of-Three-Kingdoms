@@ -53,7 +53,12 @@ public class BattleFieldPanel extends JPanel{
 	
 	
 	public void addACard(APlayer player,ACard card){
-        MessagePanel.Instance().addAMessage(player.getName()+" cast "+card.getName()+" card to "+player.getTargetPlayer().getName()+".");
+        System.out.println("PLAYER: " + player.getTargetPlayer());
+        try {
+            MessagePanel.Instance().addAMessage(player.getName()+" cast "+card.getName()+" card to "+player.getTargetPlayer().getName()+".");
+        } catch (RuntimeException e) {
+            System.out.println("NULL PLAYER");
+        }
 		cards.add(card);
 		int i = cards.size() - 1;
 		CardPanel cardPanel = new CardPanel(card);

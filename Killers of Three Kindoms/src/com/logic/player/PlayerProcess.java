@@ -131,8 +131,9 @@ public class PlayerProcess {
 	
 	private void stage_discard(){
 //        TODO: Just for fun
-        player.setCurrentHP(player.getCurrentHP() - 2);
+//        player.setCurrentHP(player.getCurrentHP() - 2);
         MessagePanel.Instance().addAMessage("Current HP: "+player.getCurrentHP());
+
         if (player.getDeckPanel() != null) {
             player.getDeckPanel().getDeckProfilePanel().setSkillStatus(2);
         }
