@@ -168,7 +168,11 @@ public class DeckProfilePanel extends JPanel{
                     if (skillStatus == 1) {
                         // TODO: Cast skill here.
                         ISkill skill = player.getSkill();
-                        MessagePanel.Instance().addAMessage("Trying to cast spell: " + skill.getClass().getName());
+//                        MessagePanel.Instance().addAMessage("Trying to cast spell: " + skill.getClass().getName());
+                        MessagePanel.Instance().addAMessage("You have cast the default skill.");
+                        player.setCurrentHP(player.getCurrentHP() + 1);
+                        skillStatus = 2;
+                        button.repaint();
                     }
                 }
             }

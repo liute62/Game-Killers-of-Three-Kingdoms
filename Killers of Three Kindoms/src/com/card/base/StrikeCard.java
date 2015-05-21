@@ -43,7 +43,7 @@ public class StrikeCard extends ACard {
         }
         
         for (APlayer target: targets) {
-            if(ignoreAmor == true) {
+            if(ignoreAmor) {
             	target.loseHP(1);
             	target.updateGuiHP();
             }

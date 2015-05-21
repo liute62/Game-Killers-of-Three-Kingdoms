@@ -29,39 +29,39 @@ public class SelectHeroPanel extends JPanel{
 	
 	public SelectHeroPanel(){
 		initial();
-		showPanel.setPreferredSize(new Dimension(GUIConst.proxyWidth * 5,
-				GUIConst.proxyHeight * 1));
-		showPanel.setLayout(new GridLayout(0, 7, 2, 2));
-		showPanel.setBackground(Color.black);
-		scrollPane = new JScrollPane(showPanel);
-		scrollPane.setSize(GUIConst.proxyWidth * 5 + 10, GUIConst.selectHeroPanelHeight - 300);
-		scrollPane.setLocation(GUIConst.proxyWidth/2+10, 10);
-		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setOpaque(false);
-		scrollPane.getVerticalScrollBar().setUnitIncrement(20);
-		scrollPane.getHorizontalScrollBar().setBlockIncrement(80);
-		titledBorder = BorderFactory.createTitledBorder(GUIConst.selectHeroTitle);
-		titledBorder.setTitlePosition(TitledBorder.TOP);
-		Font font = new Font("Arial", Font.BOLD, 30);
-		titledBorder.setTitleFont(font);
-		titledBorder.setTitleColor(Color.white);
-		scrollPane.setBorder(titledBorder);
-		scrollPane.getViewport().setOpaque(false);
-		add(scrollPane);
+//		showPanel.setPreferredSize(new Dimension(GUIConst.proxyWidth * 5,
+//				GUIConst.proxyHeight * 1));
+//		showPanel.setLayout(new GridLayout(0, 7, 2, 2));
+//		showPanel.setBackground(Color.black);
+//		scrollPane = new JScrollPane(showPanel);
+//		scrollPane.setSize(GUIConst.proxyWidth * 5 + 10, GUIConst.selectHeroPanelHeight - 300);
+//		scrollPane.setLocation(GUIConst.proxyWidth/2+10, 10);
+//		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+//		scrollPane.setOpaque(false);
+//		scrollPane.getVerticalScrollBar().setUnitIncrement(20);
+//		scrollPane.getHorizontalScrollBar().setBlockIncrement(80);
+//		titledBorder = BorderFactory.createTitledBorder(GUIConst.selectHeroTitle);
+//		titledBorder.setTitlePosition(TitledBorder.TOP);
+//		Font font = new Font("Arial", Font.BOLD, 30);
+//		titledBorder.setTitleFont(font);
+//		titledBorder.setTitleColor(Color.white);
+//		scrollPane.setBorder(titledBorder);
+//		scrollPane.getViewport().setOpaque(false);
+//		add(scrollPane);
 		subSelectPanel.setSize(GUIConst.proxyWidth * 6+20, GUIConst.proxyHeight + 50);
-		subSelectPanel.setLocation(10, scrollPane.getHeight() + 20);
+		subSelectPanel.setLocation(10, 200 + 20);
 		subSelectPanel.setOpaque(false);
-		TitledBorder tb2 = BorderFactory.createTitledBorder("");
-		tb2.setTitleFont(font);
-		tb2.setTitleColor(Color.white);
-		tb2.setBorder(null);
+//		TitledBorder tb2 = BorderFactory.createTitledBorder("");
+//		tb2.setTitleFont(font);
+//		tb2.setTitleColor(Color.white);
+//		tb2.setBorder(null);
 		subSelectPanel.setLayout(null);
 		cancelPanel.setLocation(GUIConst.proxyWidth * 4 + 18, 40);
 		surePanel.setLocation(GUIConst.proxyWidth * 4 + 18,  subSelectPanel.getHeight()-surePanel.getHeight()-20);
-		subSelectPanel.add(cancelPanel);
+		//subSelectPanel.add(cancelPanel);
 		subSelectPanel.add(surePanel);
 		add(subSelectPanel);
-	}
+    }
 	
 	private void initial(){
 		this.setSize(GUIConst.selectHeroPanelWidth, GUIConst.selectHeroPanelHeight);
@@ -70,7 +70,7 @@ public class SelectHeroPanel extends JPanel{
 		showPanel = new JPanel();
 		subSelectPanel = new SubSelectPanel();
 		cancelPanel = new ClickPanel("cancel",0);
-		surePanel = new ClickPanel("sure", 1);
+		surePanel = new ClickPanel("Start", 1);
 	}
 	
 	private class ClickPanel extends JPanel{
