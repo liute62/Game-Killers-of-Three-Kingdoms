@@ -2,7 +2,6 @@ package com.system.begin;
 
 import com.gui.main.MainFrame;
 import com.system.utils.DebugUtil;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 

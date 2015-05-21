@@ -57,7 +57,9 @@ public abstract class APlayer implements IPlayer{
 	 private OtherPlayerPanel otherPlayerPanel;
      private DeckPanel deckPanel;
 	 private APlayer targetPlayer;
-	 private BufferedImage profile;
+	 private List<APlayer> targetPlayers;
+
+	private BufferedImage profile;
 	 private BufferedImage healthBar;
      static int currentId = 0;
      protected List<ACard> discardList;
@@ -372,6 +374,14 @@ public abstract class APlayer implements IPlayer{
 
 	public void setDeckEquipmentPanel(DeckEquipmentPanel deckEquipmentPanel) {
 		this.deckEquipmentPanel = deckEquipmentPanel;
+	}
+	
+	public List<APlayer> getTargetPlayers() {
+		return targetPlayers;
+	}
+	
+	public void setTargetPlayers(List<APlayer> targetPlayers) {
+		this.targetPlayers = targetPlayers;
 	}
 	
     public void updateGuiHP() {
