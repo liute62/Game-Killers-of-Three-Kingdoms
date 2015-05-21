@@ -19,7 +19,7 @@ public class Main {
 
     // 1. Beautify start screen [done]
     // 2. Game over pop out message
-    // 3. Use dodge when being striked
+    // 3. Use dodge when being striked [done]
     // 4. Default skill: heal yourself by 1 [done]
     // 5. Peach Garden GUI
     // 6. EightFormationDiagram [done]

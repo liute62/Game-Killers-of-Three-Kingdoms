@@ -43,14 +43,18 @@ public class StrikeCard extends ACard {
                 target.getDeckEquipmentPanel().removeMount(1);
             }
             if(player.getWeapon() != null && player.getWeapon().getName().equals("BlackPommel")) {
-//            	ignoreAmor = true;
+            	ignoreAmor = true;
             }
         }
         
         for (APlayer target: targets) {
             if (CardUtil.getInstance().checkAndUseDodgeCard(target.getHands())) {
                 MessagePanel.Instance().addAMessage(target.getName() + " uses Dodge Card to avoid damage.");
-                // TODO: [Final] Refresh card count and player's deck hand cards
+                // DONE: [Final] Refresh card count and player's deck hand cards
+                target.updateGuiCardNum();
+                if (target.getDeckHandCardPanel() != null) {
+                    target.getDeckHandCardPanel().refresh();
+                }
                 continue;
             }
             if(ignoreAmor) {
