@@ -1,19 +1,17 @@
 package com.gui.main;
 
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 import com.system.constants.GUIConst;
+import com.system.utils.ResUtil;
 
 public class SelectHeroPanel extends JPanel{
 
@@ -26,6 +24,7 @@ public class SelectHeroPanel extends JPanel{
 	TitledBorder titledBorder;
     ClickPanel cancelPanel;
 	ClickPanel surePanel;
+    BufferedImage startupImg;
 	
 	public SelectHeroPanel(){
 		initial();
@@ -57,13 +56,15 @@ public class SelectHeroPanel extends JPanel{
 //		tb2.setBorder(null);
 		subSelectPanel.setLayout(null);
 		cancelPanel.setLocation(GUIConst.proxyWidth * 4 + 18, 40);
-		surePanel.setLocation(GUIConst.proxyWidth * 4 + 18,  subSelectPanel.getHeight()-surePanel.getHeight()-20);
+		surePanel.setLocation(GUIConst.proxyWidth * 2 + 18,  subSelectPanel.getHeight()-surePanel.getHeight()-20);
 		//subSelectPanel.add(cancelPanel);
 		subSelectPanel.add(surePanel);
 		add(subSelectPanel);
     }
 	
 	private void initial(){
+        this.startupImg = ResUtil.getImgByName("startup", 0);
+
 		this.setSize(GUIConst.selectHeroPanelWidth, GUIConst.selectHeroPanelHeight);
 		this.setLocation(0, 0);
 		this.setLayout(null);
@@ -71,9 +72,16 @@ public class SelectHeroPanel extends JPanel{
 		subSelectPanel = new SubSelectPanel();
 		cancelPanel = new ClickPanel("cancel",0);
 		surePanel = new ClickPanel("Start", 1);
+
 	}
-	
-	private class ClickPanel extends JPanel{
+
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        g.drawImage(this.startupImg, 0, 0, 1000, 700, null);
+    }
+
+    private class ClickPanel extends JPanel{
 		
 		/**
 		 * 

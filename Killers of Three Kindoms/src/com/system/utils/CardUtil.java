@@ -117,7 +117,7 @@ public class CardUtil {
         // Clubs BlackPommel * 1
         addCardToList(cardList, 1, BlackPommelCard.class, id, SuitConst.SuitType_Clubs, CardConst.CardType_Weapon);
         // Clubs EightDiagramFormation * 1
-        addCardToList(cardList, 10, EightDiagramFormationCard.class, id,
+        addCardToList(cardList, 4, EightDiagramFormationCard.class, id,
                 SuitConst.SuitType_Clubs, CardConst.CardType_Armor);
         // Hearts QilinBow * 1
         addCardToList(cardList, 1, QilinBowCard.class, id, SuitConst.SuitType_Hearts, CardConst.CardType_Weapon);

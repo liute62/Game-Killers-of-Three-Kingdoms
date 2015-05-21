@@ -17,9 +17,11 @@ public class Main {
 		MainFrame.getInstance();
 	}
 
-    // 1. Beautify start screen
+    // 1. Beautify start screen [done]
     // 2. Game over pop out message
     // 3. Use dodge when being striked
     // 4. Default skill: heal yourself by 1 [done]
+    // 5. Peach Garden GUI
+    // 6. EightFormationDiagram [done]
 
 }
