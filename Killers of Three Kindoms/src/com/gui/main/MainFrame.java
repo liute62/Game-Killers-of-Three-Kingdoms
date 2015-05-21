@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 import com.gui.gaming.MessagePanel;
 import com.logic.player.APlayer;
@@ -12,6 +12,7 @@ import com.logic.player.Player;
 import com.system.begin.MusicPlayer;
 import com.system.constants.GUIConst;
 import com.system.enums.RoleType;
+import com.system.utils.CardUtil;
 import com.system.utils.DebugUtil;
 import com.system.utils.PlayerUtil;
 
@@ -107,4 +108,14 @@ public class MainFrame extends JFrame{
 	private void createPlayer(){
 		firstPlayer = PlayerUtil.getInstance().getPlayer();
 	}
+
+    public void removePanel(JPanel panel) {
+        this.remove(panel);
+        gt.stop();
+        repaint();
+        createSelectUI();
+        createUI();
+        PlayerUtil.getInstance().resetInstance();
+        CardUtil.getInstance().resetInstance();
+    }
 }

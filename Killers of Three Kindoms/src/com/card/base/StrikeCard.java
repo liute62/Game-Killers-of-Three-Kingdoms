@@ -34,6 +34,8 @@ public class StrikeCard extends ACard {
                     && player.getWeapon().getName().equals("QilinBow")) {
                 target.setPlusMount(null);
                 target.setMinusMount(null);
+                target.getDeckEquipmentPanel().removeMount(0);
+                target.getDeckEquipmentPanel().removeMount(1);
             }
             if(player.getWeapon() != null && player.getWeapon().getName().equals("BlackPommel")) {
             	ignoreAmor = true;

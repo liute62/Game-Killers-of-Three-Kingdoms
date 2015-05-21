@@ -31,6 +31,10 @@ public class CardUtil {
 		return instance;
 	}
 
+    public void resetInstance() {
+        instance = null;
+    }
+
     public static List<ACard> getDeckCards() {
         if (instance == null) {
             new CardUtil();

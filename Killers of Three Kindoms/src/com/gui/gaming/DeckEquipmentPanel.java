@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
+import com.card.base.NullCard;
+import com.card.base.StrikeCard;
 import com.card.equipment.BlackPommelCard;
 import com.card.equipment.EightDiagramFormationCard;
 import com.card.interfaces.ACard;
@@ -58,7 +60,7 @@ public class DeckEquipmentPanel extends JPanel{
 	}
 	
 	public void setAEquipment(ACard card){
-		if(card.getType() == CardConst.CardType_Weapon){
+        if(card.getType() == CardConst.CardType_Weapon){
 			weapon.setCard(card);
 		}else if(card.getType() == CardConst.CardType_Armor){
 			armor.setCard(card);
@@ -68,7 +70,16 @@ public class DeckEquipmentPanel extends JPanel{
 			horseDefend.setCard(card);
 		}
 	}
-	
+
+    public void removeMount(int type) {
+        ACard card = new NullCard();
+        if (type == 0) {
+            horseAttact.setCard(card);
+        } else if (type == 1) {
+            horseDefend.setCard(card);
+        }
+    }
+
 	class DeckEquipmentSubPanel extends JPanel{
 		
 		private static final long serialVersionUID = -4080521922706576417L;
@@ -93,5 +104,6 @@ public class DeckEquipmentPanel extends JPanel{
 			name = card.getName();
 			repaint();
 		}
+
 	}
 }

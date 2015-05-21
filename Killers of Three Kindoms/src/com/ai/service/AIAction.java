@@ -110,11 +110,13 @@ public class AIAction {
 		this.player.updateDiscardNum();
 		int num = this.player.getDiscardNum();
 		List<ACard> tmp = new ArrayList<ACard>();
-		for (int i = 0; i < num; i++) {
-			tmp.add(this.player.getHands().get(i));
-			BattleFieldPanel.Instance().addADiscard(this.player, this.player.getHands().get(i));
-		}
-		this.player.getHands().removeAll(tmp);
+        if(this.player.getHands().size() > num) {
+            for (int i = 0; i < num; i++) {
+                tmp.add(this.player.getHands().get(i));
+                BattleFieldPanel.Instance().addADiscard(this.player, this.player.getHands().get(i));
+            }
+            this.player.getHands().removeAll(tmp);
+        }
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {

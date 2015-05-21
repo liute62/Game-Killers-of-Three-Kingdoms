@@ -11,6 +11,7 @@ import com.logic.interfaces.IPlayer;
 import com.logic.test.PlayerInitializationTest;
 import com.system.enums.HeroName;
 import com.system.enums.RoleType;
+import com.system.utils.CardUtil;
 
 public class Player extends APlayer{
 	
@@ -118,7 +119,9 @@ public class Player extends APlayer{
         if(handCards == null){
             handCards = new ArrayList<ACard>();
         }
-        ACard card = new PeachCard();
+//        ACard card = new PeachCard();
+        int size = (int) (Math.random() * CardUtil.getDeckCards().size());
+        ACard card = CardUtil.getDeckCards().get(size);
         handCards.add(card);
         setHands(handCards);
     }

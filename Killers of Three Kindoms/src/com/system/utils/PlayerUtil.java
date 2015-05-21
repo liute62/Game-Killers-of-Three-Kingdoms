@@ -36,7 +36,11 @@ public class PlayerUtil {
 		setPlayers(playerInitial());
 		setPlayer(getPlayers().get(0));
 	}
-	
+
+    public void resetInstance() {
+        instance = null;
+    }
+
 	public static PlayerUtil getInstance() {
 		if (instance == null) {
 			return new PlayerUtil();
@@ -64,13 +68,13 @@ public class PlayerUtil {
 		data.add(player5);
 		initPos(data);
 		initInfo(data);
-		//player1.setHands(cardUtil.getInitialCards(player1));
+		player1.setHands(cardUtil.getInitialCards(player1));
 		List<ACard> tmpList = new ArrayList<ACard>();
 		tmpList.add(new PeachCard());
 		tmpList.add(new StrikeCard());
 		tmpList.add(new BlackPommelCard());
 		tmpList.add(new EightDiagramFormationCard());
-		player1.setHands(tmpList);
+//		player1.setHands(tmpList);
 		player2.setHands(cardUtil.getInitialCards(player2));
 		player3.setHands(cardUtil.getInitialCards(player3));
 		player4.setHands(cardUtil.getInitialCards(player4));

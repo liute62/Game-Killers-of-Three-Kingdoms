@@ -160,6 +160,8 @@ public class CardPanel extends JPanel{
 		/**To Do**/
 		result.add(tmp.get(0));
 		result.add(tmp.get(1));
+        result.add(tmp.get(2));
+        result.add(tmp.get(3));
 		return result;
 	}
 	

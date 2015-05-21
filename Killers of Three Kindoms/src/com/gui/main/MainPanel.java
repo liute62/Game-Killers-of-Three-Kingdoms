@@ -106,7 +106,7 @@ public class MainPanel extends JPanel{
 		messagePanel.setLocation(800,0);
 	}
 	
-	class ExitBtn extends JButton{
+	class ExitBtn extends JButton implements MouseListener{
 		
 		public ExitBtn(){
 			this.setLocation(0, 0);
@@ -114,6 +114,7 @@ public class MainPanel extends JPanel{
 			this.setBackground(Color.black);
 			this.setText("Exit");
 			this.setForeground(Color.white);
+            this.addMouseListener(this);
 		}
 		
 		@Override
@@ -123,7 +124,33 @@ public class MainPanel extends JPanel{
 			g.drawImage(bgExitImg, 0, 0, this.getWidth(), this
 					.getHeight(), null);
 		}
-	}
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+            System.out.println("xx");
+             MainFrame.getInstance().removePanel(MainPanel.this);
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
+        }
+    }
 	private void setExitBtn(){
 		this.add(exitBtn);
 		
