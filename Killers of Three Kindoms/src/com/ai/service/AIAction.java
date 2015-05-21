@@ -93,10 +93,18 @@ public class AIAction {
 			this.player.setBeingUsedCard(cards.get(castCardIndex));
 			//choose the available target
 			targetPlayers = selectTarget(cardToCast);
-			this.setTargets(targetPlayers);
-			this.player.setTargetPlayers(this.targets);
-			cardToCast.use(this.player, targetPlayers);
-			BattleFieldPanel.Instance().addACard(this.player, cardToCast);
+			if(targetPlayers.size() == 1){
+				this.setTarget(targetPlayers.get(0));
+				this.player.setTargetPlayer(this.target);
+				cardToCast.use(this.player, targetPlayers);
+				BattleFieldPanel.Instance().addACard(this.player, cardToCast);
+			}
+			else {
+				this.setTargets(targetPlayers);
+				this.player.setTargetPlayers(this.targets);
+				cardToCast.use(this.player, targetPlayers);
+				BattleFieldPanel.Instance().addNoneTargetACard(this.player, cardToCast);
+			}
 			this.player.getHands().remove(cardToCast);
 		}
 		try {

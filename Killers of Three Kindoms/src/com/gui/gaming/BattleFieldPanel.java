@@ -69,6 +69,23 @@ public class BattleFieldPanel extends JPanel{
 		repaint();
 	}
 	
+	public void addNoneTargetACard(APlayer player, ACard card) {
+		// TODO Auto-generated method stub
+		try {
+			 MessagePanel.Instance().addAMessage(player.getName() + " uses " + card.getName() +  ".");
+        } catch (RuntimeException e) {
+            System.out.println("NULL PLAYER");
+        }
+		cards.add(card);
+		int i = cards.size() - 1;
+		CardPanel cardPanel = new CardPanel(card);
+		cardPanel.setSelectable(false);
+		cardPanel.setUsed(true);
+		this.add(cardPanel);
+		cardPanel.setLocation(cardPanel.getWidth()*i, 20);
+		repaint();
+	}
+	
 	public void addADiscard(APlayer player,ACard card){
 		MessagePanel.Instance().addAMessage(player.getName()+" dicard "+card.getName()+".");
 		cards.add(card);	
@@ -86,4 +103,6 @@ public class BattleFieldPanel extends JPanel{
 		this.removeAll();
 		repaint();
 	}
+
+	
 }
