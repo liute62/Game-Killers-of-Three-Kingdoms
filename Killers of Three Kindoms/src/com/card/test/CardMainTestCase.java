@@ -85,7 +85,7 @@ public class CardMainTestCase {
         player.setPosition(1);
         player1.setCurrentHP(5);
         player1.setPosition(2);
-        List<APlayer> playerList = new ArrayList<>();
+        List<APlayer> playerList = new ArrayList<APlayer>();
         playerList.add(player1);
         assertEquals(strike.checkTarget(player, playerList), true);
     }
@@ -100,7 +100,7 @@ public class CardMainTestCase {
         player.setPosition(1);
         player1.setCurrentHP(5);
         player1.setPosition(3);
-        List<APlayer> playerList = new ArrayList<>();
+        List<APlayer> playerList = new ArrayList<APlayer>();
         playerList.add(player1);
         assertEquals(strike.checkTarget(player, playerList), false);
     }
@@ -118,7 +118,7 @@ public class CardMainTestCase {
         player1.setPosition(2);
         player2.setCurrentHP(5);
         player2.setPosition(5);
-        List<APlayer> playerList = new ArrayList<>();
+        List<APlayer> playerList = new ArrayList<APlayer>();
         playerList.add(player1);
         playerList.add(player2);
         assertEquals(strike.checkTarget(player, playerList), true);
@@ -137,7 +137,7 @@ public class CardMainTestCase {
         player1.setPosition(3);
         player2.setCurrentHP(5);
         player2.setPosition(4);
-        List<APlayer> playerList = new ArrayList<>();
+        List<APlayer> playerList = new ArrayList<APlayer>();
         playerList.add(player1);
         playerList.add(player2);
         assertEquals(strike.checkTarget(player, playerList), false);
@@ -156,7 +156,7 @@ public class CardMainTestCase {
         player1.setPosition(2);
         player2.setCurrentHP(5);
         player2.setPosition(4);
-        List<APlayer> playerList = new ArrayList<>();
+        List<APlayer> playerList = new ArrayList<APlayer>();
         playerList.add(player1);
         playerList.add(player2);
         assertEquals(strike.checkTarget(player, playerList), false);
@@ -172,7 +172,7 @@ public class CardMainTestCase {
         player.setPosition(1);
         player1.setCurrentHP(0);
         player1.setPosition(2);
-        List<APlayer> playerList = new ArrayList<>();
+        List<APlayer> playerList = new ArrayList<APlayer>();
         playerList.add(player1);
         assertEquals(strike.checkTarget(player, playerList), false);
     }
@@ -190,7 +190,7 @@ public class CardMainTestCase {
         player1.setPosition(2);
         player2.setCurrentHP(0);
         player2.setPosition(4);
-        List<APlayer> playerList = new ArrayList<>();
+        List<APlayer> playerList = new ArrayList<APlayer>();
         playerList.add(player1);
         playerList.add(player2);
         assertEquals(strike.checkTarget(player, playerList), false);
@@ -209,7 +209,7 @@ public class CardMainTestCase {
         player1.setPosition(2);
         player2.setCurrentHP(-1);
         player2.setPosition(4);
-        List<APlayer> playerList = new ArrayList<>();
+        List<APlayer> playerList = new ArrayList<APlayer>();
         playerList.add(player1);
         playerList.add(player2);
         assertEquals(strike.checkTarget(player, playerList), false);
@@ -250,7 +250,7 @@ public class CardMainTestCase {
         player1.setCurrentHP(2);
         player1.setPosition(2);
         player1.setPlusMount(shadowRunner);
-        List<APlayer> playerList = new ArrayList<>();
+        List<APlayer> playerList = new ArrayList<APlayer>();
         playerList.add(player1);
 
         strike.use(player, playerList);
@@ -294,7 +294,7 @@ public class CardMainTestCase {
         player1.setCurrentHP(2);
         player1.setPosition(2);
         player1.setMinusMount(redHare);
-        List<APlayer> playerList = new ArrayList<>();
+        List<APlayer> playerList = new ArrayList<APlayer>();
         playerList.add(player1);
 
         strike.use(player, playerList);

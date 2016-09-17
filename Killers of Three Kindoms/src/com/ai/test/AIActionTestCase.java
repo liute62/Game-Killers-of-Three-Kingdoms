@@ -31,7 +31,7 @@ public class AIActionTestCase {
 	}
 	
 	private List<ACard> getHandsList(int num){
-		List<ACard> cards = new ArrayList<>();
+		List<ACard> cards = new ArrayList<ACard>();
 		for (int i = 0; i < num; i++) {
 			ACard card = null;
 			cards.add(card);	
@@ -40,7 +40,7 @@ public class AIActionTestCase {
 	}
 	
 	private List<ACard> getHandsList(int strikeNum,int dodgeNum,int peachNum){
-		List<ACard> cards = new ArrayList<>();
+		List<ACard> cards = new ArrayList<ACard>();
 		for (int i = 0; i < strikeNum; i++) {
 			ACard card = new StrikeCard();
 			cards.add(card);
@@ -68,7 +68,7 @@ public class AIActionTestCase {
 	private APlayer result_test_4_5_6(int handNum, int dropNum){
 		APlayer result = new Player();
 		List<ACard> cards = getHandsList(handNum);
-		List<ACard> tmp = new ArrayList<>();
+		List<ACard> tmp = new ArrayList<ACard>();
 		for (int i = 0; i < dropNum; i++) {
 				tmp.add(cards.get(i));
 		}
@@ -91,7 +91,7 @@ public class AIActionTestCase {
 	}
 	
 	private APlayer result_9(){
-		List<APlayer> players = new ArrayList<>();
+		List<APlayer> players = new ArrayList<APlayer>();
 		for (int i = 1; i < 5; i++) {
 			APlayer player = new Player();
 			player.setPosition(i);

@@ -47,7 +47,7 @@ public class BattleFieldPanel extends JPanel{
 	
 	private void initial(){
 		cardPanels = new ArrayList<CardPanel>();
-		cards = new ArrayList<>();
+		cards = new ArrayList<ACard>();
 	}
 	
 	public void addAcard(ACard card) {

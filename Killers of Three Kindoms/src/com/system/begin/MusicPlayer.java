@@ -1,6 +1,7 @@
 package com.system.begin;
 
 import javax.sound.sampled.*;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,8 +21,8 @@ public class MusicPlayer extends Thread {
     public MusicPlayer(String srcPath, boolean theEnd) {
         this.srcPath = srcPath;
         this.theEnd = theEnd;
-        this.fileNameList = new ArrayList<>();
-        this.fileList = new ArrayList<>();
+        this.fileNameList = new ArrayList<String>();
+        this.fileList = new ArrayList<File>();
         this.fileNameList.add("bgm.wav");
         // Initialize fileList.
         for (int i = 0; i < this.fileNameList.size(); i++) {
@@ -43,9 +44,12 @@ public class MusicPlayer extends Thread {
         AudioInputStream audioIn = null;
         try {
             audioIn = AudioSystem.getAudioInputStream(currentFile);
-        } catch (UnsupportedAudioFileException | IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
-        }
+        } catch (UnsupportedAudioFileException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         Clip clip = null;
 
         try {
@@ -56,9 +60,12 @@ public class MusicPlayer extends Thread {
         assert clip != null;
         try {
             clip.open(audioIn);
-        } catch (LineUnavailableException | IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
-        }
+        } catch (LineUnavailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         if (!this.theEnd) {
             clip.loop(1000);
         } else {

@@ -309,8 +309,8 @@ public class DeckHandCardPanel extends JPanel{
 		
 		class SureListener extends MyClick{
 			
-			List<CardPanel> removedList = new ArrayList<>();
-			List<ACard> removedCards = new ArrayList<>();
+			List<CardPanel> removedList = new ArrayList<CardPanel>();
+			List<ACard> removedCards = new ArrayList<ACard>();
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {
